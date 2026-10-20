@@ -26,9 +26,23 @@ export interface Itinerary {
   updatedAt: string;
 }
 
-export interface UserState {
+export interface ActivityMark {
+  state: 'done' | 'skipped';
+  at: string; // ISO datetime
+}
+
+export interface UserStateV1 {
   schemaVersion: 1;
   seededIds: string[];
   favorites: Favorite[];
   itineraries: Itinerary[];
+}
+
+export interface UserState {
+  schemaVersion: 2;
+  seededIds: string[];
+  favorites: Favorite[];
+  itineraries: Itinerary[];
+  /** Marcações feita/pulada do roteiro FULL, por id de atividade (feature 002). */
+  activityMarks: Record<string, ActivityMark>;
 }

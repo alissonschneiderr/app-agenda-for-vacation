@@ -1,0 +1,872 @@
+{
+  "date": "2026-11-06",
+  "region": "East Village, Union Square, Flatiron, SoHo, NoLita e Little Italy",
+  "goal": "Último dia: comércio independente, livrarias, pizza histórica e a despedida no Empire State.",
+  "events": [
+    "Amanhã (07/11): dia de viagem para Orlando."
+  ],
+  "activities": [
+    {
+      "id": "ny-2026-11-06-01",
+      "type": "hotel",
+      "title": "Saída do hotel",
+      "start": "09:25",
+      "durationMin": 5,
+      "description": "Último dia em Nova York: East Village, Union Square, Flatiron, SoHo, NoLita e Little Italy, com o Empire State à noite.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-06-02",
+      "type": "transit",
+      "title": "A pé até 51 St (linha 6)",
+      "start": "09:30",
+      "durationMin": 5,
+      "description": "POD 51 → 51 St (linha 6)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "POD 51",
+        "to": "51 St (linha 6)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-03",
+      "type": "transit",
+      "title": "Metrô até Astor Pl",
+      "start": "09:35",
+      "durationMin": 15,
+      "description": "51 St → Astor Pl",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "51 St",
+        "to": "Astor Pl",
+        "minutes": 15,
+        "lines": "Linha 6 (sentido downtown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-04",
+      "type": "transit",
+      "title": "A pé até Veselka",
+      "start": "09:50",
+      "durationMin": 5,
+      "description": "Astor Pl → Veselka",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Astor Pl",
+        "to": "Veselka",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-05",
+      "type": "meal",
+      "title": "Café da manhã no Veselka",
+      "start": "09:55",
+      "durationMin": 45,
+      "description": "Café da manhã ucraniano.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Abre às 9h; às sextas fica aberto a noite toda",
+          "status": "confirmed",
+          "source": "https://evgrieve.com/2026/04/veselka-bringing-back-247-service-on.html",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Veselka",
+        "address": "144 2nd Avenue (E 9th St), New York, NY 10003",
+        "location": {
+          "lat": 40.729,
+          "lng": -73.987
+        }
+      },
+      "meal": {
+        "kind": "breakfast",
+        "order": "Pierogi de batata e queijo, panquecas de batata e café",
+        "why": "Diner ucraniano do East Village aberto em 1954, símbolo do bairro.",
+        "priceRange": "US$ 20–30 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-06",
+      "type": "transit",
+      "title": "A pé até St. Marks Place",
+      "start": "10:40",
+      "durationMin": 5,
+      "description": "Veselka → St. Marks Place",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Veselka",
+        "to": "St. Marks Place",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-07",
+      "type": "attraction",
+      "title": "St. Marks Place e os prédios de \"Physical Graffiti\"",
+      "start": "10:45",
+      "durationMin": 25,
+      "description": "A rua mais punk do East Village. Nos números 96–98 ficam os prédios da capa do álbum \"Physical Graffiti\", do Led Zeppelin, e da escadaria do clipe \"Waiting on a Friend\", dos Rolling Stones.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "St. Marks Place",
+        "address": "96–98 St Marks Place, New York, NY 10009",
+        "location": {
+          "lat": 40.727,
+          "lng": -73.9852
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-06-08",
+      "type": "transit",
+      "title": "A pé até Strand Bookstore",
+      "start": "11:10",
+      "durationMin": 12,
+      "description": "St. Marks Place → Strand Bookstore",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "St. Marks Place",
+        "to": "Strand Bookstore",
+        "minutes": 12
+      }
+    },
+    {
+      "id": "ny-2026-11-06-09",
+      "type": "shopping",
+      "title": "Strand Bookstore",
+      "start": "11:22",
+      "durationMin": 45,
+      "description": "A livraria independente mais famosa da cidade.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberta de segunda a sábado das 9h30 às 22h30",
+          "status": "confirmed",
+          "source": "https://travel.sygic.com/en/poi/strand-bookstore-poi:55002",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Strand Bookstore",
+        "address": "828 Broadway (E 12th St), New York, NY 10003",
+        "location": {
+          "lat": 40.7332,
+          "lng": -73.9907
+        }
+      },
+      "shop": {
+        "kind": "independent",
+        "why": "Livraria independente de 1927, com \"18 milhas de livros\", usados e novos; ótima para lembranças (sacolas e canecas da loja)."
+      }
+    },
+    {
+      "id": "ny-2026-11-06-10",
+      "type": "transit",
+      "title": "A pé até 5th Avenue e 12th Street",
+      "start": "12:07",
+      "durationMin": 4,
+      "description": "Strand → 5th Avenue e 12th Street",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Strand",
+        "to": "5th Avenue e 12th Street",
+        "minutes": 4
+      }
+    },
+    {
+      "id": "ny-2026-11-06-11",
+      "type": "screen",
+      "title": "Prédio de \"Mad About You\"",
+      "start": "12:11",
+      "durationMin": 8,
+      "description": "Prédio residencial no Greenwich Village; só por fora.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "5th Avenue com East 12th Street",
+        "address": "5th Avenue e East 12th Street, New York, NY 10003",
+        "location": {
+          "lat": 40.7342,
+          "lng": -73.9938
+        }
+      },
+      "screen": [
+        {
+          "work": "Mad About You",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A fachada usada como o prédio de Paul e Jamie fica nesta esquina da 5th Ave.",
+          "address": "5th Avenue e East 12th Street, New York, NY 10003"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-06-12",
+      "type": "transit",
+      "title": "A pé até Madison Square Park",
+      "start": "12:19",
+      "durationMin": 15,
+      "description": "5th Avenue → Madison Square Park",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "5th Avenue",
+        "to": "Madison Square Park",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-06-13",
+      "type": "meal",
+      "title": "Almoço no Shake Shack original",
+      "start": "12:34",
+      "durationMin": 50,
+      "description": "Almoço no parque.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto todos os dias das 11h às 22h",
+          "status": "confirmed",
+          "source": "https://www.timeout.com/newyork/restaurants/shake-shack-2",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Shake Shack Madison Square Park",
+        "address": "Madison Square Park (E 23rd St e Madison Ave), New York, NY 10010",
+        "location": {
+          "lat": 40.7414,
+          "lng": -73.9882
+        }
+      },
+      "meal": {
+        "kind": "lunch",
+        "order": "ShackBurger, batata crinkle e o \"concrete\" (sorvete batido) do dia",
+        "why": "O primeiro Shake Shack, um quiosque dentro do Madison Square Park, de frente para o Flatiron.",
+        "priceRange": "US$ 15–25 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-14",
+      "type": "transit",
+      "title": "A pé até Flatiron Building",
+      "start": "13:24",
+      "durationMin": 3,
+      "description": "Madison Square Park → Flatiron Building",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Madison Square Park",
+        "to": "Flatiron Building",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-06-15",
+      "type": "attraction",
+      "title": "Flatiron Building",
+      "start": "13:27",
+      "durationMin": 15,
+      "description": "O prédio \"ferro de passar\" de 1902; a melhor foto é da ilha de pedestres ao norte.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Flatiron Building",
+        "address": "175 5th Avenue, New York, NY 10010",
+        "location": {
+          "lat": 40.7411,
+          "lng": -73.9897
+        }
+      },
+      "pointId": "ny-flatiron"
+    },
+    {
+      "id": "ny-2026-11-06-16",
+      "type": "transit",
+      "title": "A pé até 23 St (linhas R/W)",
+      "start": "13:42",
+      "durationMin": 3,
+      "description": "Flatiron → 23 St (linhas R/W)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Flatiron",
+        "to": "23 St (linhas R/W)",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-06-17",
+      "type": "transit",
+      "title": "Metrô até Prince St",
+      "start": "13:45",
+      "durationMin": 10,
+      "description": "23 St → Prince St",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "23 St",
+        "to": "Prince St",
+        "minutes": 10,
+        "lines": "Linha R ou W (sentido downtown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-18",
+      "type": "transit",
+      "title": "A pé até Housing Works Bookstore",
+      "start": "13:55",
+      "durationMin": 5,
+      "description": "Prince St → Housing Works Bookstore",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Prince St",
+        "to": "Housing Works Bookstore",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-19",
+      "type": "shopping",
+      "title": "Housing Works Bookstore Café",
+      "start": "14:00",
+      "durationMin": 30,
+      "description": "Brechó de livros no SoHo.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Horário de funcionamento",
+          "status": "unconfirmed",
+          "note": "Não encontrei em fonte atual; confirme no Google Maps ou no site no dia."
+        }
+      ],
+      "place": {
+        "name": "Housing Works Bookstore Café",
+        "address": "126 Crosby Street, New York, NY 10012",
+        "location": {
+          "lat": 40.7246,
+          "lng": -73.9965
+        }
+      },
+      "shop": {
+        "kind": "thrift",
+        "why": "Livraria e café de segunda mão mantidos por uma ONG; renda revertida para pessoas com HIV e sem moradia. Lindo salão com estantes de madeira."
+      }
+    },
+    {
+      "id": "ny-2026-11-06-20",
+      "type": "transit",
+      "title": "A pé até Elizabeth Street",
+      "start": "14:30",
+      "durationMin": 8,
+      "description": "Crosby St → Elizabeth Street",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Crosby St",
+        "to": "Elizabeth Street",
+        "minutes": 8
+      }
+    },
+    {
+      "id": "ny-2026-11-06-21",
+      "type": "shopping",
+      "title": "Boutiques independentes de NoLita (Elizabeth St e Mott St)",
+      "start": "14:38",
+      "durationMin": 50,
+      "description": "Garimpo de marcas locais.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "NoLita",
+        "address": "Elizabeth Street e Mott Street entre Prince St e Spring St, New York, NY 10012",
+        "location": {
+          "lat": 40.7226,
+          "lng": -73.9947
+        }
+      },
+      "shop": {
+        "kind": "independent",
+        "why": "As ruas de NoLita concentram lojas de pequenos designers, joias autorais e conceito; ao contrário da Broadway do SoHo, quase não há grandes redes."
+      }
+    },
+    {
+      "id": "ny-2026-11-06-22",
+      "type": "transit",
+      "title": "A pé até Prince Street Pizza",
+      "start": "15:28",
+      "durationMin": 3,
+      "description": "Elizabeth St → Prince Street Pizza",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Elizabeth St",
+        "to": "Prince Street Pizza",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-06-23",
+      "type": "meal",
+      "title": "Fatia no Prince Street Pizza",
+      "start": "15:31",
+      "durationMin": 20,
+      "description": "Lanche da tarde.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Horário de funcionamento",
+          "status": "unconfirmed",
+          "note": "Não encontrei em fonte atual; confirme no Google Maps ou no site no dia."
+        }
+      ],
+      "place": {
+        "name": "Prince Street Pizza",
+        "address": "27 Prince Street, New York, NY 10012",
+        "location": {
+          "lat": 40.7231,
+          "lng": -73.9945
+        }
+      },
+      "meal": {
+        "kind": "snack",
+        "order": "Fatia quadrada de pepperoni (Spicy Spring)",
+        "why": "A fatia quadrada com pepperoni em \"copinhos\" é uma das mais pedidas de NoLita; fila costuma andar rápido.",
+        "priceRange": "US$ 6–8 por fatia"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-24",
+      "type": "transit",
+      "title": "A pé até Old St. Patrick's Cathedral",
+      "start": "15:51",
+      "durationMin": 2,
+      "description": "Prince St → Old St. Patrick's Cathedral",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Prince St",
+        "to": "Old St. Patrick's Cathedral",
+        "minutes": 2
+      }
+    },
+    {
+      "id": "ny-2026-11-06-25",
+      "type": "screen",
+      "title": "Old St. Patrick's Cathedral",
+      "start": "15:53",
+      "durationMin": 20,
+      "description": "A primeira catedral de Nova York (1815), com cemitério murado.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Basilica of St. Patrick's Old Cathedral",
+        "address": "263 Mulberry Street, New York, NY 10012",
+        "location": {
+          "lat": 40.7236,
+          "lng": -73.9953
+        }
+      },
+      "screen": [
+        {
+          "work": "O Poderoso Chefão (1972)",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A cena do batizado é ambientada aqui (o interior foi gravado em outra igreja); a fachada é a da basílica.",
+          "address": "263 Mulberry Street, New York, NY 10012"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-06-26",
+      "type": "transit",
+      "title": "A pé até Little Italy",
+      "start": "16:13",
+      "durationMin": 5,
+      "description": "Mulberry St → Little Italy",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Mulberry St",
+        "to": "Little Italy",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-27",
+      "type": "attraction",
+      "title": "Little Italy (Mulberry Street)",
+      "start": "16:18",
+      "durationMin": 40,
+      "description": "O que restou da Little Italy, com cantinas e lojas de produtos italianos na Mulberry Street.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Little Italy",
+        "address": "Mulberry Street entre Broome St e Canal St, New York, NY 10013",
+        "location": {
+          "lat": 40.7192,
+          "lng": -73.9973
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-06-28",
+      "type": "transit",
+      "title": "A pé até Lombardi's",
+      "start": "16:58",
+      "durationMin": 5,
+      "description": "Mulberry St → Lombardi's",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Mulberry St",
+        "to": "Lombardi's",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-29",
+      "type": "meal",
+      "title": "Jantar no Lombardi's",
+      "start": "17:03",
+      "durationMin": 60,
+      "description": "Jantar em NoLita.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto de segunda a quinta e domingo das 11h30 às 23h; sexta e sábado até meia-noite",
+          "status": "confirmed",
+          "source": "https://www.opentable.com/r/lombardis-new-york",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Lombardi's",
+        "address": "32 Spring Street (Mott St), New York, NY 10012",
+        "location": {
+          "lat": 40.7216,
+          "lng": -73.9956
+        }
+      },
+      "meal": {
+        "kind": "dinner",
+        "order": "Pizza margherita de forno a carvão (ou a de pepperoni)",
+        "why": "Considerada a primeira pizzaria dos EUA (licença de 1905); jantar de despedida.",
+        "priceRange": "US$ 25–40 por pizza"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-30",
+      "type": "transit",
+      "title": "A pé até Prince St (linhas R/W)",
+      "start": "18:03",
+      "durationMin": 5,
+      "description": "Lombardi's → Prince St (linhas R/W)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Lombardi's",
+        "to": "Prince St (linhas R/W)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-31",
+      "type": "transit",
+      "title": "Metrô até 34 St–Herald Sq",
+      "start": "18:08",
+      "durationMin": 12,
+      "description": "Prince St → 34 St–Herald Sq",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "Prince St",
+        "to": "34 St–Herald Sq",
+        "minutes": 12,
+        "lines": "Linha R ou W (sentido uptown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-32",
+      "type": "transit",
+      "title": "A pé até Empire State Building",
+      "start": "18:20",
+      "durationMin": 7,
+      "description": "Herald Square → Empire State Building",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Herald Square",
+        "to": "Empire State Building",
+        "minutes": 7
+      }
+    },
+    {
+      "id": "ny-2026-11-06-33",
+      "type": "attraction",
+      "title": "Empire State Building à noite",
+      "start": "18:27",
+      "durationMin": 75,
+      "description": "Despedida de Nova York do observatório ao ar livre do 86º andar, com a cidade iluminada.",
+      "priority": "important",
+      "booking": {
+        "required": true,
+        "how": "Comprar com horário no site oficial (esbnyc.com)",
+        "price": "US$ 44 por adulto (86º andar)"
+      },
+      "facts": [
+        {
+          "text": "86º andar a partir de US$ 44 por adulto",
+          "status": "confirmed",
+          "source": "https://thebettervacation.com/new-york/empire-state-building/",
+          "checkedAt": "2026-10-21"
+        },
+        {
+          "text": "Horário de fechamento em novembro",
+          "status": "unconfirmed",
+          "note": "Fontes indicam geralmente até 22h ou mais tarde; confirme no site oficial."
+        }
+      ],
+      "place": {
+        "name": "Empire State Building",
+        "address": "20 West 34th Street, New York, NY 10001",
+        "location": {
+          "lat": 40.7484,
+          "lng": -73.9857
+        }
+      },
+      "pointId": "ny-empire-state"
+    },
+    {
+      "id": "ny-2026-11-06-34",
+      "type": "transit",
+      "title": "A pé até 33 St (linha 6)",
+      "start": "19:42",
+      "durationMin": 8,
+      "description": "Empire State → 33 St (linha 6)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Empire State",
+        "to": "33 St (linha 6)",
+        "minutes": 8
+      }
+    },
+    {
+      "id": "ny-2026-11-06-35",
+      "type": "transit",
+      "title": "Metrô até 51 St",
+      "start": "19:50",
+      "durationMin": 10,
+      "description": "33 St → 51 St",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "33 St",
+        "to": "51 St",
+        "minutes": 10,
+        "lines": "Linha 6 (sentido uptown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-06-36",
+      "type": "transit",
+      "title": "A pé até POD 51",
+      "start": "20:00",
+      "durationMin": 5,
+      "description": "51 St → POD 51",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "51 St",
+        "to": "POD 51",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-06-37",
+      "type": "hotel",
+      "title": "Volta ao POD 51 e malas para Orlando",
+      "start": "20:05",
+      "durationMin": 20,
+      "description": "Amanhã (07/11) é o dia de viagem para Orlando: deixe as malas prontas.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    }
+  ],
+  "returnToHotel": "Linha 6 de 33 St até 51 St e 5 min a pé.",
+  "alternatives": [
+    {
+      "when": "rain",
+      "text": "Fique mais tempo na Strand e na Housing Works; troque Little Italy por uma ida mais cedo ao Empire State (a vista com chuva é ruim: veja a previsão e, se fechar, prefira o museu do prédio ou cancele)."
+    },
+    {
+      "when": "tired",
+      "text": "Pule St. Marks Place, Mad About You e Little Italy; volte ao hotel entre NoLita e o jantar."
+    }
+  ]
+}

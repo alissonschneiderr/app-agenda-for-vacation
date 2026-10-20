@@ -33,6 +33,17 @@ npx playwright install chromium && npm run e2e   # testes ponta a ponta, incluin
 
 Horários e preços têm a data de verificação no app; confirme nos sites oficiais antes da visita.
 
+## Roteiro FULL de Nova York
+
+Agenda hora a hora de 31/10 a 06/11 (feature 002), em `content/full/nova-york/`: `meta.json` (hotel,
+compromissos, checklist, orientações, exclusões) e um arquivo por dia. No app: **Roteiros → Roteiro
+FULL** (ou `#/full/nova-york`); marque atividades como feitas/puladas. O documento completo fica em
+`#/full/nova-york/documento`, com o botão "Imprimir / salvar PDF".
+
+`npm run content:strict` aplica as regras F1–F19 (sem sobreposição de horário, deslocamento entre
+lugares, 30 min de folga nos compromissos, restrições alimentares e de lojas, fonte em cada horário
+ou preço). Formato: [`specs/002-nyc-full-itinerary/contracts/`](specs/002-nyc-full-itinerary/contracts/).
+
 ## Publicar e instalar
 
 O workflow `.github/workflows/ci.yml` roda os testes e publica no GitHub Pages a cada push na

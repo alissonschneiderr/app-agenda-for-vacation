@@ -1,0 +1,675 @@
+{
+  "date": "2026-11-02",
+  "region": "Central Park, Upper West Side, Harlem e Madison Square Garden",
+  "goal": "O Central Park no outono, o Upper West Side das séries e dos museus, e o jogo dos Knicks à noite.",
+  "events": [
+    "Dia seguinte à maratona: Central Park pode ter estruturas sendo desmontadas.",
+    "Jogo Knicks x Nets às 19h30 no Madison Square Garden (ingresso comprado): chegar até 18h45."
+  ],
+  "activities": [
+    {
+      "id": "ny-2026-11-02-01",
+      "type": "hotel",
+      "title": "Saída do hotel",
+      "start": "09:15",
+      "durationMin": 5,
+      "description": "Dia longo que termina no jogo dos Knicks. Leve o ingresso no celular e um casaco.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-02-02",
+      "type": "transit",
+      "title": "A pé até Sarabeth's",
+      "start": "09:20",
+      "durationMin": 20,
+      "description": "Pela E 57th St até a Central Park South.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "POD 51",
+        "to": "Sarabeth's",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-02-03",
+      "type": "meal",
+      "title": "Café da manhã no Sarabeth's",
+      "start": "09:40",
+      "durationMin": 50,
+      "description": "Café da manhã antes do parque.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto de segunda a sábado das 8h às 22h; café da manhã até 15h30",
+          "status": "confirmed",
+          "source": "https://sarabethsrestaurants.com/locations/central-park-south/",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Sarabeth's Central Park South",
+        "address": "40 Central Park South, New York, NY 10019",
+        "location": {
+          "lat": 40.7651,
+          "lng": -73.9763
+        }
+      },
+      "meal": {
+        "kind": "breakfast",
+        "order": "Lemon ricotta pancakes ou French toast, com as geleias da casa",
+        "why": "Clássico de brunch nova-iorquino, de frente para o Central Park.",
+        "priceRange": "US$ 30–45 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-04",
+      "type": "transit",
+      "title": "A pé até The Pond (Central Park)",
+      "start": "10:30",
+      "durationMin": 5,
+      "description": "Sarabeth's → The Pond (Central Park)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Sarabeth's",
+        "to": "The Pond (Central Park)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-02-05",
+      "type": "attraction",
+      "title": "Central Park a pé: The Pond, The Mall, Bethesda Terrace, Bow Bridge e Strawberry Fields",
+      "start": "10:35",
+      "durationMin": 90,
+      "description": "Entre pela 59th St e caminhe para o norte: Gapstow Bridge sobre The Pond, a alameda de olmos The Mall, a fonte de Bethesda Terrace, a Bow Bridge e, saindo na W 72nd St, o memorial Strawberry Fields (Imagine), para John Lennon. Em novembro as árvores ficam douradas.",
+      "priority": "essential",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Ontem houve a maratona com chegada no parque; algumas áreas podem ainda ter estruturas sendo desmontadas",
+          "status": "confirmed",
+          "source": "https://radicalstorage.com/travel/nyc-marathon/",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Central Park",
+        "address": "Entrada na Central Park South com 6th Ave, New York, NY 10019",
+        "location": {
+          "lat": 40.768,
+          "lng": -73.9718
+        }
+      },
+      "pointId": "ny-central-park",
+      "screen": [
+        {
+          "work": "Esqueceram de Mim 2 (1992)",
+          "kind": "filming",
+          "access": "inside",
+          "association": "Kevin se encontra com a moça dos pombos perto da Gapstow Bridge e do The Pond.",
+          "address": "The Pond, Central Park, New York, NY"
+        },
+        {
+          "work": "Friends",
+          "kind": "setting",
+          "access": "inside",
+          "association": "A fonte da abertura NÃO fica aqui: foi gravada no estúdio da Warner em Burbank (Califórnia). O parque é só o cenário de referência.",
+          "address": "Central Park, New York, NY"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-02-06",
+      "type": "transit",
+      "title": "A pé até The Dakota",
+      "start": "12:05",
+      "durationMin": 3,
+      "description": "Strawberry Fields → The Dakota",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Strawberry Fields",
+        "to": "The Dakota",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-02-07",
+      "type": "screen",
+      "title": "The Dakota",
+      "start": "12:08",
+      "durationMin": 10,
+      "description": "Prédio de 1884 onde John Lennon morou (e foi morto, em 1980). Residencial: só por fora.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "The Dakota",
+        "address": "1 West 72nd Street, New York, NY 10023",
+        "location": {
+          "lat": 40.7764,
+          "lng": -73.9762
+        }
+      },
+      "screen": [
+        {
+          "work": "O Bebê de Rosemary (1968)",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A fachada é o prédio \"Bramford\" do filme.",
+          "address": "1 West 72nd Street, New York, NY 10023"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-02-08",
+      "type": "transit",
+      "title": "A pé até Zabar's",
+      "start": "12:18",
+      "durationMin": 13,
+      "description": "Pela Columbus Ave e W 80th St até a Broadway.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "The Dakota",
+        "to": "Zabar's",
+        "minutes": 13
+      }
+    },
+    {
+      "id": "ny-2026-11-02-09",
+      "type": "meal",
+      "title": "Almoço no Zabar's",
+      "start": "12:31",
+      "durationMin": 50,
+      "description": "Almoço rápido no coração do Upper West Side.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Horário do café do Zabar's às segundas",
+          "status": "unconfirmed",
+          "note": "Não encontrei em fonte atual; confirme no Google Maps ou no site no dia."
+        }
+      ],
+      "place": {
+        "name": "Zabar's (café)",
+        "address": "2245 Broadway (W 80th St), New York, NY 10024",
+        "location": {
+          "lat": 40.7849,
+          "lng": -73.9796
+        }
+      },
+      "meal": {
+        "kind": "lunch",
+        "order": "Knish de batata, sanduíche de deli e um rugelach de sobremesa",
+        "why": "Mercado gourmet judaico do Upper West Side desde 1934; o café ao lado tem comida simples e barata. Bom para levar café e babka para o hotel.",
+        "priceRange": "US$ 15–25 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-10",
+      "type": "transit",
+      "title": "A pé até The Belnord",
+      "start": "13:21",
+      "durationMin": 8,
+      "description": "Zabar's → The Belnord",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Zabar's",
+        "to": "The Belnord",
+        "minutes": 8
+      }
+    },
+    {
+      "id": "ny-2026-11-02-11",
+      "type": "screen",
+      "title": "The Belnord (o \"Arconia\")",
+      "start": "13:29",
+      "durationMin": 15,
+      "description": "Prédio de 1909 com um enorme pátio interno; residencial, visto só por fora.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "The Belnord",
+        "address": "225 West 86th Street, New York, NY 10024",
+        "location": {
+          "lat": 40.7878,
+          "lng": -73.9771
+        }
+      },
+      "screen": [
+        {
+          "work": "Only Murders in the Building",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A fachada e o pátio são o prédio Arconia da série.",
+          "address": "225 West 86th Street, New York, NY 10024"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-02-12",
+      "type": "transit",
+      "title": "A pé até American Museum of Natural History",
+      "start": "13:44",
+      "durationMin": 15,
+      "description": "The Belnord → American Museum of Natural History",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "The Belnord",
+        "to": "American Museum of Natural History",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-02-13",
+      "type": "attraction",
+      "title": "American Museum of Natural History",
+      "start": "13:59",
+      "durationMin": 85,
+      "description": "Concentre-se nos dinossauros (4º andar), na baleia-azul do Milstein Hall e no Gilder Center. É o museu de \"Uma Noite no Museu\".",
+      "priority": "important",
+      "booking": {
+        "required": true,
+        "how": "Comprar com horário em amnh.org",
+        "price": "US$ 37 por adulto"
+      },
+      "facts": [
+        {
+          "text": "Aberto todos os dias das 10h às 17h30; entrada geral US$ 37 por adulto",
+          "status": "confirmed",
+          "source": "https://www.artvisitguide.com/american-museum-natural-history-new-york/",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "American Museum of Natural History",
+        "address": "200 Central Park West, New York, NY 10024",
+        "location": {
+          "lat": 40.7813,
+          "lng": -73.974
+        }
+      },
+      "pointId": "ny-amnh",
+      "screen": [
+        {
+          "work": "Uma Noite no Museu (2006)",
+          "kind": "setting",
+          "access": "inside",
+          "association": "O filme se passa aqui; os interiores foram gravados em estúdio em Vancouver.",
+          "address": "200 Central Park West, New York, NY 10024"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-02-14",
+      "type": "transit",
+      "title": "A pé até Levain Bakery",
+      "start": "15:24",
+      "durationMin": 10,
+      "description": "Museu de História Natural → Levain Bakery",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Museu de História Natural",
+        "to": "Levain Bakery",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-02-15",
+      "type": "meal",
+      "title": "Lanche na Levain Bakery",
+      "start": "15:34",
+      "durationMin": 20,
+      "description": "Lanche da tarde.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberta todos os dias das 8h às 20h",
+          "status": "confirmed",
+          "source": "https://www.westsiderag.com/2026/07/06/heres-the-uws-dish-levain-bakerys-banana-chocolate-chip-loaf-cake",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Levain Bakery",
+        "address": "167 West 74th Street, New York, NY 10023",
+        "location": {
+          "lat": 40.7799,
+          "lng": -73.9803
+        }
+      },
+      "meal": {
+        "kind": "snack",
+        "order": "O cookie de chocolate com nozes (gigante; divida para dois)",
+        "why": "O cookie mais famoso de Nova York nasceu nesta loja de porão, aberta em 1995.",
+        "priceRange": "US$ 5–6 por cookie"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-16",
+      "type": "transit",
+      "title": "Metrô até 116 St–Columbia University",
+      "start": "15:54",
+      "durationMin": 20,
+      "description": "72 St → 116 St–Columbia University",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "72 St",
+        "to": "116 St–Columbia University",
+        "minutes": 20,
+        "lines": "Linha 1 (sentido uptown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-17",
+      "type": "screen",
+      "title": "Tom's Restaurant",
+      "start": "16:14",
+      "durationMin": 20,
+      "description": "O diner da fachada de Seinfeld. Dá para entrar e tomar um café ou milkshake no balcão.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto às segundas das 7h às 23h",
+          "status": "confirmed",
+          "source": "https://www.timeout.com/newyork/restaurants/toms-restaurant-1",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Tom's Restaurant",
+        "address": "2880 Broadway (W 112th St), New York, NY 10025",
+        "location": {
+          "lat": 40.8054,
+          "lng": -73.9655
+        }
+      },
+      "screen": [
+        {
+          "work": "Seinfeld",
+          "kind": "filming",
+          "access": "inside",
+          "association": "A fachada aparece como o \"Monk's Café\"; as cenas internas eram gravadas em estúdio em Los Angeles.",
+          "address": "2880 Broadway, New York, NY 10025"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-02-18",
+      "type": "transit",
+      "title": "A pé até Sylvia's",
+      "start": "16:34",
+      "durationMin": 20,
+      "description": "Pela W 116th St até a Malcolm X Blvd (Lenox Ave) e suba até a 126th St.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Tom's Restaurant",
+        "to": "Sylvia's",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-02-19",
+      "type": "meal",
+      "title": "Jantar cedo no Sylvia's (Harlem)",
+      "start": "16:54",
+      "durationMin": 50,
+      "description": "Jantar cedo antes do jogo.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto às segundas das 11h às 20h",
+          "status": "confirmed",
+          "source": "https://www.toasttab.com/local/order/sylvias-restaurant/r-09e375e9-b1d4-4f6a-b5db-c0f81fad4a77",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Sylvia's Restaurant",
+        "address": "328 Malcolm X Boulevard (Lenox Ave), New York, NY 10027",
+        "location": {
+          "lat": 40.8089,
+          "lng": -73.9447
+        }
+      },
+      "meal": {
+        "kind": "dinner",
+        "order": "Frango frito, costelinha ao barbecue, mac and cheese, couve refogada e batata-doce caramelizada",
+        "why": "\"Rainha da soul food\", aberto em 1962; símbolo da cultura negra do Harlem.",
+        "priceRange": "US$ 30–45 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-20",
+      "type": "transit",
+      "title": "A pé até 125 St (linhas 2/3)",
+      "start": "17:44",
+      "durationMin": 5,
+      "description": "Sylvia's → 125 St (linhas 2/3)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Sylvia's",
+        "to": "125 St (linhas 2/3)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-02-21",
+      "type": "transit",
+      "title": "Metrô até 34 St–Penn Station",
+      "start": "17:49",
+      "durationMin": 20,
+      "description": "125 St → 34 St–Penn Station",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "125 St",
+        "to": "34 St–Penn Station",
+        "minutes": 20,
+        "lines": "Linha 2 ou 3 expressa (sentido downtown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-22",
+      "type": "transit",
+      "title": "A pé até Madison Square Garden",
+      "start": "18:09",
+      "durationMin": 5,
+      "description": "O Garden fica em cima da Penn Station; siga as placas \"MSG\".",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "34 St–Penn Station",
+        "to": "Madison Square Garden",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-02-23",
+      "type": "commitment",
+      "title": "New York Knicks x Brooklyn Nets",
+      "start": "18:14",
+      "durationMin": 205,
+      "description": "Jogo da NBA no Madison Square Garden, com ingresso já comprado. Chegue com antecedência para a revista de segurança (bolsas pequenas) e para ver o aquecimento. O clássico de Nova York entre os dois times da cidade.",
+      "priority": "essential",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Madison Square Garden",
+        "address": "4 Penn Plaza, New York, NY 10001",
+        "location": {
+          "lat": 40.7505,
+          "lng": -73.9934
+        }
+      },
+      "commitmentId": "knicks-nets"
+    },
+    {
+      "id": "ny-2026-11-02-24",
+      "type": "transit",
+      "title": "Metrô até Lexington Av/53 St",
+      "start": "21:39",
+      "durationMin": 20,
+      "description": "Na saída o metrô lota; se preferir, caminhe uma quadra antes de pegar táxi.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "34 St–Penn Station",
+        "to": "Lexington Av/53 St",
+        "minutes": 20,
+        "lines": "Linha E (sentido Queens)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-02-25",
+      "type": "transit",
+      "title": "A pé até POD 51",
+      "start": "21:59",
+      "durationMin": 5,
+      "description": "Lexington Av/53 St → POD 51",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Lexington Av/53 St",
+        "to": "POD 51",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-02-26",
+      "type": "hotel",
+      "title": "Volta ao POD 51",
+      "start": "22:04",
+      "durationMin": 15,
+      "description": "Fim de um dia intenso.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    }
+  ],
+  "returnToHotel": "Linha E de 34 St–Penn Station até Lexington Av/53 St e 5 min a pé (≈ 25 min). Depois do jogo o metrô lota nos primeiros 15 min.",
+  "alternatives": [
+    {
+      "when": "rain",
+      "text": "Reduza o Central Park à Bethesda Terrace e passe mais tempo no Museu de História Natural; mantenha Tom's, Sylvia's e o jogo."
+    },
+    {
+      "when": "tired",
+      "text": "Pule The Belnord e Tom's Restaurant; depois da Levain, volte ao hotel (linha 1 + metrô) para descansar até as 17h45 e vá direto para um jantar perto do Garden (ex.: Joe's Pizza da Broadway, 1435 Broadway)."
+    }
+  ]
+}

@@ -165,3 +165,43 @@ button, input, select { font: inherit; color: inherit; }
 .error { color: var(--danger); font-size: 0.9rem; }
 .ok-msg { color: var(--ok); font-size: 0.9rem; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Roteiro FULL */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.activity { background: var(--surface); border-radius: var(--radius); padding: 12px 14px; border-left: 4px solid var(--border); }
+.activity-commitment { border-left-color: var(--accent); }
+.activity-next { outline: 3px solid var(--primary); }
+.activity-done { opacity: 0.6; }
+.activity-skipped { opacity: 0.5; }
+.activity-skipped .activity-title { text-decoration: line-through; }
+.activity-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.activity-time { font-weight: 700; font-variant-numeric: tabular-nums; }
+.activity-title { margin: 4px 0; font-size: 1.05rem; }
+.activity p { margin: 4px 0; }
+.next-label { color: var(--primary); font-weight: 700; font-size: 0.85rem; margin: 0 0 4px; }
+.commitment-note { color: var(--accent); font-weight: 600; }
+.priority-essential { background: var(--primary); color: var(--primary-contrast); }
+.priority-optional { background: var(--surface-2); color: var(--muted); }
+.block { border-top: 1px solid var(--border); padding-top: 6px; margin-top: 6px; }
+.block-title { font-weight: 700; font-size: 0.9rem; }
+.facts-list { margin: 6px 0 0; padding-left: 18px; font-size: 0.85rem; }
+.fact-unconfirmed { color: var(--warn); }
+.transit-row { display: grid; gap: 2px; padding: 4px 14px 4px 20px; border-left: 2px dashed var(--border); margin-left: 10px; }
+.mark-buttons, .activity-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.link-button { background: none; border: 0; padding: 0; color: var(--primary); text-decoration: underline; cursor: pointer; text-align: left; }
+.card-full { border: 2px solid var(--primary); }
+.day-nav { justify-content: space-between; margin-top: 16px; }
+.doc-cover, .doc-day { margin-bottom: 24px; }
+.checklist { list-style: none; padding: 0; }
+
+@media print {
+  :root { color-scheme: light; --bg: #fff; --surface: #fff; --surface-2: #eee; --text: #000; --muted: #444; }
+  body { background: #fff; color: #000; }
+  .bottom-nav, .banner, .no-print, .mark-buttons, .activity-actions, button, .map { display: none !important; }
+  .app { padding: 0; }
+  .page { max-width: none; padding: 0; }
+  .doc-day { break-before: page; }
+  .activity { break-inside: avoid; border: 1px solid #ccc; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+}

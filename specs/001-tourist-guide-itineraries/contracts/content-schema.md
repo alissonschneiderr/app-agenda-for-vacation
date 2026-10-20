@@ -76,7 +76,8 @@ Regras 1, 4 e as de integridade da 5 valem sempre (`npm run content`). Regras 2,
 2. Ponto sem foto, endereço, horário, preço ou `verifiedAt` (SC-008).
 3. Foto sem arquivo em `public/photos/` ou sem autor/licença (FR-003a).
 4. Licença fora da lista permitida (CC0, Public Domain, CC BY, CC BY-SA).
-5. Roteiros sugeridos ≠ 19, em dia de locomoção, duplicados por data, com `pointIds` inexistentes,
-   repetidos ou de outra cidade (FR-023, FR-026).
+5. Dia de passeio sem roteiro sugerido **nem** dia de roteiro FULL (feature 002), ou com os dois;
+   roteiro sugerido em dia de locomoção, duplicado por data, com `pointIds` inexistentes, repetidos ou
+   de outra cidade (FR-023, FR-026; ajustada pela feature 002, FR-028).
 6. Algum dos 7 parques de FR-024 sem dia próprio em Orlando.
 7. Tamanho total de `public/data` + `public/photos` > 40 MB.

@@ -1,8 +1,9 @@
 // Junta content/ em public/data/content.json, validando antes (npm run content [--strict]).
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Content, Photo, Point } from '../src/content/types';
+import type { Content, FullDay, FullItinerary, Photo, Point } from '../src/content/types';
 import { validateContent } from './content-schema';
+import { validateFullItinerary } from './full-itinerary-schema';
 
 const root = join(import.meta.dirname, '..');
 const contentDir = join(root, 'content');
@@ -53,17 +54,46 @@ export function assembleContent(): Content {
     }),
   }));
   const suggestedItineraries = readJson<Content['suggestedItineraries']>(join(contentDir, 'itineraries.json'), []);
-  return { version: new Date().toISOString(), cities, trip, categories, points, suggestedItineraries };
+  return {
+    version: new Date().toISOString(),
+    cities,
+    trip,
+    categories,
+    points,
+    suggestedItineraries,
+    fullItineraries: readFullItineraries(),
+  };
+}
+
+/** content/full/<cidade>/meta.json + um AAAA-MM-DD.json por dia → FullItinerary (fonte única, FR-025a). */
+export function readFullItineraries(): FullItinerary[] {
+  const fullDir = join(contentDir, 'full');
+  if (!existsSync(fullDir)) return [];
+  return readdirSync(fullDir)
+    .filter((d) => statSync(join(fullDir, d)).isDirectory() && existsSync(join(fullDir, d, 'meta.json')))
+    .sort()
+    .map((d) => {
+      const meta = readJson<Omit<FullItinerary, 'days'>>(join(fullDir, d, 'meta.json'), {} as Omit<FullItinerary, 'days'>);
+      const days = readdirSync(join(fullDir, d))
+        .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+        .sort()
+        .map((f) => readJson<FullDay>(join(fullDir, d, f), {} as FullDay));
+      return { ...meta, days };
+    });
 }
 
 function main() {
   const strict = process.argv.includes('--strict');
   const content = assembleContent();
-  const errors = validateContent(content, {
-    strict,
-    photoExists: (src) => existsSync(join(publicDir, src)),
-    totalBytes: dirBytes(join(publicDir, 'photos')) + Buffer.byteLength(JSON.stringify(content)),
-  });
+  const pointIds = new Set(content.points.map((p) => p.id));
+  const errors = [
+    ...validateContent(content, {
+      strict,
+      photoExists: (src) => existsSync(join(publicDir, src)),
+      totalBytes: dirBytes(join(publicDir, 'photos')) + Buffer.byteLength(JSON.stringify(content)),
+    }),
+    ...content.fullItineraries.flatMap((it) => validateFullItinerary(it, { strict, pointIds })),
+  ];
   if (errors.length) {
     console.error(`Conteúdo inválido (${errors.length} erro(s)):`);
     for (const e of errors) console.error(`  - ${e}`);
@@ -76,6 +106,9 @@ function main() {
       `${content.points.reduce((n, p) => n + p.photos.length, 0)} fotos, ` +
       `${content.suggestedItineraries.length} roteiros sugeridos`,
   );
+  for (const it of content.fullItineraries) {
+    console.log(`roteiro FULL ${it.id}: ${it.days.length} dias, ${it.days.reduce((n, d) => n + d.activities.length, 0)} atividades`);
+  }
 }
 
 if (process.argv[1] && import.meta.filename === process.argv[1]) main();

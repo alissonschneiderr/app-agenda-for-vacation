@@ -58,6 +58,7 @@ export const contentSchema = z.object({
   trip: z.array(z.object({ cityId, arrive: date, depart: date })).min(1),
   categories: z.array(z.object({ id: nonEmpty, name: nonEmpty })).min(1),
   points: z.array(point),
+  fullItineraries: z.array(z.unknown()).optional(),
   suggestedItineraries: z.array(
     z.object({
       id: z.string().regex(/^sug-\d{4}-\d{2}-\d{2}$/),
@@ -152,13 +153,18 @@ export function validateContent(input: unknown, opts: ValidateOptions): string[]
     }
   }
 
+  // Dias cobertos pelo roteiro FULL (feature 002) não têm roteiro sugerido simples.
+  const fullDates = new Set((content.fullItineraries ?? []).flatMap((f) => f.days.map((d) => d.date)));
+  for (const d of fullDates) {
+    if (byDate.has(d)) errors.push(`roteiros: ${d} tem roteiro sugerido e roteiro FULL; use só um`);
+  }
+
   if (opts.strict) {
     const days = sightseeingDays(content.trip);
     for (const d of days) {
-      if (!byDate.has(d.date)) errors.push(`roteiros: falta roteiro sugerido para ${d.date}`);
-    }
-    if (content.suggestedItineraries.length !== days.length) {
-      errors.push(`roteiros: esperados ${days.length} roteiros sugeridos, há ${content.suggestedItineraries.length}`);
+      if (!byDate.has(d.date) && !fullDates.has(d.date)) {
+        errors.push(`roteiros: falta roteiro sugerido ou roteiro FULL para ${d.date}`);
+      }
     }
     const parkDays = new Map<string, string>();
     for (const it of content.suggestedItineraries) {

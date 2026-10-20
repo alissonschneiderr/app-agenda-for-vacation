@@ -97,6 +97,7 @@ export function fixtureContent(): Content {
       { id: 'sug-2026-11-01', date: '2026-11-01', title: 'Museus e Central Park', notes: 'Comece cedo.', pointIds: ['ny-met', 'ny-central-park'] },
       { id: 'sug-2026-11-08', date: '2026-11-08', title: 'Magic Kingdom', pointIds: ['orl-magic-kingdom'] },
     ],
+    fullItineraries: [],
   };
 }
 

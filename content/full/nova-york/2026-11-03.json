@@ -1,0 +1,683 @@
+{
+  "date": "2026-11-03",
+  "region": "Estátua da Liberdade, Lower Manhattan e Brooklyn",
+  "goal": "Os símbolos de Nova York: a estátua, o memorial, a Ponte do Brooklyn ao pôr do sol e pizza no Brooklyn.",
+  "events": [
+    "Terça-feira, 03/11/2026: dia de eleições nos EUA (sem impacto esperado no turismo).",
+    "Pôr do sol por volta das 16h50: ideal para a ponte."
+  ],
+  "activities": [
+    {
+      "id": "ny-2026-11-03-01",
+      "type": "hotel",
+      "title": "Saída do hotel",
+      "start": "08:00",
+      "durationMin": 5,
+      "description": "Dia de acordar cedo: a balsa da Estátua da Liberdade começa às 9h e as filas crescem rápido.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-03-02",
+      "type": "transit",
+      "title": "A pé até Ess-a-Bagel",
+      "start": "08:05",
+      "durationMin": 5,
+      "description": "POD 51 → Ess-a-Bagel",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "POD 51",
+        "to": "Ess-a-Bagel",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-03-03",
+      "type": "meal",
+      "title": "Café da manhã no Ess-a-Bagel",
+      "start": "08:10",
+      "durationMin": 30,
+      "description": "Café rápido para chegar cedo à balsa.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto de segunda a sexta das 6h às 21h",
+          "status": "confirmed",
+          "source": "https://www.toasttab.com/local/order/ess-a-bagel-3rd-ave",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Ess-a-Bagel",
+        "address": "831 3rd Avenue, New York, NY 10022",
+        "location": {
+          "lat": 40.7559,
+          "lng": -73.9696
+        }
+      },
+      "meal": {
+        "kind": "breakfast",
+        "order": "Bagel everything com cream cheese (ou com ovo e queijo) e café",
+        "why": "Bagels enormes, feitos à moda antiga, a 5 minutos do hotel; uma das padarias de bagel mais tradicionais de Midtown.",
+        "priceRange": "US$ 8–15 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-04",
+      "type": "transit",
+      "title": "A pé até 51 St (linha 6)",
+      "start": "08:40",
+      "durationMin": 5,
+      "description": "Ess-a-Bagel → 51 St (linha 6)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Ess-a-Bagel",
+        "to": "51 St (linha 6)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-03-05",
+      "type": "transit",
+      "title": "Metrô até Bowling Green",
+      "start": "08:45",
+      "durationMin": 25,
+      "description": "51 St → Bowling Green",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "51 St",
+        "to": "Bowling Green",
+        "minutes": 25,
+        "lines": "Linha 6 até Grand Central, depois 4 ou 5 expressa até Bowling Green",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-06",
+      "type": "transit",
+      "title": "A pé até Battery Park (Castle Clinton)",
+      "start": "09:10",
+      "durationMin": 5,
+      "description": "Bowling Green → Battery Park (Castle Clinton)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Bowling Green",
+        "to": "Battery Park (Castle Clinton)",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-03-07",
+      "type": "attraction",
+      "title": "Estátua da Liberdade (Liberty Island)",
+      "start": "09:15",
+      "durationMin": 120,
+      "description": "Revista de segurança no Battery Park e balsa até a Liberty Island. Contorne a estátua, veja o Statue of Liberty Museum e a vista de Lower Manhattan.",
+      "priority": "essential",
+      "booking": {
+        "required": true,
+        "how": "Comprar a balsa com horário (9h30) no site oficial da Statue City Cruises; pedestal/coroa esgotam com meses de antecedência",
+        "price": "US$ 25,50 por adulto (balsa, inclui as duas ilhas)"
+      },
+      "facts": [
+        {
+          "text": "Balsas a partir das 9h, a cada 20–30 min; não chegar mais de 30 min antes do horário reservado",
+          "status": "confirmed",
+          "source": "https://home.nps.gov/stli/getinvolved/new-screening-battery.htm",
+          "checkedAt": "2026-10-21"
+        },
+        {
+          "text": "Balsa oficial: US$ 25,50 por adulto, com acesso às duas ilhas",
+          "status": "confirmed",
+          "source": "https://thebettervacation.com/new-york/statue-of-liberty-ferry/",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Statue City Cruises (Battery Park)",
+        "address": "Castle Clinton, Battery Park, New York, NY 10004",
+        "location": {
+          "lat": 40.7033,
+          "lng": -74.017
+        }
+      },
+      "pointId": "ny-statue-of-liberty",
+      "earlyReason": "A primeira balsa sai às 9h e não é permitido chegar mais de 30 min antes do horário reservado; ir cedo evita as maiores filas."
+    },
+    {
+      "id": "ny-2026-11-03-08",
+      "type": "transit",
+      "title": "Balsa até Ellis Island",
+      "start": "11:15",
+      "durationMin": 10,
+      "description": "Liberty Island → Ellis Island",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "ferry",
+        "from": "Liberty Island",
+        "to": "Ellis Island",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-09",
+      "type": "attraction",
+      "title": "Ellis Island (Museu Nacional da Imigração)",
+      "start": "11:25",
+      "durationMin": 75,
+      "description": "O Grande Salão por onde passaram 12 milhões de imigrantes e as exposições sobre a chegada à América.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Ellis Island",
+        "address": "Ellis Island, New York, NY 10004",
+        "location": {
+          "lat": 40.6995,
+          "lng": -74.0396
+        }
+      },
+      "pointId": "ny-ellis-island"
+    },
+    {
+      "id": "ny-2026-11-03-10",
+      "type": "transit",
+      "title": "Balsa até Battery Park",
+      "start": "12:40",
+      "durationMin": 20,
+      "description": "Ellis Island → Battery Park",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "ferry",
+        "from": "Ellis Island",
+        "to": "Battery Park",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-03-11",
+      "type": "transit",
+      "title": "A pé até Fraunces Tavern",
+      "start": "13:00",
+      "durationMin": 8,
+      "description": "Battery Park → Fraunces Tavern",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Battery Park",
+        "to": "Fraunces Tavern",
+        "minutes": 8
+      }
+    },
+    {
+      "id": "ny-2026-11-03-12",
+      "type": "meal",
+      "title": "Almoço na Fraunces Tavern",
+      "start": "13:08",
+      "durationMin": 60,
+      "description": "Almoço histórico perto do cais.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Almoço servido em dias úteis das 11h às 15h30",
+          "status": "confirmed",
+          "source": "https://www.islands.com/1938664/new-york-city-oldest-restaurant-world-famous-fraunces-tavern-washington-hamilton-visited",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Fraunces Tavern",
+        "address": "54 Pearl Street, New York, NY 10004",
+        "location": {
+          "lat": 40.7034,
+          "lng": -74.0113
+        }
+      },
+      "meal": {
+        "kind": "lunch",
+        "order": "Shepherd's pie ou o burger da casa, com uma cerveja local",
+        "why": "Taverna de 1762, onde George Washington se despediu dos oficiais em 1783; o prédio tem um pequeno museu no andar de cima.",
+        "priceRange": "US$ 30–45 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-13",
+      "type": "transit",
+      "title": "A pé até Memorial 11 de Setembro",
+      "start": "14:08",
+      "durationMin": 15,
+      "description": "Passe pela Wall Street e pelo touro de bronze (Charging Bull) no caminho.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Fraunces Tavern",
+        "to": "Memorial 11 de Setembro",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-03-14",
+      "type": "attraction",
+      "title": "Memorial 11 de Setembro",
+      "start": "14:23",
+      "durationMin": 40,
+      "description": "As duas piscinas no lugar das Torres Gêmeas, com os nomes das vítimas. Local de silêncio. O museu (pago) fica para outra viagem ou para um plano B.",
+      "priority": "essential",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Memorial aberto todos os dias das 8h às 20h, gratuito",
+          "status": "confirmed",
+          "source": "https://www.trvlogue.com/en/new-york-911-memorial-tickets",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "9/11 Memorial",
+        "address": "180 Greenwich Street, New York, NY 10007",
+        "location": {
+          "lat": 40.7115,
+          "lng": -74.0134
+        }
+      },
+      "pointId": "ny-911-memorial"
+    },
+    {
+      "id": "ny-2026-11-03-15",
+      "type": "transit",
+      "title": "A pé até Hook & Ladder 8",
+      "start": "15:03",
+      "durationMin": 10,
+      "description": "Memorial 11 de Setembro → Hook & Ladder 8",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Memorial 11 de Setembro",
+        "to": "Hook & Ladder 8",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-16",
+      "type": "screen",
+      "title": "Quartel dos Caça-Fantasmas",
+      "start": "15:13",
+      "durationMin": 10,
+      "description": "Quartel de bombeiros em funcionamento, com o logo dos Caça-Fantasmas na calçada. Respeite a operação dos bombeiros.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Hook & Ladder Company 8",
+        "address": "14 North Moore Street, New York, NY 10013",
+        "location": {
+          "lat": 40.7197,
+          "lng": -74.0064
+        }
+      },
+      "screen": [
+        {
+          "work": "Os Caça-Fantasmas (1984)",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A fachada é a sede dos Caça-Fantasmas (os interiores eram em Los Angeles).",
+          "address": "14 North Moore Street, New York, NY 10013"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-03-17",
+      "type": "transit",
+      "title": "A pé até Shake Shack (Battery Park City)",
+      "start": "15:23",
+      "durationMin": 10,
+      "description": "Tribeca → Shake Shack (Battery Park City)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Tribeca",
+        "to": "Shake Shack (Battery Park City)",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-18",
+      "type": "meal",
+      "title": "Lanche no Shake Shack",
+      "start": "15:33",
+      "durationMin": 25,
+      "description": "Lanche da tarde.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Horário desta filial",
+          "status": "unconfirmed",
+          "note": "Não encontrei em fonte atual; confirme no Google Maps ou no site no dia."
+        }
+      ],
+      "place": {
+        "name": "Shake Shack Battery Park City",
+        "address": "215 Murray Street, New York, NY 10282",
+        "location": {
+          "lat": 40.7148,
+          "lng": -74.0153
+        }
+      },
+      "meal": {
+        "kind": "snack",
+        "order": "Milkshake de baunilha ou de chocolate e batata frita crinkle",
+        "why": "A rede nasceu num quiosque do Madison Square Park em 2004; aqui é a pausa antes da ponte.",
+        "priceRange": "US$ 8–14 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-19",
+      "type": "transit",
+      "title": "A pé até Ponte do Brooklyn (entrada da Park Row)",
+      "start": "15:58",
+      "durationMin": 20,
+      "description": "Battery Park City → Ponte do Brooklyn (entrada da Park Row)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Battery Park City",
+        "to": "Ponte do Brooklyn (entrada da Park Row)",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-03-20",
+      "type": "attraction",
+      "title": "Travessia a pé da Ponte do Brooklyn",
+      "start": "16:18",
+      "durationMin": 45,
+      "description": "Caminhe de Manhattan para o Brooklyn no fim da tarde: o pôr do sol nesta época é por volta das 16h50, com o skyline atrás de vocês. Fique na faixa de pedestres (a de bicicletas é rigorosa).",
+      "priority": "essential",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Ponte do Brooklyn (entrada de Manhattan)",
+        "address": "Park Row e Centre Street, New York, NY 10038",
+        "location": {
+          "lat": 40.7118,
+          "lng": -74.0046
+        }
+      },
+      "pointId": "ny-brooklyn-bridge"
+    },
+    {
+      "id": "ny-2026-11-03-21",
+      "type": "transit",
+      "title": "A pé até Washington Street, DUMBO",
+      "start": "17:03",
+      "durationMin": 10,
+      "description": "Ponte do Brooklyn (lado Brooklyn) → Washington Street, DUMBO",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Ponte do Brooklyn (lado Brooklyn)",
+        "to": "Washington Street, DUMBO",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-22",
+      "type": "screen",
+      "title": "DUMBO: a foto da Washington Street",
+      "start": "17:13",
+      "durationMin": 30,
+      "description": "O enquadramento clássico da Ponte de Manhattan entre os prédios de tijolo; depois, desça ao Brooklyn Bridge Park para ver o skyline iluminado.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Washington Street com Water Street",
+        "address": "Washington Street e Water Street, Brooklyn, NY 11201",
+        "location": {
+          "lat": 40.7033,
+          "lng": -73.9897
+        }
+      },
+      "screen": [
+        {
+          "work": "Era uma Vez na América (1984)",
+          "kind": "filming",
+          "access": "outside",
+          "association": "O cartaz e uma cena famosa do filme mostram exatamente esta vista da Washington Street.",
+          "address": "Washington Street, Brooklyn, NY 11201"
+        }
+      ],
+      "pointId": "ny-dumbo"
+    },
+    {
+      "id": "ny-2026-11-03-23",
+      "type": "transit",
+      "title": "A pé até Juliana's",
+      "start": "17:43",
+      "durationMin": 10,
+      "description": "DUMBO → Juliana's",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "DUMBO",
+        "to": "Juliana's",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-24",
+      "type": "meal",
+      "title": "Jantar no Juliana's",
+      "start": "17:53",
+      "durationMin": 60,
+      "description": "Jantar no Brooklyn.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Aberto todos os dias das 11h30 às 22h",
+          "status": "confirmed",
+          "source": "https://www.frommers.com/destinations/new-york-city/restaurants/julianas",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "Juliana's Pizza",
+        "address": "19 Old Fulton Street, Brooklyn, NY 11201",
+        "location": {
+          "lat": 40.7028,
+          "lng": -73.9934
+        }
+      },
+      "meal": {
+        "kind": "dinner",
+        "order": "Pizza margherita no forno a carvão (ou a Special No. 1, com mozarela e pancetta)",
+        "why": "Do pizzaiolo Patsy Grimaldi, uma lenda da pizza de forno a carvão de Nova York, ao pé da Ponte do Brooklyn.",
+        "priceRange": "US$ 25–40 por pizza grande"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-25",
+      "type": "transit",
+      "title": "A pé até York St (linha F)",
+      "start": "18:53",
+      "durationMin": 10,
+      "description": "Juliana's → York St (linha F)",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Juliana's",
+        "to": "York St (linha F)",
+        "minutes": 10
+      }
+    },
+    {
+      "id": "ny-2026-11-03-26",
+      "type": "transit",
+      "title": "Metrô até 47–50 Sts–Rockefeller Ctr",
+      "start": "19:03",
+      "durationMin": 20,
+      "description": "York St → 47–50 Sts–Rockefeller Ctr",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "subway",
+        "from": "York St",
+        "to": "47–50 Sts–Rockefeller Ctr",
+        "minutes": 20,
+        "lines": "Linha F (sentido uptown)",
+        "cost": "US$ 3,00 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-03-27",
+      "type": "transit",
+      "title": "A pé até POD 51",
+      "start": "19:23",
+      "durationMin": 15,
+      "description": "Rockefeller Center → POD 51",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Rockefeller Center",
+        "to": "POD 51",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-03-28",
+      "type": "hotel",
+      "title": "Volta ao POD 51",
+      "start": "19:38",
+      "durationMin": 15,
+      "description": "Fim do dia. Hoje é dia de eleição nos EUA; não deve afetar o passeio.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    }
+  ],
+  "returnToHotel": "Linha F de York St (Brooklyn) até 47–50 Sts–Rockefeller Ctr e 15 min a pé; ou táxi/app (≈ 25–35 min).",
+  "alternatives": [
+    {
+      "when": "rain",
+      "text": "Troque a ponte pelos espaços cobertos do Oculus e do Brookfield Place (ao lado do memorial) e atravesse para o Brooklyn de metrô (linha F) só para o jantar. O Museu 11 de Setembro fecha às terças."
+    },
+    {
+      "when": "tired",
+      "text": "Pule Ellis Island e o quartel dos Caça-Fantasmas; faça a ponte só até a primeira torre e volte."
+    },
+    {
+      "when": "closed",
+      "text": "Se as balsas da estátua estiverem esgotadas, use a balsa gratuita de Staten Island (Whitehall Terminal), que passa perto da estátua."
+    }
+  ]
+}

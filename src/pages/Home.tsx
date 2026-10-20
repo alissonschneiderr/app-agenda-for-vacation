@@ -7,7 +7,7 @@ import type { LoadedContent } from '../content/load';
 import type { CityId } from '../content/types';
 import { filterPoints } from '../domain/search';
 import { cityForDate, dayInfo, todayInTripZone } from '../domain/trip';
-import { navigate } from '../lib/router';
+import { href, navigate } from '../lib/router';
 
 export function Home({ content, cityId }: { content: LoadedContent; cityId?: string }) {
   const now = new Date();
@@ -37,6 +37,13 @@ export function Home({ content, cityId }: { content: LoadedContent; cityId?: str
       {day.kind === 'travel' && (
         <p class="today" role="status">
           Hoje · {dayHeadline(day, content)}
+        </p>
+      )}
+      {city === 'nova-york' && content.fullItineraries?.some((f) => f.days.some((d) => d.date === today)) && (
+        <p>
+          <a class="btn btn-primary" href={href(`/full/nova-york/${today}`)}>
+            Roteiro de hoje
+          </a>
         </p>
       )}
       <CityPicker

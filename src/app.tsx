@@ -5,6 +5,9 @@ import { useContent } from './content/load';
 import { seedSuggested } from './domain/itineraries';
 import { matchRoute, useRoute } from './lib/router';
 import { Credits } from './pages/Credits';
+import { FullDay } from './pages/FullDay';
+import { FullDocument } from './pages/FullDocument';
+import { FullOverview } from './pages/FullOverview';
 import { Favorites } from './pages/Favorites';
 import { Home } from './pages/Home';
 import { ItineraryDetail } from './pages/ItineraryDetail';
@@ -22,6 +25,9 @@ function Page({ path, content }: { path: string; content: LoadedContent }) {
   if (path === '/roteiros') return <Itineraries content={content} />;
   if ((m = matchRoute('/roteiros/:id', path))) return <ItineraryDetail key={m.id} content={content} id={m.id!} />;
   if (path === '/creditos') return <Credits content={content} />;
+  if (path === '/full/nova-york') return <FullOverview content={content} />;
+  if (path === '/full/nova-york/documento') return <FullDocument content={content} />;
+  if ((m = matchRoute('/full/nova-york/:date', path))) return <FullDay key={m.date} content={content} date={m.date!} />;
   return (
     <main class="page">
       <h1>Página não encontrada</h1>

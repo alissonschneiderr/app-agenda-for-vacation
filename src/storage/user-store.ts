@@ -1,6 +1,6 @@
 // Único módulo que lê e escreve os dados do usuário (contracts/user-storage.md).
 import { useEffect, useState } from 'preact/hooks';
-import type { UserState } from './types';
+import type { UserState, UserStateV1 } from './types';
 
 export const STORAGE_KEY = 'ctha:user:v1';
 
@@ -8,18 +8,26 @@ export type SaveError = 'QUOTA' | 'UNKNOWN';
 export type UpdateResult = { ok: true } | { ok: false; error: SaveError };
 
 export function emptyState(): UserState {
-  return { schemaVersion: 1, seededIds: [], favorites: [], itineraries: [] };
+  return { schemaVersion: 2, seededIds: [], favorites: [], itineraries: [], activityMarks: {} };
+}
+
+function hasBaseFields(s: UserState | UserStateV1): boolean {
+  return Array.isArray(s.seededIds) && Array.isArray(s.favorites) && Array.isArray(s.itineraries);
 }
 
 function isUserState(v: unknown): v is UserState {
   const s = v as UserState;
-  return (
-    !!s &&
-    s.schemaVersion === 1 &&
-    Array.isArray(s.seededIds) &&
-    Array.isArray(s.favorites) &&
-    Array.isArray(s.itineraries)
-  );
+  return !!s && s.schemaVersion === 2 && hasBaseFields(s) && !!s.activityMarks && typeof s.activityMarks === 'object';
+}
+
+function isUserStateV1(v: unknown): v is UserStateV1 {
+  const s = v as UserStateV1;
+  return !!s && s.schemaVersion === 1 && hasBaseFields(s);
+}
+
+/** v1 (feature 001) → v2: acrescenta as marcações do roteiro FULL sem perder nada. */
+export function migrateV1(s: UserStateV1): UserState {
+  return { ...s, schemaVersion: 2, activityMarks: {} };
 }
 
 export function loadState(storage: Storage, now = new Date()): { state: UserState; recovered: boolean } {
@@ -28,6 +36,8 @@ export function loadState(storage: Storage, now = new Date()): { state: UserStat
   try {
     const parsed: unknown = JSON.parse(raw);
     if (isUserState(parsed)) return { state: parsed, recovered: false };
+    // A migração é gravada na próxima escrita.
+    if (isUserStateV1(parsed)) return { state: migrateV1(parsed), recovered: false };
   } catch {
     // tratado abaixo
   }

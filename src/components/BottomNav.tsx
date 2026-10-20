@@ -1,7 +1,7 @@
 const ITEMS = [
   { path: '/', label: 'Guia', icon: '🗺️', match: (p: string) => p === '/' || p.startsWith('/cidade') || p.startsWith('/ponto') },
   { path: '/favoritos', label: 'Favoritos', icon: '★', match: (p: string) => p === '/favoritos' },
-  { path: '/roteiros', label: 'Roteiros', icon: '📅', match: (p: string) => p.startsWith('/roteiros') },
+  { path: '/roteiros', label: 'Roteiros', icon: '📅', match: (p: string) => p.startsWith('/roteiros') || p.startsWith('/full') },
 ];
 
 export function BottomNav({ path }: { path: string }) {

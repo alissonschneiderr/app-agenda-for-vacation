@@ -1,0 +1,626 @@
+{
+  "date": "2026-11-04",
+  "region": "Midtown: MoMA, Rockefeller Center e Broadway",
+  "goal": "Arte, televisão e a noite da Broadway com o MJ The Musical.",
+  "events": [
+    "MJ The Musical às 19h no Neil Simon Theatre (ingresso comprado): chegar até 18h15. Nenhum outro espetáculo nesta noite."
+  ],
+  "activities": [
+    {
+      "id": "ny-2026-11-04-01",
+      "type": "hotel",
+      "title": "Saída do hotel",
+      "start": "09:15",
+      "durationMin": 5,
+      "description": "Dia em Midtown, perto do hotel, terminando no MJ The Musical às 19h.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-04-02",
+      "type": "transit",
+      "title": "A pé até Sarge's Deli",
+      "start": "09:20",
+      "durationMin": 15,
+      "description": "POD 51 → Sarge's Deli",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "POD 51",
+        "to": "Sarge's Deli",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-04-03",
+      "type": "meal",
+      "title": "Café da manhã no Sarge's Deli",
+      "start": "09:35",
+      "durationMin": 45,
+      "description": "Café da manhã de deli.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Horário de funcionamento",
+          "status": "unconfirmed",
+          "note": "Não encontrei em fonte atual; confirme no Google Maps ou no site no dia."
+        }
+      ],
+      "place": {
+        "name": "Sarge's Delicatessen & Diner",
+        "address": "548 3rd Avenue, New York, NY 10016",
+        "location": {
+          "lat": 40.7474,
+          "lng": -73.9779
+        }
+      },
+      "meal": {
+        "kind": "breakfast",
+        "order": "Omelete de pastrami ou ovos com salame, e um bagel",
+        "why": "Deli judaica tradicional de Murray Hill, aberta desde 1964; menos turística que as do centro.",
+        "priceRange": "US$ 20–30 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-04-04",
+      "type": "transit",
+      "title": "A pé até Sutton Place Park",
+      "start": "10:20",
+      "durationMin": 20,
+      "description": "Pela 2nd Ave e E 57th St até o rio.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Sarge's",
+        "to": "Sutton Place Park",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-04-05",
+      "type": "screen",
+      "title": "Sutton Place Park: o banco de \"Manhattan\" e a Ponte Queensboro",
+      "start": "10:40",
+      "durationMin": 20,
+      "description": "Pequena praça à beira do East River, com a Ponte Queensboro em primeiro plano.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Sutton Place Park",
+        "address": "East 57th Street e Sutton Place, New York, NY 10022",
+        "location": {
+          "lat": 40.7575,
+          "lng": -73.959
+        }
+      },
+      "screen": [
+        {
+          "work": "Manhattan (1979), de Woody Allen",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A cena do banco ao amanhecer com a ponte ao fundo foi gravada aqui.",
+          "address": "East 58th Street e Sutton Place, New York, NY 10022"
+        },
+        {
+          "work": "Taxi",
+          "kind": "filming",
+          "access": "outside",
+          "association": "A abertura da série mostra um táxi atravessando a Ponte Queensboro, vista daqui.",
+          "address": "Ponte Queensboro, New York, NY"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-04-06",
+      "type": "transit",
+      "title": "A pé até MoMA",
+      "start": "11:00",
+      "durationMin": 20,
+      "description": "Pela E 53rd St até a 5th Ave.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Sutton Place",
+        "to": "MoMA",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-04-07",
+      "type": "attraction",
+      "title": "MoMA (Museum of Modern Art)",
+      "start": "11:20",
+      "durationMin": 105,
+      "description": "Comece pelo 5º andar: \"A Noite Estrelada\" de Van Gogh, Picasso, Matisse, Dalí; depois Warhol e Pollock no 4º. Jardim de esculturas no térreo.",
+      "priority": "essential",
+      "booking": {
+        "required": true,
+        "how": "Comprar com horário em moma.org (evita fila)",
+        "price": "US$ 30 por adulto"
+      },
+      "facts": [
+        {
+          "text": "Aberto das 10h30 às 17h30 (sextas até 20h30); US$ 30 por adulto",
+          "status": "confirmed",
+          "source": "https://www.artvisitguide.com/moma-tickets-guide/",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "MoMA",
+        "address": "11 West 53rd Street, New York, NY 10019",
+        "location": {
+          "lat": 40.7614,
+          "lng": -73.9776
+        }
+      },
+      "pointId": "ny-moma"
+    },
+    {
+      "id": "ny-2026-11-04-08",
+      "type": "transit",
+      "title": "A pé até The Halal Guys",
+      "start": "13:05",
+      "durationMin": 5,
+      "description": "MoMA → The Halal Guys",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "MoMA",
+        "to": "The Halal Guys",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-04-09",
+      "type": "meal",
+      "title": "Almoço no carrinho do The Halal Guys",
+      "start": "13:10",
+      "durationMin": 30,
+      "description": "Almoço de rua, coma no banco da praça em frente.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Funciona a partir das 10h até a madrugada",
+          "status": "confirmed",
+          "source": "https://zabihah.com/restaurants/c9e5b4fe-7767-11ef-95ae-6045bdeb9f57/the-halal-guys-new-york-ny",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "The Halal Guys (carrinho original)",
+        "address": "West 53rd Street com 6th Avenue, New York, NY 10019",
+        "location": {
+          "lat": 40.7618,
+          "lng": -73.979
+        }
+      },
+      "meal": {
+        "kind": "lunch",
+        "order": "Prato de frango com arroz (chicken over rice) com o molho branco; cuidado com o molho vermelho, que é bem picante",
+        "why": "O carrinho de comida de rua mais famoso de Nova York, na esquina da 53rd com a 6th Ave desde os anos 1990.",
+        "priceRange": "US$ 12–15 por prato"
+      }
+    },
+    {
+      "id": "ny-2026-11-04-10",
+      "type": "transit",
+      "title": "A pé até 30 Rockefeller Plaza",
+      "start": "13:40",
+      "durationMin": 5,
+      "description": "6th Avenue → 30 Rockefeller Plaza",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "6th Avenue",
+        "to": "30 Rockefeller Plaza",
+        "minutes": 5
+      }
+    },
+    {
+      "id": "ny-2026-11-04-11",
+      "type": "attraction",
+      "title": "NBC Studio Tour (30 Rock)",
+      "start": "13:45",
+      "durationMin": 85,
+      "description": "Tour guiado pelos estúdios da NBC: Saturday Night Live, The Tonight Show e o Today Show, com bastidores e estúdio interativo.",
+      "priority": "important",
+      "booking": {
+        "required": true,
+        "how": "Comprar o horário no site oficial (vagas limitadas)",
+        "price": "US$ 48 por adulto"
+      },
+      "facts": [
+        {
+          "text": "Tour de 75–90 min; US$ 48 por adulto; reserva recomendada",
+          "status": "confirmed",
+          "source": "https://www.lotsafunmaps.com/New_York_City/NBC_Studio_Tour.html",
+          "checkedAt": "2026-10-21"
+        }
+      ],
+      "place": {
+        "name": "NBC Studio Tour",
+        "address": "30 Rockefeller Plaza, New York, NY 10112",
+        "location": {
+          "lat": 40.759,
+          "lng": -73.9794
+        }
+      },
+      "screen": [
+        {
+          "work": "30 Rock",
+          "kind": "both",
+          "access": "inside",
+          "association": "A série se passa nos bastidores da NBC neste prédio; a fachada e o saguão aparecem na abertura.",
+          "address": "30 Rockefeller Plaza, New York, NY 10112"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-04-12",
+      "type": "transit",
+      "title": "A pé até Quinta Avenida",
+      "start": "15:10",
+      "durationMin": 3,
+      "description": "Rockefeller Center → Quinta Avenida",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Rockefeller Center",
+        "to": "Quinta Avenida",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-04-13",
+      "type": "meal",
+      "title": "Pretzel de carrinho na Quinta Avenida",
+      "start": "15:32",
+      "durationMin": 15,
+      "description": "Lanche rápido e barato.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Preço do pretzel nos carrinhos",
+          "status": "unconfirmed",
+          "note": "Varia de carrinho para carrinho; pagamento em dinheiro é mais garantido."
+        }
+      ],
+      "place": {
+        "name": "Carrinho de rua na Quinta Avenida",
+        "address": "5th Avenue com West 50th Street, New York, NY 10020",
+        "location": {
+          "lat": 40.759,
+          "lng": -73.9777
+        }
+      },
+      "meal": {
+        "kind": "snack",
+        "order": "Pretzel quente com mostarda e um café",
+        "why": "Comida de rua clássica de Nova York, comida em frente à Catedral de St. Patrick.",
+        "priceRange": "US$ 4–6"
+      }
+    },
+    {
+      "id": "ny-2026-11-04-14",
+      "type": "transit",
+      "title": "A pé até Catedral de St. Patrick",
+      "start": "15:47",
+      "durationMin": 3,
+      "description": "Quinta Avenida → Catedral de St. Patrick",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Quinta Avenida",
+        "to": "Catedral de St. Patrick",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-04-15",
+      "type": "attraction",
+      "title": "Catedral de St. Patrick",
+      "start": "15:50",
+      "durationMin": 20,
+      "description": "A maior catedral neogótica dos EUA, em frente ao Rockefeller Center. Entrada gratuita.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "St. Patrick's Cathedral",
+        "address": "5th Avenue e East 50th Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7585,
+          "lng": -73.976
+        }
+      },
+      "pointId": "ny-st-patricks"
+    },
+    {
+      "id": "ny-2026-11-04-16",
+      "type": "transit",
+      "title": "A pé até Lotte New York Palace",
+      "start": "16:10",
+      "durationMin": 3,
+      "description": "St. Patrick's → Lotte New York Palace",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "St. Patrick's",
+        "to": "Lotte New York Palace",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-04-17",
+      "type": "screen",
+      "title": "Lotte New York Palace (o hotel de Serena)",
+      "start": "16:13",
+      "durationMin": 10,
+      "description": "O pátio da Villard House, atrás da catedral. Dá para entrar no pátio.",
+      "priority": "optional",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Lotte New York Palace",
+        "address": "455 Madison Avenue, New York, NY 10022",
+        "location": {
+          "lat": 40.7578,
+          "lng": -73.975
+        }
+      },
+      "screen": [
+        {
+          "work": "Gossip Girl",
+          "kind": "filming",
+          "access": "inside",
+          "association": "Serena e a família moram no hotel na série.",
+          "address": "455 Madison Avenue, New York, NY 10022"
+        }
+      ]
+    },
+    {
+      "id": "ny-2026-11-04-18",
+      "type": "transit",
+      "title": "A pé até POD 51",
+      "start": "16:23",
+      "durationMin": 15,
+      "description": "Madison Avenue → POD 51",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Madison Avenue",
+        "to": "POD 51",
+        "minutes": 15
+      }
+    },
+    {
+      "id": "ny-2026-11-04-19",
+      "type": "rest",
+      "title": "Descanso no hotel",
+      "start": "16:38",
+      "durationMin": 75,
+      "description": "Banho, roupa para o teatro e uma pausa antes do musical.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    },
+    {
+      "id": "ny-2026-11-04-20",
+      "type": "transit",
+      "title": "A pé até Neil Simon Theatre",
+      "start": "17:53",
+      "durationMin": 20,
+      "description": "Pela E/W 51st St; o teatro fica na W 52nd St entre a Broadway e a 8th Ave.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "POD 51",
+        "to": "Neil Simon Theatre",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-04-21",
+      "type": "commitment",
+      "title": "MJ The Musical",
+      "start": "18:13",
+      "durationMin": 207,
+      "description": "O musical sobre Michael Jackson no Neil Simon Theatre, com ingresso já comprado. Chegue cedo: a fila de entrada e a revista de bolsas levam tempo.",
+      "priority": "essential",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "Neil Simon Theatre",
+        "address": "250 West 52nd Street, New York, NY 10019",
+        "location": {
+          "lat": 40.7627,
+          "lng": -73.9839
+        }
+      },
+      "commitmentId": "mj-musical"
+    },
+    {
+      "id": "ny-2026-11-04-22",
+      "type": "transit",
+      "title": "A pé até Ellen's Stardust Diner",
+      "start": "21:40",
+      "durationMin": 3,
+      "description": "Neil Simon Theatre → Ellen's Stardust Diner",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Neil Simon Theatre",
+        "to": "Ellen's Stardust Diner",
+        "minutes": 3
+      }
+    },
+    {
+      "id": "ny-2026-11-04-23",
+      "type": "meal",
+      "title": "Jantar depois do musical no Ellen's Stardust Diner",
+      "start": "21:43",
+      "durationMin": 60,
+      "description": "Jantar tarde, a 3 minutos do teatro.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [
+        {
+          "text": "Fecha à meia-noite",
+          "status": "unconfirmed",
+          "note": "Horário encontrado só em site agregador; confirme no dia."
+        }
+      ],
+      "place": {
+        "name": "Ellen's Stardust Diner",
+        "address": "1650 Broadway (W 51st St), New York, NY 10019",
+        "location": {
+          "lat": 40.7618,
+          "lng": -73.9835
+        }
+      },
+      "meal": {
+        "kind": "dinner",
+        "order": "Burger ou sanduíche de peru, com milkshake",
+        "why": "Diner dos anos 1950 onde os garçons são aspirantes à Broadway e cantam entre os pedidos: continua o clima do musical. À noite, depois dos espetáculos, a fila costuma ser menor.",
+        "priceRange": "US$ 30–45 por pessoa"
+      }
+    },
+    {
+      "id": "ny-2026-11-04-24",
+      "type": "transit",
+      "title": "A pé até POD 51",
+      "start": "22:43",
+      "durationMin": 20,
+      "description": "Ellen's → POD 51",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "transit": {
+        "mode": "walk",
+        "from": "Ellen's",
+        "to": "POD 51",
+        "minutes": 20
+      }
+    },
+    {
+      "id": "ny-2026-11-04-25",
+      "type": "hotel",
+      "title": "Volta ao POD 51",
+      "start": "23:03",
+      "durationMin": 15,
+      "description": "Volta a pé pela W/E 51st St (Midtown fica movimentado até tarde) ou de táxi.",
+      "priority": "important",
+      "booking": {
+        "required": false
+      },
+      "facts": [],
+      "place": {
+        "name": "POD 51",
+        "address": "230 East 51st Street, New York, NY 10022",
+        "location": {
+          "lat": 40.7553,
+          "lng": -73.9686
+        }
+      }
+    }
+  ],
+  "returnToHotel": "A pé (≈ 20 min, Midtown bem iluminado) ou táxi pela W 51st St.",
+  "alternatives": [
+    {
+      "when": "rain",
+      "text": "Pule o Sutton Place Park e fique mais tempo no MoMA; troque o almoço de rua por uma refeição no piso inferior do Rockefeller Center (Rockefeller Center Concourse)."
+    },
+    {
+      "when": "tired",
+      "text": "Pule o Sutton Place Park e a Lotte Palace; estenda o descanso no hotel antes do musical."
+    }
+  ]
+}

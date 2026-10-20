@@ -5,6 +5,7 @@ import { ORLANDO_PARKS, validateContent } from '../../scripts/content-schema';
 import { assembleContent } from '../../scripts/build-content';
 import type { Content } from '../../src/content/types';
 import { fixtureContent } from '../fixtures/content';
+import { fixtureFullItinerary } from '../fixtures/full-itinerary';
 
 const loose = { strict: false };
 
@@ -73,7 +74,18 @@ describe('regras de conteúdo', () => {
     expect(validateContent(repeated, loose).join()).toMatch(/repetido/);
     const otherCity = mutate((c) => c.suggestedItineraries[0]!.pointIds.push('mia-south-beach'));
     expect(validateContent(otherCity, loose).join()).toMatch(/não da cidade do dia/);
-    expect(validateContent(fixtureContent(), { strict: true }).join()).toMatch(/esperados 19 roteiros/);
+    expect(validateContent(fixtureContent(), { strict: true }).join()).toMatch(/falta roteiro sugerido ou roteiro FULL para 2026-10-31/);
+  });
+
+  it('regra 5 (002): dia coberto pelo roteiro FULL não precisa de sugerido, mas não pode ter os dois', () => {
+    const c = completeContent();
+    const nyDates = ['2026-10-31', '2026-11-01', '2026-11-02', '2026-11-03', '2026-11-04', '2026-11-05', '2026-11-06'];
+    c.suggestedItineraries = c.suggestedItineraries.filter((s) => !nyDates.includes(s.date));
+    expect(validateContent(c, { strict: true }).join()).toMatch(/falta roteiro sugerido ou roteiro FULL/);
+    c.fullItineraries = [fixtureFullItinerary()];
+    expect(validateContent(c, { strict: true })).toEqual([]);
+    c.suggestedItineraries.push({ id: 'sug-2026-11-01', date: '2026-11-01', title: 'x', pointIds: ['ny-met'] });
+    expect(validateContent(c, { strict: true }).join()).toMatch(/tem roteiro sugerido e roteiro FULL/);
   });
 
   it('regra 6: os 7 parques com dia próprio', () => {

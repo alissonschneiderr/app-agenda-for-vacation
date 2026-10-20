@@ -35,7 +35,7 @@ for violada.
 | US1 | Abrir detalhe às 16:59 e 17:01 de um dia com fechamento 17:00 | "Aberto" e depois "Fechado" |
 | US1 | Carregar com rede → `setOffline(true)` → recarregar e abrir qualquer ponto | Lista, busca, detalhe e foto funcionam; barra offline visível |
 | US2 | Favoritar 3 pontos offline → recarregar offline | Os 3 estão em Favoritos, com detalhe completo |
-| US3 | Primeira abertura → `#/roteiros` | 19 roteiros sugeridos agrupados por dia; nada em 07/11, 18/11, 21/11 |
+| US3 | Primeira abertura → `#/roteiros` | 12 roteiros sugeridos (Orlando e Miami) + 7 dias do roteiro FULL de Nova York (feature 002); nada em 07/11, 18/11, 21/11 |
 | US3 | Offline: editar um sugerido (reordenar, remover, adicionar) → recarregar | Edições mantidas |
 | US3 | Publicar versão nova do conteúdo → reabrir | Roteiro editado inalterado |
 | US3 | Adicionar ponto de Miami a roteiro de NY | Aviso de outra cidade; incluído só ao confirmar |
@@ -52,7 +52,7 @@ cruzam a meia-noite), `domain/search.ts`, `domain/itineraries.ts`, `storage/user
 2. Instalar: iOS → Compartilhar → "Adicionar à Tela de Início"; Android → "Instalar app".
 3. **Abrir pelo ícone** e esperar o indicador "Guia disponível offline".
 4. Ativar **modo avião**, fechar o app totalmente e reabri-lo pelo ícone.
-5. Conferir: guia das 3 cidades, detalhe e fotos de 5 pontos aleatórios, Favoritos, os 19 roteiros.
+5. Conferir: guia das 3 cidades, detalhe e fotos de 5 pontos aleatórios, Favoritos, os 12 roteiros sugeridos e o roteiro FULL de Nova York.
 6. Ainda em modo avião: favoritar um ponto, reordenar um roteiro, fechar e reabrir → mudanças mantidas.
 7. Repetir no celular de cada pessoa que vai usar o app (dados não são compartilhados entre aparelhos).
 

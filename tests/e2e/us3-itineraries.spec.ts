@@ -2,9 +2,10 @@ import { expect, test } from '@playwright/test';
 import { goOffline, openInstalled } from './helpers';
 
 test.describe('US3 – Roteiros', () => {
-  test('primeira abertura tem 19 sugeridos e nenhum nos dias de locomoção', async ({ page }) => {
+  test('primeira abertura: 12 sugeridos + 7 dias do roteiro FULL de NY, nada nos dias de locomoção', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z', '/roteiros');
-    await expect(page.getByText('Sugerido')).toHaveCount(19);
+    await expect(page.getByText('Sugerido', { exact: true })).toHaveCount(12);
+    await expect(page.locator('.card-full')).toHaveCount(7);
     const headings = await page.getByRole('heading', { level: 2 }).allTextContents();
     expect(headings).toHaveLength(19);
     expect(headings.some((h) => /07\/11|18\/11|21\/11/.test(h))).toBe(false);
@@ -15,13 +16,13 @@ test.describe('US3 – Roteiros', () => {
   test('offline: editar um sugerido e recarregar mantém a edição', async ({ page, context }) => {
     await openInstalled(page, '2026-11-02T15:00:00Z', '/roteiros');
     await goOffline(context, page);
-    await page.getByRole('link', { name: /Central Park e Museum Mile/ }).click();
+    await page.getByRole('link', { name: /Winter Park e Mall at Millenia/ }).click();
     const titles = page.locator('ol .title');
-    await expect(titles).toHaveText(['Central Park', 'The Metropolitan Museum of Art', 'Solomon R. Guggenheim Museum']);
-    await page.getByRole('button', { name: 'Mover Solomon R. Guggenheim Museum para o topo' }).click();
-    await page.getByRole('button', { name: 'Remover Central Park do roteiro' }).click();
+    await expect(titles).toHaveText(['Winter Park (Park Avenue)', 'Scenic Boat Tour (Winter Park)', 'The Mall at Millenia']);
+    await page.getByRole('button', { name: 'Mover The Mall at Millenia para o topo' }).click();
+    await page.getByRole('button', { name: 'Remover Winter Park (Park Avenue) do roteiro' }).click();
     await page.reload();
-    await expect(titles).toHaveText(['Solomon R. Guggenheim Museum', 'The Metropolitan Museum of Art']);
+    await expect(titles).toHaveText(['The Mall at Millenia', 'Scenic Boat Tour (Winter Park)']);
   });
 
   test('nova versão do conteúdo não altera roteiro editado', async ({ page }) => {
@@ -50,17 +51,17 @@ test.describe('US3 – Roteiros', () => {
     await openInstalled(page, '2026-11-02T15:00:00Z', '/ponto/mia-south-beach');
     await page.getByRole('button', { name: '+ Adicionar ao roteiro' }).click();
     const select = page.getByLabel('Escolha um roteiro');
-    const nyOption = await select.locator('option', { hasText: 'Central Park e Museum Mile' }).getAttribute('value');
+    const orlOption = await select.locator('option', { hasText: 'Magic Kingdom' }).getAttribute('value');
 
     page.once('dialog', async (d) => {
-      expect(d.message()).toBe('Este ponto fica em Miami, e este roteiro é de Nova York. Adicionar mesmo assim?');
+      expect(d.message()).toBe('Este ponto fica em Miami, e este roteiro é de Orlando. Adicionar mesmo assim?');
       await d.dismiss();
     });
-    await select.selectOption(nyOption!);
+    await select.selectOption(orlOption!);
     page.once('dialog', (d) => d.accept());
-    await select.selectOption(nyOption!);
-    await expect(page.getByText('Adicionado a "Central Park e Museum Mile".')).toBeVisible();
-    await select.selectOption(nyOption!);
+    await select.selectOption(orlOption!);
+    await expect(page.getByText('Adicionado a "Magic Kingdom".')).toBeVisible();
+    await select.selectOption(orlOption!);
     await expect(page.getByText('Este ponto já está neste roteiro.')).toBeVisible();
   });
 
