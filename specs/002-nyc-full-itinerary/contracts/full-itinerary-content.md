@@ -1,6 +1,6 @@
 # Contract: Conteúdo do roteiro FULL
 
-Fonte: `content/full/<cidade>.json` (nesta feature, só `nova-york.json`). O build valida e inclui o
+Fonte: `content/full/<cidade>/` — `meta.json` (tudo exceto `days`) e um `AAAA-MM-DD.json` por dia (um `FullDay`). O build valida e inclui o
 objeto em `public/data/content.json` como `fullItineraries: FullItinerary[]`. Campos e regras:
 [data-model.md](../data-model.md).
 

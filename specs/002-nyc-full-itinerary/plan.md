@@ -10,7 +10,7 @@ Substituir os 7 roteiros simples de Nova York da feature 001 por um roteiro FULL
 (31/10–06/11/2026) para o casal hospedado no POD 51, com refeições, compras, locais de séries,
 deslocamentos, compromissos fixos (Knicks 02/11 19h30; *MJ* 04/11 19h), prioridades, alternativas e
 checklist. O conteúdo é pesquisado e escrito pelo Claude num único arquivo-fonte
-(`content/full/nova-york.json`), validado no build por regras automáticas (sobreposição de horário,
+(`content/full/nova-york/`, um arquivo por dia + `meta.json`), validado no build por regras automáticas (sobreposição de horário,
 margem dos compromissos, restrições alimentares e de lojas, fontes das informações). O app exibe esse
 conteúdo de duas formas a partir da mesma fonte: agenda por dia (com marcação feita/pulada e
 destaque da próxima atividade) e um documento completo imprimível/PDF. Tudo offline, sem backend,
@@ -24,7 +24,7 @@ sem novas dependências.
 dependência nova**: o documento usa a impressão nativa do navegador (`window.print()` +
 `@media print`).
 
-**Storage**: conteúdo em `content/full/nova-york.json`, incorporado ao `public/data/content.json`
+**Storage**: conteúdo em `content/full/nova-york/` (meta.json + um arquivo por dia), incorporado ao `public/data/content.json`
 no build (pré-cacheado). Marcações feita/pulada no `localStorage`, no estado do usuário, que passa
 para `schemaVersion: 2` com migração testada a partir da v1.
 
@@ -96,7 +96,9 @@ specs/002-nyc-full-itinerary/
 ```text
 content/
 ├── full/
-│   └── nova-york.json          # NOVO: fonte única do roteiro FULL (app + documento)
+│   └── nova-york/              # NOVO: fonte única do roteiro FULL (app + documento)
+│       ├── meta.json           #   base, chegada, compromissos, checklist, orientações, exclusões
+│       └── 2026-10-31.json …   #   um arquivo por dia (permite escrever os dias em paralelo)
 └── itineraries.json            # ALTERADO: sem os 7 sugeridos de Nova York
 
 scripts/

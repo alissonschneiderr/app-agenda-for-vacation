@@ -5,7 +5,7 @@ cada estabelecimento acontece na implementação (FR-021).
 
 ## R1. Fonte única para app e documento
 
-- **Decision**: um arquivo `content/full/nova-york.json` com toda a estrutura (dias, atividades,
+- **Decision**: um arquivo `content/full/nova-york/` (`meta.json` + um arquivo por dia) com toda a estrutura (dias, atividades,
   refeições, lojas, locais de séries, alternativas, checklist, endereços, orientações, exclusões).
   O build o incorpora ao `content.json`. A agenda e o documento são duas visões do mesmo objeto.
 - **Rationale**: cumpre FR-025a (nunca divergirem) sem gerar arquivos derivados; tudo pré-cacheado.

@@ -1,6 +1,6 @@
 # Data Model: Roteiro FULL de Nova York
 
-Conteúdo (somente leitura no app) em `content/full/nova-york.json`; formato completo em
+Conteúdo (somente leitura no app) em `content/full/nova-york/` (`meta.json` + um arquivo por dia); formato completo em
 [contracts/full-itinerary-content.md](./contracts/full-itinerary-content.md). Marcações do usuário
 em [contracts/user-storage-v2.md](./contracts/user-storage-v2.md).
 
