@@ -1,0 +1,626 @@
+{
+  "mia-art-deco-1": {
+    "ref": "wiki:Miami Beach Architectural District",
+    "src": "photos/mia-art-deco-1.webp",
+    "author": "Massimo Catarinella",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SouthBeachMiamiBeach.jpg"
+  },
+  "mia-bayside-1": {
+    "ref": "wiki:Bayside Marketplace",
+    "src": "photos/mia-bayside-1.webp",
+    "author": "Sharon Hahn Darlin",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bayside,_Miami,_Florida_June_2021_-_03.jpg"
+  },
+  "mia-bill-baggs-1": {
+    "ref": "wiki:Bill Baggs Cape Florida State Park",
+    "src": "photos/mia-bill-baggs-1.webp",
+    "author": "Tamanoeconomico",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bill_Baggs_Cape_Florida_State_Park.jpg"
+  },
+  "mia-brickell-1": {
+    "ref": "File:Tns Brickell City Centre escalators.jpg",
+    "src": "photos/mia-brickell-1.webp",
+    "author": "Phillip Pessar",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tns_Brickell_City_Centre_escalators.jpg"
+  },
+  "mia-coconut-grove-1": {
+    "ref": "wiki:Coconut Grove",
+    "src": "photos/mia-coconut-grove-1.webp",
+    "author": "Averette",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coconut_Grove_Street_20100321.jpg"
+  },
+  "mia-design-district-1": {
+    "ref": "wiki:Miami Design District",
+    "src": "photos/mia-design-district-1.webp",
+    "author": "Ven-Lib",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buckminster_Fuller%27s_Fly%27s_Eye_Dome.jpg"
+  },
+  "mia-domino-park-1": {
+    "ref": "wiki:Máximo Gómez Park",
+    "src": "photos/mia-domino-park-1.webp",
+    "author": "Phillip Pessar",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Domino_Park_Little_Havana,_Miami_Florida_6_June_2024.jpg"
+  },
+  "mia-everglades-1": {
+    "ref": "wiki:Everglades National Park",
+    "src": "photos/mia-everglades-1.webp",
+    "author": "Everglades NPS from Homestead, Florida, United States",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunset_over_the_River_of_Grass,_NPSphoto,_G.Gardner_(9255157507).jpg"
+  },
+  "mia-frost-science-1": {
+    "ref": "File:Frost Science Museum - Miami Science Museum - Flickr - Knight Foundation.jpg",
+    "src": "photos/mia-frost-science-1.webp",
+    "author": "Knight Foundation",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frost_Science_Museum_-_Miami_Science_Museum_-_Flickr_-_Knight_Foundation.jpg"
+  },
+  "mia-lincoln-road-1": {
+    "ref": "wiki:Lincoln Road",
+    "src": "photos/mia-lincoln-road-1.webp",
+    "author": "Autor desconhecido",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lincoln_Road.jpg"
+  },
+  "mia-little-havana-1": {
+    "ref": "wiki:Little Havana",
+    "src": "photos/mia-little-havana-1.webp",
+    "author": "Infrogmation of New Orleans",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Little_Havana_Dominos_Park.JPG"
+  },
+  "mia-pamm-1": {
+    "ref": "wiki:Pérez Art Museum Miami",
+    "src": "photos/mia-pamm-1.webp",
+    "author": "Phillip Pessar",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:PAMM_MRD_27.jpg"
+  },
+  "mia-south-beach-1": {
+    "ref": "wiki:South Beach",
+    "src": "photos/mia-south-beach-1.webp",
+    "author": "chensiyuan",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ocean_drive_day_2009j.JPG"
+  },
+  "mia-south-pointe-1": {
+    "ref": "wiki:South Pointe Park",
+    "src": "photos/mia-south-pointe-1.webp",
+    "author": "M McBey",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:South_Beach,_Miami22.jpg"
+  },
+  "mia-vizcaya-1": {
+    "ref": "wiki:Vizcaya Museum and Gardens",
+    "src": "photos/mia-vizcaya-1.webp",
+    "author": "Averette",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Villa_Vizcaya_20110228.jpg"
+  },
+  "mia-wynwood-1": {
+    "ref": "File:April 7, 2015 - Wynwood Miami - 03.jpg",
+    "src": "photos/mia-wynwood-1.webp",
+    "author": "osseous",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:April_7,_2015_-_Wynwood_Miami_-_03.jpg"
+  },
+  "mia-wynwood-walls-1": {
+    "ref": "File:Wynwood Walls Miami Florida October 2013.jpg",
+    "src": "photos/mia-wynwood-walls-1.webp",
+    "author": "Dan Lundberg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wynwood_Walls_Miami_Florida_October_2013.jpg"
+  },
+  "ny-911-memorial-1": {
+    "ref": "wiki:National September 11 Memorial & Museum",
+    "src": "photos/ny-911-memorial-1.webp",
+    "author": "Paul Sableman",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:9-11_Memorial_and_Museum_(28815276064).jpg"
+  },
+  "ny-911-museum-1": {
+    "ref": "wiki:National September 11 Museum",
+    "src": "photos/ny-911-museum-1.webp",
+    "author": "Paul Sableman",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:9-11_Memorial_and_Museum_(28815276064).jpg"
+  },
+  "ny-amnh-1": {
+    "ref": "wiki:American Museum of Natural History",
+    "src": "photos/ny-amnh-1.webp",
+    "author": "Ingfbruno",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USA-NYC-American_Museum_of_Natural_History.JPG"
+  },
+  "ny-battery-park-1": {
+    "ref": "wiki:The Battery (Manhattan)",
+    "src": "photos/ny-battery-park-1.webp",
+    "author": "Gryffindor",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Battery_Park.JPG"
+  },
+  "ny-broadway-1": {
+    "ref": "wiki:Theater District, Manhattan",
+    "src": "photos/ny-broadway-1.webp",
+    "author": "Corey Seeman",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Various_Pictures_from_New_York_City_-_September,_2025.jpg"
+  },
+  "ny-brooklyn-bridge-1": {
+    "ref": "wiki:Brooklyn Bridge",
+    "src": "photos/ny-brooklyn-bridge-1.webp",
+    "author": "Christian David",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooklyn_Bridge_and_the_Lower_Manhattan_skyline_from_Pebble_Beach,_New_York.jpg"
+  },
+  "ny-brooklyn-bridge-park-1": {
+    "ref": "wiki:Brooklyn Bridge Park",
+    "src": "photos/ny-brooklyn-bridge-park-1.webp",
+    "author": "(User:Wgreaves)",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:View_of_Brooklyn_Bridge_Park_from_Manhattan_Bridge.jpg"
+  },
+  "ny-bryant-park-1": {
+    "ref": "wiki:Bryant Park",
+    "src": "photos/ny-bryant-park-1.webp",
+    "author": "Jean-Christophe BENOIST",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:New-York_-_Bryant_Park.jpg"
+  },
+  "ny-central-park-1": {
+    "ref": "wiki:Central Park",
+    "src": "photos/ny-central-park-1.webp",
+    "author": "Anthony Quintano from Hillsborough, NJ, United States",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Global_Citizen_Festival_Central_Park_New_York_City_from_NYonAir_(15351915006).jpg"
+  },
+  "ny-chelsea-market-1": {
+    "ref": "wiki:Chelsea Market",
+    "src": "photos/ny-chelsea-market-1.webp",
+    "author": "Ajay Suresh from New York, NY, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chelsea_Market_(49052085186).jpg"
+  },
+  "ny-chinatown-1": {
+    "ref": "wiki:Chinatown, Manhattan",
+    "src": "photos/ny-chinatown-1.webp",
+    "author": "Famartin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2024-05-20_13_32_04_View_west_along_East_Broadway_from_the_Manhattan_Bridge_in_Manhattan,_New_York_City,_New_York.jpg"
+  },
+  "ny-dumbo-1": {
+    "ref": "wiki:DUMBO, Brooklyn",
+    "src": "photos/ny-dumbo-1.webp",
+    "author": "Benhodgson",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:DUMBO_Brooklyn,_as_seen_from_the_viewing_gallery_of_One_World_Trade_Center.jpg"
+  },
+  "ny-edge-1": {
+    "ref": "File:Edge NYC observation deck at 30 Hudson Yards.jpg",
+    "src": "photos/ny-edge-1.webp",
+    "author": "Wikipettanko",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edge_NYC_observation_deck_at_30_Hudson_Yards.jpg"
+  },
+  "ny-ellis-island-1": {
+    "ref": "wiki:Ellis Island",
+    "src": "photos/ny-ellis-island-1.webp",
+    "author": "Carol M. Highsmith",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Ellis_Island,_Jersey_City,_New_Jersey_LCCN2011635626_-_cropped_balance.jpg"
+  },
+  "ny-empire-state-1": {
+    "ref": "wiki:Empire State Building",
+    "src": "photos/ny-empire-state-1.webp",
+    "author": "Sam Valadi",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Empire_State_Building_(aerial_view).jpg"
+  },
+  "ny-fifth-avenue-1": {
+    "ref": "wiki:Fifth Avenue",
+    "src": "photos/ny-fifth-avenue-1.webp",
+    "author": "A. Balet",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photograph_of_Fifth_Avenue_from_the_Metropolitan%E2%80%94New_York_City.jpg"
+  },
+  "ny-flatiron-1": {
+    "ref": "wiki:Flatiron Building",
+    "src": "photos/ny-flatiron-1.webp",
+    "author": "Imelenchon (original work)",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edificio_Fuller_(Flatiron)_en_2010_desde_el_Empire_State_crop_boxin.jpg"
+  },
+  "ny-grand-central-1": {
+    "ref": "wiki:Grand Central Terminal",
+    "src": "photos/ny-grand-central-1.webp",
+    "author": "Fcb981 ; Eric Baetscher (attribution required)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Image-Grand_central_Station_Outside_Night_2.jpg"
+  },
+  "ny-greenwich-village-1": {
+    "ref": "wiki:Greenwich Village",
+    "src": "photos/ny-greenwich-village-1.webp",
+    "author": "Felix Stahlberg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Greenwich_Village_(27483343909).jpg"
+  },
+  "ny-guggenheim-1": {
+    "ref": "wiki:Solomon R. Guggenheim Museum",
+    "src": "photos/ny-guggenheim-1.webp",
+    "author": "Ajay Suresh from New York, NY, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Solomon_R._Guggenheim_Museum_(48059131351).jpg"
+  },
+  "ny-high-line-1": {
+    "ref": "wiki:High Line",
+    "src": "photos/ny-high-line-1.webp",
+    "author": "Dansnguyen",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:High_Line_Park,_Section_1a.jpg"
+  },
+  "ny-hudson-yards-1": {
+    "ref": "wiki:Vessel (structure)",
+    "src": "photos/ny-hudson-yards-1.webp",
+    "author": "Epicgenius",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hudson_Yards_Plaza_March_2019_53.jpg"
+  },
+  "ny-intrepid-1": {
+    "ref": "wiki:Intrepid Sea, Air & Space Museum",
+    "src": "photos/ny-intrepid-1.webp",
+    "author": "Ajay Suresh from New York, NY, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Intrepid_Museum_(49052290092).jpg"
+  },
+  "ny-little-island-1": {
+    "ref": "wiki:Little Island at Pier 55",
+    "src": "photos/ny-little-island-1.webp",
+    "author": "Praneeth Thalla",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Little_Island_at_Pier_55.jpg"
+  },
+  "ny-macys-1": {
+    "ref": "wiki:Macy's Herald Square",
+    "src": "photos/ny-macys-1.webp",
+    "author": "Balou46",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NYC-manhattan-macys.jpg"
+  },
+  "ny-met-1": {
+    "ref": "wiki:Metropolitan Museum of Art",
+    "src": "photos/ny-met-1.webp",
+    "author": "Hugo Schneider",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Metropolitan_Museum_of_Art_(The_Met)_-_Central_Park,_NYC.jpg"
+  },
+  "ny-moma-1": {
+    "ref": "wiki:Museum of Modern Art",
+    "src": "photos/ny-moma-1.webp",
+    "author": "hibino",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:MoMa_NY_USA_1.jpg"
+  },
+  "ny-oculus-1": {
+    "ref": "wiki:World Trade Center Transportation Hub",
+    "src": "photos/ny-oculus-1.webp",
+    "author": "Anthony Quintano",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oculus_World_Trade_Center_-_August_18_2016.jpg"
+  },
+  "ny-one-world-1": {
+    "ref": "File:One World Trade Center, Financial District, Manhattan, New York.jpg",
+    "src": "photos/ny-one-world-1.webp",
+    "author": "Christian David",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:One_World_Trade_Center,_Financial_District,_Manhattan,_New_York.jpg"
+  },
+  "ny-public-library-1": {
+    "ref": "wiki:New York Public Library Main Branch",
+    "src": "photos/ny-public-library-1.webp",
+    "author": "ajay_suresh",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:New_York_Public_Library_-_Main_Branch_(51396225599).jpg"
+  },
+  "ny-roosevelt-tram-1": {
+    "ref": "wiki:Roosevelt Island Tramway",
+    "src": "photos/ny-roosevelt-tram-1.webp",
+    "author": "Autopilot",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roosevelt_Island_tramcar_2010.jpg"
+  },
+  "ny-soho-1": {
+    "ref": "wiki:SoHo, Manhattan",
+    "src": "photos/ny-soho-1.webp",
+    "author": "Jim.henderson; cropped by Beyond My Ken (talk) 05:00, 19 June 2011 (UTC)",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cast_Iron_Grand_Crosby_jeh_crop.jpg"
+  },
+  "ny-st-patricks-1": {
+    "ref": "wiki:St. Patrick's Cathedral (Manhattan)",
+    "src": "photos/ny-st-patricks-1.webp",
+    "author": "Ajay Suresh",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._Patrick%27s_Cathedral_-_2026_(55284018525).jpg"
+  },
+  "ny-staten-island-ferry-1": {
+    "ref": "wiki:Staten Island Ferry",
+    "src": "photos/ny-staten-island-ferry-1.webp",
+    "author": "InSapphoWeTrust",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spirit_of_America_-_Staten_Island_Ferry.jpg"
+  },
+  "ny-statue-of-liberty-1": {
+    "ref": "wiki:Statue of Liberty",
+    "src": "photos/ny-statue-of-liberty-1.webp",
+    "author": "AskALotl",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Front_view_of_Statue_of_Liberty_(cropped).jpg"
+  },
+  "ny-summit-1": {
+    "ref": "wiki:One Vanderbilt",
+    "src": "photos/ny-summit-1.webp",
+    "author": "Percival Kestreltail",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:One_Vanderbilt_April_2023.jpg"
+  },
+  "ny-times-square-1": {
+    "ref": "wiki:Times Square",
+    "src": "photos/ny-times-square-1.webp",
+    "author": "Terabass",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:New_york_times_square-terabass.jpg"
+  },
+  "ny-top-of-the-rock-1": {
+    "ref": "wiki:Top of the Rock",
+    "src": "photos/ny-top-of-the-rock-1.webp",
+    "author": "David.Cole",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:30_Rockefeller_Plaza_view_from_Empire_State_Building,_around_1_pm.jpg"
+  },
+  "ny-wall-street-1": {
+    "ref": "wiki:Wall Street",
+    "src": "photos/ny-wall-street-1.webp",
+    "author": "Ajay Suresh",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wall_Street_(55314253740).jpg"
+  },
+  "ny-washington-square-1": {
+    "ref": "wiki:Washington Square Park",
+    "src": "photos/ny-washington-square-1.webp",
+    "author": "Isabella Ruffalo-Burgat",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Washington_Square_Arch-Isabella.jpg"
+  },
+  "ny-whitney-1": {
+    "ref": "wiki:Whitney Museum of American Art",
+    "src": "photos/ny-whitney-1.webp",
+    "author": "Ajay Suresh from New York, NY, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whitney_Museum_of_American_Art_(49051573133).jpg"
+  },
+  "orl-animal-kingdom-1": {
+    "ref": "wiki:Disney's Animal Kingdom",
+    "src": "photos/orl-animal-kingdom-1.webp",
+    "author": "Jedi94",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tree_of_Life,_Disney%27s_Animal_Kingdom.jpg"
+  },
+  "orl-citywalk-1": {
+    "ref": "File:Universal CityWalk - Orlando 03.jpg",
+    "src": "photos/orl-citywalk-1.webp",
+    "author": "Farragutful",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Universal_CityWalk_-_Orlando_03.jpg"
+  },
+  "orl-disney-boardwalk-1": {
+    "ref": "wiki:Disney's BoardWalk Resort",
+    "src": "photos/orl-disney-boardwalk-1.webp",
+    "author": "WDWbuff",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:BoardwalkInn.JPG"
+  },
+  "orl-disney-springs-1": {
+    "ref": "wiki:Disney Springs",
+    "src": "photos/orl-disney-springs-1.webp",
+    "author": "Antgiant",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Disney_Springs_Ariel_View.jpg"
+  },
+  "orl-epcot-1": {
+    "ref": "wiki:Epcot",
+    "src": "photos/orl-epcot-1.webp",
+    "author": "Jedi94",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spaceship_Earth,_EPCOT.jpg"
+  },
+  "orl-epic-universe-1": {
+    "ref": "wiki:Universal Epic Universe",
+    "src": "photos/orl-epic-universe-1.webp",
+    "author": "Gfgbeach",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chronos_Tower_Front_Epic_Universe.jpg"
+  },
+  "orl-gatorland-1": {
+    "ref": "wiki:Gatorland",
+    "src": "photos/orl-gatorland-1.webp",
+    "author": "The original uploader was Bobak at English Wikipedia.",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gatorland_entrance_-Florida-23Feb2006.jpg"
+  },
+  "orl-hollywood-studios-1": {
+    "ref": "wiki:Disney's Hollywood Studios",
+    "src": "photos/orl-hollywood-studios-1.webp",
+    "author": "Jedi94",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Twilight_Zone_Tower_of_Terror,_2024.jpg"
+  },
+  "orl-icon-park-1": {
+    "ref": "wiki:ICON Park",
+    "src": "photos/orl-icon-park-1.webp",
+    "author": "Kiran891",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:ICON_Park_green_overview.jpg"
+  },
+  "orl-international-outlets-1": {
+    "ref": "wiki:International Drive",
+    "src": "photos/orl-international-outlets-1.webp",
+    "author": "IDriveDistrict",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:IDrive_Street_View.JPG"
+  },
+  "orl-islands-of-adventure-1": {
+    "ref": "wiki:Universal's Islands of Adventure",
+    "src": "photos/orl-islands-of-adventure-1.webp",
+    "author": "Robert Linsdell",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Universal_Islands_of_Adventure,_Orlando.jpg"
+  },
+  "orl-kennedy-space-center-1": {
+    "ref": "wiki:Kennedy Space Center Visitor Complex",
+    "src": "photos/orl-kennedy-space-center-1.webp",
+    "author": "Brian.S.W",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apollo_11_Mockup.jpg"
+  },
+  "orl-lake-eola-1": {
+    "ref": "wiki:Lake Eola Park",
+    "src": "photos/orl-lake-eola-1.webp",
+    "author": "Cwolfsheep at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lakeeola_09232006_trees.jpg"
+  },
+  "orl-magic-kingdom-1": {
+    "ref": "wiki:Magic Kingdom",
+    "src": "photos/orl-magic-kingdom-1.webp",
+    "author": "TheWanderingTraders",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cinderella_Castle,_Magic_Kingdom_(2026).jpg"
+  },
+  "orl-mall-at-millenia-1": {
+    "ref": "wiki:The Mall at Millenia",
+    "src": "photos/orl-mall-at-millenia-1.webp",
+    "author": "Miosotis Jade",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Millenia_Mall_02.JPG"
+  },
+  "orl-seaworld-1": {
+    "ref": "wiki:SeaWorld Orlando",
+    "src": "photos/orl-seaworld-1.webp",
+    "author": "Jeremy Thompson",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SeaWorld_Orlando_001.jpg"
+  },
+  "orl-universal-studios-1": {
+    "ref": "wiki:Universal Studios Florida",
+    "src": "photos/orl-universal-studios-1.webp",
+    "author": "NBCUniversal",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USF_Entrance.jpg"
+  },
+  "orl-vineland-outlets-1": {
+    "ref": "File:Orlando Premium Outlets - Vineland Ave.jpeg",
+    "src": "photos/orl-vineland-outlets-1.webp",
+    "author": "User:Senator2029",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Orlando_Premium_Outlets_-_Vineland_Ave.jpeg"
+  },
+  "orl-winter-park-1": {
+    "ref": "wiki:Winter Park, Florida",
+    "src": "photos/orl-winter-park-1.webp",
+    "author": "Ebyabe",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Winter_Park_FL_Downtown_HD01.jpg"
+  },
+  "orl-winter-park-boat-1": {
+    "ref": "wiki:Winter Park, Florida",
+    "src": "photos/orl-winter-park-boat-1.webp",
+    "author": "Ebyabe",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Winter_Park_FL_Downtown_HD01.jpg"
+  }
+}

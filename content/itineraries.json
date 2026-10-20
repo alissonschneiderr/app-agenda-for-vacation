@@ -1,0 +1,214 @@
+[
+  {
+    "id": "sug-2026-10-31",
+    "date": "2026-10-31",
+    "title": "Chegada: Midtown e Times Square",
+    "notes": "Dia de chegada, passeio leve a pé por Midtown. É Halloween: a Village Halloween Parade costuma desfilar pela 6th Avenue à noite (por volta das 19h) — vale a pena ver! Esta madrugada termina o horário de verão: o relógio atrasa 1 hora.",
+    "pointIds": [
+      "ny-grand-central",
+      "ny-public-library",
+      "ny-bryant-park",
+      "ny-times-square",
+      "ny-empire-state"
+    ]
+  },
+  {
+    "id": "sug-2026-11-01",
+    "date": "2026-11-01",
+    "title": "Lower Manhattan e 11 de Setembro",
+    "notes": "Domingo da Maratona de Nova York: várias avenidas e o Central Park ficam fechados, por isso o dia é em Lower Manhattan. Compre antes o ingresso do Museu 11/9 com horário marcado.",
+    "pointIds": [
+      "ny-911-memorial",
+      "ny-911-museum",
+      "ny-oculus",
+      "ny-one-world",
+      "ny-wall-street"
+    ]
+  },
+  {
+    "id": "sug-2026-11-02",
+    "date": "2026-11-02",
+    "title": "Central Park e Museum Mile",
+    "notes": "Entre no parque pela 72nd St (lado oeste) para ver Strawberry Fields, atravesse até Bethesda Terrace e saia na 5th Ave, perto do Met. Escolha 3 ou 4 alas no Met.",
+    "pointIds": [
+      "ny-central-park",
+      "ny-met",
+      "ny-guggenheim"
+    ]
+  },
+  {
+    "id": "sug-2026-11-03",
+    "date": "2026-11-03",
+    "title": "Estátua da Liberdade e Ellis Island",
+    "notes": "Pegue uma das primeiras balsas em Battery Park (há revista de segurança). O passeio às duas ilhas ocupa a manhã e o começo da tarde. Se sobrar tempo, faça a balsa gratuita de Staten Island no fim do dia.",
+    "pointIds": [
+      "ny-battery-park",
+      "ny-statue-of-liberty",
+      "ny-ellis-island",
+      "ny-staten-island-ferry"
+    ]
+  },
+  {
+    "id": "sug-2026-11-04",
+    "date": "2026-11-04",
+    "title": "High Line, Chelsea e Hudson Yards",
+    "notes": "Quarta-feira: o Met fecha, mas o Whitney abre. Comece no Whitney, siga pela High Line até Hudson Yards, almoce no Chelsea Market e termine no Edge ao pôr do sol (reserve o horário).",
+    "pointIds": [
+      "ny-whitney",
+      "ny-little-island",
+      "ny-chelsea-market",
+      "ny-high-line",
+      "ny-hudson-yards",
+      "ny-edge"
+    ]
+  },
+  {
+    "id": "sug-2026-11-05",
+    "date": "2026-11-05",
+    "title": "Brooklyn, Chinatown, SoHo e Village",
+    "notes": "Comece em DUMBO de manhã (menos gente na foto da Washington St), atravesse a Ponte do Brooklyn a pé em direção a Manhattan e siga caminhando para Chinatown, SoHo e o Village.",
+    "pointIds": [
+      "ny-dumbo",
+      "ny-brooklyn-bridge-park",
+      "ny-brooklyn-bridge",
+      "ny-chinatown",
+      "ny-soho",
+      "ny-washington-square",
+      "ny-greenwich-village"
+    ]
+  },
+  {
+    "id": "sug-2026-11-06",
+    "date": "2026-11-06",
+    "title": "MoMA, Quinta Avenida e Broadway",
+    "notes": "Último dia em Nova York. MoMA de manhã, compras na 5th Avenue, mirante no Top of the Rock ao entardecer e um espetáculo na Broadway à noite (sessões às 19h/20h). Amanhã é dia de viagem para Orlando.",
+    "pointIds": [
+      "ny-moma",
+      "ny-st-patricks",
+      "ny-fifth-avenue",
+      "ny-top-of-the-rock",
+      "ny-broadway"
+    ]
+  },
+  {
+    "id": "sug-2026-11-08",
+    "date": "2026-11-08",
+    "title": "Disney Springs e outlets",
+    "notes": "Primeiro dia em Orlando, para descansar da viagem e fazer compras. Outlet de manhã, Disney Springs à tarde e à noite. Aproveite para conferir os aplicativos dos parques e reservar Lightning Lane para amanhã.",
+    "pointIds": [
+      "orl-vineland-outlets",
+      "orl-disney-springs"
+    ]
+  },
+  {
+    "id": "sug-2026-11-09",
+    "date": "2026-11-09",
+    "title": "Magic Kingdom",
+    "notes": "Chegue 45 minutos antes da abertura. Prioridades: TRON, Seven Dwarfs Mine Train, Space Mountain e Peter Pan's Flight. Fique para os fogos em frente ao castelo.",
+    "pointIds": [
+      "orl-magic-kingdom"
+    ]
+  },
+  {
+    "id": "sug-2026-11-10",
+    "date": "2026-11-10",
+    "title": "EPCOT",
+    "notes": "Comece por Guardians of the Galaxy (fila virtual) ou Test Track e deixe o World Showcase para a tarde, com o festival de comidas. Jante no BoardWalk, saindo pelo International Gateway.",
+    "pointIds": [
+      "orl-epcot",
+      "orl-disney-boardwalk"
+    ]
+  },
+  {
+    "id": "sug-2026-11-11",
+    "date": "2026-11-11",
+    "title": "Kennedy Space Center",
+    "notes": "Dia de folga dos parques. O Kennedy fica a cerca de 1 hora de carro: saia cedo e reserve o dia todo. Confira no site se há algum lançamento de foguete nesta semana. (11/11 é feriado de Veterans Day nos EUA, os parques tendem a encher.)",
+    "pointIds": [
+      "orl-kennedy-space-center"
+    ]
+  },
+  {
+    "id": "sug-2026-11-12",
+    "date": "2026-11-12",
+    "title": "Hollywood Studios",
+    "notes": "Rise of the Resistance logo na abertura (ou Lightning Lane). Depois Slinky Dog Dash, Tower of Terror e Rock 'n' Roller Coaster. Fantasmic! fecha a noite.",
+    "pointIds": [
+      "orl-hollywood-studios"
+    ]
+  },
+  {
+    "id": "sug-2026-11-13",
+    "date": "2026-11-13",
+    "title": "Animal Kingdom",
+    "notes": "Comece por Avatar Flight of Passage e faça o Kilimanjaro Safaris ainda de manhã, quando os animais estão mais ativos. O parque costuma fechar mais cedo.",
+    "pointIds": [
+      "orl-animal-kingdom"
+    ]
+  },
+  {
+    "id": "sug-2026-11-14",
+    "date": "2026-11-14",
+    "title": "Winter Park e Mall at Millenia",
+    "notes": "Sábado de descanso, longe dos parques. Mercado de produtores de Winter Park pela manhã, passeio de barco pelos lagos, almoço na Park Avenue e compras no Mall at Millenia à tarde.",
+    "pointIds": [
+      "orl-winter-park",
+      "orl-winter-park-boat",
+      "orl-mall-at-millenia"
+    ]
+  },
+  {
+    "id": "sug-2026-11-15",
+    "date": "2026-11-15",
+    "title": "Universal Studios Florida",
+    "notes": "Diagon Alley e Escape from Gringotts logo cedo, depois Revenge of the Mummy e Minions. Jante no CityWalk na saída.",
+    "pointIds": [
+      "orl-universal-studios",
+      "orl-citywalk"
+    ]
+  },
+  {
+    "id": "sug-2026-11-16",
+    "date": "2026-11-16",
+    "title": "Islands of Adventure",
+    "notes": "Hagrid's Magical Creatures logo na abertura, depois VelociCoaster, Hulk e Forbidden Journey em Hogwarts. Se tiver ingresso park-to-park, use o Hogwarts Express.",
+    "pointIds": [
+      "orl-islands-of-adventure"
+    ]
+  },
+  {
+    "id": "sug-2026-11-17",
+    "date": "2026-11-17",
+    "title": "Epic Universe",
+    "notes": "Último dia em Orlando, no parque mais novo. Comece pelo Ministry of Magic (Harry Potter) ou Super Nintendo World, as áreas mais concorridas. Fim de tarde nos outlets da I-Drive para a mala extra, se der. Amanhã é dia de viagem para Miami.",
+    "pointIds": [
+      "orl-epic-universe",
+      "orl-international-outlets"
+    ]
+  },
+  {
+    "id": "sug-2026-11-19",
+    "date": "2026-11-19",
+    "title": "South Beach e Art Deco",
+    "notes": "Praia de manhã em South Beach, almoço na Ocean Drive, passeio pelo distrito art déco à tarde, pôr do sol no South Pointe Park e jantar na Lincoln Road.",
+    "pointIds": [
+      "mia-south-beach",
+      "mia-art-deco",
+      "mia-south-pointe",
+      "mia-lincoln-road"
+    ]
+  },
+  {
+    "id": "sug-2026-11-20",
+    "date": "2026-11-20",
+    "title": "Vizcaya, Little Havana e Wynwood",
+    "notes": "Último dia da viagem. Vizcaya de manhã (abre às 9h30), almoço cubano na Calle Ocho, e Wynwood à tarde. Amanhã é o dia da volta.",
+    "pointIds": [
+      "mia-vizcaya",
+      "mia-little-havana",
+      "mia-domino-park",
+      "mia-wynwood-walls",
+      "mia-wynwood"
+    ]
+  }
+]

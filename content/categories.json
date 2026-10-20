@@ -1,0 +1,11 @@
+[
+  { "id": "museu", "name": "Museu" },
+  { "id": "parque-tematico", "name": "Parque temático" },
+  { "id": "parque", "name": "Parque" },
+  { "id": "monumento", "name": "Monumento" },
+  { "id": "mirante", "name": "Mirante" },
+  { "id": "compras", "name": "Compras" },
+  { "id": "praia", "name": "Praia" },
+  { "id": "bairro", "name": "Bairro" },
+  { "id": "espetaculo", "name": "Espetáculo" }
+]

@@ -1,0 +1,524 @@
+[
+  {
+    "id": "mia-south-beach",
+    "cityId": "miami",
+    "categoryId": "praia",
+    "name": "South Beach",
+    "summary": "A praia mais famosa de Miami, com postos de salva-vidas coloridos.",
+    "description": "South Beach é a faixa de areia clara e mar verde-azulado de Miami Beach, com os icônicos postos de salva-vidas coloridos. Em novembro a água ainda é quente e o clima é agradável, com menos chuva que no verão.\n\nA região perto da 10th Street (Lummus Park) é a mais movimentada; mais ao sul, perto de South Pointe, é mais tranquila.",
+    "address": "Ocean Dr e Lummus Park, Miami Beach, FL 33139",
+    "location": {
+      "lat": 25.7826,
+      "lng": -80.13
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://www.miamibeachfl.gov/",
+    "photos": [
+      {
+        "ref": "wiki:South Beach",
+        "alt": "Ocean Drive e a praia de South Beach durante o dia"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-art-deco",
+    "cityId": "miami",
+    "categoryId": "bairro",
+    "name": "Art Deco Historic District e Ocean Drive",
+    "summary": "Hotéis art déco em tons pastel e neon na Ocean Drive.",
+    "description": "O distrito art déco de Miami Beach tem mais de 800 prédios dos anos 1920–40 em tons pastel, com letreiros de neon que acendem à noite. A Ocean Drive, de frente para a praia, concentra hotéis e restaurantes com mesas na calçada — e a antiga mansão de Gianni Versace.\n\nO Art Deco Welcome Center, na Ocean Drive com a 10th Street, oferece passeios guiados.",
+    "address": "Ocean Dr, entre a 5th e a 15th St, Miami Beach, FL 33139",
+    "location": {
+      "lat": 25.781,
+      "lng": -80.131
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://www.mdpl.org/",
+    "photos": [
+      {
+        "ref": "wiki:Miami Beach Architectural District",
+        "alt": "Hotéis da Ocean Drive em South Beach"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-lincoln-road",
+    "cityId": "miami",
+    "categoryId": "compras",
+    "name": "Lincoln Road",
+    "summary": "Calçadão de pedestres com lojas e restaurantes em Miami Beach.",
+    "description": "A Lincoln Road é uma rua de pedestres com lojas, galerias e restaurantes com mesas ao ar livre, a poucas quadras da praia. À noite é um ótimo lugar para jantar e passear.",
+    "address": "Lincoln Rd, Miami Beach, FL 33139",
+    "location": {
+      "lat": 25.7906,
+      "lng": -80.1393
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://www.lincolnroadmall.com/",
+    "photos": [
+      {
+        "ref": "wiki:Lincoln Road",
+        "alt": "Calçadão da Lincoln Road com palmeiras"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-south-pointe",
+    "cityId": "miami",
+    "categoryId": "parque",
+    "name": "South Pointe Park",
+    "summary": "Parque na ponta sul de Miami Beach, com píer e vista dos navios.",
+    "description": "O South Pointe Park fica no extremo sul de Miami Beach, com gramados, um píer sobre o mar e vista para os navios de cruzeiro entrando no porto. É um dos melhores lugares para ver o pôr do sol na região.",
+    "address": "1 Washington Ave, Miami Beach, FL 33139",
+    "location": {
+      "lat": 25.768,
+      "lng": -80.134
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://www.miamibeachfl.gov/",
+    "photos": [
+      {
+        "ref": "wiki:South Pointe Park",
+        "alt": "Praia no extremo sul de Miami Beach"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-wynwood-walls",
+    "cityId": "miami",
+    "categoryId": "museu",
+    "name": "Wynwood Walls",
+    "summary": "Museu a céu aberto de grafite com artistas do mundo todo.",
+    "description": "O Wynwood Walls é um conjunto de muros grafitados por artistas de vários países, renovado periodicamente. É o ponto de partida para explorar o bairro de Wynwood, que tem murais por todas as ruas.\n\nVá no fim da tarde, quando a luz é melhor para fotos.",
+    "address": "2516 NW 2nd Ave, Miami, FL 33127",
+    "location": {
+      "lat": 25.801,
+      "lng": -80.1994
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "11:00",
+          "close": "20:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:00",
+          "close": "20:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:00",
+          "close": "19:00"
+        }
+      ]
+    },
+    "price": "US$ 12 adulto · US$ 10 idosos · US$ 5 estudantes · grátis até 12 anos",
+    "officialUrl": "https://thewynwoodwalls.com/",
+    "photos": [
+      {
+        "ref": "File:Wynwood Walls Miami Florida October 2013.jpg",
+        "alt": "Mural colorido no Wynwood Walls"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-wynwood",
+    "cityId": "miami",
+    "categoryId": "bairro",
+    "name": "Wynwood",
+    "summary": "Bairro de galerias, cervejarias e murais em cada esquina.",
+    "description": "Além do Wynwood Walls, o bairro inteiro é uma galeria a céu aberto, com murais gigantes nas laterais dos armazéns. Há cervejarias artesanais, cafés, lojas e uma vida noturna animada.",
+    "address": "NW 2nd Ave, Miami, FL 33127",
+    "location": {
+      "lat": 25.8008,
+      "lng": -80.199
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "File:April 7, 2015 - Wynwood Miami - 03.jpg",
+        "alt": "Murais nas ruas de Wynwood"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-little-havana",
+    "cityId": "miami",
+    "categoryId": "bairro",
+    "name": "Little Havana (Calle Ocho)",
+    "summary": "O bairro cubano: café, charutos, dominó e música.",
+    "description": "A Calle Ocho (SW 8th Street) é o centro da Little Havana, o bairro cubano de Miami. Prove um cafecito e um pastelito, veja charutos sendo enrolados à mão e passe pela Calçada da Fama latina.\n\nNas sextas à noite costuma haver música e dança ao vivo em vários bares da rua.",
+    "address": "SW 8th St, entre a 12th e a 17th Ave, Miami, FL 33135",
+    "location": {
+      "lat": 25.7656,
+      "lng": -80.2194
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Little Havana",
+        "alt": "Jogadores de dominó na Calle Ocho, Little Havana"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-domino-park",
+    "cityId": "miami",
+    "categoryId": "parque",
+    "name": "Máximo Gómez Park (Domino Park)",
+    "summary": "Praça onde os moradores cubanos jogam dominó.",
+    "description": "Na Calle Ocho, o Domino Park é onde os mais velhos do bairro se reúnem para jogar dominó e conversar. É um retrato vivo da cultura cubana de Miami. Observe com discrição.",
+    "address": "801 SW 15th Ave, Miami, FL 33135",
+    "location": {
+      "lat": 25.7655,
+      "lng": -80.2195
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Máximo Gómez Park",
+        "alt": "Mesas do Domino Park na Little Havana"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-vizcaya",
+    "cityId": "miami",
+    "categoryId": "museu",
+    "name": "Vizcaya Museum and Gardens",
+    "summary": "Mansão de estilo italiano com jardins à beira da baía.",
+    "description": "Construída em 1916 para o industrial James Deering, Vizcaya é uma mansão inspirada nas vilas italianas, com 34 salas decoradas com antiguidades e jardins formais à beira da Baía de Biscayne. É um dos lugares mais bonitos de Miami.\n\nReserve cerca de 2 horas e vá de manhã, antes do calor. Fechado às terças.",
+    "address": "3251 S Miami Ave, Miami, FL 33129",
+    "location": {
+      "lat": 25.7444,
+      "lng": -80.2106
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ],
+      "tue": [],
+      "wed": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ],
+      "thu": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ],
+      "fri": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ],
+      "sat": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ],
+      "sun": [
+        {
+          "open": "09:30",
+          "close": "17:30"
+        }
+      ]
+    },
+    "price": "US$ 25 adulto · US$ 10 crianças (6–12) · grátis até 5 anos",
+    "officialUrl": "https://vizcaya.org/",
+    "photos": [
+      {
+        "ref": "wiki:Vizcaya Museum and Gardens",
+        "alt": "Mansão de Vizcaya vista dos jardins"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-pamm",
+    "cityId": "miami",
+    "categoryId": "museu",
+    "name": "Pérez Art Museum Miami (PAMM)",
+    "summary": "Arte moderna e contemporânea com jardins suspensos à beira da baía.",
+    "description": "O PAMM é o museu de arte contemporânea de Miami, num prédio dos arquitetos Herzog & de Meuron com jardins verticais suspensos e varandas sobre a Baía de Biscayne. O acervo destaca artistas latino-americanos e do Caribe.\n\nO café do museu tem uma das vistas mais bonitas da baía.",
+    "address": "1103 Biscayne Blvd, Miami, FL 33132",
+    "location": {
+      "lat": 25.7859,
+      "lng": -80.1863
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        {
+          "open": "11:00",
+          "close": "21:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ]
+    },
+    "price": "US$ 16 adulto · US$ 12 idosos, estudantes e jovens (7–18)",
+    "officialUrl": "https://www.pamm.org/",
+    "photos": [
+      {
+        "ref": "wiki:Pérez Art Museum Miami",
+        "alt": "Pérez Art Museum Miami à beira da baía"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-frost-science",
+    "cityId": "miami",
+    "categoryId": "museu",
+    "name": "Frost Science Museum",
+    "summary": "Museu de ciências com aquário de três andares e planetário.",
+    "description": "O Phillip and Patricia Frost Museum of Science tem um aquário em três níveis com tubarões e raias, planetário e exposições interativas. Fica ao lado do PAMM, no Museum Park.",
+    "address": "1101 Biscayne Blvd, Miami, FL 33132",
+    "location": {
+      "lat": 25.7853,
+      "lng": -80.1876
+    },
+    "openingHours": "see-official",
+    "price": "Consulte o site oficial",
+    "officialUrl": "https://www.frostscience.org/",
+    "photos": [
+      {
+        "ref": "File:Frost Science Museum - Miami Science Museum - Flickr - Knight Foundation.jpg",
+        "alt": "Prédio do Frost Science Museum"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-bayside",
+    "cityId": "miami",
+    "categoryId": "compras",
+    "name": "Bayside Marketplace",
+    "summary": "Lojas e restaurantes à beira da marina, de onde saem passeios de barco.",
+    "description": "O Bayside é um centro de compras ao ar livre na marina do centro de Miami, com música ao vivo e restaurantes. Dali saem passeios de barco pela Baía de Biscayne que passam pelas mansões das celebridades em Star Island.",
+    "address": "401 Biscayne Blvd, Miami, FL 33132",
+    "location": {
+      "lat": 25.7784,
+      "lng": -80.1867
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita (passeios de barco pagos)",
+    "officialUrl": "https://www.baysidemarketplace.com/",
+    "photos": [
+      {
+        "ref": "wiki:Bayside Marketplace",
+        "alt": "Bayside Marketplace à beira da marina"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-brickell",
+    "cityId": "miami",
+    "categoryId": "compras",
+    "name": "Brickell City Centre",
+    "summary": "Shopping a céu aberto entre os arranha-céus de Brickell.",
+    "description": "Brickell é o centro financeiro de Miami, cheio de arranha-céus residenciais. O Brickell City Centre é um shopping ao ar livre com uma cobertura que protege do sol, com lojas, restaurantes e o mercado gastronômico italiano Casa Tua Cucina.",
+    "address": "701 S Miami Ave, Miami, FL 33131",
+    "location": {
+      "lat": 25.7668,
+      "lng": -80.1934
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.brickellcitycentre.com/",
+    "photos": [
+      {
+        "ref": "File:Tns Brickell City Centre escalators.jpg",
+        "alt": "Escadas rolantes do Brickell City Centre"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-design-district",
+    "cityId": "miami",
+    "categoryId": "bairro",
+    "name": "Miami Design District",
+    "summary": "Lojas de grife, design e arte pública.",
+    "description": "O Design District reúne lojas de luxo, galerias de design e obras de arte pública, como a cúpula geodésica Fly's Eye Dome. É vizinho de Wynwood e mais calmo, ótimo para caminhar.",
+    "address": "NE 39th St e NE 2nd Ave, Miami, FL 33137",
+    "location": {
+      "lat": 25.8128,
+      "lng": -80.1925
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://www.miamidesigndistrict.com/",
+    "photos": [
+      {
+        "ref": "wiki:Miami Design District",
+        "alt": "Cúpula geodésica Fly's Eye Dome no Design District"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-bill-baggs",
+    "cityId": "miami",
+    "categoryId": "praia",
+    "name": "Bill Baggs Cape Florida State Park",
+    "summary": "Praia tranquila e farol histórico em Key Biscayne.",
+    "description": "Na ponta sul de Key Biscayne, o parque estadual tem praias de águas calmas, trilhas e o farol de Cape Florida, de 1825, o prédio mais antigo da região de Miami. É uma fuga da agitação de South Beach.\n\nA entrada é cobrada por veículo.",
+    "address": "1200 S Crandon Blvd, Key Biscayne, FL 33149",
+    "location": {
+      "lat": 25.6669,
+      "lng": -80.1567
+    },
+    "openingHours": "see-official",
+    "price": "Taxa por veículo (consulte o site oficial)",
+    "officialUrl": "https://www.floridastateparks.org/parks-and-trails/bill-baggs-cape-florida-state-park",
+    "photos": [
+      {
+        "ref": "wiki:Bill Baggs Cape Florida State Park",
+        "alt": "Farol de Cape Florida e a praia"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-coconut-grove",
+    "cityId": "miami",
+    "categoryId": "bairro",
+    "name": "Coconut Grove",
+    "summary": "Bairro arborizado à beira da baía, com marinas e cafés.",
+    "description": "Coconut Grove é o bairro mais antigo de Miami, com ruas cobertas por árvores, marinas e um clima de cidade pequena. O centro tem o shopping CocoWalk, restaurantes e bares.\n\nFica perto de Vizcaya — dá para combinar os dois.",
+    "address": "Main Hwy e Grand Ave, Miami, FL 33133",
+    "location": {
+      "lat": 25.728,
+      "lng": -80.243
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Coconut Grove",
+        "alt": "Rua arborizada de Coconut Grove"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "mia-everglades",
+    "cityId": "miami",
+    "categoryId": "parque",
+    "name": "Everglades National Park (Shark Valley)",
+    "summary": "Pântanos com jacarés e aves, a 1 hora de Miami.",
+    "description": "O Parque Nacional Everglades é um imenso pântano de grama, lar de jacarés, garças e tartarugas. Em Shark Valley há uma trilha asfaltada de 24 km (de bicicleta ou trenzinho) com uma torre de observação; nos arredores, empresas oferecem passeios de airboat.\n\nNovembro é início da estação seca, a melhor época para ver animais.",
+    "address": "36000 SW 8th St, Miami, FL 33194",
+    "location": {
+      "lat": 25.7579,
+      "lng": -80.7664
+    },
+    "openingHours": "see-official",
+    "price": "Taxa por veículo do parque nacional (consulte o site oficial)",
+    "officialUrl": "https://www.nps.gov/ever/",
+    "photos": [
+      {
+        "ref": "wiki:Everglades National Park",
+        "alt": "Pôr do sol sobre o \"rio de grama\" dos Everglades"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  }
+]

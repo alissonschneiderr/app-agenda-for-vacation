@@ -1,0 +1,1573 @@
+[
+  {
+    "id": "ny-central-park",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "Central Park",
+    "summary": "O grande parque de Manhattan, com lagos, pontes e trilhas.",
+    "description": "Com 341 hectares entre a 59th e a 110th Street, o Central Park é o respiro verde de Manhattan. Em novembro as árvores ficam douradas e avermelhadas, e caminhar entre Bethesda Terrace, o lago (The Lake), Bow Bridge e Strawberry Fields (memorial a John Lennon) é um dos melhores programas gratuitos da cidade.\n\nDica: entre pela 72nd Street (lado oeste) para ver Strawberry Fields e siga até Bethesda Terrace. No dia da Maratona de Nova York (1º domingo de novembro) a chegada é no parque e várias áreas ficam fechadas.",
+    "address": "Manhattan, entre a 59th St e a 110th St, da 5th Ave à Central Park West",
+    "location": {
+      "lat": 40.7812,
+      "lng": -73.9665
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://www.centralparknyc.org/",
+    "photos": [
+      {
+        "ref": "wiki:Central Park",
+        "alt": "Vista aérea do Great Lawn no Central Park"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-met",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "The Metropolitan Museum of Art",
+    "summary": "Um dos maiores museus de arte do mundo, na Quinta Avenida.",
+    "description": "O Met reúne mais de 5 mil anos de arte: do Templo de Dendur egípcio às armaduras medievais, passando por Rembrandt, Vermeer, Van Gogh e uma enorme ala de arte americana. É impossível ver tudo em um dia — escolha 3 ou 4 alas.\n\nO ingresso vale no mesmo dia também para o The Met Cloisters, no norte de Manhattan. O terraço no telhado (Roof Garden) costuma abrir até o fim do outono, com vista para o Central Park.",
+    "address": "1000 5th Ave, New York, NY 10028",
+    "location": {
+      "lat": 40.7794,
+      "lng": -73.9632
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "wed": [],
+      "thu": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "10:00",
+          "close": "21:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:00",
+          "close": "21:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ]
+    },
+    "price": "US$ 30 adulto · US$ 22 idosos (65+) · US$ 17 estudantes · grátis até 12 anos",
+    "officialUrl": "https://www.metmuseum.org/",
+    "photos": [
+      {
+        "ref": "wiki:Metropolitan Museum of Art",
+        "alt": "Fachada do Metropolitan Museum of Art na Quinta Avenida"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-amnh",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "American Museum of Natural History",
+    "summary": "Dinossauros, baleia azul e o planetário Rose Center.",
+    "description": "O museu de história natural é famoso pelos esqueletos de dinossauros, pela baleia azul em tamanho real e pelo Rose Center for Earth and Space. O Gilder Center, inaugurado em 2023, tem um átrio impressionante e um insetário.\n\nFica em frente ao Central Park, do lado oeste — dá para combinar com um passeio pelo parque.",
+    "address": "200 Central Park West, New York, NY 10024",
+    "location": {
+      "lat": 40.7813,
+      "lng": -73.974
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "tue": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "wed": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "thu": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "fri": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:00",
+          "close": "17:30"
+        }
+      ]
+    },
+    "price": "US$ 37 adulto · US$ 30 idosos e estudantes · US$ 22 crianças (3–12)",
+    "officialUrl": "https://www.amnh.org/",
+    "photos": [
+      {
+        "ref": "wiki:American Museum of Natural History",
+        "alt": "Fachada do American Museum of Natural History"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-guggenheim",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Solomon R. Guggenheim Museum",
+    "summary": "Arte moderna dentro do famoso prédio em espiral de Frank Lloyd Wright.",
+    "description": "O edifício em espiral de Frank Lloyd Wright é uma obra de arte por si só: a visita é uma rampa contínua que sobe ao redor de um átrio central. O acervo vai de Kandinsky e Picasso a artistas contemporâneos.\n\nFica na Quinta Avenida, a poucas quadras do Met, no trecho conhecido como Museum Mile.",
+    "address": "1071 5th Ave, New York, NY 10128",
+    "location": {
+      "lat": 40.783,
+      "lng": -73.959
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "11:00",
+          "close": "20:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "11:00",
+          "close": "18:00"
+        }
+      ]
+    },
+    "price": "US$ 30 adulto · US$ 19 idosos (65+) · grátis até 12 anos",
+    "officialUrl": "https://www.guggenheim.org/",
+    "photos": [
+      {
+        "ref": "wiki:Solomon R. Guggenheim Museum",
+        "alt": "Prédio em espiral do Museu Guggenheim"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-moma",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Museum of Modern Art (MoMA)",
+    "summary": "Van Gogh, Picasso, Warhol e o melhor da arte moderna.",
+    "description": "O MoMA guarda obras-primas como \"A Noite Estrelada\" de Van Gogh, \"Les Demoiselles d'Avignon\" de Picasso, as latas de sopa Campbell de Warhol e \"A Persistência da Memória\" de Dalí. O jardim de esculturas é um oásis no meio de Midtown.\n\nComece pelo 5º andar, onde ficam as obras mais famosas, antes que encha.",
+    "address": "11 W 53rd St, New York, NY 10019",
+    "location": {
+      "lat": 40.7614,
+      "lng": -73.9776
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ],
+      "tue": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ],
+      "wed": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ],
+      "thu": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ],
+      "fri": [
+        {
+          "open": "10:30",
+          "close": "20:30"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:30",
+          "close": "17:30"
+        }
+      ]
+    },
+    "price": "US$ 30 adulto · US$ 22 idosos (65+) · US$ 17 estudantes · grátis até 16 anos",
+    "officialUrl": "https://www.moma.org/",
+    "photos": [
+      {
+        "ref": "wiki:Museum of Modern Art",
+        "alt": "Entrada do MoMA na 53rd Street"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-whitney",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Whitney Museum of American Art",
+    "summary": "Arte americana do século 20 e terraços com vista para o rio Hudson.",
+    "description": "Projetado por Renzo Piano, o Whitney fica no início da High Line, no Meatpacking District. O acervo é de arte americana moderna e contemporânea (Hopper, O'Keeffe, Basquiat), e os terraços externos têm vista para o rio Hudson e para o skyline.\n\nÀs sextas, a partir das 17h, a entrada costuma ser gratuita para todos.",
+    "address": "99 Gansevoort St, New York, NY 10014",
+    "location": {
+      "lat": 40.7396,
+      "lng": -74.0089
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "10:30",
+          "close": "18:00"
+        }
+      ],
+      "tue": [],
+      "wed": [
+        {
+          "open": "10:30",
+          "close": "18:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "10:30",
+          "close": "18:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "10:30",
+          "close": "22:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:30",
+          "close": "18:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:30",
+          "close": "18:00"
+        }
+      ]
+    },
+    "price": "US$ 30 adulto · grátis até 25 anos · sextas 17h–22h gratuito",
+    "officialUrl": "https://whitney.org/",
+    "photos": [
+      {
+        "ref": "wiki:Whitney Museum of American Art",
+        "alt": "Prédio do Whitney Museum no Meatpacking District"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-times-square",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "Times Square",
+    "summary": "O cruzamento dos telões, coração da Broadway.",
+    "description": "Times Square é o cruzamento mais famoso do mundo, iluminado por telões dia e noite. É o centro do Theater District: os teatros da Broadway ficam nas ruas ao redor, e na TKTS (escadaria vermelha) dá para comprar ingressos com desconto para o mesmo dia.\n\nVá à noite para ver as luzes. Cuidado com personagens fantasiados que cobram por fotos.",
+    "address": "Broadway com 7th Ave, entre a 42nd e a 47th St, New York, NY",
+    "location": {
+      "lat": 40.758,
+      "lng": -73.9855
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://www.timessquarenyc.org/",
+    "photos": [
+      {
+        "ref": "wiki:Times Square",
+        "alt": "Times Square à noite com telões iluminados"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-top-of-the-rock",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "Top of the Rock (Rockefeller Center)",
+    "summary": "Mirante com a melhor vista do Empire State e do Central Park.",
+    "description": "No alto do 30 Rockefeller Plaza, o Top of the Rock tem três andares de observação ao ar livre. A grande vantagem: o Empire State Building aparece na sua foto, e do outro lado se vê o Central Park inteiro.\n\nNo Rockefeller Center ficam também a pista de patinação e, a partir do fim de novembro, a famosa árvore de Natal. Horário de pôr do sol é o mais disputado.",
+    "address": "30 Rockefeller Plaza, New York, NY 10112",
+    "location": {
+      "lat": 40.7593,
+      "lng": -73.9794
+    },
+    "openingHours": "see-official",
+    "price": "A partir de US$ 44 adulto (varia por horário)",
+    "officialUrl": "https://www.rockefellercenter.com/attractions/top-of-the-rock-observation-deck/",
+    "photos": [
+      {
+        "ref": "wiki:Top of the Rock",
+        "alt": "30 Rockefeller Plaza, onde fica o Top of the Rock, visto do Empire State"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-empire-state",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "Empire State Building",
+    "summary": "O arranha-céu mais icônico de Nova York, com mirante no 86º andar.",
+    "description": "Símbolo de Nova York desde 1931, o Empire State tem um museu interativo sobre sua história e o observatório ao ar livre do 86º andar, com vista de 360°. O 102º andar, envidraçado, é opcional e pago à parte.\n\nÀ noite o topo do prédio é iluminado com cores que mudam conforme a data.",
+    "address": "20 W 34th St, New York, NY 10001",
+    "location": {
+      "lat": 40.7484,
+      "lng": -73.9857
+    },
+    "openingHours": "see-official",
+    "price": "US$ 44 adulto (86º andar) · US$ 79 com o 102º andar",
+    "officialUrl": "https://www.esbnyc.com/",
+    "photos": [
+      {
+        "ref": "wiki:Empire State Building",
+        "alt": "Vista aérea do Empire State Building"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-summit",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "SUMMIT One Vanderbilt",
+    "summary": "Mirante imersivo com salas de espelhos ao lado da Grand Central.",
+    "description": "O SUMMIT ocupa os andares mais altos do One Vanderbilt, ao lado da Grand Central. Além da vista, tem salas espelhadas do chão ao teto, balões prateados e caixas de vidro suspensas do lado de fora do prédio.\n\nUse sapatos fechados e evite saias: o piso espelhado reflete tudo.",
+    "address": "45 E 42nd St, New York, NY 10017",
+    "location": {
+      "lat": 40.7527,
+      "lng": -73.9787
+    },
+    "openingHours": "see-official",
+    "price": "US$ 43 adulto (seg–qui) · US$ 49 (sex–dom) · pôr do sol +US$ 10",
+    "officialUrl": "https://summitov.com/",
+    "photos": [
+      {
+        "ref": "wiki:One Vanderbilt",
+        "alt": "Torre One Vanderbilt, onde fica o SUMMIT"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-edge",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "Edge (Hudson Yards)",
+    "summary": "O mirante ao ar livre mais alto do Ocidente, com piso de vidro.",
+    "description": "Na ponta triangular de um prédio de Hudson Yards, o Edge fica a 335 metros de altura, com paredes de vidro inclinadas e um trecho de piso transparente. A vista para o rio Hudson no pôr do sol é espetacular.\n\nCombina bem com a High Line, que termina ali perto.",
+    "address": "30 Hudson Yards, New York, NY 10001",
+    "location": {
+      "lat": 40.7539,
+      "lng": -74.0011
+    },
+    "openingHours": "see-official",
+    "price": "US$ 41 adulto · US$ 39 idosos · US$ 35 crianças (6–11)",
+    "officialUrl": "https://www.edgenyc.com/",
+    "photos": [
+      {
+        "ref": "File:Edge NYC observation deck at 30 Hudson Yards.jpg",
+        "alt": "Mirante Edge no alto de 30 Hudson Yards"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-one-world",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "One World Observatory",
+    "summary": "Mirante no topo do One World Trade Center, o prédio mais alto dos EUA.",
+    "description": "No 100º andar do One World Trade Center, o observatório tem vista para toda a Lower Manhattan, a Estátua da Liberdade e o Brooklyn. A subida no elevador mostra, em vídeo, a evolução da cidade desde o século 16.\n\nFica ao lado do Memorial 11/9 — dá para fazer tudo na mesma tarde.",
+    "address": "117 West St, New York, NY 10007",
+    "location": {
+      "lat": 40.7127,
+      "lng": -74.0134
+    },
+    "openingHours": "see-official",
+    "price": "A partir de cerca de US$ 39 (varia por horário)",
+    "officialUrl": "https://www.oneworldobservatory.com/",
+    "photos": [
+      {
+        "ref": "File:One World Trade Center, Financial District, Manhattan, New York.jpg",
+        "alt": "One World Trade Center visto da rua"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-911-memorial",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Memorial 11 de Setembro",
+    "summary": "Duas piscinas no lugar das Torres Gêmeas, com os nomes das vítimas.",
+    "description": "Onde ficavam as Torres Gêmeas há hoje duas grandes piscinas com cascatas, cercadas por painéis de bronze com os nomes das quase 3 mil vítimas dos ataques de 2001 e de 1993. É um lugar de silêncio e respeito no meio de Lower Manhattan.\n\nA praça é aberta e gratuita; o museu ao lado é pago.",
+    "address": "180 Greenwich St, New York, NY 10007",
+    "location": {
+      "lat": 40.7115,
+      "lng": -74.0134
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://www.911memorial.org/",
+    "photos": [
+      {
+        "ref": "wiki:National September 11 Memorial & Museum",
+        "alt": "Memorial 11 de Setembro com o One World Trade Center ao fundo"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-911-museum",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Museu 11 de Setembro",
+    "summary": "O museu que conta a história dos ataques, nas fundações das torres.",
+    "description": "O museu fica no subsolo, entre as fundações originais do World Trade Center. Expõe a \"escada dos sobreviventes\", a última coluna retirada dos escombros e objetos e depoimentos das vítimas. A visita é intensa e leva cerca de 2 horas.\n\nCompre o ingresso com horário marcado pela internet; às segundas à noite costuma haver entradas gratuitas limitadas.",
+    "address": "180 Greenwich St, New York, NY 10007",
+    "location": {
+      "lat": 40.7116,
+      "lng": -74.0133
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ],
+      "tue": [],
+      "wed": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "09:00",
+          "close": "19:00"
+        }
+      ]
+    },
+    "price": "US$ 36 adulto · US$ 30 idosos, estudantes e 13–17 anos · US$ 24 (7–12)",
+    "officialUrl": "https://www.911memorial.org/visit/museum",
+    "photos": [
+      {
+        "ref": "wiki:National September 11 Museum",
+        "alt": "Memorial e Museu 11 de Setembro"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-oculus",
+    "cityId": "nova-york",
+    "categoryId": "compras",
+    "name": "The Oculus (World Trade Center)",
+    "summary": "Estação e shopping com uma estrutura branca que lembra asas.",
+    "description": "Projetado por Santiago Calatrava, o Oculus é a estação de transporte do World Trade Center e abriga um shopping. A estrutura branca de aço lembra um pássaro levantando voo, e o interior é um dos espaços mais fotogênicos da cidade.\n\nFica ao lado do Memorial 11/9 e é passagem coberta para o metrô e para o PATH (trem para Nova Jersey).",
+    "address": "185 Greenwich St, New York, NY 10007",
+    "location": {
+      "lat": 40.7116,
+      "lng": -74.011
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://www.westfield.com/united-states/worldtradecenter",
+    "photos": [
+      {
+        "ref": "wiki:World Trade Center Transportation Hub",
+        "alt": "Estrutura branca do Oculus no World Trade Center"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-statue-of-liberty",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Estátua da Liberdade",
+    "summary": "O símbolo dos EUA, na Liberty Island, com balsa desde Battery Park.",
+    "description": "Presente da França em 1886, a Estátua da Liberdade fica na Liberty Island. A balsa oficial (Statue City Cruises) sai de Battery Park e para também em Ellis Island; o mesmo bilhete vale para as duas ilhas e seus museus.\n\nAcesso ao pedestal e à coroa é limitado e esgota com meses de antecedência. Chegue cedo: há inspeção de segurança tipo aeroporto antes da balsa. Reserve a manhã inteira e parte da tarde.",
+    "address": "Liberty Island, New York, NY 10004 (balsa em Battery Park)",
+    "location": {
+      "lat": 40.6892,
+      "lng": -74.0445
+    },
+    "openingHours": "see-official",
+    "price": "Balsa oficial: US$ 25,50 adulto · US$ 22,50 idosos · US$ 16,50 crianças (4–12)",
+    "officialUrl": "https://www.nps.gov/stli/",
+    "photos": [
+      {
+        "ref": "wiki:Statue of Liberty",
+        "alt": "Estátua da Liberdade vista da baía"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-ellis-island",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Ellis Island (Museu Nacional da Imigração)",
+    "summary": "Porta de entrada de 12 milhões de imigrantes, hoje um museu.",
+    "description": "Entre 1892 e 1954, cerca de 12 milhões de imigrantes passaram por Ellis Island. O antigo prédio de inspeção virou o Museu Nacional da Imigração, com o Grande Salão restaurado, objetos trazidos pelos imigrantes e registros de chegada.\n\nO acesso está incluído no bilhete da balsa da Estátua da Liberdade.",
+    "address": "Ellis Island, New York, NY 10004",
+    "location": {
+      "lat": 40.6995,
+      "lng": -74.0396
+    },
+    "openingHours": "see-official",
+    "price": "Incluído no bilhete da balsa da Estátua da Liberdade",
+    "officialUrl": "https://www.nps.gov/elis/",
+    "photos": [
+      {
+        "ref": "wiki:Ellis Island",
+        "alt": "Vista aérea de Ellis Island"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-battery-park",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "The Battery (Battery Park)",
+    "summary": "Parque na ponta sul de Manhattan, de onde saem as balsas.",
+    "description": "Na ponta sul de Manhattan, o Battery Park tem vista para a baía e a Estátua da Liberdade. Ali ficam o Castle Clinton (onde se faz a inspeção para a balsa da Estátua) e jardins à beira-rio.\n\nO terminal da balsa gratuita de Staten Island fica a poucos passos.",
+    "address": "State St e Battery Pl, New York, NY 10004",
+    "location": {
+      "lat": 40.7033,
+      "lng": -74.017
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://www.thebattery.org/",
+    "photos": [
+      {
+        "ref": "wiki:The Battery (Manhattan)",
+        "alt": "Jardins do Battery Park com a baía ao fundo"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-wall-street",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "Wall Street e Charging Bull",
+    "summary": "O centro financeiro: Bolsa de Nova York, Federal Hall e o Touro.",
+    "description": "Wall Street concentra a Bolsa de Valores de Nova York, o Federal Hall (onde George Washington tomou posse) e prédios históricos do século 19. A poucas quadras, em Bowling Green, fica o famoso touro de bronze, Charging Bull.\n\nO bairro esvazia nos fins de semana, o que facilita as fotos.",
+    "address": "Wall St, New York, NY 10005",
+    "location": {
+      "lat": 40.706,
+      "lng": -74.0088
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Wall Street",
+        "alt": "Fachada da Bolsa de Valores de Nova York em Wall Street"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-brooklyn-bridge",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Ponte do Brooklyn",
+    "summary": "Ponte de 1883 com passarela para pedestres entre Manhattan e Brooklyn.",
+    "description": "Atravessar a Ponte do Brooklyn a pé é um clássico: a passarela de madeira fica acima dos carros e tem vista para Lower Manhattan, a Estátua da Liberdade e a Ponte de Manhattan. A travessia leva cerca de 30 minutos.\n\nComece pelo lado do Brooklyn (DUMBO) e caminhe em direção a Manhattan para ter o skyline à sua frente. Cuidado com a ciclovia.",
+    "address": "Brooklyn Bridge, New York, NY 10038",
+    "location": {
+      "lat": 40.7061,
+      "lng": -73.9969
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Brooklyn Bridge",
+        "alt": "Ponte do Brooklyn com o skyline de Manhattan"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-dumbo",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "DUMBO",
+    "summary": "Ruas de paralelepípedo e a foto clássica da Ponte de Manhattan.",
+    "description": "DUMBO (\"Down Under the Manhattan Bridge Overpass\") é um antigo bairro industrial do Brooklyn com armazéns de tijolos, galerias, cafés e lojas. A foto mais famosa é na Washington Street, com a Ponte de Manhattan enquadrada entre os prédios.\n\nO carrossel Jane's Carousel e o Time Out Market ficam à beira do rio.",
+    "address": "Washington St e Water St, Brooklyn, NY 11201",
+    "location": {
+      "lat": 40.7033,
+      "lng": -73.9881
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:DUMBO, Brooklyn",
+        "alt": "DUMBO e o East River vistos do alto"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-brooklyn-bridge-park",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "Brooklyn Bridge Park",
+    "summary": "Parque à beira do East River com vista para o skyline de Manhattan.",
+    "description": "O parque se estende por 2 km de antigos píeres no Brooklyn, com gramados, quadras e o melhor mirante gratuito do skyline de Lower Manhattan. O pôr do sol visto dali é inesquecível.\n\nSuba depois até o Brooklyn Heights Promenade, um calçadão residencial com a mesma vista.",
+    "address": "334 Furman St, Brooklyn, NY 11201",
+    "location": {
+      "lat": 40.7003,
+      "lng": -73.9967
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://www.brooklynbridgepark.org/",
+    "photos": [
+      {
+        "ref": "wiki:Brooklyn Bridge Park",
+        "alt": "Brooklyn Bridge Park com o skyline de Manhattan"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-high-line",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "High Line",
+    "summary": "Parque suspenso em uma antiga linha de trem elevada.",
+    "description": "A High Line é um parque linear de 2,3 km construído sobre uma antiga linha férrea elevada, do Meatpacking District até Hudson Yards. O caminho tem jardins, obras de arte e vistas para as ruas de Chelsea e o rio Hudson.\n\nComece pelo Whitney (Gansevoort St) e termine em Hudson Yards, perto do Edge. Há escadas e elevadores ao longo do trajeto.",
+    "address": "Gansevoort St até W 34th St, New York, NY",
+    "location": {
+      "lat": 40.748,
+      "lng": -74.0048
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://www.thehighline.org/",
+    "photos": [
+      {
+        "ref": "wiki:High Line",
+        "alt": "Caminho da High Line entre jardins e prédios"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-chelsea-market",
+    "cityId": "nova-york",
+    "categoryId": "compras",
+    "name": "Chelsea Market",
+    "summary": "Antiga fábrica de biscoitos virou mercado gastronômico.",
+    "description": "Na antiga fábrica da Nabisco (onde nasceu o biscoito Oreo), o Chelsea Market reúne dezenas de restaurantes e lojas de comida: lagosta, tacos, padarias e doces. É uma ótima parada para almoço no meio do passeio pela High Line.\n\nFica entre a 9th e a 10th Avenue, com acesso direto pela High Line.",
+    "address": "75 9th Ave, New York, NY 10011",
+    "location": {
+      "lat": 40.7424,
+      "lng": -74.0061
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.chelseamarket.com/",
+    "photos": [
+      {
+        "ref": "wiki:Chelsea Market",
+        "alt": "Corredor interno do Chelsea Market"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-little-island",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "Little Island",
+    "summary": "Parque flutuante sobre \"tulipas\" de concreto no rio Hudson.",
+    "description": "Inaugurado em 2021, o Little Island é um parque sobre pilares de concreto em forma de tulipa no Pier 55. Tem caminhos sinuosos, mirantes para o rio Hudson e um anfiteatro ao ar livre.\n\nFica a poucos passos do Whitney e do início da High Line.",
+    "address": "Pier 55, Hudson River Park, W 13th St, New York, NY 10014",
+    "location": {
+      "lat": 40.742,
+      "lng": -74.0103
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://littleisland.org/",
+    "photos": [
+      {
+        "ref": "wiki:Little Island at Pier 55",
+        "alt": "Little Island sobre pilares no rio Hudson"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-hudson-yards",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "Hudson Yards e The Vessel",
+    "summary": "Bairro novo de arranha-céus, shopping e a escultura The Vessel.",
+    "description": "Hudson Yards é o bairro mais novo de Manhattan, construído sobre um pátio de trens. Tem um shopping de luxo, o mirante Edge, o centro cultural The Shed e a escultura em favo de mel The Vessel, que pode ser visitada com ingresso.\n\nÉ o ponto final (ou inicial) da High Line.",
+    "address": "20 Hudson Yards, New York, NY 10001",
+    "location": {
+      "lat": 40.7538,
+      "lng": -74.002
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita (The Vessel e Edge são pagos)",
+    "officialUrl": "https://www.hudsonyardsnewyork.com/",
+    "photos": [
+      {
+        "ref": "wiki:Vessel (structure)",
+        "alt": "Praça de Hudson Yards"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-grand-central",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Grand Central Terminal",
+    "summary": "A estação de trem mais bonita do mundo, com teto de constelações.",
+    "description": "Inaugurada em 1913, a Grand Central impressiona pelo saguão principal com o teto azul pintado com constelações e o relógio de opala no balcão de informações. Procure a \"Whispering Gallery\" no andar de baixo: sussurre num canto e alguém ouve no canto oposto.\n\nO One Vanderbilt (SUMMIT) fica do outro lado da rua.",
+    "address": "89 E 42nd St, New York, NY 10017",
+    "location": {
+      "lat": 40.7527,
+      "lng": -73.9772
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "05:15",
+          "close": "02:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://www.grandcentralterminal.com/",
+    "photos": [
+      {
+        "ref": "wiki:Grand Central Terminal",
+        "alt": "Fachada da Grand Central à noite"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-public-library",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "New York Public Library (Stephen A. Schwarzman)",
+    "summary": "Biblioteca de mármore com os leões Patience e Fortitude.",
+    "description": "O prédio principal da Biblioteca Pública de Nova York, guardado pelos leões de mármore Patience e Fortitude, é uma joia das Belas-Artes. A Rose Main Reading Room, com seu teto pintado e mesas compridas, é uma das salas mais bonitas da cidade.\n\nA entrada é gratuita; há exposições temporárias e uma galeria com tesouros do acervo.",
+    "address": "476 5th Ave, New York, NY 10018",
+    "location": {
+      "lat": 40.7532,
+      "lng": -73.9822
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://www.nypl.org/locations/schwarzman",
+    "photos": [
+      {
+        "ref": "wiki:New York Public Library Main Branch",
+        "alt": "Fachada da Biblioteca Pública de Nova York com os leões"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-bryant-park",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "Bryant Park",
+    "summary": "Praça verde atrás da biblioteca; no inverno vira o Winter Village.",
+    "description": "O Bryant Park é a \"sala de estar\" de Midtown, com cadeiras móveis, quiosques e o carrossel Le Carrousel. Do fim de outubro ao início de março, vira o Winter Village, com pista de patinação gratuita (aluguel de patins pago) e dezenas de barracas de presentes.\n\nFica colado na Biblioteca Pública e a 5 minutos de Times Square.",
+    "address": "42nd St entre 5th e 6th Ave, New York, NY 10018",
+    "location": {
+      "lat": 40.7536,
+      "lng": -73.9832
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito",
+    "officialUrl": "https://bryantpark.org/",
+    "photos": [
+      {
+        "ref": "wiki:Bryant Park",
+        "alt": "Bryant Park com prédios de Midtown ao redor"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-st-patricks",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Catedral de St. Patrick",
+    "summary": "Catedral neogótica na Quinta Avenida, em frente ao Rockefeller Center.",
+    "description": "Concluída em 1878, a Catedral de St. Patrick é a maior catedral neogótica dos EUA. Os vitrais, o altar e o órgão impressionam, e o contraste das torres de pedra com os arranha-céus ao redor rende ótimas fotos.\n\nA entrada é gratuita; respeite os horários de missa.",
+    "address": "5th Ave e 50th St, New York, NY 10022",
+    "location": {
+      "lat": 40.7585,
+      "lng": -73.976
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "tue": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "wed": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "thu": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "fri": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "sat": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ],
+      "sun": [
+        {
+          "open": "06:30",
+          "close": "20:45"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": "https://saintpatrickscathedral.org/",
+    "photos": [
+      {
+        "ref": "wiki:St. Patrick's Cathedral (Manhattan)",
+        "alt": "Fachada da Catedral de St. Patrick na Quinta Avenida"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-fifth-avenue",
+    "cityId": "nova-york",
+    "categoryId": "compras",
+    "name": "Quinta Avenida (5th Avenue)",
+    "summary": "A avenida das grandes lojas, da Saks à Tiffany.",
+    "description": "O trecho da 5th Avenue entre a 49th e a 60th Street concentra lojas-conceito e marcas de luxo: Saks Fifth Avenue, Tiffany & Co., a loja de vidro da Apple e a FAO Schwarz no Rockefeller Plaza. Em novembro as vitrines começam a ganhar decoração de Natal.\n\nTermina na Grand Army Plaza, na entrada sudeste do Central Park.",
+    "address": "5th Ave entre a 49th e a 60th St, New York, NY",
+    "location": {
+      "lat": 40.7624,
+      "lng": -73.9738
+    },
+    "openingHours": "24h",
+    "price": "Gratuito (passeio)",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Fifth Avenue",
+        "alt": "Quinta Avenida vista do Metropolitan Museum"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-broadway",
+    "cityId": "nova-york",
+    "categoryId": "espetaculo",
+    "name": "Teatros da Broadway",
+    "summary": "Musicais e peças nos teatros ao redor de Times Square.",
+    "description": "A Broadway tem cerca de 40 teatros no Theater District, ao redor de Times Square, com musicais em cartaz há décadas (como \"O Rei Leão\", \"Wicked\" e \"Hamilton\") e estreias recentes. Assistir a um espetáculo é um dos pontos altos de uma viagem a Nova York.\n\nIngressos com desconto para o mesmo dia: cabine TKTS em Times Square ou loterias digitais dos próprios espetáculos. Sessões costumam ser às 19h/20h, com matinês às quartas, sábados e domingos.",
+    "address": "Theater District, entre a 41st e a 54th St, New York, NY",
+    "location": {
+      "lat": 40.759,
+      "lng": -73.9845
+    },
+    "openingHours": "see-official",
+    "price": "Varia por espetáculo e assento (geralmente US$ 80–300)",
+    "officialUrl": "https://www.broadway.org/",
+    "photos": [
+      {
+        "ref": "wiki:Theater District, Manhattan",
+        "alt": "Letreiros de teatros no Theater District, perto de Times Square"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-intrepid",
+    "cityId": "nova-york",
+    "categoryId": "museu",
+    "name": "Intrepid Museum",
+    "summary": "Porta-aviões transformado em museu, com o ônibus espacial Enterprise.",
+    "description": "O USS Intrepid, porta-aviões da Segunda Guerra, está atracado no rio Hudson e virou museu de mar, ar e espaço. No convés há dezenas de aviões, e um pavilhão abriga o ônibus espacial Enterprise. Também é possível visitar o submarino Growler e ver um Concorde.\n\nÓtimo para quem gosta de aviação; reserve cerca de 3 horas.",
+    "address": "Pier 86, W 46th St e 12th Ave, New York, NY 10036",
+    "location": {
+      "lat": 40.7645,
+      "lng": -73.9996
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ]
+    },
+    "price": "US$ 32 adulto · US$ 31 idosos · US$ 23 crianças (5–12)",
+    "officialUrl": "https://www.intrepidmuseum.org/",
+    "photos": [
+      {
+        "ref": "wiki:Intrepid Sea, Air & Space Museum",
+        "alt": "Porta-aviões Intrepid atracado no rio Hudson"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-flatiron",
+    "cityId": "nova-york",
+    "categoryId": "monumento",
+    "name": "Flatiron Building",
+    "summary": "O prédio em forma de \"ferro de passar\" de 1902.",
+    "description": "O Flatiron, de 1902, é um dos arranha-céus mais antigos de Nova York, com planta triangular no cruzamento da 5th Avenue com a Broadway. A melhor foto é da ilha de pedestres ao norte do prédio.\n\nEm frente fica o Madison Square Park, onde nasceu a rede Shake Shack.",
+    "address": "175 5th Ave, New York, NY 10010",
+    "location": {
+      "lat": 40.7411,
+      "lng": -73.9897
+    },
+    "openingHours": "24h",
+    "price": "Gratuito (vista externa)",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Flatiron Building",
+        "alt": "Flatiron Building visto do alto"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-greenwich-village",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "Greenwich Village",
+    "summary": "Ruas arborizadas, casas de tijolo e cafés históricos.",
+    "description": "O Village é o bairro boêmio de Manhattan: ruas tortas e arborizadas, sobrados de tijolo, clubes de jazz e cafés. Ali ficam o Stonewall Inn (marco dos direitos LGBTQIA+) e o prédio da série \"Friends\" (esquina da Bedford com a Grove Street).\n\nNa noite de 31 de outubro, a Village Halloween Parade costuma desfilar pela 6th Avenue.",
+    "address": "Greenwich Village, New York, NY 10014",
+    "location": {
+      "lat": 40.7336,
+      "lng": -74.0027
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Greenwich Village",
+        "alt": "Rua arborizada de Greenwich Village"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-washington-square",
+    "cityId": "nova-york",
+    "categoryId": "parque",
+    "name": "Washington Square Park",
+    "summary": "Praça com arco do triunfo, músicos de rua e a NYU ao redor.",
+    "description": "O Washington Square Park, com seu arco de mármore e a fonte central, é o coração do Village. Músicos, jogadores de xadrez e estudantes da NYU dão vida ao parque o dia todo.\n\nÉ um bom ponto de partida para explorar o Village e o SoHo a pé.",
+    "address": "Washington Square, New York, NY 10012",
+    "location": {
+      "lat": 40.7308,
+      "lng": -73.9973
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "06:00",
+          "close": "01:00"
+        }
+      ]
+    },
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Washington Square Park",
+        "alt": "Arco do Washington Square Park"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-soho",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "SoHo",
+    "summary": "Prédios de ferro fundido, galerias e lojas de marca.",
+    "description": "O SoHo (\"South of Houston\") é famoso pelos prédios com fachadas de ferro fundido do século 19, hoje ocupados por lojas de marcas, galerias e restaurantes. Broadway, Prince Street e Spring Street são as ruas principais para compras.\n\nVá a pé desde o Washington Square Park e siga depois para Little Italy e Chinatown.",
+    "address": "SoHo, New York, NY 10012",
+    "location": {
+      "lat": 40.7233,
+      "lng": -74.003
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:SoHo, Manhattan",
+        "alt": "Prédios de ferro fundido no SoHo"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-chinatown",
+    "cityId": "nova-york",
+    "categoryId": "bairro",
+    "name": "Chinatown e Little Italy",
+    "summary": "Comida chinesa, mercados e a Mulberry Street italiana.",
+    "description": "Chinatown é um dos maiores bairros chineses fora da Ásia, com mercados, restaurantes de dim sum e lojas de tudo. Colada nela, a Mulberry Street guarda o que restou da Little Italy, com cantinas e cannoli.\n\nBom lugar para almoçar barato depois da Ponte do Brooklyn ou do SoHo.",
+    "address": "Canal St e Mulberry St, New York, NY 10013",
+    "location": {
+      "lat": 40.7158,
+      "lng": -73.997
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": null,
+    "photos": [
+      {
+        "ref": "wiki:Chinatown, Manhattan",
+        "alt": "East Broadway, em Chinatown, vista da Ponte de Manhattan"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-staten-island-ferry",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "Balsa de Staten Island",
+    "summary": "Travessia gratuita com vista da Estátua da Liberdade e do skyline.",
+    "description": "A balsa que liga Manhattan a Staten Island é gratuita, funciona 24 horas e passa perto da Estátua da Liberdade, com vista para o skyline de Lower Manhattan na volta. A travessia leva cerca de 25 minutos por trecho.\n\nÉ a alternativa grátis para quem não vai desembarcar na Liberty Island. Fique do lado direito na ida para ver a estátua.",
+    "address": "4 South St, New York, NY 10004 (Whitehall Terminal)",
+    "location": {
+      "lat": 40.7013,
+      "lng": -74.0132
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://www.siferry.com/",
+    "photos": [
+      {
+        "ref": "wiki:Staten Island Ferry",
+        "alt": "Balsa laranja de Staten Island na baía"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-roosevelt-tram",
+    "cityId": "nova-york",
+    "categoryId": "mirante",
+    "name": "Teleférico de Roosevelt Island",
+    "summary": "Bondinho sobre o East River com vista de Midtown.",
+    "description": "O teleférico liga Manhattan (59th Street com 2nd Avenue) à Roosevelt Island em cerca de 4 minutos, passando ao lado da Ponte Queensboro. A vista de Midtown e do East River é ótima, e custa o mesmo que uma passagem de metrô.\n\nNa ilha, caminhe até o Four Freedoms Park, na ponta sul.",
+    "address": "E 59th St e 2nd Ave, New York, NY 10022",
+    "location": {
+      "lat": 40.7612,
+      "lng": -73.9644
+    },
+    "openingHours": "see-official",
+    "price": "Tarifa de metrô (pague com cartão por aproximação)",
+    "officialUrl": "https://rioc.ny.gov/302/Tram",
+    "photos": [
+      {
+        "ref": "wiki:Roosevelt Island Tramway",
+        "alt": "Cabine do teleférico de Roosevelt Island sobre o rio"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "ny-macys",
+    "cityId": "nova-york",
+    "categoryId": "compras",
+    "name": "Macy's Herald Square",
+    "summary": "A loja de departamentos que organiza o desfile de Ação de Graças.",
+    "description": "A Macy's da Herald Square ocupa um quarteirão inteiro e ainda tem escadas rolantes de madeira originais. É famosa pelo desfile do Dia de Ação de Graças e pelas vitrines de Natal.\n\nTuristas estrangeiros costumam ter desconto apresentando o passaporte no balcão de visitantes.",
+    "address": "151 W 34th St, New York, NY 10001",
+    "location": {
+      "lat": 40.7508,
+      "lng": -73.989
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.macys.com/stores/ny/newyork/herald-square_1.html",
+    "photos": [
+      {
+        "ref": "wiki:Macy's Herald Square",
+        "alt": "Fachada da Macy's na Herald Square"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  }
+]

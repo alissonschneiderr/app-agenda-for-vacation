@@ -1,0 +1,525 @@
+[
+  {
+    "id": "orl-magic-kingdom",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Magic Kingdom",
+    "summary": "O parque do Castelo da Cinderela, o mais clássico da Disney.",
+    "description": "O Magic Kingdom é o parque mais famoso do Walt Disney World, dividido em seis áreas em torno do Castelo da Cinderela. Destaques: TRON Lightcycle / Run, Seven Dwarfs Mine Train, Space Mountain, Pirates of the Caribbean, Haunted Mansion e o desfile da tarde. O show de fogos à noite, em frente ao castelo, fecha o dia.\n\nChegue antes da abertura e use o Lightning Lane (pago) ou a fila virtual para as atrações mais disputadas.",
+    "address": "1180 Seven Seas Dr, Lake Buena Vista, FL 32830",
+    "location": {
+      "lat": 28.4177,
+      "lng": -81.5812
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; em nov/2026 cerca de US$ 189–209 por 1 dia (varia por dia)",
+    "officialUrl": "https://disneyworld.disney.go.com/destinations/magic-kingdom/",
+    "photos": [
+      {
+        "ref": "wiki:Magic Kingdom",
+        "alt": "Castelo da Cinderela no Magic Kingdom"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-epcot",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "EPCOT",
+    "summary": "Ciência e tecnologia de um lado, países do mundo do outro.",
+    "description": "O EPCOT tem duas metades: a área futurista, com Guardians of the Galaxy: Cosmic Rewind, Test Track e Soarin', e o World Showcase, um passeio por 11 países ao redor de um lago, com comida, lojas e arquitetura de cada um. Frozen Ever After (Noruega) e Remy's Ratatouille Adventure (França) são as mais disputadas.\n\nNo outono acontece o EPCOT International Food & Wine Festival, com quiosques de comida de vários países (confira as datas no site).",
+    "address": "200 Epcot Center Dr, Orlando, FL 32821",
+    "location": {
+      "lat": 28.3747,
+      "lng": -81.5494
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; em nov/2026 cerca de US$ 189–209 por 1 dia no Magic Kingdom (varia por dia e parque)",
+    "officialUrl": "https://disneyworld.disney.go.com/destinations/epcot/",
+    "photos": [
+      {
+        "ref": "wiki:Epcot",
+        "alt": "Spaceship Earth, a esfera do EPCOT"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-hollywood-studios",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Disney's Hollywood Studios",
+    "summary": "Star Wars, Toy Story e as atrações mais radicais da Disney.",
+    "description": "O Hollywood Studios é o parque do cinema: Star Wars: Galaxy's Edge (com Rise of the Resistance e Millennium Falcon), Toy Story Land, Tower of Terror e a montanha-russa Rock 'n' Roller Coaster. O show Fantasmic! encerra a noite.\n\nRise of the Resistance é a atração mais concorrida: vá cedo ou reserve Lightning Lane.",
+    "address": "351 S Studio Dr, Lake Buena Vista, FL 32830",
+    "location": {
+      "lat": 28.3575,
+      "lng": -81.5583
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; em nov/2026 cerca de US$ 189–209 por 1 dia no Magic Kingdom (varia por dia e parque)",
+    "officialUrl": "https://disneyworld.disney.go.com/destinations/hollywood-studios/",
+    "photos": [
+      {
+        "ref": "wiki:Disney's Hollywood Studios",
+        "alt": "Tower of Terror no Hollywood Studios"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-animal-kingdom",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Disney's Animal Kingdom",
+    "summary": "Safári africano, Pandora de Avatar e a Árvore da Vida.",
+    "description": "O Animal Kingdom mistura zoológico e parque temático. Destaques: o safári Kilimanjaro Safaris (melhor de manhã, quando os animais estão ativos), Pandora – The World of Avatar com Avatar Flight of Passage, a montanha-russa Expedition Everest e a gigantesca Árvore da Vida.\n\nO parque costuma fechar mais cedo que os outros; comece por Flight of Passage.",
+    "address": "2901 Osceola Pkwy, Bay Lake, FL 32830",
+    "location": {
+      "lat": 28.3553,
+      "lng": -81.5901
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; em nov/2026 cerca de US$ 189–209 por 1 dia no Magic Kingdom (varia por dia e parque)",
+    "officialUrl": "https://disneyworld.disney.go.com/destinations/animal-kingdom/",
+    "photos": [
+      {
+        "ref": "wiki:Disney's Animal Kingdom",
+        "alt": "Árvore da Vida no Animal Kingdom"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-universal-studios",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Universal Studios Florida",
+    "summary": "Harry Potter (Diagon Alley), Minions, Velozes e Furiosos e muito mais.",
+    "description": "O Universal Studios Florida é o parque dos filmes da Universal: The Wizarding World of Harry Potter – Diagon Alley (com Escape from Gringotts), Revenge of the Mummy, Hollywood Rip Ride Rockit, Transformers e Minion Land. O Hogwarts Express leva ao Islands of Adventure — mas exige ingresso para os dois parques.\n\nNa saída, o CityWalk tem restaurantes e bares abertos até tarde.",
+    "address": "6000 Universal Blvd, Orlando, FL 32819",
+    "location": {
+      "lat": 28.4752,
+      "lng": -81.4686
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; preço varia por dia (consulte o site oficial)",
+    "officialUrl": "https://www.universalorlando.com/web/en/us/theme-parks/universal-studios-florida",
+    "photos": [
+      {
+        "ref": "wiki:Universal Studios Florida",
+        "alt": "Entrada do Universal Studios Florida"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-islands-of-adventure",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Universal's Islands of Adventure",
+    "summary": "Hogwarts, VelociCoaster, Hulk e Jurassic Park.",
+    "description": "O Islands of Adventure tem as montanhas-russas mais elogiadas de Orlando: Jurassic World VelociCoaster, The Incredible Hulk Coaster e Hagrid's Magical Creatures Motorbike Adventure. Em Hogsmeade fica o castelo de Hogwarts com Harry Potter and the Forbidden Journey.\n\nHagrid's tem as maiores filas do parque: vá logo na abertura.",
+    "address": "6000 Universal Blvd, Orlando, FL 32819",
+    "location": {
+      "lat": 28.4711,
+      "lng": -81.4716
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; preço varia por dia (consulte o site oficial)",
+    "officialUrl": "https://www.universalorlando.com/web/en/us/theme-parks/islands-of-adventure",
+    "photos": [
+      {
+        "ref": "wiki:Universal's Islands of Adventure",
+        "alt": "Universal's Islands of Adventure"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-epic-universe",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "Universal Epic Universe",
+    "summary": "O parque mais novo de Orlando: Nintendo, Harry Potter, Como Treinar seu Dragão e monstros.",
+    "description": "Inaugurado em maio de 2025, o Epic Universe tem cinco mundos: Celestial Park (o hub central), Super Nintendo World (com Mario Kart e a área de Donkey Kong), The Wizarding World of Harry Potter – Ministry of Magic, Isle of Berk (Como Treinar o seu Dragão) e Dark Universe (monstros clássicos).\n\nO ingresso é próprio do parque e o preço varia por dia; em novembro de 2026, cerca de US$ 159–194 por 1 dia. Fica separado dos outros dois parques da Universal.",
+    "address": "6000 Universal Blvd (acesso pela Epic Blvd), Orlando, FL 32819",
+    "location": {
+      "lat": 28.4421,
+      "lng": -81.4476
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; em nov/2026 cerca de US$ 159–194 por 1 dia",
+    "officialUrl": "https://www.universalorlando.com/web/en/us/theme-parks/epic-universe",
+    "photos": [
+      {
+        "ref": "wiki:Universal Epic Universe",
+        "alt": "Torre Chronos no Celestial Park do Epic Universe"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-disney-springs",
+    "cityId": "orlando",
+    "categoryId": "compras",
+    "name": "Disney Springs",
+    "summary": "Área de compras, restaurantes e shows da Disney, com entrada livre.",
+    "description": "Disney Springs é um complexo à beira do lago com mais de 100 lojas e restaurantes, incluindo a maior World of Disney, a LEGO Store e restaurantes temáticos. Não precisa de ingresso e o estacionamento é gratuito.\n\nÉ um bom programa para o dia de chegada ou de descanso, e à noite fica animado com música ao vivo.",
+    "address": "1486 E Buena Vista Dr, Lake Buena Vista, FL 32830",
+    "location": {
+      "lat": 28.3708,
+      "lng": -81.5194
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.disneysprings.com/",
+    "photos": [
+      {
+        "ref": "wiki:Disney Springs",
+        "alt": "Vista aérea de Disney Springs"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-disney-boardwalk",
+    "cityId": "orlando",
+    "categoryId": "bairro",
+    "name": "Disney's BoardWalk",
+    "summary": "Calçadão à beira do lago, a pé do EPCOT.",
+    "description": "O BoardWalk é um calçadão de madeira ao estilo das praias americanas dos anos 1920, com restaurantes, sorveterias e artistas de rua à noite. Fica a uma caminhada (ou barco) da entrada do International Gateway do EPCOT.\n\nBoa opção para jantar depois de um dia no EPCOT ou no Hollywood Studios.",
+    "address": "2101 Epcot Resorts Blvd, Lake Buena Vista, FL 32830",
+    "location": {
+      "lat": 28.3667,
+      "lng": -81.556
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://disneyworld.disney.go.com/entertainment/boardwalk/",
+    "photos": [
+      {
+        "ref": "wiki:Disney's BoardWalk Resort",
+        "alt": "BoardWalk Inn à beira do lago"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-citywalk",
+    "cityId": "orlando",
+    "categoryId": "compras",
+    "name": "Universal CityWalk",
+    "summary": "Restaurantes, bares e lojas na entrada dos parques da Universal.",
+    "description": "O CityWalk fica entre o Universal Studios e o Islands of Adventure e não exige ingresso. Tem restaurantes como The Toothsome Chocolate Emporium e Voodoo Doughnut, cinema, minigolfe e casas noturnas.\n\nÓtimo para jantar depois de um dia nos parques da Universal.",
+    "address": "6000 Universal Blvd, Orlando, FL 32819",
+    "location": {
+      "lat": 28.4733,
+      "lng": -81.4675
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.universalorlando.com/web/en/us/things-to-do/citywalk",
+    "photos": [
+      {
+        "ref": "File:Universal CityWalk - Orlando 03.jpg",
+        "alt": "Restaurantes e lojas do Universal CityWalk"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-kennedy-space-center",
+    "cityId": "orlando",
+    "categoryId": "museu",
+    "name": "Kennedy Space Center Visitor Complex",
+    "summary": "O centro espacial da NASA, com o foguete Saturno V e o ônibus Atlantis.",
+    "description": "A cerca de 1 hora de carro de Orlando, o centro de visitantes da NASA mostra a história da corrida espacial: o enorme foguete Saturno V, o ônibus espacial Atlantis exposto como se estivesse em órbita, o simulador de lançamento e o passeio de ônibus pelas plataformas de lançamento.\n\nReserve o dia todo. Confira no site se haverá lançamento de foguete durante a viagem — às vezes dá para assistir dali.",
+    "address": "Space Commerce Way, Merritt Island, FL 32953",
+    "location": {
+      "lat": 28.524,
+      "lng": -80.6813
+    },
+    "openingHours": {
+      "mon": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "tue": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "wed": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "thu": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "fri": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "sat": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "sun": [
+        {
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ]
+    },
+    "price": "US$ 77 adulto · US$ 67 crianças (3–11)",
+    "officialUrl": "https://www.kennedyspacecenter.com/",
+    "photos": [
+      {
+        "ref": "wiki:Kennedy Space Center Visitor Complex",
+        "alt": "Réplica da nave da Apollo 11 no Kennedy Space Center"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-icon-park",
+    "cityId": "orlando",
+    "categoryId": "mirante",
+    "name": "ICON Park (The Wheel)",
+    "summary": "Roda-gigante de 120 m na International Drive.",
+    "description": "O ICON Park é um complexo de entretenimento na International Drive com a roda-gigante The Wheel (cerca de 120 m), museu de cera Madame Tussauds e aquário SEA LIFE. Do alto da roda dá para ver os parques ao longe.\n\nVá ao entardecer para ver a cidade acender.",
+    "address": "8375 International Dr, Orlando, FL 32819",
+    "location": {
+      "lat": 28.4433,
+      "lng": -81.4683
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita no complexo; atrações pagas (consulte o site oficial)",
+    "officialUrl": "https://iconparkorlando.com/",
+    "photos": [
+      {
+        "ref": "wiki:ICON Park",
+        "alt": "Vista do ICON Park"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-vineland-outlets",
+    "cityId": "orlando",
+    "categoryId": "compras",
+    "name": "Orlando Vineland Premium Outlets",
+    "summary": "Outlet de marcas perto de Disney Springs.",
+    "description": "Com cerca de 160 lojas de marcas com desconto, o Vineland Premium Outlets é o outlet mais perto da Disney. É ao ar livre, então vá de manhã ou no fim da tarde.\n\nPegue no balcão de informações o cupom de descontos para turistas (apresentando o passaporte).",
+    "address": "8200 Vineland Ave, Orlando, FL 32821",
+    "location": {
+      "lat": 28.3866,
+      "lng": -81.495
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.premiumoutlets.com/outlet/orlando-vineland",
+    "photos": [
+      {
+        "ref": "File:Orlando Premium Outlets - Vineland Ave.jpeg",
+        "alt": "Orlando Vineland Premium Outlets"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-international-outlets",
+    "cityId": "orlando",
+    "categoryId": "compras",
+    "name": "Orlando International Premium Outlets",
+    "summary": "O maior outlet de Orlando, no fim da International Drive.",
+    "description": "O International Premium Outlets tem mais de 180 lojas, do vestuário a eletrônicos e malas — útil para comprar a mala extra da volta. Fica no extremo norte da International Drive, perto da Universal.\n\nAs lojas da Nike, Adidas e Coach costumam ter fila nos fins de semana.",
+    "address": "4951 International Dr, Orlando, FL 32819",
+    "location": {
+      "lat": 28.4747,
+      "lng": -81.452
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.premiumoutlets.com/outlet/orlando-international",
+    "photos": [
+      {
+        "ref": "wiki:International Drive",
+        "alt": "International Drive, onde fica o outlet"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-mall-at-millenia",
+    "cityId": "orlando",
+    "categoryId": "compras",
+    "name": "The Mall at Millenia",
+    "summary": "Shopping de luxo com Apple, Chanel, Louis Vuitton e lojas de departamento.",
+    "description": "O Mall at Millenia é o shopping mais sofisticado de Orlando, com lojas de departamento (Bloomingdale's, Neiman Marcus, Macy's), marcas de luxo e uma loja da Apple. É coberto e climatizado — boa opção para um dia de chuva.",
+    "address": "4200 Conroy Rd, Orlando, FL 32839",
+    "location": {
+      "lat": 28.4855,
+      "lng": -81.4318
+    },
+    "openingHours": "see-official",
+    "price": "Entrada gratuita",
+    "officialUrl": "https://www.mallatmillenia.com/",
+    "photos": [
+      {
+        "ref": "wiki:The Mall at Millenia",
+        "alt": "Interior do Mall at Millenia"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-winter-park",
+    "cityId": "orlando",
+    "categoryId": "bairro",
+    "name": "Winter Park (Park Avenue)",
+    "summary": "Cidadezinha charmosa com lojas, cafés e lagos.",
+    "description": "Winter Park, ao norte de Orlando, tem a Park Avenue com butiques, cafés e restaurantes ao lado do Central Park local. Aos sábados de manhã acontece um tradicional mercado de produtores (Farmers' Market) na antiga estação de trem.\n\nCombine com o passeio de barco pelos lagos e canais (Scenic Boat Tour) e com o Morse Museum, que tem uma enorme coleção de vitrais Tiffany.",
+    "address": "Park Ave S, Winter Park, FL 32789",
+    "location": {
+      "lat": 28.597,
+      "lng": -81.351
+    },
+    "openingHours": "24h",
+    "price": "Gratuito",
+    "officialUrl": "https://cityofwinterpark.org/",
+    "photos": [
+      {
+        "ref": "wiki:Winter Park, Florida",
+        "alt": "Park Avenue em Winter Park"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-winter-park-boat",
+    "cityId": "orlando",
+    "categoryId": "mirante",
+    "name": "Scenic Boat Tour (Winter Park)",
+    "summary": "Passeio de barco de 1 hora pelos lagos e canais de Winter Park.",
+    "description": "O Scenic Boat Tour funciona desde 1938: um passeio de cerca de 1 hora por três lagos e canais estreitos, passando por mansões, jardins e pelo campus do Rollins College. O guia conta a história da região.\n\nO embarque fica no fim da Morse Boulevard, a poucos minutos da Park Avenue.",
+    "address": "312 E Morse Blvd, Winter Park, FL 32789",
+    "location": {
+      "lat": 28.6004,
+      "lng": -81.3389
+    },
+    "openingHours": "see-official",
+    "price": "Consulte o site oficial",
+    "officialUrl": "https://www.scenicboattours.com/",
+    "photos": [
+      {
+        "ref": "wiki:Winter Park, Florida",
+        "alt": "Centro de Winter Park, perto do embarque do passeio de barco"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-lake-eola",
+    "cityId": "orlando",
+    "categoryId": "parque",
+    "name": "Lake Eola Park",
+    "summary": "Parque no centro de Orlando com a fonte iluminada e pedalinhos de cisne.",
+    "description": "O Lake Eola é o cartão-postal do centro de Orlando: um lago com uma fonte que acende à noite, cisnes e pedalinhos em forma de cisne. Aos domingos de manhã há uma feira ao ar livre.\n\nBom para conhecer a Orlando \"de verdade\", longe dos parques.",
+    "address": "512 E Washington St, Orlando, FL 32801",
+    "location": {
+      "lat": 28.5434,
+      "lng": -81.373
+    },
+    "openingHours": "see-official",
+    "price": "Gratuito (pedalinhos pagos)",
+    "officialUrl": "https://www.orlando.gov/Parks-the-Environment/Directory/Lake-Eola-Park",
+    "photos": [
+      {
+        "ref": "wiki:Lake Eola Park",
+        "alt": "Árvores à beira do Lake Eola"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-seaworld",
+    "cityId": "orlando",
+    "categoryId": "parque-tematico",
+    "name": "SeaWorld Orlando",
+    "summary": "Parque marinho com montanhas-russas e shows com animais.",
+    "description": "O SeaWorld mistura animais marinhos (pinguins, golfinhos, tartarugas) com montanhas-russas como Mako, Manta e Pipeline. É uma alternativa para um dos dias livres em Orlando, fora do roteiro principal Disney e Universal.",
+    "address": "7007 Sea World Dr, Orlando, FL 32821",
+    "location": {
+      "lat": 28.4114,
+      "lng": -81.4612
+    },
+    "openingHours": "see-official",
+    "price": "Ingresso com data; preço varia por dia (consulte o site oficial)",
+    "officialUrl": "https://seaworld.com/orlando/",
+    "photos": [
+      {
+        "ref": "wiki:SeaWorld Orlando",
+        "alt": "Lago central do SeaWorld Orlando"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  },
+  {
+    "id": "orl-gatorland",
+    "cityId": "orlando",
+    "categoryId": "parque",
+    "name": "Gatorland",
+    "summary": "Parque com milhares de jacarés e crocodilos, desde 1949.",
+    "description": "O Gatorland é um parque antigo e simpático, com milhares de jacarés, shows de alimentação e uma passarela sobre um pântano de reprodução. Tem também tirolesa sobre os jacarés.\n\nFica a cerca de 20 minutos da Disney e rende uma manhã diferente.",
+    "address": "14501 S Orange Blossom Trail, Orlando, FL 32837",
+    "location": {
+      "lat": 28.3557,
+      "lng": -81.4029
+    },
+    "openingHours": "see-official",
+    "price": "Consulte o site oficial",
+    "officialUrl": "https://www.gatorland.com/",
+    "photos": [
+      {
+        "ref": "wiki:Gatorland",
+        "alt": "Entrada do Gatorland"
+      }
+    ],
+    "status": "active",
+    "verifiedAt": "2026-10-19"
+  }
+]
