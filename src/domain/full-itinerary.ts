@@ -20,6 +20,11 @@ export function markActivity(state: UserState, id: string, mark: ActivityMark['s
   return { ...state, activityMarks: { ...state.activityMarks, [id]: { state: mark, at: now.toISOString() } } };
 }
 
+/** Controle da lista (feature 003): ausente → feito; pulada → feito; feito → pendente (ausente). */
+export function toggleDone(state: UserState, key: string, now = new Date()): UserState {
+  return state.activityMarks[key]?.state === 'done' ? unmarkActivity(state, key) : markActivity(state, key, 'done', now);
+}
+
 export function unmarkActivity(state: UserState, id: string): UserState {
   if (!(id in state.activityMarks)) return state;
   const { [id]: _removed, ...rest } = state.activityMarks;

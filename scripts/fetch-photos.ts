@@ -98,7 +98,72 @@ async function resolve(ref: string, exclude: Set<string>): Promise<FileInfo | nu
   return null;
 }
 
+/** Chave de arquivo para um nome do roteiro ("Doyers Street" → "doyers-street"). */
+export function docPhotoSlug(name: string): string {
+  return name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 60);
+}
+
+/**
+ * Feature 006/007 (`npm run photos -- --doc [--city <id>]`): uma foto livre por região e por passo dos
+ * roteiros do casal, listadas em content/full/<cidade>/doc-photos.json (nome no doc → "File:…" ou
+ * "wiki:…"). WebP de 900 px em public/photos/doc/ (Nova York, onde já estavam) ou
+ * public/photos/doc/<cidade>/ (as demais); créditos em content/full/<cidade>/photo-credits.json.
+ */
+async function mainDoc() {
+  const fullDir = join(root, 'content', 'full');
+  const only = process.argv.includes('--city') ? process.argv[process.argv.indexOf('--city') + 1] : undefined;
+  const cities = readdirSync(fullDir).filter((c) => existsSync(join(fullDir, c, 'doc-photos.json')) && (!only || c === only));
+  const failures: string[] = [];
+  for (const city of cities) failures.push(...(await docPhotosFor(city)));
+  if (failures.length) {
+    console.error(`\n${failures.length} falha(s). Troque o ref e rode de novo.`);
+    process.exit(1);
+  }
+}
+
+async function docPhotosFor(city: string): Promise<string[]> {
+  const dir = join(root, 'content', 'full', city);
+  const refs: Record<string, string> = JSON.parse(readFileSync(join(dir, 'doc-photos.json'), 'utf8'));
+  const creditsFile = join(dir, 'photo-credits.json');
+  const credits: Record<string, PhotoCredit> = existsSync(creditsFile) ? JSON.parse(readFileSync(creditsFile, 'utf8')) : {};
+  const sub = city === 'nova-york' ? 'photos/doc' : `photos/doc/${city}`;
+  mkdirSync(join(root, 'public', sub), { recursive: true });
+  const failures: string[] = [];
+  for (const [name, ref] of Object.entries(refs)) {
+    const c = credits[name];
+    if (c && c.ref === ref && existsSync(join(root, 'public', c.src))) continue;
+    try {
+      const info = await resolve(ref, new Set());
+      if (!info) throw new Error('nenhuma foto com licença livre encontrada');
+      const r = await fetch(info.thumbUrl, { headers: { 'User-Agent': UA } });
+      if (!r.ok) throw new Error(`download ${r.status}`);
+      const src = `${sub}/${docPhotoSlug(name)}.webp`;
+      await sharp(Buffer.from(await r.arrayBuffer()))
+        .rotate()
+        .resize({ width: 900, withoutEnlargement: true })
+        .webp({ quality: 66 })
+        .toFile(join(root, 'public', src));
+      credits[name] = { ref, src, author: info.author, license: info.license, licenseUrl: info.licenseUrl, sourceUrl: info.sourceUrl };
+      console.log(`✓ ${city} · ${name} ← ${info.title} (${info.license})`);
+    } catch (e) {
+      failures.push(`${city} · ${name} (${ref}): ${(e as Error).message}`);
+      console.error(`✗ ${city} · ${name} (${ref}): ${(e as Error).message}`);
+    }
+  }
+  for (const name of Object.keys(credits)) if (!(name in refs)) delete credits[name];
+  const sorted = Object.fromEntries(Object.entries(credits).sort(([a], [b]) => a.localeCompare(b)));
+  writeFileSync(creditsFile, JSON.stringify(sorted, null, 2) + '\n');
+  return failures;
+}
+
 async function main() {
+  if (process.argv.includes('--doc')) return mainDoc();
   mkdirSync(photosDir, { recursive: true });
   const credits: Record<string, PhotoCredit> = existsSync(creditsPath)
     ? JSON.parse(readFileSync(creditsPath, 'utf8'))

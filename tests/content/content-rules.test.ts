@@ -95,6 +95,13 @@ describe('regras de conteúdo', () => {
     expect(validateContent(c, { strict: true }).join()).toMatch(/orl-magic-kingdom sem dia próprio/);
   });
 
+  it('003: foto de destaque da cidade (heroPointId)', () => {
+    expect(validateContent(mutate((c) => (c.cities[0]!.heroPointId = 'nao-existe')), loose).join()).toMatch(/heroPointId inexistente/);
+    expect(validateContent(mutate((c) => (c.cities[0]!.heroPointId = 'mia-south-beach')), loose).join()).toMatch(/é de outra cidade/);
+    const noPhoto = mutate((c) => (c.points.find((p) => p.id === 'ny-central-park')!.photos = []));
+    expect(validateContent(noPhoto, { strict: true }).join()).toMatch(/ny-central-park sem foto/);
+  });
+
   it('regra 7: orçamento de 40 MB', () => {
     expect(validateContent(completeContent(), { strict: true, totalBytes: 41 * 1024 * 1024 }).join()).toMatch(/limite 40 MB/);
   });
@@ -107,5 +114,19 @@ describe('regras de conteúdo', () => {
         photoExists: (src) => existsSync(join(import.meta.dirname, '..', '..', 'public', src)),
       }),
     ).toEqual([]);
+  });
+});
+
+describe('tipos de dia (feature 006)', () => {
+  it('todo dia da viagem precisa de tipo em dayKinds', () => {
+    const c = fixtureContent();
+    delete (c.dayKinds as Record<string, string>)['2026-11-03'];
+    expect(validateContent(c, { strict: false }).join('\n')).toMatch(/dia 2026-11-03 sem tipo em dayKinds/);
+  });
+
+  it('tipo fora da lista é recusado', () => {
+    const c = fixtureContent();
+    (c.dayKinds as Record<string, string>)['2026-11-03'] = 'montanha';
+    expect(validateContent(c, { strict: false }).join('\n')).toMatch(/dayKinds/);
   });
 });

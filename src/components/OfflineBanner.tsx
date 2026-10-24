@@ -17,7 +17,7 @@ export function OfflineBanner({ recovered = false }: { recovered?: boolean }) {
     <div aria-live="polite">
       {!online && (
         <div class="banner banner-offline" role="status">
-          Você está offline. O guia, os favoritos e os roteiros continuam funcionando.
+          Sem internet · o roteiro funciona normalmente.
         </div>
       )}
       {offlineState === 'failed' && (

@@ -40,15 +40,16 @@ export function fixtureContent(): Content {
   return {
     version: '2026-10-20T00:00:00Z',
     cities: [
-      { id: 'nova-york', name: 'Nova York', timeZone: 'America/New_York', center: { lat: 40.75, lng: -73.98 } },
-      { id: 'orlando', name: 'Orlando', timeZone: 'America/New_York', center: { lat: 28.41, lng: -81.48 } },
-      { id: 'miami', name: 'Miami', timeZone: 'America/New_York', center: { lat: 25.79, lng: -80.15 } },
+      { id: 'nova-york', name: 'Nova York', timeZone: 'America/New_York', center: { lat: 40.75, lng: -73.98 }, heroPointId: 'ny-central-park' },
+      { id: 'orlando', name: 'Orlando', timeZone: 'America/New_York', center: { lat: 28.41, lng: -81.48 }, heroPointId: 'orl-magic-kingdom' },
+      { id: 'miami', name: 'Miami', timeZone: 'America/New_York', center: { lat: 25.79, lng: -80.15 }, heroPointId: 'mia-south-beach' },
     ],
     trip: [
       { cityId: 'nova-york', arrive: '2026-10-31', depart: '2026-11-07' },
       { cityId: 'orlando', arrive: '2026-11-07', depart: '2026-11-18' },
       { cityId: 'miami', arrive: '2026-11-18', depart: '2026-11-21' },
     ],
+    dayKinds: fixtureDayKinds(),
     categories: [
       { id: 'museu', name: 'Museu' },
       { id: 'parque', name: 'Parque' },
@@ -127,4 +128,16 @@ export class MemoryStorage implements Storage {
   keys() {
     return [...this.data.keys()];
   }
+}
+
+/** Tipos de dia da viagem de teste: transição nas trocas de cidade, parque em 09/11, praia em 19/11. */
+export function fixtureDayKinds(): Record<string, 'walk' | 'beach' | 'park' | 'transit'> {
+  const out: Record<string, 'walk' | 'beach' | 'park' | 'transit'> = {};
+  for (let d = new Date('2026-10-31T12:00:00Z'); d <= new Date('2026-11-21T12:00:00Z'); d.setUTCDate(d.getUTCDate() + 1)) {
+    out[d.toISOString().slice(0, 10)] = 'walk';
+  }
+  for (const t of ['2026-11-07', '2026-11-18', '2026-11-21']) out[t] = 'transit';
+  out['2026-11-09'] = 'park';
+  out['2026-11-19'] = 'beach';
+  return out;
 }

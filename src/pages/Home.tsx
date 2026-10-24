@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'preact/hooks';
 import { CategoryFilter, CityPicker } from '../components/Filters';
+import { Icon } from '../components/Icon';
 import { dayHeadline } from '../components/DayLabel';
 import { PointList } from '../components/PointCard';
 import { PointMap } from '../components/PointMap';
@@ -33,6 +34,14 @@ export function Home({ content, cityId }: { content: LoadedContent; cityId?: str
 
   return (
     <main class="page">
+      <nav class="row guide-links" aria-label="Atalhos do guia">
+        <a class="btn btn-quiet" href="#/favoritos">
+          <Icon name="star" size={18} /> Favoritos
+        </a>
+        <a class="btn btn-quiet" href="#/roteiros">
+          <Icon name="calendar" size={18} /> Meus roteiros
+        </a>
+      </nav>
       <h1>Guia de {cityInfo.name}</h1>
       {day.kind === 'travel' && (
         <p class="today" role="status">
@@ -41,7 +50,7 @@ export function Home({ content, cityId }: { content: LoadedContent; cityId?: str
       )}
       {city === 'nova-york' && content.fullItineraries?.some((f) => f.days.some((d) => d.date === today)) && (
         <p>
-          <a class="btn btn-primary" href={href(`/full/nova-york/${today}`)}>
+          <a class="btn btn-primary" href={href(`/destino/nova-york/${today}`)}>
             Roteiro de hoje
           </a>
         </p>

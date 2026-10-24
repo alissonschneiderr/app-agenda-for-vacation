@@ -22,3 +22,5 @@ Navegação principal em barra inferior: **Guia · Favoritos · Roteiros**. A ba
 - Ponto de outra cidade: "Este ponto fica em {cidade}, e este roteiro é de {cidade do dia}. Adicionar mesmo assim?"
 - Como chegar offline: "A navegação precisa de internet. Endereço: {endereço}."
 - Conteúdo possivelmente desatualizado (offline): "Você está offline. Informações verificadas em {data}."
+
+> **Atualização (feature 003)**: `#/` passou a ser a tela **Viagem**; o guia está em `#/guia` (e `#/cidade/:cityId`). Ver `specs/003-travel-guide-redesign/contracts/routes.md`.

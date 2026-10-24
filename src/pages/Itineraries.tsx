@@ -3,7 +3,7 @@ import { dayCityLabel, dayGroupLabel } from '../components/DayLabel';
 import type { LoadedContent } from '../content/load';
 import { createItinerary, ERROR_MESSAGES, groupByDate, type DayGroup } from '../domain/itineraries';
 import { dayInfo as dayInfoOf } from '../domain/trip';
-import { useFullItinerary } from './FullDay';
+import { fullItineraryOf } from '../content/load';
 import { dayInfo, formatDayLabel, tripDates } from '../domain/trip';
 import { href, navigate } from '../lib/router';
 import { SAVE_ERROR_MESSAGE, useUserState } from '../storage/user-store';
@@ -37,7 +37,7 @@ export function Itineraries({ content }: { content: LoadedContent }) {
   const [name, setName] = useState('');
   const [date, setDate] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const full = useFullItinerary(content);
+  const full = fullItineraryOf(content);
   const userGroups = groupByDate(state.itineraries, content.trip);
   // Dias do roteiro FULL aparecem mesmo sem roteiros do usuário, em ordem cronológica.
   const fullDates = new Set(full?.days.map((d) => d.date) ?? []);
@@ -115,7 +115,7 @@ export function Itineraries({ content }: { content: LoadedContent }) {
 
       {full && (
         <p>
-          <a class="btn" href="#/full/nova-york">
+          <a class="btn" href="#/destino/nova-york">
             Roteiro FULL de Nova York
           </a>
         </p>
@@ -127,7 +127,7 @@ export function Itineraries({ content }: { content: LoadedContent }) {
           <ul class="list">
             {g.date && fullDates.has(g.date) && (
               <li>
-                <a class="card card-full" style={{ gridTemplateColumns: '1fr' }} href={href(`/full/nova-york/${g.date}`)}>
+                <a class="card card-full" style={{ gridTemplateColumns: '1fr' }} href={href(`/destino/nova-york/${g.date}`)}>
                   <div>
                     <p class="title">Roteiro FULL · {full!.days.find((d) => d.date === g.date)!.region}</p>
                     <p class="meta">Agenda completa do dia, com refeições, compras e séries</p>

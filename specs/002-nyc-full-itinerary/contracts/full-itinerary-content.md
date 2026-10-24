@@ -1,5 +1,9 @@
 # Contract: Conteúdo do roteiro FULL
 
+> **Atualizado pela feature 004:** o roteiro de Nova York agora vem do documento do casal
+> (`content/full/nova-york/roteiro.md`); os arquivos por dia saíram e várias regras mudaram. Ver
+> [`specs/004-nyc-itinerary-v2/contracts/`](../../004-nyc-itinerary-v2/contracts/).
+
 Fonte: `content/full/<cidade>/` — `meta.json` (tudo exceto `days`) e um `AAAA-MM-DD.json` por dia (um `FullDay`). O build valida e inclui o
 objeto em `public/data/content.json` como `fullItineraries: FullItinerary[]`. Campos e regras:
 [data-model.md](../data-model.md).

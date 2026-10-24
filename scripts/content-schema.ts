@@ -2,7 +2,7 @@
 // Zod só é usado aqui, no build e nos testes; não entra no bundle do app.
 import { z } from 'zod';
 import type { Content } from '../src/content/types';
-import { citiesForDate, isTravelDay, sightseeingDays } from '../src/domain/trip';
+import { citiesForDate, isTravelDay, sightseeingDays, tripDates } from '../src/domain/trip';
 
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'data deve ser YYYY-MM-DD');
 const hhmm = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'hora deve ser HH:MM');
@@ -54,8 +54,9 @@ const point = z.object({
 
 export const contentSchema = z.object({
   version: nonEmpty,
-  cities: z.array(z.object({ id: cityId, name: nonEmpty, timeZone: nonEmpty, center: latLng })).length(3),
+  cities: z.array(z.object({ id: cityId, name: nonEmpty, timeZone: nonEmpty, center: latLng, heroPointId: nonEmpty })).length(3),
   trip: z.array(z.object({ cityId, arrive: date, depart: date })).min(1),
+  dayKinds: z.record(date, z.enum(['walk', 'beach', 'park', 'transit'])),
   categories: z.array(z.object({ id: nonEmpty, name: nonEmpty })).min(1),
   points: z.array(point),
   fullItineraries: z.array(z.unknown()).optional(),
@@ -110,6 +111,18 @@ export function validateContent(input: unknown, opts: ValidateOptions): string[]
   const pointsById = new Map(content.points.map((p) => [p.id, p]));
   const categoryIds = new Set(content.categories.map((c) => c.id));
   const citiesById = new Map(content.cities.map((c) => [c.id, c]));
+
+  // Feature 006: todo dia da viagem tem tipo declarado.
+  for (const d of tripDates(content.trip)) {
+    if (!content.dayKinds[d]) errors.push(`trip.json: dia ${d} sem tipo em dayKinds (walk, beach, park, transit)`);
+  }
+
+  for (const c of content.cities) {
+    const hero = pointsById.get(c.heroPointId);
+    if (!hero) errors.push(`cidade ${c.id}: heroPointId inexistente ${c.heroPointId}`);
+    else if (hero.cityId !== c.id) errors.push(`cidade ${c.id}: heroPointId ${c.heroPointId} é de outra cidade`);
+    else if (opts.strict && hero.photos.length === 0) errors.push(`cidade ${c.id}: heroPointId ${c.heroPointId} sem foto`);
+  }
 
   if (pointsById.size !== content.points.length) {
     const seen = new Set<string>();
@@ -172,9 +185,13 @@ export function validateContent(input: unknown, opts: ValidateOptions): string[]
       if (parks.length > 1) errors.push(`roteiro ${it.id}: mais de um parque no mesmo dia (${parks.join(', ')})`);
       for (const park of parks) parkDays.set(park, it.date);
     }
+    // Feature 007: o roteiro FULL de Orlando também dá dia próprio a um parque (passos ligados ao ponto).
+    for (const d of (content.fullItineraries ?? []).flatMap((f) => f.days)) {
+      for (const a of d.activities) if (a.pointId && ORLANDO_PARKS.includes(a.pointId)) parkDays.set(a.pointId, d.date);
+    }
     for (const park of ORLANDO_PARKS) {
       if (!pointsById.has(park)) errors.push(`parques: ponto ${park} não existe`);
-      if (!parkDays.has(park)) errors.push(`parques: ${park} sem dia próprio nos roteiros sugeridos`);
+      if (!parkDays.has(park)) errors.push(`parques: ${park} sem dia próprio nos roteiros sugeridos nem no roteiro FULL`);
     }
     if (opts.totalBytes !== undefined && opts.totalBytes > MAX_TOTAL_BYTES) {
       errors.push(`orçamento: conteúdo tem ${(opts.totalBytes / 1048576).toFixed(1)} MB, limite 40 MB`);

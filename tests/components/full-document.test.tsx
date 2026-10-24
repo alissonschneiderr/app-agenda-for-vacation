@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FullDocument } from '../../src/pages/FullDocument';
-import { FullDay } from '../../src/pages/FullDay';
+import { setupReal } from './companion-helpers';
 import { setupFull } from './full-helpers';
 
 afterEach(() => {
@@ -35,11 +35,20 @@ describe('Documento, alternativas e checklist (US4)', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Imprimir / salvar PDF' }));
     expect(print).toHaveBeenCalled();
   });
+});
 
-  it('agenda do dia mostra as alternativas', () => {
-    const { content } = setupFull();
-    render(<FullDay content={content} date="2026-11-03" />);
-    expect(screen.getByText('Museu coberto perto')).toBeTruthy();
-    expect(screen.getByText('Se cansar:')).toBeTruthy();
+describe('documento por cidade (feature 007)', () => {
+  it('Orlando: as 17 seções do doc, na ordem, com índice da cidade', () => {
+    const { content } = setupReal('2026-10-30T15:00:00Z');
+    const { container } = render(<FullDocument content={content} cityId="orlando" />);
+    expect(container.querySelectorAll('section.doc-html > h2')).toHaveLength(17);
+    expect(container.querySelector('.doc-index a')!.getAttribute('href')).toMatch(/^#\/full\/orlando\/documento\//);
+    expect(screen.getByRole('heading', { level: 1, name: 'Roteiro Orlando – Novembro 2026' })).toBeTruthy();
+  });
+
+  it('cidade sem roteiro', () => {
+    const { content } = setupReal('2026-10-30T15:00:00Z');
+    render(<FullDocument content={content} cityId="miami" />);
+    expect(screen.getByText('Sem roteiro para esta cidade.')).toBeTruthy();
   });
 });

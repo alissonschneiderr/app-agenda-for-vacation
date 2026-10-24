@@ -1,0 +1,33 @@
+{
+  "id": "orlando",
+  "cityId": "orlando",
+  "title": "Roteiro Orlando – Novembro 2026",
+  "travelers": "Casal",
+  "idPrefix": "orl1",
+  "stepsUseAreaPoint": true,
+  "arrival": {
+    "airport": "MCO",
+    "date": "2026-11-07"
+  },
+  "arrivalDay": "2026-11-07",
+  "departure": {
+    "date": "2026-11-18",
+    "before": [
+      {
+        "label": "Check-out e carro",
+        "quote": "faça o check-out com folga e devolva o carro no aeroporto (MCO)"
+      }
+    ],
+    "trip": [
+      {
+        "label": "De trem para Miami",
+        "source": "casal, Q1 da feature 007"
+      }
+    ]
+  },
+  "commitments": [],
+  "checklist": [],
+  "practicalTips": [],
+  "excluded": [],
+  "updatedAt": "2026-10-24"
+}

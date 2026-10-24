@@ -21,3 +21,5 @@ durante a viagem.
 - Próxima: "Agora / a seguir".
 - Impressão: o documento esconde barra de navegação, botões e banner offline; cada dia começa em
   página nova; links aparecem por extenso.
+
+> **Atualização (feature 003)**: `#/full/nova-york` e `#/full/nova-york/:date` redirecionam para `#/destino/nova-york[/:date]`; o documento continua em `#/full/nova-york/documento`. Ver `specs/003-travel-guide-redesign/contracts/routes.md`.

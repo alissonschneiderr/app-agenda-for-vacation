@@ -120,4 +120,15 @@ describe('itineraries', () => {
     ]);
     expect(groups[0]!.day).toEqual({ kind: 'travel', date: '2026-11-07', origin: 'nova-york', destination: 'orlando' });
   });
+
+  it('remover item ou roteiro limpa as marcações it:<id>:… (feature 003)', () => {
+    let { s, id } = withItinerary();
+    s = ok(addPoint(s, id, p('ny-met')));
+    s = ok(addPoint(s, id, p('ny-moma')));
+    s = { ...s, activityMarks: { [`it:${id}:ny-met`]: { state: 'done', at: 't' }, [`it:${id}:ny-moma`]: { state: 'done', at: 't' }, outro: { state: 'done', at: 't' } } };
+    const afterRemove = ok(removePoint(s, id, 'ny-met'));
+    expect(Object.keys(afterRemove.activityMarks).sort()).toEqual([`it:${id}:ny-moma`, 'outro']);
+    const afterDelete = ok(deleteItinerary(afterRemove, id));
+    expect(Object.keys(afterDelete.activityMarks)).toEqual(['outro']);
+  });
 });

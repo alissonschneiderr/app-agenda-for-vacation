@@ -1,7 +1,7 @@
 {
   "id": "nova-york",
   "cityId": "nova-york",
-  "title": "Roteiro FULL de Nova York",
+  "title": "Roteiro Nova York · 31/10 a 06/11",
   "travelers": "Casal",
   "base": {
     "name": "POD 51",
@@ -21,8 +21,8 @@
       "id": "knicks-nets",
       "date": "2026-11-02",
       "time": "19:30",
-      "arriveBy": "18:45",
-      "title": "New York Knicks x Brooklyn Nets",
+      "arriveBy": "18:30",
+      "title": "Knicks x Nets",
       "place": {
         "name": "Madison Square Garden",
         "address": "4 Penn Plaza, New York, NY 10001",
@@ -34,9 +34,9 @@
     },
     {
       "id": "mj-musical",
-      "date": "2026-11-04",
+      "date": "2026-11-05",
       "time": "19:00",
-      "arriveBy": "18:15",
+      "arriveBy": "18:30",
       "title": "MJ The Musical",
       "place": {
         "name": "Neil Simon Theatre",
@@ -48,150 +48,14 @@
       }
     }
   ],
-  "checklist": [
+  "checklist": [],
+  "practicalTips": [],
+  "excluded": [],
+  "updatedAt": "2026-10-22",
+  "checklistOverrides": [
     {
-      "what": "Tour do Tenement Museum (escolher horário perto das 13h15)",
-      "forDate": "2026-11-01",
-      "deadline": "2026-10-28",
-      "link": "https://www.tenement.org/",
-      "activityId": "ny-2026-11-01-11"
-    },
-    {
-      "what": "Ingresso com horário do American Museum of Natural History",
-      "forDate": "2026-11-02",
-      "deadline": "2026-10-30",
-      "link": "https://www.amnh.org/",
-      "activityId": "ny-2026-11-02-13"
-    },
-    {
-      "what": "Balsa da Estátua da Liberdade + Ellis Island (horário 9h30)",
-      "forDate": "2026-11-03",
-      "deadline": "2026-10-25",
-      "link": "https://www.cityexperiences.com/new-york/city-cruises/statue/",
-      "activityId": "ny-2026-11-03-07"
-    },
-    {
-      "what": "Ingresso com horário do MoMA (11h)",
-      "forDate": "2026-11-04",
-      "deadline": "2026-11-02",
-      "link": "https://www.moma.org/",
-      "activityId": "ny-2026-11-04-07"
-    },
-    {
-      "what": "NBC Studio Tour (horário ~13h45)",
-      "forDate": "2026-11-04",
-      "deadline": "2026-11-01",
-      "link": "https://www.thetouratnbcstudios.com/",
-      "activityId": "ny-2026-11-04-11"
-    },
-    {
-      "what": "Empire State Building, 86º andar (horário ~20h)",
-      "forDate": "2026-11-06",
-      "deadline": "2026-11-05",
-      "link": "https://www.esbnyc.com/",
-      "activityId": "ny-2026-11-06-33"
-    },
-    {
-      "what": "Ingressos do Knicks x Nets e do MJ The Musical salvos no celular (e em print)",
-      "forDate": "2026-11-02",
-      "deadline": "2026-10-30"
-    },
-    {
-      "what": "Seguro-viagem com cobertura médica nos EUA",
-      "forDate": "2026-10-31",
-      "deadline": "2026-10-29"
-    },
-    {
-      "what": "Chip internacional ou eSIM com dados (mapas e ingressos digitais)",
-      "forDate": "2026-10-31",
-      "deadline": "2026-10-29"
-    },
-    {
-      "what": "Cartão de crédito por aproximação (um por pessoa) para o metrô (OMNY)",
-      "forDate": "2026-10-31",
-      "deadline": "2026-10-29"
-    },
-    {
-      "what": "Confirmar no app da companhia aérea o horário de chegada e o terminal no JFK",
-      "forDate": "2026-10-31",
-      "deadline": "2026-10-30"
+      "find": "Tenement Museum, tour das 15h30",
+      "replace": "Tenement Museum, tour das 16h15"
     }
-  ],
-  "practicalTips": [
-    {
-      "topic": "Metrô e ônibus",
-      "text": "Pague encostando o cartão de crédito ou o celular na catraca (OMNY): US$ 3,00 por viagem. Depois de 12 viagens em 7 dias no mesmo cartão, o resto da semana é grátis (teto de US$ 35). Cada pessoa precisa do próprio cartão ou celular, e cartão físico e celular contam como meios diferentes."
-    },
-    {
-      "topic": "Do JFK ao hotel",
-      "text": "Táxi amarelo da fila oficial: tarifa fixa de US$ 70 até Manhattan, mais taxas, pedágio e gorjeta (≈ US$ 90–120). Alternativa: AirTrain até Jamaica + linha E até Lexington Av/53 St (≈ US$ 11,75 por pessoa)."
-    },
-    {
-      "topic": "Estações perto do hotel",
-      "text": "Lexington Av/53 St (linhas E e M) e 51 St (linha 6), ambas a ~5 min a pé do POD 51."
-    },
-    {
-      "topic": "Gorjeta",
-      "text": "Restaurantes com serviço de mesa: 18–22% sobre o valor antes dos impostos. Balcão e café: opcional. Táxi: 15–20%."
-    },
-    {
-      "topic": "Clima",
-      "text": "No início de novembro faz em geral entre 7 °C e 15 °C, com vento frio à noite e perto dos rios: casaco, cachecol e tênis confortável. Veja a previsão na véspera."
-    },
-    {
-      "topic": "Horário de verão",
-      "text": "Na madrugada de 31/10 para 01/11 o relógio de Nova York atrasa 1 hora. O celular ajusta sozinho."
-    },
-    {
-      "topic": "Segurança",
-      "text": "Midtown e os bairros do roteiro são movimentados até tarde. No metrô à noite, prefira o vagão do condutor (meio do trem) e evite vagões vazios; guarde o celular em multidões (parada de Halloween, saída do jogo)."
-    },
-    {
-      "topic": "Informações deste roteiro",
-      "text": "Horários e preços têm fonte e data de verificação; os marcados como \"não confirmado\" devem ser checados no Google Maps ou no site no próprio dia."
-    }
-  ],
-  "excluded": [
-    {
-      "name": "Coney Island (Luna Park e calçadão)",
-      "reason": "Em novembro os brinquedos provavelmente estão fechados (data de fechamento de 2026 não confirmada) e a ida leva ~1h de metrô; fica como alternativa para um dia de sol (Nathan's Famous original na Surf Ave abre o ano todo)."
-    },
-    {
-      "name": "Casa de \"The King of Queens\"",
-      "reason": "A série se passa em Rego Park (Queens), mas a casa mostrada nas cenas externas fica em Nova Jersey, fora do roteiro."
-    },
-    {
-      "name": "Prédios de \"The Jeffersons\" e \"The Nanny\"",
-      "reason": "Ficam no Upper East Side, longe dos outros pontos dos dias; o desvio não compensa para uma foto de fachada residencial."
-    },
-    {
-      "name": "\"How I Met Your Mother\" (bar MacLaren's)",
-      "reason": "O bar da série é fictício e foi gravado em estúdio; o pub que inspirou o cenário não foi confirmado como aberto em 2026."
-    },
-    {
-      "name": "Museu 11 de Setembro",
-      "reason": "Fecha às terças (dia da visita ao memorial) e é uma visita longa e intensa; o memorial gratuito cobre o essencial."
-    },
-    {
-      "name": "Top of the Rock, SUMMIT e Edge",
-      "reason": "O roteiro já tem um mirante (Empire State no último dia); um segundo mirante custaria tempo e US$ 40+ por pessoa."
-    },
-    {
-      "name": "Outro espetáculo da Broadway",
-      "reason": "A noite de teatro é o MJ The Musical em 04/11, como definido."
-    },
-    {
-      "name": "Steakhouses, ostras e frutos do mar",
-      "reason": "Excluídos por preferência do casal (ex.: Peter Luger, Keens, Grand Central Oyster Bar)."
-    },
-    {
-      "name": "B&H Photo Video e Tiffany & Co.",
-      "reason": "Excluídas por preferência do casal."
-    },
-    {
-      "name": "Fette Sau (BBQ em Williamsburg)",
-      "reason": "Fechou depois de quase 20 anos."
-    }
-  ],
-  "updatedAt": "2026-10-21"
+  ]
 }

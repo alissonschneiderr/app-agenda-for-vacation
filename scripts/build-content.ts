@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import type { Content, FullDay, FullItinerary, Photo, Point } from '../src/content/types';
 import { validateContent } from './content-schema';
 import { validateFullItinerary } from './full-itinerary-schema';
+import { checkFidelity, parseNycDoc } from './doc-parser';
 
 const root = join(import.meta.dirname, '..');
 const contentDir = join(root, 'content');
@@ -30,9 +31,10 @@ function dirBytes(dir: string): number {
 }
 
 export function assembleContent(): Content {
-  const { cities, trip } = readJson<Pick<Content, 'cities' | 'trip'>>(join(contentDir, 'trip.json'), {
+  const { cities, trip, dayKinds } = readJson<Pick<Content, 'cities' | 'trip' | 'dayKinds'>>(join(contentDir, 'trip.json'), {
     cities: [],
     trip: [],
+    dayKinds: {},
   });
   const categories = readJson<Content['categories']>(join(contentDir, 'categories.json'), []);
   const credits = readJson<Record<string, PhotoCredit>>(join(contentDir, 'photo-credits.json'), {});
@@ -53,11 +55,13 @@ export function assembleContent(): Content {
       return [{ ...rest, alt: ph.alt }];
     }),
   }));
+  guidePhotos = new Map(points.filter((p) => p.photos[0]).map((p) => [p.id, p.photos[0]!]));
   const suggestedItineraries = readJson<Content['suggestedItineraries']>(join(contentDir, 'itineraries.json'), []);
   return {
     version: new Date().toISOString(),
     cities,
     trip,
+    dayKinds,
     categories,
     points,
     suggestedItineraries,
@@ -65,19 +69,86 @@ export function assembleContent(): Content {
   };
 }
 
-/** content/full/<cidade>/meta.json + um AAAA-MM-DD.json por dia → FullItinerary (fonte única, FR-025a). */
+/** Fotos dos pontos do guia, por id, para reaproveitar no roteiro. */
+let guidePhotos: Map<string, Photo> = new Map();
+
+/**
+ * Feature 006: foto offline de cada região e lugar do roteiro — primeiro a do próprio roteiro
+ * (doc-photos.json → photo-credits.json); senão, a do ponto do guia ligado pelo nome.
+ */
+function attachDocPhotos(dir: string, days: FullDay[], pointLinks: Record<string, string>): void {
+  const credits = readJson<Record<string, PhotoCredit>>(join(dir, 'photo-credits.json'), {});
+  const photoFor = (name: string): Photo | undefined => {
+    const c = credits[name];
+    if (c && existsSync(join(publicDir, c.src))) {
+      const { ref: _ref, ...rest } = c;
+      return { ...rest, alt: name };
+    }
+    const pid = pointLinks[name];
+    return pid ? guidePhotos.get(pid) : undefined;
+  };
+  for (const d of days) {
+    for (const a of d.areas ?? []) {
+      const ph = photoFor(a.name);
+      if (ph) a.photo = ph;
+    }
+    for (const p of d.places ?? []) {
+      const ph = photoFor(p.name);
+      if (ph) p.photo = ph;
+    }
+  }
+}
+
+/** Erros do leitor do documento (roteiro.md), acumulados por readFullItineraries(). */
+export const docErrors: string[] = [];
+
+/**
+ * content/full/<cidade>/meta.json + roteiro.md (documento do casal, feature 004) → FullItinerary.
+ * Sem roteiro.md, usa um AAAA-MM-DD.json por dia (formato da feature 002).
+ */
 export function readFullItineraries(): FullItinerary[] {
   const fullDir = join(contentDir, 'full');
   if (!existsSync(fullDir)) return [];
+  docErrors.length = 0;
   return readdirSync(fullDir)
     .filter((d) => statSync(join(fullDir, d)).isDirectory() && existsSync(join(fullDir, d, 'meta.json')))
     .sort()
     .map((d) => {
-      const meta = readJson<Omit<FullItinerary, 'days'>>(join(fullDir, d, 'meta.json'), {} as Omit<FullItinerary, 'days'>);
-      const days = readdirSync(join(fullDir, d))
+      const dir = join(fullDir, d);
+      const meta = readJson<Omit<FullItinerary, 'days'>>(join(dir, 'meta.json'), {} as Omit<FullItinerary, 'days'>);
+      const docPath = join(dir, 'roteiro.md');
+      if (existsSync(docPath)) {
+        const markdown = readFileSync(docPath, 'utf8');
+        const pointLinks = readJson<Record<string, string>>(join(dir, 'point-links.json'), {});
+        const { doc, errors } = parseNycDoc(markdown, {
+          year: Number(meta.arrival.date.slice(0, 4)),
+          pointLinks,
+          commitments: meta.commitments,
+          checklistOverrides: meta.checklistOverrides,
+          idPrefix: meta.idPrefix,
+          arrivalDay: meta.arrivalDay,
+          departure: meta.departure,
+          stepsUseAreaPoint: meta.stepsUseAreaPoint,
+        });
+        docErrors.push(...errors, ...checkFidelity(markdown, doc, meta.commitments));
+        attachDocPhotos(dir, doc.days, pointLinks);
+        return {
+          ...meta,
+          title: doc.title || meta.title,
+          source: { title: doc.title, byline: doc.byline },
+          days: doc.days,
+          // Feature 007: cada item a reservar ganha um id para a marca de "reservado" (ck:<cidade>:<n>).
+          checklist: doc.checklist.map((c, i) => ({ id: `ck:${meta.cityId}:${i + 1}`, ...c })),
+          docHtml: doc.docHtml,
+          dayNotes: doc.dayNotes,
+          departures: doc.departures,
+          ...(doc.arrivals ? { arrivals: doc.arrivals } : {}),
+        };
+      }
+      const days = readdirSync(dir)
         .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
         .sort()
-        .map((f) => readJson<FullDay>(join(fullDir, d, f), {} as FullDay));
+        .map((f) => readJson<FullDay>(join(dir, f), {} as FullDay));
       return { ...meta, days };
     });
 }
@@ -93,6 +164,7 @@ function main() {
       totalBytes: dirBytes(join(publicDir, 'photos')) + Buffer.byteLength(JSON.stringify(content)),
     }),
     ...content.fullItineraries.flatMap((it) => validateFullItinerary(it, { strict, pointIds })),
+    ...docErrors,
   ];
   if (errors.length) {
     console.error(`Conteúdo inválido (${errors.length} erro(s)):`);
@@ -107,7 +179,19 @@ function main() {
       `${content.suggestedItineraries.length} roteiros sugeridos`,
   );
   for (const it of content.fullItineraries) {
-    console.log(`roteiro FULL ${it.id}: ${it.days.length} dias, ${it.days.reduce((n, d) => n + d.activities.length, 0)} atividades`);
+    const acts = it.days.flatMap((d) => d.activities);
+    const places = it.days.flatMap((d) => d.places ?? []);
+    const tracked = acts.filter((a) => a.type !== 'transit' && a.type !== 'free').length;
+    console.log(
+      `roteiro FULL ${it.id}: ${it.days.length} dias, ${it.days.reduce((n, d) => n + (d.areas?.length ?? 0), 0)} áreas, ` +
+        `${acts.length} atividades (${tracked} com Feito/Pendente), ${places.length} lugares, ` +
+        `${places.reduce((n, p) => n + (p.photoUrls?.length ?? 0), 0)} links de fotos, ${places.reduce((n, p) => n + p.mapsUrls.length, 0)} links de mapa nos lugares`,
+    );
+    const dates = (r?: Record<string, unknown[]>) => Object.entries(r ?? {}).map(([d, items]) => `${d} (${items.length})`).join(', ') || 'nenhuma';
+    console.log(
+      `  chegadas: ${dates(Object.fromEntries(Object.entries(it.arrivals ?? {}).map(([d, a]) => [d, a.items])))}; ` +
+        `partidas: ${dates(it.departures)}; reservas: ${it.checklist.length}`,
+    );
   }
 }
 

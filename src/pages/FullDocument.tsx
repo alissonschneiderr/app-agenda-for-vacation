@@ -1,25 +1,64 @@
+import { useEffect } from 'preact/hooks';
 import { ActivityCard } from '../components/ActivityCard';
 import type { LoadedContent } from '../content/load';
 import { commitmentFor, leaveBy } from '../domain/full-itinerary';
 import { formatDate, formatDayLabel } from '../domain/trip';
-import { useFullItinerary } from './FullDay';
+import { fullItineraryOf } from '../content/load';
 
 const ALT_LABEL = { rain: 'Se chover', tired: 'Se cansar', closed: 'Se estiver fechado' };
 
 /** Documento completo para ler, imprimir ou salvar em PDF (FR-025), da mesma fonte da agenda. */
-export function FullDocument({ content }: { content: LoadedContent }) {
-  const it = useFullItinerary(content);
+export function FullDocument({ content, section, cityId = 'nova-york' }: { content: LoadedContent; section?: string; cityId?: string }) {
+  // Feature 007: um documento por cidade com roteiro do casal (#/full/:cityId/documento).
+  const it = fullItineraryOf(content, cityId);
+  useEffect(() => {
+    if (section) document.getElementById(`doc-${section}`)?.scrollIntoView?.();
+  }, [section]);
   if (!it) {
     return (
       <main class="page">
-        <h1>Roteiro FULL indisponível</h1>
+        <h1>Documento indisponível</h1>
+        <p>Sem roteiro para esta cidade.</p>
+        <a href="#/viagem">← Viagem</a>
+      </main>
+    );
+  }
+
+  // Feature 004: o documento é o próprio roteiro.md do casal, convertido em HTML no build.
+  if (it.docHtml?.length) {
+    return (
+      <main class="page document">
+        <a href="#/viagem" class="small no-print">
+          ← Viagem
+        </a>
+        <header class="doc-cover">
+          <h1>{it.source?.title || it.title}</h1>
+          {it.source?.byline && <p class="muted">{it.source.byline}</p>}
+          <button type="button" class="btn btn-primary no-print" onClick={() => window.print()}>
+            Imprimir / salvar PDF
+          </button>
+        </header>
+        <nav class="doc-index no-print" aria-label="Índice">
+          <h2>Seções</h2>
+          <ol>
+            {it.docHtml.map((h) => (
+              <li key={h.id}>
+                <a href={`#/full/${cityId}/documento/${h.id}`}>{h.title}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        {it.docHtml.map((h) => (
+          // HTML gerado no build a partir do roteiro.md do próprio app.
+          <section key={h.id} id={`doc-${h.id}`} class="doc-day doc-html" dangerouslySetInnerHTML={{ __html: h.html }} />
+        ))}
       </main>
     );
   }
 
   return (
     <main class="page document">
-      <a href="#/full/nova-york" class="small no-print">
+      <a href="#/destino/nova-york" class="small no-print">
         ← Roteiro FULL
       </a>
       <header class="doc-cover">
@@ -27,11 +66,14 @@ export function FullDocument({ content }: { content: LoadedContent }) {
         <p>
           {it.travelers} · {formatDate(it.days[0]!.date)} a {formatDate(it.days[it.days.length - 1]!.date)}
         </p>
+        {it.base && (
+          <p>
+            Hotel: <strong>{it.base.name}</strong>, {it.base.address}
+          </p>
+        )}
         <p>
-          Hotel: <strong>{it.base.name}</strong>, {it.base.address}
-        </p>
-        <p>
-          Chegada: {it.arrival.airport}, {formatDate(it.arrival.date)} por volta das {it.arrival.time}
+          Chegada: {it.arrival.airport}, {formatDate(it.arrival.date)}
+          {it.arrival.time && ` por volta das ${it.arrival.time}`}
         </p>
         <h2>Compromissos com ingresso comprado</h2>
         <ul>
@@ -52,7 +94,7 @@ export function FullDocument({ content }: { content: LoadedContent }) {
         <ol>
           {it.days.map((d) => (
             <li key={d.date}>
-              <a href={`#/full/nova-york/${d.date}`}>
+              <a href={`#/destino/nova-york/${d.date}`}>
                 {formatDayLabel(d.date)} · {d.region}
               </a>
             </li>
@@ -106,7 +148,9 @@ export function FullDocument({ content }: { content: LoadedContent }) {
         <ul class="checklist">
           {it.checklist.map((c, i) => (
             <li key={i}>
-              ☐ <strong>{c.what}</strong> — para {formatDayLabel(c.forDate)}; resolver até {formatDate(c.deadline)}
+              ☐ <strong>{c.what}</strong>
+              {c.forDate && ` — para ${formatDayLabel(c.forDate)}`}
+              {c.deadline && `; resolver até ${formatDate(c.deadline)}`}
               {c.link && (
                 <>
                   {' '}

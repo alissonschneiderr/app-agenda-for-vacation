@@ -38,25 +38,6 @@ describe('regras do roteiro FULL', () => {
     expect(validateFullItinerary(fixtureFullItinerary(), strict)).toEqual([]);
   });
 
-  it('F5: mudar de endereço sem deslocamento', () => {
-    expect(errs(mutate((it) => day(it, '2026-11-03').activities.splice(3, 1)), { strict: false })).toMatch(/F5/);
-  });
-
-  it('F6: passeio antes das 10h só com justificativa (exceto 31/10)', () => {
-    const early = mutate((it) => (day(it, '2026-11-03').activities.find((a) => a.type === 'attraction')!.start = '09:50'));
-    expect(errs(early)).toMatch(/F6/);
-    const justified = mutate((it) => {
-      const a = day(it, '2026-11-03').activities.find((a) => a.type === 'attraction')!;
-      a.start = '09:50';
-      a.earlyReason = 'Evitar fila';
-    });
-    expect(errs(justified)).not.toMatch(/F6/);
-  });
-
-  it('F7: começa e termina no hotel', () => {
-    expect(errs(mutate((it) => day(it, '2026-11-03').activities.pop()))).toMatch(/terminar no hotel \(F7\)/);
-  });
-
   it('F8: compromisso presente e com 30 min de folga', () => {
     expect(errs(mutate((it) => (day(it, '2026-11-02').activities = day(it, '2026-11-02').activities.filter((a) => a.type !== 'commitment'))))).toMatch(/F8/);
     expect(errs(mutate((it) => (it.commitments[0]!.arriveBy = '19:01')))).toMatch(/arriveBy deve ser ≤ 19:00 \(F8\)/);
@@ -78,32 +59,31 @@ describe('regras do roteiro FULL', () => {
     expect(errs(mutate((it) => (day(it, '2026-10-31').activities[0]!.place!.name = 'Aeroporto LGA')))).toMatch(/F10/);
   });
 
-  it('F11: refeições e janelas de horário', () => {
-    expect(errs(mutate((it) => (day(it, '2026-11-03').activities.find((a) => a.meal?.kind === 'snack')!.meal!.kind = 'lunch')))).toMatch(/F11/);
-    const earlyLunch = mutate((it) => {
-      const d = day(it, '2026-11-03');
-      const lunch = d.activities.find((a) => a.meal?.kind === 'lunch')!;
-      lunch.start = '11:59';
-      d.activities.find((a) => a.type === 'attraction')!.durationMin = 60;
+  it('feature 005: sem regra de refeições; duração deduzida não acusa sobreposição', () => {
+    expect(errs(mutate((it) => day(it, '2026-11-03').activities.splice(day(it, '2026-11-03').activities.findIndex((a) => a.meal?.kind === 'snack'), 1)))).not.toMatch(/F11/);
+    const inferred = mutate((it) => {
+      const a = day(it, '2026-11-03').activities[2]!;
+      a.durationMin = 600;
+      a.inferredDuration = true;
     });
-    expect(errs(earlyLunch)).toMatch(/almoço deve começar entre 12:00 e 14:00/);
+    expect(errs(inferred)).not.toMatch(/F4/);
   });
 
-  it('F12: termos proibidos, sem diferenciar acento e caixa', () => {
-    for (const bad of ['Ostras frescas', 'Camarão', 'SEAFOOD', 'Steakhouse famosa', 'Loja B&H', 'Tiffany & Co.']) {
-      expect(errs(mutate((it) => (day(it, '2026-11-03').activities[2]!.description = bad)), { strict: false })).toMatch(/F12/);
-    }
+  it('feature 004: restrições de comida e lojas da 002 não valem mais', () => {
+    expect(errs(mutate((it) => (day(it, '2026-11-03').activities[2]!.description = 'Ostras e Tiffany & Co.')))).toEqual('');
   });
 
-  it('F13: desvio de no máximo 20 min até refeição', () => {
-    expect(errs(mutate((it) => (day(it, '2026-11-03').activities.find((a) => a.type === 'transit' && a.transit!.to.startsWith('Almoço'))!.transit!.minutes = 25)))).toMatch(/F13/);
-  });
-
-  it('F14: Apple Store sem justificativa', () => {
-    const it = mutate((it) => (day(it, '2026-11-03').activities.find((a) => a.type === 'shopping')!.title = 'Apple Store Fifth Avenue'));
-    expect(errs(it, { strict: false })).toMatch(/F14/);
-    day(it, '2026-11-03').activities.find((a) => a.type === 'shopping')!.shop!.justification = 'Comprar adaptador no caminho';
-    expect(errs(it, { strict: false })).not.toMatch(/F14/);
+  it('F8: chegada por uma linha "Chegada ao…" antes do compromisso', () => {
+    const ok = mutate((it) => {
+      const d = day(it, '2026-11-02');
+      const c = d.activities.find((a) => a.type === 'commitment')!;
+      c.start = '19:30';
+      c.durationMin = 60;
+      const before = d.activities[d.activities.indexOf(c) - 1]!;
+      before.title = 'Chegada ao Madison Square Garden';
+    });
+    const out = errs(ok);
+    expect(out).not.toMatch(/chega às/);
   });
 
   it('F15: local de série sem dados', () => {
@@ -113,10 +93,6 @@ describe('regras do roteiro FULL', () => {
   it('F16: fato não confirmado precisa de nota', () => {
     const it = mutate((it) => (day(it, '2026-11-03').activities[2]!.facts = [{ text: 'x', status: 'unconfirmed' } as never]));
     expect(errs(it, { strict: false })).toMatch(/F1/);
-  });
-
-  it('F17: alternativas de chuva e cansaço', () => {
-    expect(errs(mutate((it) => (day(it, '2026-11-03').alternatives = [{ when: 'rain', text: 'Museu' }])))).toMatch(/F17/);
   });
 
   it('F18: reserva sem item no checklist', () => {
@@ -132,6 +108,6 @@ describe('regras do roteiro FULL', () => {
   });
 
   it('ids de atividade únicos e com a data do dia', () => {
-    expect(errs(mutate((it) => (day(it, '2026-11-03').activities[1]!.id = 'ny-2026-11-04-02')), { strict: false })).toMatch(/id deve começar com ny-2026-11-03/);
+    expect(errs(mutate((it) => (day(it, '2026-11-03').activities[1]!.id = 'ny-2026-11-04-02')), { strict: false })).toMatch(/id deve conter a data do dia \(-2026-11-03-\)/);
   });
 });

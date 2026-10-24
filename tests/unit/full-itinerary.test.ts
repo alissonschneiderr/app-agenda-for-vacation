@@ -4,6 +4,7 @@ import {
   endTime,
   leaveBy,
   markActivity,
+  toggleDone,
   nextActivity,
   unmarkActivity,
 } from '../../src/domain/full-itinerary';
@@ -49,5 +50,14 @@ describe('roteiro FULL: domínio', () => {
 
   it('horário-limite de saída para o compromisso', () => {
     expect(leaveBy(day, it2.commitments[0]!)).toBe('17:50');
+  });
+
+  it('toggleDone: ausente → feito; pulada → feito; feito → pendente', () => {
+    let s = toggleDone(emptyState(), 'k', T);
+    expect(s.activityMarks.k!.state).toBe('done');
+    s = toggleDone(s, 'k', T);
+    expect(s.activityMarks.k).toBeUndefined();
+    s = toggleDone(markActivity(emptyState(), 'k', 'skipped', T), 'k', T);
+    expect(s.activityMarks.k!.state).toBe('done');
   });
 });

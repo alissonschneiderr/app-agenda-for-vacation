@@ -1,8 +1,9 @@
 // Roteamento por hash (#/…), para hospedagem estática e offline (contracts/routes.md).
 import { useEffect, useState } from 'preact/hooks';
 
+/** Caminho do hash, sem a query (`#/perto/x?g=comer` → `/perto/x`). */
 export function currentPath(): string {
-  const hash = window.location.hash.replace(/^#/, '');
+  const hash = window.location.hash.replace(/^#/, '').split('?')[0]!;
   return hash.startsWith('/') ? hash : '/';
 }
 
@@ -10,8 +11,12 @@ export function useRoute(): string {
   const [path, setPath] = useState(currentPath());
   useEffect(() => {
     const onChange = () => {
-      setPath(currentPath());
-      window.scrollTo?.(0, 0);
+      const next = currentPath();
+      setPath((prev) => {
+        // Só filtros na query (mesma tela): mantém a rolagem.
+        if (prev !== next) window.scrollTo?.(0, 0);
+        return next;
+      });
     };
     window.addEventListener('hashchange', onChange);
     // O hash pode ter mudado entre o primeiro render e o registro do listener.

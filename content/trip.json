@@ -1,12 +1,75 @@
 {
   "cities": [
-    { "id": "nova-york", "name": "Nova York", "timeZone": "America/New_York", "center": { "lat": 40.7549, "lng": -73.984 } },
-    { "id": "orlando", "name": "Orlando", "timeZone": "America/New_York", "center": { "lat": 28.4177, "lng": -81.4846 } },
-    { "id": "miami", "name": "Miami", "timeZone": "America/New_York", "center": { "lat": 25.7907, "lng": -80.1500 } }
+    {
+      "id": "nova-york",
+      "name": "Nova York",
+      "timeZone": "America/New_York",
+      "center": {
+        "lat": 40.7549,
+        "lng": -73.984
+      },
+      "heroPointId": "ny-central-park"
+    },
+    {
+      "id": "orlando",
+      "name": "Orlando",
+      "timeZone": "America/New_York",
+      "center": {
+        "lat": 28.4177,
+        "lng": -81.4846
+      },
+      "heroPointId": "orl-magic-kingdom"
+    },
+    {
+      "id": "miami",
+      "name": "Miami",
+      "timeZone": "America/New_York",
+      "center": {
+        "lat": 25.7907,
+        "lng": -80.15
+      },
+      "heroPointId": "mia-south-beach"
+    }
   ],
   "trip": [
-    { "cityId": "nova-york", "arrive": "2026-10-31", "depart": "2026-11-07" },
-    { "cityId": "orlando", "arrive": "2026-11-07", "depart": "2026-11-18" },
-    { "cityId": "miami", "arrive": "2026-11-18", "depart": "2026-11-21" }
-  ]
+    {
+      "cityId": "nova-york",
+      "arrive": "2026-10-31",
+      "depart": "2026-11-07"
+    },
+    {
+      "cityId": "orlando",
+      "arrive": "2026-11-07",
+      "depart": "2026-11-18"
+    },
+    {
+      "cityId": "miami",
+      "arrive": "2026-11-18",
+      "depart": "2026-11-21"
+    }
+  ],
+  "dayKinds": {
+    "2026-10-31": "walk",
+    "2026-11-01": "walk",
+    "2026-11-02": "walk",
+    "2026-11-03": "walk",
+    "2026-11-04": "walk",
+    "2026-11-05": "walk",
+    "2026-11-06": "walk",
+    "2026-11-07": "transit",
+    "2026-11-08": "park",
+    "2026-11-09": "park",
+    "2026-11-10": "park",
+    "2026-11-11": "walk",
+    "2026-11-12": "park",
+    "2026-11-13": "walk",
+    "2026-11-14": "park",
+    "2026-11-15": "park",
+    "2026-11-16": "walk",
+    "2026-11-17": "park",
+    "2026-11-18": "transit",
+    "2026-11-19": "beach",
+    "2026-11-20": "walk",
+    "2026-11-21": "transit"
+  }
 }

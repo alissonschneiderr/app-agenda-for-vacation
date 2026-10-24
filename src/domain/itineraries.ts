@@ -67,9 +67,18 @@ export function setItineraryDate(state: UserState, id: string, date: DateStr | n
   return modify(state, id, (it) => validateDate(date) ?? { ...it, date }, now);
 }
 
+/** Remove as marcações de conclusão dos itens de um roteiro (chaves `it:<id>:…`, feature 003). */
+function dropMarks(state: UserState, prefix: string): UserState {
+  const keys = Object.keys(state.activityMarks).filter((k) => k.startsWith(prefix));
+  if (keys.length === 0) return state;
+  const activityMarks = { ...state.activityMarks };
+  for (const k of keys) delete activityMarks[k];
+  return { ...state, activityMarks };
+}
+
 export function deleteItinerary(state: UserState, id: string): Result {
   if (!state.itineraries.some((it) => it.id === id)) return { ok: false, error: 'NOT_FOUND' };
-  return { ok: true, state: { ...state, itineraries: state.itineraries.filter((it) => it.id !== id) } };
+  return { ok: true, state: dropMarks({ ...state, itineraries: state.itineraries.filter((it) => it.id !== id) }, `it:${id}:`) };
 }
 
 export function addPoint(state: UserState, id: string, point: Pick<Point, 'id' | 'name'>, now = new Date()): Result {
@@ -85,7 +94,8 @@ export function addPoint(state: UserState, id: string, point: Pick<Point, 'id' |
 }
 
 export function removePoint(state: UserState, id: string, pointId: string, now = new Date()): Result {
-  return modify(state, id, (it) => ({ ...it, items: it.items.filter((i) => i.pointId !== pointId) }), now);
+  const r = modify(state, id, (it) => ({ ...it, items: it.items.filter((i) => i.pointId !== pointId) }), now);
+  return r.ok ? { ...r, state: dropMarks(r.state, `it:${id}:${pointId}`) } : r;
 }
 
 function move(state: UserState, id: string, index: number, to: number, now: Date): Result {

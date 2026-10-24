@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { goOffline, openInstalled } from './helpers';
 
 test('US2 – favoritos offline persistem e mostram o detalhe completo', async ({ page, context }) => {
-  await openInstalled(page, '2026-11-03T15:00:00Z');
+  await openInstalled(page, '2026-11-03T15:00:00Z', '/guia');
   await goOffline(context, page);
 
   for (const name of ['Central Park', 'The Metropolitan Museum of Art', 'Times Square']) {
@@ -29,7 +29,7 @@ test('US2 – favoritos offline persistem e mostram o detalhe completo', async (
 });
 
 test('US2 – nova versão do conteúdo não apaga favoritos', async ({ page }) => {
-  await openInstalled(page, '2026-11-03T15:00:00Z');
+  await openInstalled(page, '2026-11-03T15:00:00Z', '/guia');
   await page.getByRole('button', { name: 'Favoritar: Central Park' }).click();
   // Simula uma publicação nova do conteúdo (versão diferente) sendo carregada.
   await page.route('**/data/content.json', async (route) => {

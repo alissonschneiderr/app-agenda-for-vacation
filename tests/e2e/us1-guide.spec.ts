@@ -3,7 +3,7 @@ import { goOffline, openInstalled } from './helpers';
 
 test.describe('US1 – Guia de pontos turísticos', () => {
   test('em 03/11 abre em Nova York com lista e mapa', async ({ page }) => {
-    await openInstalled(page, '2026-11-03T15:00:00Z');
+    await openInstalled(page, '2026-11-03T15:00:00Z', '/guia');
     await expect(page.getByRole('heading', { name: 'Guia de Nova York' })).toBeVisible();
     await expect(page.getByText('Central Park', { exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Mapa' }).click();
@@ -11,13 +11,13 @@ test.describe('US1 – Guia de pontos turísticos', () => {
   });
 
   test('em 07/11 abre em Orlando com aviso de locomoção', async ({ page }) => {
-    await openInstalled(page, '2026-11-07T15:00:00Z');
+    await openInstalled(page, '2026-11-07T15:00:00Z', '/guia');
     await expect(page.getByRole('heading', { name: 'Guia de Orlando' })).toBeVisible();
     await expect(page.getByText('Dia de locomoção: Nova York → Orlando')).toBeVisible();
   });
 
   test('filtra por categoria e busca sem acento/caixa', async ({ page }) => {
-    await openInstalled(page, '2026-11-03T15:00:00Z');
+    await openInstalled(page, '2026-11-03T15:00:00Z', '/guia');
     await page.getByRole('group', { name: 'Categoria' }).getByRole('button', { name: 'Museu' }).click();
     await page.getByPlaceholder('Buscar pelo nome').fill('METROPOLITAN');
     const titles = page.locator('.list .title');
@@ -26,9 +26,9 @@ test.describe('US1 – Guia de pontos turísticos', () => {
   });
 
   test('offline: lista, busca, detalhe e foto continuam funcionando', async ({ page, context }) => {
-    await openInstalled(page, '2026-11-02T16:00:00Z');
+    await openInstalled(page, '2026-11-02T16:00:00Z', '/guia');
     await goOffline(context, page);
-    await expect(page.getByRole('status').filter({ hasText: 'Você está offline' })).toBeVisible();
+    await expect(page.getByRole('status').filter({ hasText: 'Sem internet' })).toBeVisible();
     await page.getByPlaceholder('Buscar pelo nome').fill('guggenheim');
     await page.getByText('Solomon R. Guggenheim Museum').click();
     await expect(page.getByRole('heading', { name: 'Solomon R. Guggenheim Museum' })).toBeVisible();
@@ -43,7 +43,7 @@ test.describe('US1 – Guia de pontos turísticos', () => {
   });
 
   test('offline: mapa avisa que só mostra áreas já vistas', async ({ page, context }) => {
-    await openInstalled(page, '2026-11-03T15:00:00Z');
+    await openInstalled(page, '2026-11-03T15:00:00Z', '/guia');
     await goOffline(context, page);
     await page.getByRole('button', { name: 'Mapa' }).click();
     await expect(page.getByText('Mapa disponível offline só nas áreas já vistas com internet.', { exact: false })).toBeVisible();

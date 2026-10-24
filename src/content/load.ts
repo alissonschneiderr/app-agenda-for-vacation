@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
-import type { CityId, Content, Point } from './types';
+import type { CityId, Content, FullItinerary, Point } from './types';
 
 export interface LoadedContent extends Content {
   pointsById: Map<string, Point>;
@@ -68,4 +68,9 @@ export function useContent(): ContentState {
     return () => listeners.delete(setState);
   }, []);
   return state;
+}
+
+/** Roteiro FULL de uma cidade (feature 002). */
+export function fullItineraryOf(content: Pick<Content, 'fullItineraries'>, id = 'nova-york'): FullItinerary | undefined {
+  return content.fullItineraries?.find((f) => f.id === id);
 }
