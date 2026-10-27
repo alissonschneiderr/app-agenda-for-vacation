@@ -113,7 +113,7 @@ describe('seções do dia (feature 009, US2)', () => {
     }
   });
 
-  it('09/11 sem "Brechós e Lojas"; 19/11 só Paradas; 07/11 Transporte com os três blocos; nada de "Sem informações"', () => {
+  it('09/11 sem "Brechós e Lojas"; 19/11 de Miami com o roteiro do casal; 07/11 Transporte com os três blocos; nada de "Sem informações"', () => {
     const { content, store } = setupReal(at('2026-11-01T09:00'));
     store.update((s) => seedSuggested(content, s));
     const menu = (d: string) => {
@@ -124,9 +124,9 @@ describe('seções do dia (feature 009, US2)', () => {
       return out;
     };
     expect(menu('2026-11-09').labels).not.toContain('Brechós e Lojas');
+    // Feature 012: 19/11 tem o roteiro de Miami (Sawgrass), sem Curiosidades nem Dicas.
     const miami = menu('2026-11-19');
-    expect(miami.labels).toEqual([]); // uma seção só: o menu não aparece
-    expect(miami.text).toMatch(/Paradas/);
+    expect(miami.labels).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Bairros', 'Transporte']);
     const transit = render(<Day content={content} date="2026-11-07" />);
     expect(transit.container.querySelector('#transporte')).toBeTruthy();
     expect(screen.getByRole('heading', { name: '1. Antes de sair' })).toBeTruthy();

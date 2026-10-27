@@ -1,9 +1,11 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { ActivityCard } from '../components/ActivityCard';
 import type { LoadedContent } from '../content/load';
 import { commitmentFor, leaveBy } from '../domain/full-itinerary';
 import { formatDate, formatDayLabel } from '../domain/trip';
 import { fullItineraryOf } from '../content/load';
+import { toggleDone } from '../domain/full-itinerary';
+import { useUserState } from '../storage/user-store';
 
 const ALT_LABEL = { rain: 'Se chover', tired: 'Se cansar', closed: 'Se estiver fechado' };
 
@@ -11,9 +13,23 @@ const ALT_LABEL = { rain: 'Se chover', tired: 'Se cansar', closed: 'Se estiver f
 export function FullDocument({ content, section, cityId = 'nova-york' }: { content: LoadedContent; section?: string; cityId?: string }) {
   // Feature 007: um documento por cidade com roteiro do casal (#/full/:cityId/documento).
   const it = fullItineraryOf(content, cityId);
+  const [state, update] = useUserState();
+  const root = useRef<HTMLElement>(null);
   useEffect(() => {
     if (section) document.getElementById(`doc-${section}`)?.scrollIntoView?.();
   }, [section]);
+  // Feature 012: os "- [ ]" do roteiro (ex.: "O que levar para a praia") ficam marcáveis e a marca fica no aparelho.
+  useEffect(() => {
+    root.current?.querySelectorAll<HTMLElement>('section.doc-html').forEach((sec) => {
+      sec.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach((box, i) => {
+        const key = `chk:${cityId}:${sec.id.replace(/^doc-/, '')}:${i + 1}`;
+        box.disabled = false;
+        box.checked = state.activityMarks[key]?.state === 'done';
+        box.setAttribute('aria-label', box.parentElement?.textContent?.trim() ?? 'Marcar');
+        box.onchange = () => update((s) => toggleDone(s, key));
+      });
+    });
+  }, [state, cityId, it]);
   if (!it) {
     return (
       <main class="page">
@@ -27,7 +43,7 @@ export function FullDocument({ content, section, cityId = 'nova-york' }: { conte
   // Feature 004: o documento é o próprio roteiro.md do casal, convertido em HTML no build.
   if (it.docHtml?.length) {
     return (
-      <main class="page document">
+      <main class="page document" ref={root}>
         <a href="#/viagem" class="small no-print">
           ← Viagem
         </a>

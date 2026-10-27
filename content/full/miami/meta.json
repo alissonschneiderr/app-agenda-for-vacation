@@ -1,0 +1,19 @@
+{
+  "id": "miami",
+  "cityId": "miami",
+  "title": "Roteiro Miami — 18 a 20 de novembro",
+  "travelers": "Casal",
+  "idPrefix": "mia1",
+  "stepsUseAreaPoint": true,
+  "arrival": {
+    "airport": "MiamiCentral (trem)",
+    "date": "2026-11-18",
+    "time": "14:21"
+  },
+  "arrivalInDay": true,
+  "commitments": [],
+  "checklist": [],
+  "practicalTips": [],
+  "excluded": [],
+  "updatedAt": "2026-10-27"
+}

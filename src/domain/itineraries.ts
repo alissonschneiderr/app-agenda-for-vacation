@@ -156,6 +156,10 @@ export function groupByDate(itineraries: Itinerary[], trip: TripLeg[]): DayGroup
 
 /** Copia roteiros sugeridos nunca semeados; nunca altera os existentes (FR-025, research R10). */
 export function seedSuggested(content: Pick<Content, 'suggestedItineraries' | 'points'>, state: UserState, now = new Date()): UserState {
+  // Feature 012 (Q2 = B): um sugerido que saiu do conteúdo some do aparelho; os roteiros do casal ficam.
+  const current = new Set(content.suggestedItineraries.map((s) => s.id));
+  const kept = state.itineraries.filter((it) => it.origin !== 'suggested' || (it.sourceId !== null && current.has(it.sourceId)));
+  if (kept.length !== state.itineraries.length) state = { ...state, itineraries: kept };
   const seeded = new Set(state.seededIds);
   const fresh = content.suggestedItineraries.filter((s) => !seeded.has(s.id));
   if (fresh.length === 0) return state;

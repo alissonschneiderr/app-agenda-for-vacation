@@ -105,6 +105,7 @@ export const fullDaySchema = z.object({
         kind: z.enum(['bairro', 'chegada', 'noite', 'ideias']),
         name: text,
         photoUrls: z.array(link),
+        mapsUrls: z.array(link).optional(),
         intro: z.string().optional(),
         activityIds: z.array(z.string()),
         placeIds: z.array(z.string()),
@@ -137,6 +138,7 @@ export const fullItinerarySchema = z.object({
   arrival: z.object({ airport: text, date, time: hhmm.optional() }),
   idPrefix: z.string().regex(/^[a-z]+[0-9]*$/, 'idPrefix deve ser letras minúsculas e dígitos').optional(),
   arrivalDay: date.optional(),
+  arrivalInDay: z.boolean().optional(),
   stepsUseAreaPoint: z.boolean().optional(),
   departure: z
     .object({ date, before: z.array(declaredItem), trip: z.array(declaredItem) })

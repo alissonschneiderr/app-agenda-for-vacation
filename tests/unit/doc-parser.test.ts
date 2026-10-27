@@ -595,3 +595,98 @@ describe('dicas práticas (feature 008)', () => {
     ]);
   });
 });
+
+// ---------- feature 012: chegada dentro de um dia comum (Miami, R3) ----------
+
+const MIA = `# Roteiro Miami
+
+Oct 27, 2026 · @Alisson
+
+## Dia 1 (quarta, 18/11): Chegada · South Beach
+
+O trem chega no meio da tarde.
+
+### 🚆 Chegada e traslado
+
+- **14h21 – chegada na MiamiCentral** (600 NW 1st Ave). Contem 10 minutos.
+- **Melhor opção (recomendada): Uber ou Lyft.** 20–30 minutos, USD 20–35.
+- **Alternativa: táxi** do ponto da estação, USD 30–40.
+- **\\~15h15 – Kasa La Flora.** O check-in é às 16h.
+
+### 📍 South Beach
+
+A ponta sul de Miami Beach.
+
+**Atrações (no roteiro):**
+
+- **17h00 — 🏖️ Lummus Park**
+  - O trecho mais famoso da praia. Grátis.
+`;
+
+describe('chegada dentro de um dia comum (feature 012, R3)', () => {
+  const { doc, errors } = parseNycDoc(MIA, { year: 2026, pointLinks: {}, commitments: [], arrivalInDay: true });
+
+  it('a seção "🚆 Chegada" vai para arrivals: itens com horário marcáveis e o resto em HTML', () => {
+    expect(errors).toEqual([]);
+    const a = doc.arrivals!['2026-11-18']!;
+    expect(a.items.map((i) => i.label)).toEqual(['14h21 – chegada na MiamiCentral', '~15h15 – Kasa La Flora']);
+    expect(a.html).toMatch(/Uber ou Lyft/);
+    expect(a.html).toMatch(/táxi/);
+  });
+
+  it('o resto do dia é um dia comum: a região e a parada, sem a chegada', () => {
+    const d = doc.days.find((x) => x.date === '2026-11-18')!;
+    expect(d.areas!.map((x) => x.name)).toEqual(['South Beach']);
+    expect(d.activities.map((x) => x.title)).toEqual(['Lummus Park']);
+  });
+});
+
+describe('sem arrivalInDay, a chegada continua sendo região (NY 31/10, feature 012)', () => {
+  it('"### 🚆 Chegada" fica como área do dia e nada vai para arrivals', () => {
+    const { doc } = parseNycDoc(MIA, { year: 2026, pointLinks: {}, commitments: [] });
+    expect(doc.arrivals).toBeUndefined();
+    expect(doc.days[0]!.areas!.map((a) => a.name)).toEqual(['Chegada e traslado', 'South Beach']);
+  });
+});
+
+// ---------- feature 012: reservas e dicas de Miami (R6) ----------
+
+const MIA_TIPS = `# Roteiro Miami
+
+Oct 27, 2026 · @Alisson
+
+## 🧳 Dicas práticas
+
+### 🎟️ O que reservar ou confirmar antes
+
+| Data | Item | Situação |
+| --- | --- | --- |
+| 18/11 | Havana 1957, jantar às 19h30 | Reserva recomendada |
+| Antes de embarcar | Cota da Receita Federal e alíquota de IOF | Conferir valores vigentes |
+
+### 🚕 Transporte
+
+- **Não aluguem carro:** South Beach se faz a pé.
+
+### 🛍️ Impostos e compras
+
+- **Sales tax de 7%** em Miami-Dade e Broward.
+`;
+
+describe('reservas e dicas de Miami (feature 012, R6)', () => {
+  const { doc } = parseNycDoc(MIA_TIPS, { year: 2026, pointLinks: {}, commitments: [], tipsCityId: 'miami' });
+
+  it('tabela "Data | Item | Situação": item, nota e data de uso; "Antes de embarcar" sem data', () => {
+    expect(doc.checklist).toEqual([
+      { what: 'Havana 1957, jantar às 19h30', when: '18/11', note: 'Reserva recomendada', forDate: '2026-11-18' },
+      { what: 'Cota da Receita Federal e alíquota de IOF', when: 'Antes de embarcar', note: 'Conferir valores vigentes' },
+    ]);
+  });
+
+  it('"Transporte" é transporte e "Impostos e compras" é dinheiro', () => {
+    expect(tipCategory('Transporte')).toBe('transporte');
+    expect(tipCategory('Impostos e compras')).toBe('dinheiro');
+    expect(tipCategory('Imposto sobre vendas')).toBe('dinheiro');
+    expect(tipCategory('Metrô e ônibus (OMNY)')).toBe('transporte');
+  });
+});

@@ -110,9 +110,12 @@ export function readFullItineraries(): FullItinerary[] {
   const fullDir = join(contentDir, 'full');
   if (!existsSync(fullDir)) return [];
   docErrors.length = 0;
+  // Feature 012: na ordem da viagem (NY → Orlando → Miami), não na ordem alfabética das pastas.
+  const legs = readJson<{ trip: { cityId: string }[] }>(join(contentDir, 'trip.json'), { trip: [] }).trip.map((l) => l.cityId);
+  const order = (d: string) => (legs.indexOf(d) === -1 ? legs.length : legs.indexOf(d));
   return readdirSync(fullDir)
     .filter((d) => statSync(join(fullDir, d)).isDirectory() && existsSync(join(fullDir, d, 'meta.json')))
-    .sort()
+    .sort((a, b) => order(a) - order(b) || a.localeCompare(b))
     .map((d) => {
       const dir = join(fullDir, d);
       const meta = readJson<Omit<FullItinerary, 'days'>>(join(dir, 'meta.json'), {} as Omit<FullItinerary, 'days'>);
@@ -127,6 +130,7 @@ export function readFullItineraries(): FullItinerary[] {
           checklistOverrides: meta.checklistOverrides,
           idPrefix: meta.idPrefix,
           arrivalDay: meta.arrivalDay,
+          arrivalInDay: meta.arrivalInDay,
           departure: meta.departure,
           stepsUseAreaPoint: meta.stepsUseAreaPoint,
           tipsCityId: meta.cityId,

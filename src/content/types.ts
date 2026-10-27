@@ -258,6 +258,8 @@ export interface DayArea {
   kind: 'bairro' | 'chegada' | 'noite' | 'ideias';
   name: string;
   photoUrls: { label: string; url: string }[];
+  /** Mapa da região, quando o doc o põe ao lado das fotos (feature 012, Miami). */
+  mapsUrls?: { label: string; url: string }[];
   intro?: string;
   activityIds: string[];
   placeIds: string[];
@@ -296,6 +298,8 @@ export interface FullItinerary {
   idPrefix?: string;
   /** Data cuja seção "Dia N" é a chegada num dia de locomoção (feature 007). */
   arrivalDay?: DateStr;
+  /** Feature 012: chegada dentro de um dia comum (Miami, 18/11). */
+  arrivalInDay?: boolean;
   /** Partida declarada (feature 007, Q1). */
   departure?: { date: DateStr; before: DeclaredDepartureItem[]; trip: DeclaredDepartureItem[] };
   /** Passos sem ponto próprio usam o ponto do guia da sua região (feature 007, R8). */

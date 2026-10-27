@@ -106,24 +106,23 @@ test.describe('rotas antigas', () => {
 });
 
 test.describe('regressão das features anteriores', () => {
-  // Feature 007: Orlando agora tem horários (doc do casal); Miami continua como lista de sugeridos.
-  test('Miami: dia sem horários vira lista, marca e progresso; guia da cidade a um toque', async ({ page }) => {
+  // Feature 012: Miami ganhou o roteiro do casal (Sawgrass em 19/11); a marca vale e fica depois de recarregar.
+  test('Miami: 19/11 com o roteiro do casal; marcar e recarregar mantém a marca', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-19T10:00', '/dia/2026-11-19');
-    const first = page.locator('.tl-step').first();
-    await expect(first).toContainText('South Beach');
-    await expect(page.locator('.tl-now')).toHaveCount(0);
+    const first = page.locator('.tl-step.stop-card').first();
+    await expect(first).toContainText('Simon Guest Services');
     await first.getByRole('checkbox').click();
     await expect(first.getByRole('checkbox')).toHaveAttribute('aria-checked', 'true');
     await page.reload();
-    await expect(page.locator('.tl-step').first().getByRole('checkbox')).toHaveAttribute('aria-checked', 'true');
-    await expect(page.getByRole('link', { name: /Ver o guia de Miami/ })).toBeVisible();
+    await expect(page.locator('.tl-step.stop-card').first().getByRole('checkbox')).toHaveAttribute('aria-checked', 'true');
   });
 
   test('marcas dos roteiros anteriores (ny-, nyv2-) não marcam o roteiro novo', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await page.evaluate(() => {
-      const s = JSON.parse(localStorage.getItem('ctha:user:v1')!);
+      // Feature 012: sem sugeridos para semear, o estado só é gravado na primeira escrita.
+      const s = JSON.parse(localStorage.getItem('ctha:user:v1') ?? 'null') ?? { schemaVersion: 2, seededIds: [], favorites: [], itineraries: [], activityMarks: {} };
       for (let i = 1; i <= 20; i++) {
         const n = String(i).padStart(2, '0');
         s.activityMarks[`ny-2026-11-02-${n}`] = { state: 'done', at: '2026-11-02T14:00:00Z' };

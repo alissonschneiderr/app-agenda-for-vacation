@@ -100,7 +100,9 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
             </a>
           ))}
       </nav>
-      {area.photoUrls.length > 0 && <LinkButtons place={{ name: area.name, mapsUrls: [], photoUrls: area.photoUrls }} />}
+      {(area.photoUrls.length > 0 || (area.mapsUrls?.length ?? 0) > 0) && (
+        <LinkButtons place={{ name: area.name, mapsUrls: area.mapsUrls ?? [], photoUrls: area.photoUrls }} />
+      )}
 
       <nav class="segmented" aria-label="Tipo de opção">
         {GROUPS.map(([g, label, kind]) => (

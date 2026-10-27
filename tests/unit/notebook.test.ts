@@ -50,7 +50,9 @@ describe('caderno de viagem — modelos (feature 008)', () => {
     expect(t.title).toBe('Nova York → Orlando');
     expect(t.route).toEqual({ from: 'nova-york', to: 'orlando' });
     expect(dayCard(content, state, '2026-11-21').title).toBe('Miami → casa');
-    expect(dayCard(content, state, '2026-11-19').title).toBe('South Beach e Art Deco');
+    // Feature 012: o dia de viagem com dia do roteiro (18/11) usa o título do documento; a rota fica em `route`.
+    expect(dayCard(content, state, '2026-11-18')).toMatchObject({ title: 'Chegada · South Beach · Ocean Drive', kind: 'transit', route: { from: 'orlando', to: 'miami' } });
+    expect(dayCard(content, state, '2026-11-19').title).toBe('Compras na Sawgrass Mills'); // feature 012
   });
 
   it('miniatura: nunca a foto da cidade nem a do parque herdado (atração sem foto própria)', () => {
@@ -86,9 +88,9 @@ describe('seções do dia (feature 009)', () => {
     expect(first.where).toBeTruthy();
   });
 
-  it('09/11 sem lojas; 19/11 só paradas; 07/11 só transporte; 21/11 sem seções vazias', () => {
+  it('09/11 sem lojas; 19/11 com o roteiro de Miami; 07/11 só transporte; 21/11 sem seções vazias', () => {
     expect(ids('2026-11-09')).toEqual(['paradas', 'comer', 'bairros', 'dicas']);
-    expect(ids('2026-11-19')).toEqual(['paradas']);
+    expect(ids('2026-11-19')).toEqual(['paradas', 'comer', 'lojas', 'bairros', 'transporte']); // feature 012
     expect(ids('2026-11-07')).toEqual(['transporte']);
     expect(ids('2026-11-21')).toEqual([]);
   });
@@ -218,11 +220,18 @@ describe('atração de compras com as lojas do bairro (feature 010, R7)', () => 
     }
   });
 
-  it('sem lojas no roteiro (outlets de Orlando, Lincoln Road): nada', () => {
+  it('sem lojas no roteiro (outlets de Orlando): nada', () => {
     const o = act('2026-11-11', 'Compras (tarde)');
     expect(shoppingSlice(o.v, o.a)).toBeUndefined();
-    const m = act('2026-11-19', 'Lincoln Road');
-    expect(shoppingSlice(m.v, m.a)).toBeUndefined();
+  });
+
+  it('Sawgrass (feature 012): as compras da Colonnade e da ala principal mostram as 5 categorias do dia', () => {
+    for (const t of ['The Colonnade Outlets', 'Ala principal']) {
+      const { v, a } = act('2026-11-19', t);
+      const slice = shoppingSlice(v, a)!;
+      expect(slice.name, t).toBe('Sawgrass Mills');
+      expect(slice.items.map((i) => i.name), t).toEqual(['Esporte', 'Roupas e jeans', 'Lojas de departamento com desconto', 'Garimpo barato', 'Beleza e casa']);
+    }
   });
 });
 
@@ -251,6 +260,7 @@ describe('relatório da feature 010 (R6)', () => {
   it('Transporte sai em 31/10, nos dias de parque só com horário e nos dias de outlet só com o mapa', () => {
     expect(r.filter((x) => x.removed.includes('transporte')).map((x) => x.date)).toEqual([
       '2026-10-31', '2026-11-09', '2026-11-10', '2026-11-11', '2026-11-12', '2026-11-14', '2026-11-15', '2026-11-16', '2026-11-17',
+      '2026-11-20', // feature 012: o dia de praia em Miami é todo a pé
     ]);
     expect(r.some((x) => x.removed.includes('dicas'))).toBe(false);
   });

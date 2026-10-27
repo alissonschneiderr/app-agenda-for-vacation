@@ -47,8 +47,32 @@ describe('documento por cidade (feature 007)', () => {
   });
 
   it('cidade sem roteiro', () => {
+    // Feature 012: Miami ganhou roteiro; toda cidade da viagem tem um. Uma cidade fora da viagem não tem.
     const { content } = setupReal('2026-10-30T15:00:00Z');
-    render(<FullDocument content={content} cityId="miami" />);
+    render(<FullDocument content={content} cityId={'lisboa' as never} />);
     expect(screen.getByText('Sem roteiro para esta cidade.')).toBeTruthy();
+  });
+
+  it('Miami (feature 012): documento com a abertura (Thanksgiving, hospedagem) e os 3 dias', () => {
+    const { content } = setupReal('2026-10-30T15:00:00Z');
+    const { container } = render(<FullDocument content={content} cityId="miami" />);
+    expect(container.textContent).toMatch(/Thanksgiving/);
+    expect(container.textContent).toMatch(/Kasa La Flora/);
+    expect(container.textContent).toMatch(/Dia 3 \(sexta, 20\/11\)/);
+  });
+});
+
+describe('checklist do documento (feature 012)', () => {
+  it('"O que levar para a praia": marcar um item grava e continua marcado ao reabrir', () => {
+    const { content, store } = setupReal('2026-10-30T15:00:00Z');
+    const first = render(<FullDocument content={content} cityId="miami" />);
+    const box = first.container.querySelector<HTMLInputElement>('input[aria-label^="Protetor solar"]')!;
+    expect(box.disabled).toBe(false);
+    expect(box.checked).toBe(false);
+    fireEvent.click(box);
+    expect(Object.keys(store.get().activityMarks).some((k) => k.startsWith('chk:miami:'))).toBe(true);
+    first.unmount();
+    const again = render(<FullDocument content={content} cityId="miami" />);
+    expect(again.container.querySelector<HTMLInputElement>('input[aria-label^="Protetor solar"]')!.checked).toBe(true);
   });
 });

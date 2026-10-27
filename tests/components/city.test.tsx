@@ -35,11 +35,11 @@ describe('Cidade (feature 009, US1)', () => {
     expect(days[1]!.querySelector('img.cover-img')).toBeTruthy();
   });
 
-  it('Miami: dias com os roteiros sugeridos; nenhum "Sem informações"', () => {
+  it('Miami: dias com o roteiro do casal (feature 012); nenhum "Sem informações"', () => {
     const { content, store } = setupReal('2026-10-27T15:00:00Z');
     store.update((s) => seedSuggested(content, s));
     const { container } = render(<City content={content} cityId="miami" />);
-    expect(screen.getAllByRole('article').map((a) => a.getAttribute('aria-label'))).toContain('quinta, 19/11: South Beach e Art Deco');
+    expect(screen.getAllByRole('article').map((a) => a.getAttribute('aria-label'))).toContain('quinta, 19/11: Compras na Sawgrass Mills');
     expect(container.textContent).not.toMatch(/Sem informações/);
   });
 });

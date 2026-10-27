@@ -51,7 +51,11 @@ describe('Orlando na transição (feature 007, US3)', () => {
     const before = screen.getByRole('region', { name: 'Antes de sair' });
     expect(within(before).getByText('faça o check-out com folga e devolva o carro no aeroporto (MCO)')).toBeTruthy();
     expect(within(screen.getByRole('region', { name: 'A viagem' })).getByText('De trem para Miami')).toBeTruthy();
-    expect(within(screen.getByRole('region', { name: 'A chegada' })).getByText('Sem orientações no roteiro.')).toBeTruthy();
+    // Feature 012: "A chegada" agora traz a chegada de trem em Miami e os traslados do documento.
+    const arrival = screen.getByRole('region', { name: 'A chegada' });
+    expect(arrival.textContent).toMatch(/14h21 – chegada na MiamiCentral/);
+    expect(arrival.textContent).toMatch(/Uber ou Lyft/);
+    expect(arrival.textContent).toMatch(/Kasa La Flora/);
     expect(container.textContent).not.toMatch(/voo internacional/i);
     expect(screen.queryByText('Orientações completas do roteiro')).toBeNull();
   });

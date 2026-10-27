@@ -33,8 +33,8 @@ documento de cada cidade (`#/full/<cidade>/documento`), créditos (`#/creditos`)
 
 - Pontos: `content/points/<cidade>.json`. Cada foto tem um `ref` (`wiki:<artigo da Wikipédia em
   inglês>` ou `File:<arquivo da Wikimedia Commons>`) e um `alt` em português.
-- Roteiros sugeridos: `content/itineraries.json` (hoje só os de Miami; Nova York e Orlando usam o
-  roteiro do casal).
+- Roteiros sugeridos: `content/itineraries.json` (vazio desde a feature 012: as três cidades usam o
+  roteiro do casal; um sugerido que sai do arquivo some também do aparelho).
 - Depois de mudar fotos: `npm run photos` baixa as novas, converte para WebP e atualiza
   `content/photo-credits.json` com autor e licença.
 - Sempre rode `npm run content:strict` antes de publicar. Formato completo em
@@ -129,6 +129,38 @@ Decisões da feature 007:
 **Atualizar quando o doc mudar:** exporte o doc em Markdown para `content/full/orlando/roteiro.md`,
 sem editar, e rode `npm run content:strict`. A conferência (D1–D6) aponta o que o app não reconheceu
 e acusa se o trecho citado na partida sumiu do doc.
+
+## Roteiro de Miami
+
+O roteiro de 18 a 20/11 é o documento "Roteiro Miami — 18 a 20 de novembro" do casal (feature 012),
+lido pelo mesmo leitor de NY e Orlando. A cópia fica em `content/full/miami/roteiro.md` (revisão 15,
+27/10/2026), convertida para o formato do leitor sem mudar o texto. A fonte lida está em
+`specs/012-miami-itinerary-doc/source/`.
+
+- **18/11:** dia de viagem.
+  - Em Transporte: "Antes de sair" e "A viagem" (Orlando, trem) e "A chegada" em Miami (MiamiCentral
+    às 14h21, Uber/táxi/Metrobus 120, shuttle da Brightline, Kasa La Flora).
+  - A tarde em South Beach entra como dia comum: 4 paradas, 4 restaurantes e as locações de *A
+    Gaiola das Loucas* e *Scarface* em Curiosidades.
+- **19/11:** Sawgrass Mills.
+  - 3 paradas e 5 restaurantes.
+  - As lojas por categoria em "Brechós e Lojas".
+  - O Uber em Transporte.
+  - O comparativo de shoppings, as dicas para economizar e o Plano B como notas do grupo.
+- **20/11:** praia em Lummus Park, Beachwalk e South Pointe, e jantar no Joe's Stone Crab. O dia é
+  todo a pé, então não tem Transporte.
+- **Documento completo** (`#/full/miami/documento`): a abertura (estratégia, Thanksgiving,
+  hospedagem, legenda de preço), os 3 dias, as dicas práticas e o resumo com as fontes. O checklist
+  "O que levar para a praia" é marcável, como os de NY e Orlando.
+
+Decisões da feature 012:
+
+- **Q1 = A:** o 18/11 continua dia de viagem e ganha a tarde em South Beach. O 07/11 de Orlando não
+  muda. No `meta.json` de Miami, `arrivalInDay: true` manda só a seção "### 🚆 Chegada" para o
+  bloco "A chegada".
+- **Q2 = B:** os roteiros sugeridos antigos de Miami foram apagados (do conteúdo e do aparelho).
+- O que o documento não deixa claro está em `specs/012-miami-itinerary-doc/data-review.md`. As fotos
+  que faltam estão em `photos-missing.md`.
 
 ## Publicar e instalar
 

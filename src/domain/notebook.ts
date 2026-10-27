@@ -159,9 +159,11 @@ export function dayCard(content: LoadedContent, state: UserState, date: DateStr)
   const firstArea = view.areas.find((a) => a.kind === 'bairro' && a.photo);
   const firstStep = steps.map((s) => stopThumb(s, view.areas.find((a) => a.id === s.areaId))).find(Boolean);
   const itineraryTitle = view.groups.find((g) => g.source === 'itinerary')?.title ?? content.suggestedItineraries.find((s) => s.date === date)?.title;
-  const title = route
-    ? `${content.cityName(route.from)} → ${route.to ? content.cityName(route.to) : 'casa'}`
-    : (view.fullDay?.region ?? itineraryTitle ?? content.cityName(cityId));
+  // Feature 012: dia de viagem com dia do roteiro (Miami, 18/11) usa o título do roteiro; os outros, a rota.
+  const title =
+    route && !view.fullDay?.region
+      ? `${content.cityName(route.from)} → ${route.to ? content.cityName(route.to) : 'casa'}`
+      : (view.fullDay?.region ?? itineraryTitle ?? content.cityName(cityId));
   const summary = view.fullDay?.goal ?? content.suggestedItineraries.find((s) => s.date === date)?.notes ?? '';
   return {
     date,

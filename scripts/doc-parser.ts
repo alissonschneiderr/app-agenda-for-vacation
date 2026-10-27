@@ -29,6 +29,8 @@ export interface ParseOptions {
   idPrefix?: string;
   /** Data cuja seção "Dia N" é a chegada num dia de locomoção (feature 007, R5). */
   arrivalDay?: DateStr;
+  /** Feature 012 (Miami): a seção "### 🚆 Chegada…" de um dia comum vira o bloco "A chegada". */
+  arrivalInDay?: boolean;
   /** Partida declarada no meta.json (feature 007, Q1): trechos literais do doc ou dados do casal. */
   departure?: { date: DateStr; before: DeclaredDepartureItem[]; trip: DeclaredDepartureItem[] };
   /** Passos sem ponto próprio usam o ponto do guia da sua região (feature 007, R8). */
@@ -146,7 +148,8 @@ function nameAndAddress(boldName: string, rest: string): { name: string; address
   if (inName) return { name: plain(inName[1]!), address: plain(inName[2]!), rest };
   const after = /^\s*\(([^()]*)\)/.exec(rest);
   if (after) return { name: plain(boldName), address: plain(after[1]!), rest: rest.slice(after[0].length) };
-  return { name: plain(boldName), rest };
+  // "**Esporte:** Nike Factory, Adidas…" (Miami, feature 012): o nome não leva os dois-pontos.
+  return { name: plain(boldName).replace(/:$/, ''), rest };
 }
 
 function afterDash(s: string): string {
@@ -299,7 +302,8 @@ export function logisticsLine(md: string): { label: string; title: string; how: 
   const lead = TIME_LABEL.exec(bold);
   if (lead) {
     const title = plain(bold.slice(lead[0].length).replace(/^\s*[—–-]\s*/, '')).replace(/:$/, '');
-    if (!/^(saída|volta|chegada ao)/i.test(title)) return null;
+    // Feature 012 (Miami): café da manhã, almoço e check-in com horário também entram na linha do tempo.
+    if (!/^(saída|volta|chegada ao|café da manhã|almoço|check-in)/i.test(title)) return null;
     return { label: lead[1]!, title, how: plain(m[2]!) };
   }
   if (!LOGISTICS_START.test(text)) return null;
@@ -307,6 +311,9 @@ export function logisticsLine(md: string): { label: string; title: string; how: 
   if (!inner) return null;
   return { label: inner[1]!, title: plain(bold).replace(/:$/, ''), how: plain(m[2]!) };
 }
+
+/** Refeição ou check-in com horário fora da lista (feature 012): fora do progresso, como os almoços. */
+const logisticsType = (title: string): ActivityType => (/^(café da manhã|almoço)/i.test(title) ? 'free' : 'transit');
 
 function typeOf(line: TimedLine): ActivityType {
   if (FREE_RE.test(line.title)) return 'free';
@@ -345,9 +352,13 @@ const firstLine = (it: Tokens.ListItem) => it.text.split('\n')[0]!;
 const SHOPPING_LINE = new RegExp(String.raw`^\*\*🛍️\s*Compras\s*\(([^)]*\d{1,2}h[^)]*)\):?\*\*:?\s*([\s\S]*)$`, 'u');
 
 /** Horário de uma noite: do título "(19h30)" ou do 1º horário em negrito da seção; sem horário, undefined. */
+const NOTE_HEADING = /^🛍️/u;
+
 function nightTime(heading: string, sectionRaw: string): string | undefined {
   const fromHeading = /\((\d{2}h(?:\d{2})?)/.exec(heading);
-  const fromText = /\*\*[^*]*?(\d{2}h(?:\d{2})?)[^*]*\*\*/.exec(sectionRaw);
+  // Feature 012: a volta ao hotel ("🏨 **~22h30 – volta…**") não é o horário da noite.
+  const withoutHotel = sectionRaw.split('\n').filter((l) => !l.trim().startsWith('🏨')).join('\n');
+  const fromText = /\*\*[^*]*?(\d{2}h(?:\d{2})?)[^*]*\*\*/.exec(withoutHotel);
   return fromHeading?.[1] ?? fromText?.[1];
 }
 
@@ -375,7 +386,7 @@ function parseDay(date: DateStr, region: string, body: Token[], opts: ParseOptio
     }
     const lg = t.type === 'paragraph' ? logisticsLine(raw) : null;
     if (lg) {
-      drafts.push({ areaId: null, type: 'transit', title: lg.title, label: lg.label, how: lg.how, placeIds: [] });
+      drafts.push({ areaId: null, type: logisticsType(lg.title), title: lg.title, label: lg.label, how: lg.how, placeIds: [] });
       continue;
     }
     if (t.type === 'paragraph' && !summary && !raw.startsWith('*')) {
@@ -385,8 +396,14 @@ function parseDay(date: DateStr, region: string, body: Token[], opts: ParseOptio
     dayNotes.push(t);
   }
 
+  /** "### 🛍️ …" (Miami, feature 012): tabela/nota que abre a próxima região, não é região. */
+  let carryNotes: Token[] = [];
   for (const part of parts.slice(1)) {
     const heading = plain(part.heading!.text);
+    if (NOTE_HEADING.test(heading)) {
+      carryNotes.push(part.heading!, ...part.body);
+      continue;
+    }
     // "### 🚗 Deslocamento …" (Orlando): deslocamento até a próxima região, não é região.
     if (heading.startsWith('🚗')) {
       const prev = areas.at(-1);
@@ -416,7 +433,8 @@ function parseDay(date: DateStr, region: string, body: Token[], opts: ParseOptio
     const area: DayArea = { id: slug(name), kind, name, photoUrls: [], activityIds: [], placeIds: [] };
     for (let i = 2; areas.some((a) => a.id === area.id); i++) area.id = `${slug(name)}-${i}`;
     areas.push(area);
-    const notes: Token[] = [];
+    const notes: Token[] = [...carryNotes];
+    carryNotes = [];
     const transfers: string[] = [];
     let list: 'activities' | 'shop' | 'food' | 'screen' | null = null;
     let nightPlace: DocPlace | undefined;
@@ -445,7 +463,12 @@ function parseDay(date: DateStr, region: string, body: Token[], opts: ParseOptio
           if (nightPlace) {
             nightPlace.photoUrls = ls.filter(isPhotos);
             nightPlace.mapsUrls = ls.filter((l) => !isPhotos(l));
-          } else area.photoUrls.push(...ls.filter(isPhotos));
+          } else {
+            area.photoUrls.push(...ls.filter(isPhotos));
+            // Feature 012: "📷 ver fotos · Mapa" na região (Miami).
+            const maps = ls.filter((l) => !isPhotos(l));
+            if (maps.length) area.mapsUrls = [...(area.mapsUrls ?? []), ...maps];
+          }
           continue;
         }
         if (raw.startsWith('**⚠️')) {
@@ -484,7 +507,7 @@ function parseDay(date: DateStr, region: string, body: Token[], opts: ParseOptio
         }
         const lg = logisticsLine(raw);
         if (lg) {
-          drafts.push({ areaId: area.id, type: 'transit', title: lg.title, label: lg.label, how: lg.how, placeIds: [] });
+          drafts.push({ areaId: area.id, type: logisticsType(lg.title), title: lg.title, label: lg.label, how: lg.how, placeIds: [] });
           continue;
         }
         if (LOGISTICS_START.test(raw)) {
@@ -653,9 +676,9 @@ function ddmm(d: string, m: string, year: number): DateStr {
 
 const TIP_CATEGORIES: [TipCategory, RegExp][] = [
   ['reservas', / comprar antes | reservar /],
-  ['transporte', / metro | onibus | estacionamento | carro /],
+  ['transporte', / transporte | metro | onibus | estacionamento | carro /],
   ['clima', / clima /],
-  ['dinheiro', / gorjeta| imposto /],
+  ['dinheiro', / gorjeta| impostos? /],
   ['apps', / apps? /],
   ['filas', / filas? /],
 ];
@@ -723,6 +746,38 @@ function parseArrival(date: DateStr, body: Token[]): { items: DepartureItem[]; h
   return html ? { items, html } : { items };
 }
 
+const ARRIVAL_HEADING = /^(?:🚆|✈️?)\s*.*Chegada/u;
+const TIMED_ITEM = /^\*\*(\\?~?\d{1,2}h\d{2}[\s\S]*?)\*\*([\s\S]*)$/;
+
+/**
+ * Chegada dentro de um dia comum (feature 012, Miami): a seção "### 🚆 Chegada…" vira o bloco "A chegada"
+ * (itens com horário marcáveis + o resto em HTML) e sai do dia; o resto do dia segue normal.
+ */
+function splitArrival(date: DateStr, body: Token[]): { arrival: { items: DepartureItem[]; html?: string }; rest: Token[] } | null {
+  const parts = splitBy(body, 3);
+  const i = parts.findIndex((p) => p.heading && ARRIVAL_HEADING.test(plain(p.heading.text)));
+  if (i === -1) return null;
+  const section = parts[i]!;
+  const items: DepartureItem[] = [];
+  const other: Token[] = [];
+  for (const t of section.body) {
+    if (t.type !== 'list') {
+      other.push(t);
+      continue;
+    }
+    const keep: Tokens.ListItem[] = [];
+    for (const it of (t as Tokens.List).items) {
+      const m = TIMED_ITEM.exec(it.text.trim());
+      if (m) items.push({ id: `tr:${date}:c${items.length + 1}`, label: plain(m[1]!).replace(/[.:]$/, ''), text: plain(m[2]!), block: 'arrival' });
+      else keep.push(it);
+    }
+    if (keep.length) other.push(listOf(keep));
+  }
+  const html = toHtml(other);
+  const rest = parts.flatMap((p, j) => (j === i ? [] : p.heading ? [p.heading, ...p.body] : p.body));
+  return { arrival: html ? { items, html } : { items }, rest };
+}
+
 export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: ParsedDoc; errors: string[] } {
   const errors: string[] = [];
   const tokens = marked.lexer(markdown);
@@ -740,6 +795,9 @@ export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: Parsed
   };
   const overrides = opts.checklistOverrides ?? [];
   const usedOverrides = new Set<string>();
+  // Feature 012: o que vem antes do primeiro "##" (estratégia, avisos, hospedagem…) abre o documento completo.
+  const opening = front!.body.filter((t) => t !== h1 && t !== byline && t.type !== 'space');
+  if (opening.length) doc.docHtml.push({ id: 'abertura', title: doc.title, html: toHtml(opening) });
 
   for (const s of sections) {
     const title = plain(s.heading!.text);
@@ -759,7 +817,9 @@ export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: Parsed
         doc.arrivals = { ...doc.arrivals, [date]: parseArrival(date, s.body) };
         continue;
       }
-      const { day: d } = parseDay(date, day[3]!, s.body, opts, errors);
+      const split = opts.arrivalInDay ? splitArrival(date, s.body) : null;
+      if (split) doc.arrivals = { ...doc.arrivals, [date]: split.arrival };
+      const { day: d } = parseDay(date, day[3]!, split ? split.rest : s.body, opts, errors);
       doc.days.push(d);
       continue;
     }
@@ -791,7 +851,8 @@ export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: Parsed
       });
       continue;
     }
-    const table = s.body.find((t) => t.type === 'table' && plain((t as Tokens.Table).header[1]?.text ?? '') === 'Atração') as
+    // NY: Data | Atração | …; Miami (feature 012): Data | Item | Situação — mesma forma.
+    const table = s.body.find((t) => t.type === 'table' && ['Atração', 'Item'].includes(plain((t as Tokens.Table).header[1]?.text ?? '')) && plain((t as Tokens.Table).header[0]?.text ?? '') === 'Data') as
       | Tokens.Table
       | undefined;
     // Tabela de reservas de Orlando (feature 007): Item | Quando reservar | Custo | Dia de uso.
@@ -854,13 +915,20 @@ export function checkFidelity(
   const errors: string[] = [];
   const urlRe = /https:\/\/www\.google\.com\/(?:maps|search)[^)\s>]+/g;
   const hrefs = (html: string | undefined) => [...(html ?? '').matchAll(/href="([^"]+)"/g)].map((x) => x[1]!.replace(/&amp;/g, '&'));
-  for (const s of markdown.split(/^## /m).slice(1)) {
+  for (let s of markdown.split(/^## /m).slice(1)) {
     const title = s.split('\n')[0]!.trim();
     if (!doc.docHtml.some((h) => h.title === plain(title))) errors.push(`roteiro.md: seção "${title}" não aparece no app (D4)`);
     const m = DAY_RE.exec(title);
     if (!m) continue;
     const arrival = Object.entries(doc.arrivals ?? {}).find(([d]) => d.endsWith(`-${m[2]}-${m[1]}`));
-    if (arrival) {
+    const sameDay = arrival && doc.days.some((d) => d.date === arrival[0]);
+    if (arrival && sameDay) {
+      // Chegada dentro de um dia comum (feature 012): os itens com horário da seção viram o bloco; o resto do dia é conferido normal.
+      const chegada = s.split(/^### /m).find((a) => ARRIVAL_HEADING.test(a.split('\n')[0]!)) ?? '';
+      const timed = chegada.split('\n').filter((l) => /^- \*\*\\?~?\d{1,2}h\d{2}/.test(l)).length;
+      if (arrival[1].items.length !== timed) errors.push(`roteiro.md ${title}: ${timed} itens de chegada com horário no doc e ${arrival[1].items.length} no app (D4)`);
+      s = s.replace(`### ${chegada}`, '');
+    } else if (arrival) {
       // Chegada (feature 007): cada item da lista de "### ✈️ Chegada" é um item marcável.
       const chegada = s.split(/^### /m).find((a) => a.startsWith('✈')) ?? '';
       const bullets = (/\n\n((?:- .*\n?)+)/.exec(chegada)?.[1] ?? '').split('\n').filter((l) => l.startsWith('- ')).length;
@@ -874,7 +942,7 @@ export function checkFidelity(
     }
     // "### 🏨" (volta ao hotel) e "### 🚗" (deslocamento) não são áreas (feature 007).
     const sections3 = s.split(/^### /m).slice(1);
-    const areaTexts = sections3.filter((a) => !/^(🏨|🚗)/u.test(a));
+    const areaTexts = sections3.filter((a) => !/^(🏨|🚗|🛍️)/u.test(a));
     // D1: itens de lista com horário + linhas de logística com horário + voltas ao hotel em "###"
     // + compras com horário + noites com evento.
     const lines = s.split('\n');
@@ -913,7 +981,7 @@ export function checkFidelity(
     const have = new Set<string>([
       ...(day.mapUrl ? [day.mapUrl] : []),
       ...(day.places ?? []).flatMap((p) => [...p.mapsUrls, ...(p.photoUrls ?? [])].map((u) => u.url)),
-      ...(day.areas ?? []).flatMap((a) => [...a.photoUrls.map((u) => u.url), ...hrefs(a.notesHtml)]),
+      ...(day.areas ?? []).flatMap((a) => [...a.photoUrls.map((u) => u.url), ...(a.mapsUrls ?? []).map((u) => u.url), ...hrefs(a.notesHtml)]),
       ...(day.alerts ?? []).flatMap((a) => hrefs(a.html)),
     ]);
     for (const u of s.match(urlRe) ?? []) if (!have.has(u)) errors.push(`roteiro.md ${title}: link fora do app: ${u} (D3)`);

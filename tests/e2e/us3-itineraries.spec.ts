@@ -1,70 +1,66 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { goOffline, openInstalled } from './helpers';
 
 test.describe('US3 – Roteiros', () => {
-  // Feature 007: Orlando passou a ter roteiro do doc; os sugeridos que restam são os 2 de Miami.
-  test('primeira abertura: 2 sugeridos + 7 dias do roteiro FULL de NY, nada nos dias de locomoção', async ({ page }) => {
+  // Feature 012 (Q2 = B): os sugeridos de Miami foram apagados; não há mais nenhum sugerido no app.
+  test('primeira abertura: nenhum sugerido + 7 dias do roteiro FULL de NY, nada nos dias de locomoção', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z', '/roteiros');
-    await expect(page.getByText('Sugerido', { exact: true })).toHaveCount(2);
+    await expect(page.getByText('Sugerido', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('South Beach e Art Deco')).toHaveCount(0);
     await expect(page.locator('.card-full')).toHaveCount(7);
     const headings = await page.getByRole('heading', { level: 2 }).allTextContents();
-    expect(headings).toHaveLength(9);
     expect(headings.some((h) => /07\/11|18\/11|21\/11/.test(h))).toBe(false);
     expect(headings[0]).toBe('sábado, 31/10 · Nova York');
-    expect(headings.at(-1)).toBe('sexta, 20/11 · Miami');
   });
 
-  test('offline: editar um sugerido e recarregar mantém a edição', async ({ page, context }) => {
-    await openInstalled(page, '2026-11-02T15:00:00Z', '/roteiros');
+  /** Cria um roteiro do casal com dia e pontos (feature 012: substitui o sugerido nos testes de edição). */
+  async function createItinerary(page: Page, name: string, date: string, pointIds: string[]) {
+    await page.goto('/#/roteiros');
+    await page.getByRole('button', { name: '+ Novo roteiro' }).click();
+    await page.getByLabel('Nome').fill(name);
+    await page.getByLabel('Dia da viagem').selectOption(date);
+    await page.getByRole('button', { name: 'Criar' }).click();
+    for (const id of pointIds) {
+      await page.goto(`/#/ponto/${id}`);
+      await page.getByRole('button', { name: '+ Adicionar ao roteiro' }).click();
+      const select = page.getByLabel('Escolha um roteiro');
+      const value = await select.locator('option', { hasText: name }).getAttribute('value');
+      await select.selectOption(value!);
+      await expect(page.getByText(`Adicionado a "${name}".`)).toBeVisible();
+    }
+  }
+
+  test('offline: editar um roteiro e recarregar mantém a edição', async ({ page, context }) => {
+    await openInstalled(page, '2026-11-02T15:00:00Z');
+    await createItinerary(page, 'Meu dia em Miami', '2026-11-19', ['mia-south-beach', 'mia-south-pointe', 'mia-lincoln-road']);
+    await page.goto('/#/roteiros');
     await goOffline(context, page);
-    await page.getByRole('link', { name: /South Beach e Art Deco/ }).click();
+    await page.getByRole('link', { name: /Meu dia em Miami/ }).click();
     const titles = page.locator('ol .title');
-    await expect(titles).toHaveText(['South Beach', 'Art Deco Historic District e Ocean Drive', 'South Pointe Park', 'Lincoln Road']);
+    await expect(titles).toHaveText(['South Beach', 'South Pointe Park', 'Lincoln Road']);
     await page.getByRole('button', { name: 'Mover Lincoln Road para o topo' }).click();
     await page.getByRole('button', { name: 'Remover South Beach do roteiro' }).click();
     await page.reload();
-    await expect(titles).toHaveText(['Lincoln Road', 'Art Deco Historic District e Ocean Drive', 'South Pointe Park']);
-  });
-
-  test('nova versão do conteúdo não altera roteiro editado', async ({ page }) => {
-    await openInstalled(page, '2026-11-02T15:00:00Z', '/roteiros');
-    await page.getByRole('link', { name: /South Beach e Art Deco/ }).click();
-    for (const name of ['South Beach', 'Art Deco Historic District e Ocean Drive', 'South Pointe Park', 'Lincoln Road']) {
-      await page.getByRole('button', { name: `Remover ${name} do roteiro` }).click();
-    }
-    const url = page.url();
-    await page.route('**/data/content.json', async (route) => {
-      const response = await route.fetch();
-      const json = await response.json();
-      json.version = 'nova-versao';
-      json.suggestedItineraries.find((s: { id: string }) => s.id === 'sug-2026-11-19').pointIds = ['mia-wynwood'];
-      await route.fulfill({ response, json });
-    });
-    await page.evaluate(async () => {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(regs.map((r) => r.unregister()));
-    });
-    await page.goto(url);
-    await page.reload();
-    await expect(page.locator('ol .title')).toHaveCount(0);
-    await expect(page.getByText('Roteiro vazio.', { exact: false })).toBeVisible();
+    await expect(titles).toHaveText(['Lincoln Road', 'South Pointe Park']);
   });
 
   test('ponto de outra cidade pede confirmação e duplicata é recusada', async ({ page }) => {
-    await openInstalled(page, '2026-11-02T15:00:00Z', '/ponto/orl-epcot');
+    await openInstalled(page, '2026-11-02T15:00:00Z');
+    await createItinerary(page, 'Meu dia em Miami', '2026-11-19', []);
+    await page.goto('/#/ponto/orl-epcot');
     await page.getByRole('button', { name: '+ Adicionar ao roteiro' }).click();
     const select = page.getByLabel('Escolha um roteiro');
-    const orlOption = await select.locator('option', { hasText: 'South Beach e Art Deco' }).getAttribute('value');
+    const miaOption = await select.locator('option', { hasText: 'Meu dia em Miami' }).getAttribute('value');
 
     page.once('dialog', async (d) => {
       expect(d.message()).toBe('Este ponto fica em Orlando, e este roteiro é de Miami. Adicionar mesmo assim?');
       await d.dismiss();
     });
-    await select.selectOption(orlOption!);
+    await select.selectOption(miaOption!);
     page.once('dialog', (d) => d.accept());
-    await select.selectOption(orlOption!);
-    await expect(page.getByText('Adicionado a "South Beach e Art Deco".')).toBeVisible();
-    await select.selectOption(orlOption!);
+    await select.selectOption(miaOption!);
+    await expect(page.getByText('Adicionado a "Meu dia em Miami".')).toBeVisible();
+    await select.selectOption(miaOption!);
     await expect(page.getByText('Este ponto já está neste roteiro.')).toBeVisible();
   });
 

@@ -159,11 +159,12 @@ describe('trip-view com o roteiro de Orlando (feature 007)', () => {
     { id: 'mia', name: 'Wynwood', date: '2026-11-19', origin: 'suggested', sourceId: 'sug-2026-11-19', items: [{ pointId: 'mia-wynwood', pointName: 'Wynwood' }], createdAt: 'x', updatedAt: 'x' },
   ];
 
-  it('dia com roteiro FULL não mostra os sugeridos guardados (FR-001, SC-005); Miami continua com eles', () => {
+  it('dia com roteiro FULL não mostra os sugeridos guardados (FR-001, SC-005); Miami também (feature 012)', () => {
     const orl = dayView(content, legacy, '2026-11-10');
     expect(orl.groups.map((g) => g.source)).toEqual(['full']);
+    // Feature 012: Miami ganhou o roteiro do casal; o sugerido guardado não aparece mais.
     const mia = dayView(content, legacy, '2026-11-19');
-    expect(mia.groups.some((g) => g.itineraryId === 'mia')).toBe(true);
+    expect(mia.groups.map((g) => g.source)).toEqual(['full']);
   });
 
   it('marcas antigas não alteram o progresso; só os passos orl1- contam', () => {

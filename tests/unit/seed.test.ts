@@ -47,3 +47,22 @@ describe('seedSuggested', () => {
     expect(after.seededIds).toEqual(['sug-2026-11-01', 'sug-2026-11-08', 'sug-2026-11-19']);
   });
 });
+
+describe('sugeridos que saíram do conteúdo (feature 012, Q2 = B)', () => {
+  it('somem do aparelho; os roteiros do casal e os seededIds ficam', () => {
+    const seeded = seedSuggested(content, emptyState());
+    const mine = { ...seeded.itineraries[0]!, id: 'meu', origin: 'user' as const, sourceId: null, name: 'Meu roteiro' };
+    const state = { ...seeded, itineraries: [...seeded.itineraries, mine] };
+    const without = { ...content, suggestedItineraries: content.suggestedItineraries.filter((s) => s.id !== 'sug-2026-11-08') };
+    const after = seedSuggested(without, state);
+    expect(after.itineraries.map((i) => i.sourceId ?? i.id)).toEqual(['sug-2026-11-01', 'meu']);
+    expect(after.seededIds).toEqual(state.seededIds);
+  });
+
+  it('sem sugerido nenhum no conteúdo: só o roteiro do casal fica', () => {
+    const seeded = seedSuggested(content, emptyState());
+    const mine = { ...seeded.itineraries[0]!, id: 'meu', origin: 'user' as const, sourceId: null };
+    const after = seedSuggested({ ...content, suggestedItineraries: [] }, { ...seeded, itineraries: [...seeded.itineraries, mine] });
+    expect(after.itineraries.map((i) => i.id)).toEqual(['meu']);
+  });
+});
