@@ -888,3 +888,10 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 /* Feature 009 — atração: descritivo completo em destaque. */
 .step-description { font-size: 1.05rem; line-height: 1.6; margin: 4px 0 12px; }
 .step-description p { margin: 0 0 10px; }
+
+/* Feature 010 — grupos por bairro: o nome fica preso abaixo do menu do dia enquanto o grupo está na tela. */
+.hood-group + .hood-group { margin-top: 16px; }
+.page .hood-group-head { position: sticky; top: calc(var(--head-h) + var(--menu-h) + var(--safe-top)); z-index: 20; display: flex; align-items: center; min-height: 44px; margin: 0 calc(-1 * max(16px, env(safe-area-inset-right))) 8px calc(-1 * max(16px, env(safe-area-inset-left))); padding: 0 max(16px, env(safe-area-inset-left)); background: var(--paper); border-bottom: 1px solid var(--border); font-size: 1rem; letter-spacing: 0.02em; }
+:root[data-contrast='high'] .page .hood-group-head { background: var(--bg); }
+.step-shops { margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
+.step-shops .btn { align-self: flex-start; }

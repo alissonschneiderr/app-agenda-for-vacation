@@ -21,7 +21,7 @@ roteiro).
 
 ## Phase 1: Setup
 
-- [ ] T001 Com autorização do usuário, criar a branch `010-day-sections-by-neighborhood` a partir de `009-mobile-first-navigation` e commitar as specs da 010. Sem autorização, seguir na branch atual e registrar a pendência no `report.md`.
+- [X] T001 Com autorização do usuário, criar a branch `010-day-sections-by-neighborhood` a partir de `009-mobile-first-navigation` e commitar as specs da 010. Sem autorização, seguir na branch atual e registrar a pendência no `report.md`.
 - [X] T002 Conferir a base: `npm run typecheck && npm test` verdes antes de mudar código.
 
 ---
@@ -233,7 +233,7 @@ roteiro).
   - os testes a 360 e 402 px, com o resultado.
 
   Marcar as tarefas no `tasks.md`.
-- [ ] T030 Com autorização do usuário, commitar a feature 010. Sem autorização, só informar que está pronta.
+- [X] T030 Com autorização do usuário, commitar a feature 010. Sem autorização, só informar que está pronta.
 
 ---
 

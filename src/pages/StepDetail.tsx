@@ -5,10 +5,12 @@ import { Icon } from '../components/Icon';
 import { LinkButtons } from '../components/LinkButtons';
 import { eventFields, MODE_ICON, MODE_LABEL, stepAddress, stepPhoto, stepPlace, stepTicket } from '../components/step-helpers';
 import { PlaceCard } from '../components/PlaceCard';
+import { DayPlaceCard } from '../components/DayPlaceCard';
 import { PageHeader } from '../components/PageHeader';
 import { PointPhoto } from '../components/PointPhoto';
 import type { LoadedContent } from '../content/load';
 import { markActivity, unmarkActivity } from '../domain/full-itinerary';
+import { shoppingSlice } from '../domain/notebook';
 import { howToGet } from '../domain/now';
 import { todayHoursLabel } from '../domain/opening-hours';
 import { formatDayLabel } from '../domain/trip';
@@ -47,6 +49,8 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
   const hasAddress = !!stepAddress(a);
 
   const practicalFacts = a.queue || a.access || a.land || a.optional;
+  // Feature 010: atração de compras com as lojas do bairro, da mesma fonte de "Brechós e Lojas".
+  const shops = shoppingSlice(day, a);
   return (
     <main class="page step-detail">
       <PageHeader back={`#/dia/${date}`} label={area?.name ?? a.categoryLabel} title={formatDayLabel(date)} titleAs="p" />
@@ -162,6 +166,22 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
           )}
         </div>
       </section>
+
+      {shops && (
+        <section class="step-shops" aria-label={`Lojas e brechós em ${shops.name}`}>
+          <h2 class="block-heading">
+            <Icon name="bag" size={18} /> Lojas e brechós em {shops.name}
+          </h2>
+          <div class="card-stack">
+            {shops.items.map((p) => (
+              <DayPlaceCard key={p.id} p={p} />
+            ))}
+          </div>
+          <a class="btn" href={`#/dia/${date}?secao=lojas`}>
+            Ver todas as lojas do dia
+          </a>
+        </section>
+      )}
 
       {a.trackable && (
         <div class="row step-actions">

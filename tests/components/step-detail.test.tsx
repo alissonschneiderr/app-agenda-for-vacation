@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { StepDetail } from '../../src/pages/StepDetail';
-import { setupCompanion } from './companion-helpers';
+import { Day } from '../../src/pages/Day';
+import { setupCompanion, setupReal } from './companion-helpers';
 
 afterEach(() => vi.useRealTimers());
 
@@ -50,5 +51,36 @@ describe('Detalhe do passo (features 006 e 009)', () => {
     expect(screen.getByRole('button', { name: /Desfazer "pulado"/ })).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: /Desfazer "pulado"/ }));
     expect(screen.getByRole('button', { name: /^Pular/ })).toBeTruthy();
+  });
+});
+
+describe('atração de compras (feature 010, US3)', () => {
+  const at = (local: string) => new Date(`${local}:00-05:00`).toISOString();
+
+  it('"Compras no SoHo": 5 lojas com o mesmo texto da seção do dia e o atalho para ela', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    const step = render(<StepDetail content={content} date="2026-11-01" stepKey="ny3-2026-11-01-05" />);
+    const shops = step.container.querySelector('section.step-shops')!;
+    expect(shops.querySelector('h2')!.textContent!.trim()).toBe('Lojas e brechós em SoHo');
+    const cards = [...shops.querySelectorAll('article')].map((a) => a.textContent);
+    expect(cards).toHaveLength(5);
+    expect(shops.querySelector('a.btn')!.getAttribute('href')).toBe('#/dia/2026-11-01?secao=lojas');
+    // título → (descritivo, se houver) → práticas → lojas
+    const order = ['h1', '.step-description', '.step-practical', 'section.step-shops']
+      .map((sel) => [...step.container.querySelectorAll('*')].indexOf(step.container.querySelector(sel)!))
+      .filter((i) => i >= 0);
+    expect(order).toHaveLength(3);
+    expect(order).toEqual([...order].sort((a, b) => a - b));
+    step.unmount();
+    const day = render(<Day content={content} date="2026-11-01" />);
+    const soho = [...day.container.querySelectorAll('#lojas .hood-group')].find((g) => g.querySelector('h3')!.textContent === 'SoHo')!;
+    expect([...soho.querySelectorAll('article')].map((a) => a.textContent)).toEqual(cards);
+  });
+
+  it('"Compras (tarde)" de 11/11, sem lojas no roteiro: sem o bloco', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    const { container } = render(<StepDetail content={content} date="2026-11-11" stepKey="orl1-2026-11-11-01" />);
+    expect(container.querySelector('h1')).toBeTruthy();
+    expect(container.querySelector('section.step-shops')).toBeNull();
   });
 });

@@ -1,6 +1,6 @@
-import { useRef } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { Chip } from '../components/Chip';
-import { DayPlaceCard } from '../components/DayPlaceCard';
+import { HoodGroups } from '../components/HoodGroups';
 import { NeighborhoodCard } from '../components/NeighborhoodCard';
 import { SectionMenu } from '../components/SectionMenu';
 import { Cover } from '../components/Cover';
@@ -17,13 +17,14 @@ import { useMarkWithUndo } from '../components/UndoToast';
 import type { LoadedContent } from '../content/load';
 import type { CityId, DayArea } from '../content/types';
 import { toggleDone } from '../domain/full-itinerary';
-import { dayCard, dayPlaces, daySections, neighborhoods, type DaySectionId } from '../domain/notebook';
+import { dayCard, dayMoves, dayPlaceGroups, daySections, dayTips, neighborhoods, type DaySectionId } from '../domain/notebook';
 import { allSteps, modeOf, nowIndex, tripNow, tripPhase } from '../domain/now';
 import { cityForDate, formatDayLabel, tripRange } from '../domain/trip';
 import { adjacentDay, type DayActivityView, type TripDayView } from '../domain/trip-view';
 import { useClock } from '../lib/clock';
 import { useUserState } from '../storage/user-store';
 import { driverHref, stepHref } from '../lib/links';
+import { useQuery } from '../lib/router';
 
 const SWIPE_PX = 60;
 
@@ -50,27 +51,17 @@ function AreaLine({ area, day }: { area: DayArea; day: TripDayView }) {
 
 /** "Como circular hoje": saídas e deslocamentos do roteiro, sem texto novo. */
 function Moves({ day }: { day: TripDayView }) {
-  const steps = allSteps(day).filter((a) => a.category === 'transit' && a.how && !/^volta/i.test(a.title));
-  const transfers = day.areas.filter((a) => a.transfer).map((a) => a.transfer!.replace(/^\S+\s+/u, ''));
-  if (!steps.length && !transfers.length && !day.mapUrl) return null;
+  const moves = dayMoves(day);
+  if (!moves.length) return null;
   return (
     <div class="moves">
       <ul class="move-list">
-        {steps.map((a) => (
-          <li key={a.key}>
-            <Icon name={MODE_ICON[modeOf(`${a.title} ${a.how}`)]} size={18} />
+        {moves.map((m) => (
+          <li key={m.key}>
+            <Icon name={MODE_ICON[modeOf(m.text)]} size={18} />
             <span>
-              <strong>
-                {a.timeLabel ?? a.start} · {a.title}:
-              </strong>{' '}
-              {a.how}
+              {m.label && <strong>{m.label}:</strong>} {m.text}
             </span>
-          </li>
-        ))}
-        {transfers.map((t) => (
-          <li key={t}>
-            <Icon name={MODE_ICON[modeOf(t)]} size={18} />
-            <span>{t}</span>
           </li>
         ))}
       </ul>
@@ -193,6 +184,11 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
   };
   const sections = daySections(day, content);
   const has = (id: DaySectionId) => sections.some((x) => x.id === id);
+  // Feature 010: "#/dia/<data>?secao=lojas" abre o dia já na seção (atalho da atração de compras).
+  const secao = useQuery().get('secao');
+  useEffect(() => {
+    if (secao && sections.some((x) => x.id === secao)) document.getElementById(secao)?.scrollIntoView({ block: 'start' });
+  }, [date, secao]);
   const toggle = (a: DayActivityView) => {
     if (a.mark?.state === 'done') update((s) => toggleDone(s, a.key));
     else mark(a.key, a.title, 'done');
@@ -263,22 +259,21 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
       {has('comer') && (
         <section id="comer" class="day-section" aria-label="Restaurantes e Cafés">
           <SectionTitle icon="food" title="Restaurantes e Cafés" />
-          <div class="card-stack">
-            {dayPlaces(day, 'food').map((p) => (
-              <DayPlaceCard key={p.id} p={p} />
-            ))}
-          </div>
+          <HoodGroups groups={dayPlaceGroups(day, 'food')} section="comer" />
         </section>
       )}
 
       {has('lojas') && (
         <section id="lojas" class="day-section" aria-label="Brechós e Lojas">
           <SectionTitle icon="bag" title="Brechós e Lojas" />
-          <div class="card-stack">
-            {dayPlaces(day, 'shop').map((p) => (
-              <DayPlaceCard key={p.id} p={p} />
-            ))}
-          </div>
+          <HoodGroups groups={dayPlaceGroups(day, 'shop')} section="lojas" />
+        </section>
+      )}
+
+      {has('curiosidades') && (
+        <section id="curiosidades" class="day-section" aria-label="Curiosidades">
+          <SectionTitle icon="film" title="Curiosidades" />
+          <HoodGroups groups={dayPlaceGroups(day, 'screen')} section="curiosidades" />
         </section>
       )}
 
@@ -306,7 +301,7 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
       {has('dicas') && (
         <section id="dicas" class="day-section" aria-label="Dicas">
           <SectionTitle icon="lightbulb" title="Dicas" />
-          <DayAlerts alerts={day.fullDay?.alerts ?? []} mode="list" open />
+          <DayAlerts alerts={dayTips(day)} mode="list" open />
         </section>
       )}
       {toast}

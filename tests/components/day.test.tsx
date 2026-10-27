@@ -21,7 +21,7 @@ describe('Dia (features 008 e 009)', () => {
     expect(cover.textContent).toContain('dom, 01/11');
     expect(cover.textContent).toContain('Dia 2');
     const menu = screen.getByRole('navigation', { name: 'Seções do dia' });
-    expect(within(menu).getAllByRole('link').map((a) => a.textContent)).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Bairros', 'Transporte', 'Dicas']);
+    expect(within(menu).getAllByRole('link').map((a) => a.textContent)).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Curiosidades', 'Bairros', 'Transporte', 'Dicas']);
     expect(screen.queryByRole('region', { name: 'Sobre este dia' })).toBeNull();
     expect(container.querySelector('#dicas')!.textContent).toContain('Maratona');
   });
@@ -141,5 +141,48 @@ describe('seções do dia (feature 009, US2)', () => {
     expect(card.classList.contains('click-card')).toBe(true);
     expect([...card.querySelectorAll('a.card-link')]).toHaveLength(1);
     expect(card.querySelector('.stop-thumb a')).toBeNull();
+  });
+});
+
+describe('grupos por bairro no dia (feature 010, US1)', () => {
+  const heads = (root: Element, id: string) => [...root.querySelectorAll(`#${id} h3.hood-group-head`)].map((h) => h.textContent);
+
+  it('01/11: comer em 6 grupos na ordem; lojas em 4; curiosidades com 5; cabeçalho só com o nome', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    const { container } = render(<Day content={content} date="2026-11-01" />);
+    expect(heads(container, 'comer')).toEqual(['SoHo', 'Nolita', 'Chinatown', 'Little Italy', 'Lower East Side', 'East Village']);
+    expect(container.querySelectorAll('#comer article')).toHaveLength(24);
+    expect(heads(container, 'lojas')).toEqual(['SoHo', 'Nolita', 'Lower East Side', 'East Village']);
+    expect(container.querySelectorAll('#lojas article')).toHaveLength(17);
+    expect(container.querySelectorAll('#curiosidades article')).toHaveLength(5);
+    for (const h of container.querySelectorAll('h3.hood-group-head')) {
+      expect(h.querySelector('img, p')).toBeNull();
+      expect(h.textContent).not.toMatch(/\d/);
+    }
+    for (const c of container.querySelectorAll('#comer article, #lojas article, #curiosidades article')) expect(c.querySelectorAll('a.card-link')).toHaveLength(1);
+  });
+
+  it('05/11: sem curiosidades, nem a seção nem o item do menu', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    const { container } = render(<Day content={content} date="2026-11-05" />);
+    expect(container.querySelector('#curiosidades')).toBeNull();
+    expect(screen.queryByRole('link', { name: 'Curiosidades' })).toBeNull();
+  });
+});
+
+describe('Transporte enxuto (feature 010, US2)', () => {
+  it('01/11 só com o metrô 6, sem trechos a pé; 31/10 sem a seção; 07/11 com os blocos', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    const a = render(<Day content={content} date="2026-11-01" />);
+    const t = a.container.querySelector('#transporte')!;
+    expect(t.querySelectorAll('.move-list li')).toHaveLength(1);
+    expect(t.textContent).toContain('metrô 6');
+    expect(t.textContent).not.toContain('a pé pela Prince Street');
+    a.unmount();
+    const b = render(<Day content={content} date="2026-10-31" />);
+    expect(b.container.querySelector('#transporte')).toBeNull();
+    b.unmount();
+    render(<Day content={content} date="2026-11-07" />);
+    expect(screen.getByRole('heading', { name: '1. Antes de sair' })).toBeTruthy();
   });
 });

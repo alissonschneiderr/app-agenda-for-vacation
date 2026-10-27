@@ -14,8 +14,7 @@ export function DayPlaceCard({ p }: { p: DayPlace }) {
       <div class="place-row-body">
         {(p.level || p.price) && (
           <p class="eyebrow place-row-level">
-            {p.level && `${p.level} ${FOOD_LEVEL[p.level] ?? ''}`}
-            {p.price && ` · ${p.price}`}
+            {[p.level && `${p.level} ${FOOD_LEVEL[p.level] ?? ''}`.trim(), p.price].filter(Boolean).join(' · ')}
           </p>
         )}
         <h3 class="place-row-name">

@@ -15,6 +15,7 @@ const PAGES = [
   '/?agora=2026-11-01T13:30#/perto/2026-11-01/soho',
   '/?agora=2026-11-01T09:00#/dia/2026-11-01/ny3-2026-11-01-04',
   '/?agora=2026-11-01T13:30#/exibicao',
+  '/?agora=2026-11-01T09:00#/dia/2026-11-01/ny3-2026-11-01-05',
 ];
 
 /** Contraste de cada texto: sobre foto, contra o pixel mais claro (p90) atrás dele com o véu; senão, contra o fundo sólido. */
@@ -97,7 +98,7 @@ async function contrasts(page: Page, selector: string): Promise<{ text: string; 
   }, selector);
 }
 
-const ESSENTIAL = '.cover h1, .cover h2, .cover h3, .page-head-title, .next-time, .next-title a, .stop-card .tl-time, .stop-card .tl-name, .tl-name, .day-card h3, .section-head h2, .place-row-name a, .step-title';
+const ESSENTIAL = '.cover h1, .cover h2, .cover h3, .page-head-title, .next-time, .next-title a, .stop-card .tl-time, .stop-card .tl-name, .tl-name, .day-card h3, .section-head h2, .place-row-name a, .step-title, .hood-group-head, .step-shops h2';
 const OTHER = '.cover .eyebrow, .cover p, .cover .chip2, .nb-meta, .tl-sub, .nb-link, .section-sub, .chip2-accent, .chip2-type, .section-menu a, .step-description p';
 
 for (const scheme of ['light', 'dark'] as const) {

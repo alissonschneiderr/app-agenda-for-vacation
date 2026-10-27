@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { assembleContent } from '../../scripts/build-content';
 import { indexContent } from '../../src/content/load';
 import { seedSuggested } from '../../src/domain/itineraries';
-import { cityCard, dataReview, dayCard, dayPlaces, daySections, neighborhoods, peopleOf, stopThumb, tripCover } from '../../src/domain/notebook';
+import { cityCard, dataReview, dayCard, dayMoves, dayPlaceGroups, dayPlaces, daySections, dayTips, isGenericTip, isRelevantMove, sectionReview, shoppingSlice, neighborhoods, peopleOf, stopThumb, tripCover } from '../../src/domain/notebook';
 import { dayView as view009, destinationDates } from '../../src/domain/trip-view';
 import { emptyState } from '../../src/storage/user-store';
 
@@ -77,7 +77,7 @@ describe('seções do dia (feature 009)', () => {
   const ids = (d: string) => daySections(view009(content, state, d), content).map((s) => s.id);
 
   it('01/11: as 6 seções, na ordem; 24 restaurantes e cafés e 17 lojas', () => {
-    expect(ids('2026-11-01')).toEqual(['paradas', 'comer', 'lojas', 'bairros', 'transporte', 'dicas']);
+    expect(ids('2026-11-01')).toEqual(['paradas', 'comer', 'lojas', 'curiosidades', 'bairros', 'transporte', 'dicas']);
     const v = view009(content, state, '2026-11-01');
     expect(dayPlaces(v, 'food')).toHaveLength(24);
     expect(dayPlaces(v, 'shop')).toHaveLength(17);
@@ -87,7 +87,7 @@ describe('seções do dia (feature 009)', () => {
   });
 
   it('09/11 sem lojas; 19/11 só paradas; 07/11 só transporte; 21/11 sem seções vazias', () => {
-    expect(ids('2026-11-09')).toEqual(['paradas', 'comer', 'bairros', 'transporte', 'dicas']);
+    expect(ids('2026-11-09')).toEqual(['paradas', 'comer', 'bairros', 'dicas']);
     expect(ids('2026-11-19')).toEqual(['paradas']);
     expect(ids('2026-11-07')).toEqual(['transporte']);
     expect(ids('2026-11-21')).toEqual([]);
@@ -106,3 +106,167 @@ describe('seções do dia (feature 009)', () => {
     expect(r.filter((x) => x.date < '2026-11-07')).toEqual([]);
   });
 });
+
+// ---------- feature 010: grupos por bairro ----------
+
+const allDates = () => destinationDates(content, 'nova-york').concat(destinationDates(content, 'orlando'), destinationDates(content, 'miami'));
+
+describe('grupos por bairro (feature 010, R1/R2)', () => {
+  const v01 = view009(content, state, '2026-11-01');
+
+  it('01/11: comer em 6 grupos na ordem do roteiro; lojas em 4; curiosidades 5 em 4', () => {
+    const food = dayPlaceGroups(v01, 'food');
+    expect(food.map((g) => g.name)).toEqual(['SoHo', 'Nolita', 'Chinatown', 'Little Italy', 'Lower East Side', 'East Village']);
+    expect(food.map((g) => g.items.length)).toEqual([2, 4, 6, 3, 4, 5]);
+    const shop = dayPlaceGroups(v01, 'shop');
+    expect(shop.map((g) => g.name)).toEqual(['SoHo', 'Nolita', 'Lower East Side', 'East Village']);
+    expect(shop.flatMap((g) => g.items)).toHaveLength(17);
+    const screen = dayPlaceGroups(v01, 'screen');
+    expect(screen).toHaveLength(4);
+    expect(screen.flatMap((g) => g.items)).toHaveLength(5);
+  });
+
+  it('06/11: cabeçalho = nome do grupo do roteiro; bloco da noite não é bairro (Q2 = A)', () => {
+    const g = dayPlaceGroups(view009(content, state, '2026-11-06'), 'food');
+    expect(g.map((x) => x.name)).toEqual(['Empire State e arredores (Midtown South)', 'Noite: jantar no Harlem']);
+    expect(g.map((x) => x.isNeighborhood)).toEqual([true, false]);
+  });
+
+  it('nenhum grupo repetido, vazio ou "Outros" em nenhum dia; dayPlaces = grupos achatados', () => {
+    for (const d of allDates()) {
+      const v = view009(content, state, d);
+      for (const k of ['food', 'shop', 'screen'] as const) {
+        const gs = dayPlaceGroups(v, k);
+        expect(new Set(gs.map((g) => g.name)).size, `${d} ${k}`).toBe(gs.length);
+        expect(gs.every((g) => g.items.length > 0 && g.areaId !== null), `${d} ${k}`).toBe(true);
+        expect(dayPlaces(v, k)).toEqual(gs.flatMap((g) => g.items));
+      }
+    }
+  });
+
+  it('lugar fora de qualquer grupo vai para "Outros", no fim; lugar em dois grupos fica no primeiro', () => {
+    const v = structuredClone(v01);
+    const soho = v.areas.find((a) => a.name === 'SoHo')!;
+    const nolita = v.areas.find((a) => a.name === 'Nolita')!;
+    const sohoFood = v.places.find((p) => p.kind === 'food' && soho.placeIds.includes(p.id))!;
+    nolita.placeIds = [sohoFood.id, ...nolita.placeIds];
+    v.places.push({ ...sohoFood, id: 'food-solto', name: 'Lugar solto' });
+    const g = dayPlaceGroups(v, 'food');
+    expect(g.at(-1)).toMatchObject({ areaId: null, name: 'Outros', isNeighborhood: false });
+    expect(g.at(-1)!.items.map((i) => i.name)).toEqual(['Lugar solto']);
+    expect(g.find((x) => x.name === 'Nolita')!.items.map((i) => i.name)).not.toContain(sohoFood.name);
+  });
+});
+
+describe('Transporte só com o que não é a pé (feature 010, R3, Q1 = A)', () => {
+  it('isRelevantMove: metrô, ferry, carro, monotrilho, táxi sim; horário de parque e a pé não', () => {
+    for (const t of [
+      'metrô 6 na estação 51 St até Bleecker St (~15 min)',
+      'NYC Ferry, rota East River, do píer Dumbo/Fulton Ferry até North Williamsburg',
+      '~1h de carro até o Kennedy Space Center.',
+      'do estacionamento até a entrada é preciso pegar monotrilho ou barca (~20 a 30 min)',
+      'táxi (~15 min) ou 10 minutos a pé até Times Square e metrô 7',
+    ])
+      expect(isRelevantMove(t), t).toBe(true);
+    for (const t of [
+      'o parque abre às 9h (hóspedes Disney às 8h30) e fecha às 21h.',
+      '5 minutos a pé pela Prince Street, para o leste.',
+      'até o MoMA, na rua 53 entre a 5th e a 6th Avenue (~15 min).',
+      'Contem com 45 a 90 minutos entre imigração e malas',
+      '15 minutos a pé pela Avenue A, para o norte (ou táxi de 5 minutos).',
+    ])
+      expect(isRelevantMove(t), t).toBe(false);
+  });
+
+  it('dayMoves: 01/11 só o metrô 6; 04/11 metrô e ferry; 13/11 carro; 31/10 e 09/11 nada', () => {
+    const n = (d: string) => dayMoves(view009(content, state, d));
+    expect(n('2026-11-01').map((m) => m.text)).toEqual([expect.stringContaining('metrô 6')]);
+    // 02/11: a caminhada por Tribeca (título "a pé") cita o metrô 1 só como plano B — fica fora.
+    expect(n('2026-11-02').map((m) => m.text)).toEqual([expect.stringContaining('metrô E')]);
+    expect(n('2026-11-04')).toHaveLength(2);
+    expect(n('2026-11-04')[1]!.text).toContain('NYC Ferry');
+    expect(n('2026-11-13')).toHaveLength(2);
+    expect(n('2026-10-31')).toEqual([]);
+    expect(n('2026-11-09')).toEqual([]);
+  });
+
+  it('seção Transporte: sai em 31/10 e nos dias de parque só com horário; fica nos outros', () => {
+    const has = (d: string) => daySections(view009(content, state, d), content).some((s) => s.id === 'transporte');
+    for (const d of ['2026-10-31', '2026-11-09', '2026-11-10', '2026-11-12', '2026-11-14', '2026-11-15', '2026-11-17']) expect(has(d), d).toBe(false);
+    for (const d of ['2026-11-01', '2026-11-02', '2026-11-03', '2026-11-04', '2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08', '2026-11-13', '2026-11-18']) expect(has(d), d).toBe(true);
+  });
+});
+
+describe('atração de compras com as lojas do bairro (feature 010, R7)', () => {
+  const act = (d: string, title: string) => {
+    const v = view009(content, state, d);
+    return { v, a: v.groups.flatMap((g) => g.activities).find((x) => x.title === title)! };
+  };
+
+  it('SoHo 5, Nolita 4, Williamsburg 5 — os mesmos itens da seção do dia', () => {
+    for (const [d, t, name, n] of [
+      ['2026-11-01', 'Compras no SoHo', 'SoHo', 5],
+      ['2026-11-01', 'Compras na Elizabeth e na Mott Street', 'Nolita', 4],
+      ['2026-11-04', 'Compras na Bedford Avenue', 'Williamsburg', 5],
+    ] as const) {
+      const { v, a } = act(d, t);
+      const slice = shoppingSlice(v, a)!;
+      expect(slice.name, t).toBe(name);
+      expect(slice.items, t).toHaveLength(n);
+      expect(slice).toEqual(dayPlaceGroups(v, 'shop').find((g) => g.areaId === a.areaId));
+    }
+  });
+
+  it('sem lojas no roteiro (outlets de Orlando, Lincoln Road): nada', () => {
+    const o = act('2026-11-11', 'Compras (tarde)');
+    expect(shoppingSlice(o.v, o.a)).toBeUndefined();
+    const m = act('2026-11-19', 'Lincoln Road');
+    expect(shoppingSlice(m.v, m.a)).toBeUndefined();
+  });
+});
+
+describe('Dicas só com o que muda o planejamento (feature 010, R4)', () => {
+  it('as 10 dicas reais ficam; genéricas saem; com hora, fica', () => {
+    const real = raw.fullItineraries!.flatMap((f) => f.days.flatMap((d) => d.alerts ?? []));
+    expect(real).toHaveLength(10);
+    for (const a of real) expect(isGenericTip(a.html), a.html).toBe(false);
+    for (const h of ['<p>Usem sapatos confortáveis e aproveitem o passeio.</p>', '<p>Caminhem a pé e aproveitem.</p>', '<p>Levem água.</p>']) expect(isGenericTip(h), h).toBe(true);
+    expect(isGenericTip('<p>Levem água: o parque não vende garrafa depois das 18h.</p>')).toBe(false);
+  });
+
+  it('dia só com dicas genéricas: dayTips vazio e sem a seção Dicas', () => {
+    const v = structuredClone(view009(content, state, '2026-11-01'));
+    v.fullDay!.alerts = [{ id: 'g1', html: '<p>Usem sapatos confortáveis.</p>' }];
+    expect(dayTips(v)).toEqual([]);
+    expect(daySections(v, content).map((s) => s.id)).not.toContain('dicas');
+    expect(dayTips(view009(content, state, '2026-11-01'))).toHaveLength(1);
+  });
+});
+
+describe('relatório da feature 010 (R6)', () => {
+  const r = sectionReview(content, state);
+  const by = (d: string) => r.find((x) => x.date === d);
+
+  it('Transporte sai em 31/10, nos dias de parque só com horário e nos dias de outlet só com o mapa', () => {
+    expect(r.filter((x) => x.removed.includes('transporte')).map((x) => x.date)).toEqual([
+      '2026-10-31', '2026-11-09', '2026-11-10', '2026-11-11', '2026-11-12', '2026-11-14', '2026-11-15', '2026-11-16', '2026-11-17',
+    ]);
+    expect(r.some((x) => x.removed.includes('dicas'))).toBe(false);
+  });
+
+  it('nenhuma dica cortada; trechos descartados com o texto do roteiro', () => {
+    expect(r.flatMap((x) => x.cutTips)).toEqual([]);
+    expect(by('2026-11-01')!.droppedMoves).toContain('Deslocamento para Nolita: 5 minutos a pé pela Prince Street, para o leste.');
+    expect(by('2026-11-09')!.droppedMoves[0]).toMatch(/^chegada ao estacionamento: o parque abre às 9h/);
+  });
+
+  it('cabeçalhos que não são bairros: os blocos da noite de 02/11, 05/11 e 06/11; nada incerto', () => {
+    expect(r.flatMap((x) => x.nonNeighborhoodGroups.map((g) => `${x.date} ${g.name}`))).toEqual([
+      '2026-11-02 Noite: Knicks x Nets no Madison Square Garden (19h30)',
+      '2026-11-05 Noite: MJ The Musical (19h00, Neil Simon Theatre)',
+      '2026-11-06 Noite: jantar no Harlem',
+    ]);
+    expect(r.flatMap((x) => x.uncertain)).toEqual([]);
+  });
+});
+

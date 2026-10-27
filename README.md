@@ -56,8 +56,8 @@ computador, centralizada com até 520 px), sem barra inferior, cabeçalho fixo c
 |---|---|
 | **Início** (`#/`) | Só os 3 destinos, cada um um cartão grande com foto |
 | **Cidade** (`#/cidade/<cidade>`) | Capa da cidade e a lista de dias em cartões |
-| **Dia** (`#/dia/<data>`) | Capa do dia e um menu de seções preso no topo — **Paradas**, **Restaurantes e Cafés**, **Brechós e Lojas**, **Bairros**, **Transporte** e **Dicas** (avisos do dia); cada seção só aparece se o roteiro tiver conteúdo para aquele dia. Deslize para trocar de dia |
-| **Atração** (`#/dia/<data>/<passo>`) | Título, o descritivo completo (sem "Ler mais"), as informações práticas (endereço, ingresso, horário, como chegar, mapa, Motorista) e as ações Feito/Pular |
+| **Dia** (`#/dia/<data>`) | Capa do dia e um menu de seções preso no topo — **Paradas**, **Restaurantes e Cafés**, **Brechós e Lojas**, **Curiosidades**, **Bairros**, **Transporte** e **Dicas**; cada seção só aparece se o roteiro tiver conteúdo para aquele dia. Restaurantes, lojas e curiosidades vêm **agrupados pelos bairros do roteiro**, na ordem do dia, com o nome do bairro preso no topo ao rolar. **Transporte** só traz trechos de metrô, ferry, táxi ou carro (e os blocos dos dias de troca de cidade); **Dicas** só avisos que mudam o planejamento. Deslize para trocar de dia |
+| **Atração** (`#/dia/<data>/<passo>`) | Título, o descritivo completo (sem "Ler mais"), as informações práticas (endereço, ingresso, horário, como chegar, mapa, Motorista) e as ações Feito/Pular. Nas atrações de compras, as lojas e brechós do bairro (os mesmos de "Brechós e Lojas") e o atalho para a seção do dia |
 | **Bairro** (`#/perto/<data>/<região>`) | A região com foto, onde comer (☕/🏆/🍰), lojas e locações |
 | **Exibição** (`#/exibicao`) | Alto contraste (modo sol) |
 

@@ -118,4 +118,4 @@ Capturas em [`screens/`](screens/): 01/11 rolado em "Restaurantes e Cafés", 06/
 
 ## Pendência
 
-- T001 e T030 (branch `010-day-sections-by-neighborhood` e commits) aguardam autorização. O trabalho está na branch `009-mobile-first-navigation`, sem commit.
+- Nenhuma: commitado na branch `010-day-sections-by-neighborhood` com autorização do usuário.
