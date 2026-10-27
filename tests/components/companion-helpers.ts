@@ -104,10 +104,16 @@ export function setupCompanion(isoNow = '2026-11-01T18:30:00Z') {
   return { ...ctx, content: indexContent(c) };
 }
 
-/** Relógio fixo + o conteúdo real do app (feature 007: roteiro de Orlando lido do doc). */
+let realContent: ReturnType<typeof assembleContent> | undefined;
+
+/**
+ * Relógio fixo + o conteúdo real do app (feature 007: roteiro de Orlando lido do doc). O conteúdo é
+ * montado uma vez por arquivo de teste e cada teste recebe uma cópia (isolamento sem refazer o build).
+ */
 export function setupReal(isoNow: string) {
   const ctx = setup(isoNow);
   localStorage.clear();
   resetPrefsCache();
-  return { ...ctx, content: indexContent(assembleContent()) };
+  realContent ??= assembleContent();
+  return { ...ctx, content: indexContent(structuredClone(realContent)) };
 }

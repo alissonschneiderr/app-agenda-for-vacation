@@ -3,7 +3,7 @@ import { modeOf } from '../domain/now';
 import type { DayActivityView } from '../domain/trip-view';
 import { DoneToggle } from './DoneToggle';
 import { Icon } from './Icon';
-import { MODE_ICON, stepTicket } from './NextStepCard';
+import { MODE_ICON, stepTicket } from './step-helpers';
 
 /** Horário na coluna estreita: início em destaque; o fim ("às 12h30") embaixo, menor. */
 export function TimeCell({ label }: { label: string }) {

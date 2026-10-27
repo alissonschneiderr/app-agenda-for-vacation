@@ -129,8 +129,9 @@ export function readFullItineraries(): FullItinerary[] {
           arrivalDay: meta.arrivalDay,
           departure: meta.departure,
           stepsUseAreaPoint: meta.stepsUseAreaPoint,
+          tipsCityId: meta.cityId,
         });
-        docErrors.push(...errors, ...checkFidelity(markdown, doc, meta.commitments));
+        docErrors.push(...errors, ...checkFidelity(markdown, doc, meta.commitments, meta.checklistOverrides));
         attachDocPhotos(dir, doc.days, pointLinks);
         return {
           ...meta,
@@ -143,6 +144,7 @@ export function readFullItineraries(): FullItinerary[] {
           dayNotes: doc.dayNotes,
           departures: doc.departures,
           ...(doc.arrivals ? { arrivals: doc.arrivals } : {}),
+          ...(doc.tips ? { tips: doc.tips } : {}),
         };
       }
       const days = readdirSync(dir)
@@ -190,7 +192,7 @@ function main() {
     const dates = (r?: Record<string, unknown[]>) => Object.entries(r ?? {}).map(([d, items]) => `${d} (${items.length})`).join(', ') || 'nenhuma';
     console.log(
       `  chegadas: ${dates(Object.fromEntries(Object.entries(it.arrivals ?? {}).map(([d, a]) => [d, a.items])))}; ` +
-        `partidas: ${dates(it.departures)}; reservas: ${it.checklist.length}`,
+        `partidas: ${dates(it.departures)}; reservas: ${it.checklist.length}; dicas: ${(it.tips ?? []).map((t) => `${t.title} (${t.category})`).join(', ') || 'nenhuma'}`,
     );
   }
 }

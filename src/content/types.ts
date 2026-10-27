@@ -15,6 +15,8 @@ export interface City {
   center: LatLng;
   /** Ponto do guia cuja foto é o destaque do destino (feature 003). */
   heroPointId: string;
+  /** País, para as capas do caderno de viagem (feature 008). */
+  country: string;
 }
 
 export interface TripLeg {
@@ -316,4 +318,20 @@ export interface FullItinerary {
   departures?: Record<DateStr, DepartureItem[]>;
   /** Chegada num dia de locomoção (feature 007): itens marcáveis e o resto da seção em HTML. */
   arrivals?: Record<DateStr, { items: DepartureItem[]; html?: string }>;
+  /** Dicas práticas extraídas do doc, sem reescrita (feature 008, contracts/tips-content.md). */
+  tips?: Tip[];
+}
+
+export type TipCategory = 'clima' | 'dinheiro' | 'reservas' | 'transporte' | 'apps' | 'filas' | 'outros';
+
+/** Dica prática do doc do casal (feature 008): texto sem reescrita, com a seção de origem. */
+export interface Tip {
+  /** "tip:<cidade>:<n>" */
+  id: string;
+  cityId: CityId;
+  category: TipCategory;
+  title: string;
+  html: string;
+  /** Título da seção "##" de origem. */
+  source: string;
 }

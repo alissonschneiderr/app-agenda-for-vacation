@@ -5,20 +5,30 @@ import { setupCompanion } from './companion-helpers';
 
 afterEach(() => vi.useRealTimers());
 
-describe('Detalhe do passo (feature 006, US4)', () => {
-  it('ordem: foto, horário e nome, aviso, como chegar, ações; contexto recolhido em "Ler mais"', () => {
+describe('Detalhe do passo (features 006 e 009)', () => {
+  it('ordem (feature 009): foto, título, descritivo completo sem "Ler mais", informações práticas, ações', () => {
     const { content } = setupCompanion('2026-11-01T14:30:00Z');
     const { container } = render(<StepDetail content={content} date="2026-11-01" stepKey="ny3-2026-11-01-02" />);
-    const order = ['.step-photo', '.step-head', '[aria-label="Como chegar"]', '.step-actions', '.read-more'].map((sel) => {
+    expect(container.querySelector('details.read-more')).toBeNull();
+    expect(screen.queryByText('Ler mais')).toBeNull();
+    const order = ['.step-photo', 'h1', '.step-description', '.step-practical', '.step-actions'].map((sel) => {
       const el = container.querySelector(sel);
       expect(el, sel).not.toBeNull();
       return [...container.querySelectorAll('*')].indexOf(el!);
     });
     expect(order).toEqual([...order].sort((a, b) => a - b));
     expect(screen.getByRole('heading', { level: 1, name: 'Greene Street' })).toBeTruthy();
-    expect(screen.getByText('ingresso com horário — comprem antes')).toBeTruthy();
-    expect(container.querySelector('.read-more')!.hasAttribute('open')).toBe(false);
-    expect(container.querySelector('.read-more')!.textContent).toContain('Reparem nas colunas');
+    expect(container.querySelectorAll('h1')).toHaveLength(1);
+    expect(container.querySelector('.step-description')!.textContent).toContain('Reparem nas colunas');
+    expect(container.querySelector('.step-practical')!.textContent).toContain('ingresso com horário — comprem antes');
+    expect(container.querySelector('.step-practical')!.textContent).toMatch(/Abrir no mapa/);
+  });
+
+  it('atração sem texto no roteiro não mostra a seção do descritivo vazia', () => {
+    const { content } = setupCompanion('2026-11-01T14:30:00Z');
+    const { container } = render(<StepDetail content={content} date="2026-11-01" stepKey="ny3-2026-11-01-06" />);
+    const desc = container.querySelector('.step-description');
+    if (desc) expect(desc.textContent!.trim().length).toBeGreaterThan(0);
   });
 
   it('foto do guia ligada ao lugar, com crédito; sem foto, ícone e "Sem foto offline"', () => {

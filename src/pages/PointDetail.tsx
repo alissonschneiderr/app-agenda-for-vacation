@@ -32,7 +32,7 @@ export function PointDetail({ content, pointId }: { content: LoadedContent; poin
 
   return (
     <main class="page">
-      <a href={href(`/cidade/${point.cityId}`)} class="small">
+      <a href={href(`/guia/${point.cityId}`)} class="small">
         ← Guia de {content.cityName(point.cityId)}
       </a>
       <h1>{point.name}</h1>

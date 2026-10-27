@@ -8,7 +8,8 @@
         "lat": 40.7549,
         "lng": -73.984
       },
-      "heroPointId": "ny-central-park"
+      "heroPointId": "ny-central-park",
+      "country": "Estados Unidos"
     },
     {
       "id": "orlando",
@@ -18,7 +19,8 @@
         "lat": 28.4177,
         "lng": -81.4846
       },
-      "heroPointId": "orl-magic-kingdom"
+      "heroPointId": "orl-magic-kingdom",
+      "country": "Estados Unidos"
     },
     {
       "id": "miami",
@@ -28,7 +30,8 @@
         "lat": 25.7907,
         "lng": -80.15
       },
-      "heroPointId": "mia-south-beach"
+      "heroPointId": "mia-south-beach",
+      "country": "Estados Unidos"
     }
   ],
   "trip": [

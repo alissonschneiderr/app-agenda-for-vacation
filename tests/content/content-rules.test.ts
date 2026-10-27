@@ -130,3 +130,11 @@ describe('tipos de dia (feature 006)', () => {
     expect(validateContent(c, { strict: false }).join('\n')).toMatch(/dayKinds/);
   });
 });
+
+describe('país das cidades (feature 008)', () => {
+  it('toda cidade precisa de country', () => {
+    const c = fixtureContent();
+    delete (c.cities[1] as { country?: string }).country;
+    expect(validateContent(c, { strict: false }).join('\n')).toMatch(/cities\.orlando\.country/);
+  });
+});

@@ -1,5 +1,5 @@
 import { useEffect } from 'preact/hooks';
-import { mapsQuery, stepAddress } from '../components/NextStepCard';
+import { mapsQuery, stepAddress } from '../components/step-helpers';
 import type { LoadedContent } from '../content/load';
 import { cityForDate } from '../domain/trip';
 import { dayView, findActivity } from '../domain/trip-view';

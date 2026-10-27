@@ -1,3 +1,4 @@
+import { PageHeader } from '../components/PageHeader';
 import { useState } from 'preact/hooks';
 import { dayCityLabel, dayGroupLabel } from '../components/DayLabel';
 import type { LoadedContent } from '../content/load';
@@ -72,8 +73,8 @@ export function Itineraries({ content }: { content: LoadedContent }) {
 
   return (
     <main class="page">
-      <div class="row" style={{ justifyContent: 'space-between' }}>
-        <h1>Roteiros</h1>
+      <PageHeader back="#/" label="Guia de pontos turísticos" title="Roteiros" />
+      <div class="row" style={{ justifyContent: 'flex-end' }}>
         {!creating && (
           <button type="button" class="btn btn-primary" onClick={() => setCreating(true)}>
             + Novo roteiro

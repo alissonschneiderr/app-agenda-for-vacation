@@ -1,3 +1,4 @@
+import { PageHeader } from '../components/PageHeader';
 import { useMemo, useState } from 'preact/hooks';
 import { CategoryFilter, CityPicker } from '../components/Filters';
 import { Icon } from '../components/Icon';
@@ -10,7 +11,7 @@ import { filterPoints } from '../domain/search';
 import { cityForDate, dayInfo, todayInTripZone } from '../domain/trip';
 import { href, navigate } from '../lib/router';
 
-export function Home({ content, cityId }: { content: LoadedContent; cityId?: string }) {
+export function Guide({ content, cityId }: { content: LoadedContent; cityId?: string }) {
   const now = new Date();
   const today = todayInTripZone(now);
   const todayCity = cityForDate(content.trip, today);
@@ -42,7 +43,7 @@ export function Home({ content, cityId }: { content: LoadedContent; cityId?: str
           <Icon name="calendar" size={18} /> Meus roteiros
         </a>
       </nav>
-      <h1>Guia de {cityInfo.name}</h1>
+      <PageHeader back="#/" label="Guia de pontos turísticos" title={`Guia de ${cityInfo.name}`} />
       {day.kind === 'travel' && (
         <p class="today" role="status">
           Hoje · {dayHeadline(day, content)}
@@ -61,7 +62,7 @@ export function Home({ content, cityId }: { content: LoadedContent; cityId?: str
         todayCity={todayCity}
         onChange={(id) => {
           clear();
-          navigate(id === todayCity ? '/' : `/cidade/${id}`);
+          navigate(id === todayCity ? '/guia' : `/guia/${id}`);
         }}
       />
       <div class="row" style={{ margin: '8px 0' }}>

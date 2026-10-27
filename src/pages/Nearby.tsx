@@ -1,7 +1,10 @@
+import { Cover } from '../components/Cover';
 import { Icon } from '../components/Icon';
+import { PageHeader } from '../components/PageHeader';
 import { LinkButtons } from '../components/LinkButtons';
 import { PlaceCard } from '../components/PlaceCard';
 import { PointPhoto } from '../components/PointPhoto';
+import { useQuery } from '../lib/router';
 import type { LoadedContent } from '../content/load';
 import type { DocPlace } from '../content/types';
 import { currentArea, nextStep, tripNow, tripPhase } from '../domain/now';
@@ -9,7 +12,7 @@ import { cityForDate, formatDayLabel, tripRange } from '../domain/trip';
 import { dayView } from '../domain/trip-view';
 import { useClock } from '../lib/clock';
 import { useUserState } from '../storage/user-store';
-import { driverHref } from './Now';
+import { driverHref } from '../lib/links';
 
 type Group = 'comer' | 'lojas' | 'curiosidades';
 const GROUPS: [Group, string, DocPlace['kind']][] = [
@@ -23,11 +26,6 @@ const LEVELS: [string, string][] = [
   ['🍰', 'Doces'],
 ];
 
-function query(): URLSearchParams {
-  const h = location.hash;
-  return new URLSearchParams(h.includes('?') ? h.slice(h.indexOf('?') + 1) : '');
-}
-
 /** "Por perto" (feature 006, FR-014/FR-015): as opções sem horário da região atual. */
 export function Nearby({ content, date: param, areaId, placeId }: { content: LoadedContent; date?: string; areaId?: string; placeId?: string }) {
   const [state] = useUserState();
@@ -39,7 +37,7 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
     day.areas.find((a) => a.id === areaId) ??
     currentArea(day, nextStep(day, date === today ? minutes : null)) ??
     day.areas[0];
-  const q = query();
+  const q = useQuery();
   const group = (q.get('g') as Group) || 'comer';
   const level = q.get('n') ?? '';
   const base = `#/perto/${date}/${area?.id ?? ''}`;
@@ -51,7 +49,7 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
       <main class="page nearby">
         <h1 class="page-title">Por perto</h1>
         <p>O roteiro de {formatDayLabel(date)} não traz opções por região.</p>
-        <a class="btn btn-big" href={`#/cidade/${city}`}>
+        <a class="btn btn-big" href={`#/guia/${city}`}>
           Ver o guia de {content.cityName(city)}
         </a>
       </main>
@@ -81,9 +79,18 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
   const inGroup = places.filter((p) => p.kind === kindOf);
   const shown = group === 'comer' && level ? inGroup.filter((p) => p.level === level) : inGroup;
 
+  const city = cityForDate(content.trip, date);
   return (
     <main class="page nearby">
-      <h1 class="page-title">Por perto</h1>
+      <PageHeader back={`#/dia/${date}`} label={`${content.cityName(city)} · ${formatDayLabel(date)}`} title="Por perto" />
+      {/* Feature 008: o bairro no formato do design — capa com a foto da região, nome e a frase do doc. */}
+      <Cover photo={area.photo} cityId={city} icon="pin" size="compact">
+        <p class="eyebrow">
+          <Icon name="pin" size={14} /> Bairro
+        </p>
+        <h2 class="hood-title">{area.name}</h2>
+      </Cover>
+      {area.intro && <p class="hood-intro">{area.intro}</p>}
       <nav class="chips" aria-label="Regiões do dia">
         {day.areas
           .filter((a) => a.placeIds.some((id) => day.places.find((p) => p.id === id)?.kind !== 'attraction'))

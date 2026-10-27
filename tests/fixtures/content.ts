@@ -40,9 +40,9 @@ export function fixtureContent(): Content {
   return {
     version: '2026-10-20T00:00:00Z',
     cities: [
-      { id: 'nova-york', name: 'Nova York', timeZone: 'America/New_York', center: { lat: 40.75, lng: -73.98 }, heroPointId: 'ny-central-park' },
-      { id: 'orlando', name: 'Orlando', timeZone: 'America/New_York', center: { lat: 28.41, lng: -81.48 }, heroPointId: 'orl-magic-kingdom' },
-      { id: 'miami', name: 'Miami', timeZone: 'America/New_York', center: { lat: 25.79, lng: -80.15 }, heroPointId: 'mia-south-beach' },
+      { id: 'nova-york', name: 'Nova York', timeZone: 'America/New_York', center: { lat: 40.75, lng: -73.98 }, heroPointId: 'ny-central-park', country: 'Estados Unidos' },
+      { id: 'orlando', name: 'Orlando', timeZone: 'America/New_York', center: { lat: 28.41, lng: -81.48 }, heroPointId: 'orl-magic-kingdom', country: 'Estados Unidos' },
+      { id: 'miami', name: 'Miami', timeZone: 'America/New_York', center: { lat: 25.79, lng: -80.15 }, heroPointId: 'mia-south-beach', country: 'Estados Unidos' },
     ],
     trip: [
       { cityId: 'nova-york', arrive: '2026-10-31', depart: '2026-11-07' },

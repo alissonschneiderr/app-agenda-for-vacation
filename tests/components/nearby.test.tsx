@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Nearby } from '../../src/pages/Nearby';
-import { setupCompanion } from './companion-helpers';
+import { setupCompanion, setupReal } from './companion-helpers';
 
 afterEach(() => {
   vi.useRealTimers();
@@ -57,5 +57,20 @@ describe('Por perto (feature 006, US3)', () => {
     const { content } = setupCompanion('2026-11-01T14:30:00Z');
     render(<Nearby content={content} date="2026-11-09" />);
     expect(screen.getByRole('link', { name: /Ver o guia de Orlando/ })).toBeTruthy();
+  });
+});
+
+describe('Bairro no formato do design (feature 008, US3)', () => {
+  it('capa com a foto da região, "Bairro" e o nome; frase do doc; voltar para o dia', () => {
+    const { content } = setupReal('2026-11-01T18:30:00Z');
+    window.location.hash = '#/perto/2026-11-01/soho?g=comer';
+    const { container } = render(<Nearby content={content} date="2026-11-01" areaId="soho" />);
+    const soho = content.fullItineraries[0]!.days.find((d) => d.date === '2026-11-01')!.areas!.find((a) => a.id === 'soho')!;
+    const cover = container.querySelector('.cover')!;
+    expect(cover.querySelector('img.cover-img')!.getAttribute('src')).toContain(soho.photo!.src);
+    expect(cover.textContent).toContain('Bairro');
+    expect(cover.querySelector('h2')!.textContent).toBe('SoHo');
+    expect(container.querySelector('.hood-intro')!.textContent).toBe(soho.intro);
+    expect(screen.getByRole('link', { name: 'Voltar' }).getAttribute('href')).toBe('#/dia/2026-11-01');
   });
 });

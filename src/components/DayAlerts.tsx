@@ -12,7 +12,7 @@ function Html({ html }: { html: string }) {
  * - "faixa": um aviso não lido por vez; "Entendi" grava como lido e ele não volta naquele dia.
  * - "lista": todos, recolhidos ("N avisos para hoje").
  */
-export function DayAlerts({ alerts, mode, allHref }: { alerts: DayAlert[]; mode: 'banner' | 'list'; allHref?: string }) {
+export function DayAlerts({ alerts, mode, allHref, open = false }: { alerts: DayAlert[]; mode: 'banner' | 'list'; allHref?: string; open?: boolean }) {
   const prefs = usePrefs();
   if (!alerts.length) return null;
   if (mode === 'banner') {
@@ -42,7 +42,7 @@ export function DayAlerts({ alerts, mode, allHref }: { alerts: DayAlert[]; mode:
     );
   }
   return (
-    <details class="alert-list" id="avisos">
+    <details class="alert-list" id="avisos" open={open}>
       <summary>
         <Icon name="info" size={18} /> {alerts.length === 1 ? '1 aviso' : `${alerts.length} avisos`}
       </summary>

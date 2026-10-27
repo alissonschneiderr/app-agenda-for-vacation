@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { Home } from '../../src/pages/Home';
+import { Guide as Home } from '../../src/pages/Guide';
 import { setup } from './helpers';
 
 afterEach(() => vi.useRealTimers());

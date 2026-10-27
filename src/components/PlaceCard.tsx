@@ -32,7 +32,9 @@ function ShortCard({ place, href }: { place: DocPlace; href: string }) {
   const levelName = place.level && FOOD_LEVEL[place.level];
   const text = place.works ?? place.fields.find((f) => f.label === 'Estilo')?.text ?? place.fields.find((f) => !f.label)?.text;
   return (
-    <a class={`place-short place-${place.kind}`} href={href} aria-label={place.name}>
+    <a class={`place-short place-${place.kind} ${place.photo ? 'has-thumb' : ''}`} href={href} aria-label={place.name}>
+      {/* Feature 008: miniatura com a foto do próprio lugar, quando houver. */}
+      {place.photo && <img class="place-thumb" src={`${import.meta.env.BASE_URL}${place.photo.src}`} alt="" loading="lazy" decoding="async" width={64} height={64} />}
       <span class="place-short-head">
         <span class="eyebrow">
           {place.level ? <span class="place-level">{place.level}</span> : <Icon name={kind.icon} size={14} />} {levelName ?? kind.label}

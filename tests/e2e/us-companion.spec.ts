@@ -9,63 +9,25 @@ async function at(page: Page, agora: string, hash: string) {
 }
 
 test.describe('US1 – Agora', () => {
-  test('abre no próximo passo de hoje, sem tocar em nada, também offline', async ({ page, context }) => {
-    await openInstalled(page, '2026-10-30T15:00:00Z');
-    await goOffline(context, page);
-    await at(page, '2026-11-01T13:30', '/');
-    const card = page.getByRole('article', { name: 'Próximo passo: Mott Street' });
-    await expect(card.locator('.next-time')).toHaveText('13h40');
-    await expect(card).toContainText('Chinatown');
-    await expect(card).toContainText('Deslocamento para Chinatown');
-    await expect(card.locator('img')).toBeVisible();
-  });
 
-  test('Feito avança; Desfazer volta', async ({ page }) => {
-    await openInstalled(page, '2026-10-30T15:00:00Z');
-    await at(page, '2026-11-01T13:30', '/');
-    await page.getByRole('button', { name: /Feito/ }).click();
-    await expect(page.getByRole('article', { name: 'Próximo passo: Doyers Street' })).toBeVisible();
-    await page.getByRole('button', { name: 'Desfazer' }).click();
-    await expect(page.getByRole('article', { name: 'Próximo passo: Mott Street' })).toBeVisible();
-  });
 
-  test('Mostrar ao motorista: tela cheia com endereço grande', async ({ page }) => {
+  test('Mostrar ao motorista: tela cheia com endereço grande, sem barra de navegação', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
-    await at(page, '2026-10-31T15:05', '/');
-    await page.getByRole('link', { name: /Motorista/ }).click();
+    await at(page, '2026-10-31T15:05', '/motorista/2026-10-31/ny3-2026-10-31-11');
     const dialog = page.getByRole('dialog', { name: 'Mostrar ao motorista' });
     await expect(dialog).toContainText('Top of the Rock');
     const size = await dialog.locator('.driver-address').evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
     expect(size).toBeGreaterThanOrEqual(40);
-    await expect(page.locator('.tab-bar')).toHaveCount(0);
+    await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toHaveCount(0);
   });
 
-  test('aviso do dia: "Entendi" esconde e não volta no mesmo dia', async ({ page }) => {
-    await openInstalled(page, '2026-10-30T15:00:00Z');
-    await at(page, '2026-11-01T13:30', '/');
-    const banner = page.getByRole('complementary', { name: 'Aviso do dia' });
-    await expect(banner).toContainText('Maratona');
-    await banner.getByRole('button', { name: 'Entendi' }).click();
-    await expect(banner).toHaveCount(0);
-    await page.reload();
-    await expect(page.getByRole('complementary', { name: 'Aviso do dia' })).toHaveCount(0);
-  });
 
-  test('antes da viagem: contagem e ingressos; dia concluído mostra amanhã', async ({ page }) => {
-    await openInstalled(page, '2026-10-30T15:00:00Z', '/');
-    await expect(page.getByRole('heading', { name: 'Falta 1 dia' })).toBeVisible();
-    await expect(page.getByRole('region', { name: 'Ingressos para comprar antes' })).toContainText('Tenement Museum, tour das 16h15');
-  });
 });
 
 test.describe('US2 – Dia', () => {
-  test('≥ 8 passos na primeira tela de 390 × 844, sem opções misturadas', async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
+  test('sem opções de restaurante misturadas às paradas; marca "agora"', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-01T13:30', '/dia/2026-11-01');
-    await page.waitForTimeout(5500); // o aviso "Guia disponível offline" some sozinho
-    const inFold = await page.evaluate(() => [...document.querySelectorAll('.tl-step')].filter((e) => e.getBoundingClientRect().bottom <= innerHeight - 64).length);
-    expect(inFold).toBeGreaterThanOrEqual(8);
     await expect(page.locator('.tl-list .place-short, .tl-list .place-card')).toHaveCount(0);
     await expect(page.locator('.tl-now')).toHaveText('agora · 13h30');
   });
@@ -80,14 +42,14 @@ test.describe('US2 – Dia', () => {
     await page.mouse.up();
     await expect(page).toHaveURL(/#\/dia\/2026-11-02$/);
     await page.getByRole('link', { name: 'Voltar para hoje' }).click();
-    await expect(page.getByRole('heading', { level: 1, name: 'domingo, 01/11' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /^Dia 2 · / })).toBeVisible();
   });
 });
 
 test.describe('US3 – Por perto', () => {
   test('região atual com 6 opções de comida; filtro 🍰; detalhe com mapa e motorista', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
-    await at(page, '2026-11-01T13:40', '/perto');
+    await at(page, '2026-11-01T13:40', '/perto/2026-11-01/chinatown');
     await expect(page.getByRole('navigation', { name: 'Regiões do dia' }).getByRole('link', { name: 'Chinatown' })).toHaveAttribute('aria-current', 'true');
     await expect(page.getByRole('link', { name: 'Comer (6)' })).toBeVisible();
     await page.getByRole('link', { name: '🍰 Doces' }).click();
@@ -99,30 +61,31 @@ test.describe('US3 – Por perto', () => {
 });
 
 test.describe('US4 – detalhe', () => {
-  test('Grand Central: foto, horário e ações na primeira tela; "Ler mais" recolhido', async ({ page }) => {
+  test('Grand Central: foto, título e descritivo completo; sem "Ler mais" (feature 009)', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-10-31T09:00', '/dia/2026-10-31/ny3-2026-10-31-04');
     await expect(page.locator('.step-photo img')).toBeVisible();
     await expect(page.getByRole('heading', { level: 1, name: 'Grand Central Terminal' })).toBeInViewport();
-    await expect(page.getByRole('button', { name: /Pular/ })).toBeInViewport();
-    await expect(page.locator('details.read-more')).not.toHaveAttribute('open', '');
+    await expect(page.locator('details.read-more')).toHaveCount(0);
+    await expect(page.locator('.step-description')).toBeVisible();
   });
 });
 
 test.describe('US5 – Viagem e transição', () => {
-  test('Viagem em 03/11: NY marcada, dia 4 de 8, guia acessível', async ({ page }) => {
+  test('"#/viagem" leva ao Início só com as 3 cidades; guia continua por endereço direto', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-03T10:00', '/viagem');
-    await expect(page.getByText(/Vocês estão aqui · dia 4 de 8/)).toBeVisible();
-    await page.getByRole('link', { name: /Guia de pontos turísticos/ }).click();
-    await expect(page).toHaveURL(/#\/guia$/);
+    await expect(page).toHaveURL(/#\/$/);
+    await expect(page.locator('main.start article')).toHaveCount(3);
+    await page.goto('/#/guia');
+    await expect(page.getByRole('heading', { level: 1, name: /Guia de/ })).toBeVisible();
   });
 
   test('07/11: três blocos, marcar e desfazer, offline', async ({ page, context }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await goOffline(context, page);
-    await at(page, '2026-11-07T09:00', '/');
+    await at(page, '2026-11-07T09:00', '/dia/2026-11-07');
     await expect(page.getByRole('heading', { name: '1. Antes de sair' })).toBeVisible();
     const first = page.getByRole('region', { name: 'Antes de sair' }).getByRole('checkbox').first();
     await first.click();

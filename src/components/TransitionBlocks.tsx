@@ -8,7 +8,7 @@ import { Icon } from './Icon';
 
 const EMPTY = 'Sem orientações no roteiro.';
 
-function Items({ items, state }: { items: DepartureItem[]; state: UserState }) {
+export function Items({ items, state }: { items: DepartureItem[]; state: UserState }) {
   const next = items.find((i) => !state.activityMarks[i.id]);
   return (
     <ul class="tr-items">
@@ -29,7 +29,18 @@ function Items({ items, state }: { items: DepartureItem[]; state: UserState }) {
  * Dia de transição entre cidades (feature 006, FR-019): "Antes de sair", "A viagem", "A chegada".
  * Só mostra o que existe no roteiro; bloco vazio diz isso.
  */
-export function TransitionBlocks({ content, state, date }: { content: LoadedContent; state: UserState; date: DateStr }) {
+export function TransitionBlocks({
+  content,
+  state,
+  date,
+  hideEmpty = false,
+}: {
+  content: LoadedContent;
+  state: UserState;
+  date: DateStr;
+  /** Feature 009: bloco sem conteúdo do roteiro não aparece (nada de "sem orientações"). */
+  hideEmpty?: boolean;
+}) {
   const items = (content.fullItineraries ?? []).flatMap((f) => f.departures?.[date] ?? []);
   const leaving = content.trip.find((l) => l.depart === date);
   const arriving = content.trip.find((l) => l.arrive === date);
@@ -48,16 +59,21 @@ export function TransitionBlocks({ content, state, date }: { content: LoadedCont
         {arriving && ` → ${content.cityName(arriving.cityId)}`}
       </p>
 
-      <section class="tr-block" aria-label="Antes de sair">
-        <h2 class="tr-title">1. Antes de sair</h2>
-        {before.length ? <Items items={before} state={state} /> : <p class="muted">{EMPTY}</p>}
-      </section>
+      {!(hideEmpty && !before.length) && (
+        <section class="tr-block" aria-label="Antes de sair">
+          <h2 class="tr-title">1. Antes de sair</h2>
+          {before.length ? <Items items={before} state={state} /> : <p class="muted">{EMPTY}</p>}
+        </section>
+      )}
 
-      <section class="tr-block" aria-label="A viagem">
-        <h2 class="tr-title">2. A viagem</h2>
-        {trip.length ? <Items items={trip} state={state} /> : <p class="muted">{EMPTY}</p>}
-      </section>
+      {!(hideEmpty && !trip.length) && (
+        <section class="tr-block" aria-label="A viagem">
+          <h2 class="tr-title">2. A viagem</h2>
+          {trip.length ? <Items items={trip} state={state} /> : <p class="muted">{EMPTY}</p>}
+        </section>
+      )}
 
+      {!(hideEmpty && !arrival?.items.length && !arrival?.html) && (
       <section class="tr-block" aria-label="A chegada">
         <h2 class="tr-title">3. A chegada</h2>
         {arriving ? (
@@ -79,6 +95,7 @@ export function TransitionBlocks({ content, state, date }: { content: LoadedCont
           <p>Fim da viagem. Boa volta para casa!</p>
         )}
       </section>
+      )}
 
       {notes && (
         <details class="tr-notes">

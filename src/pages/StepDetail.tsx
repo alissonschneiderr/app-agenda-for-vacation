@@ -3,8 +3,9 @@ import { DirectionsButton } from '../components/DirectionsButton';
 import { DoneToggle } from '../components/DoneToggle';
 import { Icon } from '../components/Icon';
 import { LinkButtons } from '../components/LinkButtons';
-import { eventFields, MODE_ICON, MODE_LABEL, stepAddress, stepPhoto, stepPlace, stepTicket } from '../components/NextStepCard';
+import { eventFields, MODE_ICON, MODE_LABEL, stepAddress, stepPhoto, stepPlace, stepTicket } from '../components/step-helpers';
 import { PlaceCard } from '../components/PlaceCard';
+import { PageHeader } from '../components/PageHeader';
 import { PointPhoto } from '../components/PointPhoto';
 import type { LoadedContent } from '../content/load';
 import { markActivity, unmarkActivity } from '../domain/full-itinerary';
@@ -13,11 +14,11 @@ import { todayHoursLabel } from '../domain/opening-hours';
 import { formatDayLabel } from '../domain/trip';
 import { findActivity } from '../domain/trip-view';
 import { SAVE_ERROR_MESSAGE, useUserState } from '../storage/user-store';
-import { driverHref, stepHref } from './Now';
+import { driverHref, stepHref } from '../lib/links';
 
 /**
  * Detalhe de um passo (feature 006, FR-016): fotos, horário e nome, aviso, como chegar, ações,
- * orientações do evento e, recolhido, o contexto ("Ler mais").
+ * orientações do evento e o contexto — na feature 009, título → descritivo completo → práticas → ações.
  */
 export function StepDetail({ content, date, stepKey }: { content: LoadedContent; date: string; stepKey: string }) {
   const [state, update] = useUserState();
@@ -45,11 +46,10 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
   const skipped = a.mark?.state === 'skipped';
   const hasAddress = !!stepAddress(a);
 
+  const practicalFacts = a.queue || a.access || a.land || a.optional;
   return (
     <main class="page step-detail">
-      <a class="back-link" href={`#/dia/${date}`}>
-        <Icon name="chevron-left" size={18} /> {formatDayLabel(date)}
-      </a>
+      <PageHeader back={`#/dia/${date}`} label={area?.name ?? a.categoryLabel} title={formatDayLabel(date)} titleAs="p" />
 
       {photo ? (
         <figure class="step-photo">
@@ -65,12 +65,46 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
         </div>
       )}
 
+      {/* Feature 009: título → descritivo completo (sem "Ler mais") → informações práticas → ações. */}
       <header class="step-head">
         <p class="step-time">{a.timeLabel ?? a.start ?? a.categoryLabel}</p>
         <h1 class="step-title">{a.title}</h1>
+      </header>
+
+      {(context.length > 0 || event.length > 0 || others.length > 0) && (
+        <section class="step-description" aria-label="Descritivo">
+          {context.map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
+          {event.length > 0 && (
+            <dl class="place-fields">
+              {event.map((f) => (
+                <div key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.text}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {others.map((p) => (
+            <PlaceCard key={p.id} place={p} compact />
+          ))}
+        </section>
+      )}
+
+      <section class="step-practical detail-block" aria-label="Informações práticas">
+        <h2 class="block-heading">
+          <Icon name="info" size={18} /> Informações práticas
+        </h2>
         {area && (
-          <p class="small muted">
-            <Icon name="pin" size={14} /> {area.kind === 'bairro' ? `Em ${area.name}` : area.name}
+          <p>
+            <Icon name="pin" size={16} /> {area.kind === 'bairro' ? `Em ${area.name}` : area.name}
+            {(place?.address ?? a.address) && ` · ${place?.address ?? a.address}`}
+          </p>
+        )}
+        {!area && (place?.address ?? a.address) && (
+          <p>
+            <Icon name="pin" size={16} /> {place?.address ?? a.address}
           </p>
         )}
         {ticket && (
@@ -78,7 +112,12 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
             <Icon name="ticket" size={18} /> {ticket}
           </p>
         )}
-        {(a.queue || a.access || a.land || a.optional) && (
+        {a.point && !place && (
+          <p>
+            <Icon name="clock" size={16} /> {todayHoursLabel(a.point.openingHours, new Date(), 'America/New_York')} · {a.point.price}
+          </p>
+        )}
+        {practicalFacts && (
           <dl class="step-facts">
             {a.queue && (
               <div>
@@ -106,23 +145,15 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
             )}
           </dl>
         )}
-      </header>
-
-      <section class="detail-block" aria-label="Como chegar">
-        <h2 class="block-heading">
-          <Icon name="map" size={18} /> Como chegar
-        </h2>
-        {how ? (
+        {how && (
           <p>
             <Icon name={MODE_ICON[how.mode]} size={18} /> <strong>{MODE_LABEL[how.mode]}</strong>
             {how.timeLabel && ` · ${how.timeLabel}`} · {how.title && `${how.title}: `}
             {how.text}
           </p>
-        ) : (
-          <p class="muted">O roteiro não traz instrução de deslocamento para este passo.</p>
         )}
         <div class="row">
-          {place && <LinkButtons place={{ name: place.name, address: place.address, mapsUrls: place.mapsUrls }} />}
+          {place && <LinkButtons place={{ name: place.name, address: place.address, mapsUrls: place.mapsUrls, photoUrls: place.photoUrls }} />}
           {!place && a.location && <DirectionsButton point={{ location: a.location, address: a.address ?? '' }} />}
           {hasAddress && (
             <a class="btn" href={driverHref(date, a.key)}>
@@ -149,39 +180,6 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
           {SAVE_ERROR_MESSAGE}
         </p>
       )}
-
-      {event.length > 0 && (
-        <section class="detail-block" aria-label="Orientações">
-          <dl class="place-fields">
-            {event.map((f) => (
-              <div key={f.label}>
-                <dt>{f.label}</dt>
-                <dd>{f.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      )}
-
-      {a.point && !place && (
-        <p class="small">
-          {todayHoursLabel(a.point.openingHours, new Date(), 'America/New_York')} · {a.point.price}
-        </p>
-      )}
-
-      {(context.length > 0 || others.length > 0) && (
-        <details class="read-more">
-          <summary>Ler mais</summary>
-          {context.map((t, i) => (
-            <p key={i}>{t}</p>
-          ))}
-          {others.map((p) => (
-            <PlaceCard key={p.id} place={p} compact />
-          ))}
-        </details>
-      )}
-
-      {place?.photoUrls && place.photoUrls.length > 0 && <LinkButtons place={{ name: place.name, address: place.address, mapsUrls: [], photoUrls: place.photoUrls }} />}
 
       <nav class="day-pager" aria-label="Outros passos do dia">
         {prev ? (

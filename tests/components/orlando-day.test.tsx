@@ -3,7 +3,6 @@ import { render, screen, within } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Day } from '../../src/pages/Day';
 import { Nearby } from '../../src/pages/Nearby';
-import { Now } from '../../src/pages/Now';
 import { setupReal } from './companion-helpers';
 
 afterEach(() => vi.useRealTimers());
@@ -22,20 +21,12 @@ describe('Orlando — dia de parque (US1)', () => {
     expect(first.querySelector('.tl-sub')!.textContent).toBe('Adventureland · fila ~5 min');
     const lunch = [...container.querySelectorAll('.tl-free')].find((e) => e.textContent!.includes('Almoço'))!;
     expect(lunch.querySelector('[role="checkbox"]')).toBeNull();
-    expect(container.querySelector('details.alert-list')!.textContent).toContain("Tiana's Bayou Adventure");
+    expect(container.querySelector('#dicas details.alert-list')!.textContent).toContain("Tiana's Bayou Adventure");
+    expect(container.querySelectorAll('#comer article')).toHaveLength(5);
     const parade = [...container.querySelectorAll('.tl-step')].find((e) => e.textContent!.includes('Festival of Fantasy'))!;
     expect(parade.querySelector('.tl-sub')!.textContent).toBe('opcional');
   });
 
-  it('Agora em 09/11 às 12h30: Runaway Railway 13h00 · Multi Pass; almoço com "Ver onde comer"', () => {
-    const { content } = setupReal(at('2026-11-09T12:30'));
-    render(<Now content={content} />);
-    const card = screen.getByRole('article', { name: "Próximo passo: Mickey & Minnie's Runaway Railway" });
-    expect(within(card).getByText('13h00')).toBeTruthy();
-    expect(within(card).getByText(/~5 min · Multi Pass/)).toBeTruthy();
-    expect(within(card).getByText(/Hollywood Studios/)).toBeTruthy();
-    expect(screen.getByText(/Ver onde comer/)).toBeTruthy();
-  });
 
   it('sem roteiros sugeridos nos dias de Orlando', () => {
     const { content } = setupReal(at('2026-11-10T08:00'));
@@ -54,7 +45,7 @@ describe('Orlando — dias de folga e "Por perto" (US2)', () => {
       'Cocoa Beach',
       'Noite: Disney Springs',
     ]);
-    const text = container.textContent!;
+    const text = container.querySelector('.stops')!.textContent!;
     expect(text.indexOf('Deslocamento para Cocoa Beach')).toBeGreaterThan(text.indexOf('Gateway e Rocket Garden'));
     expect(text.indexOf('Deslocamento para Cocoa Beach')).toBeLessThan(text.indexOf('Cocoa Beach', text.indexOf('Deslocamento para Cocoa Beach') + 30));
     const times = [...container.querySelectorAll('.tl-step .tl-time')].map((e) => e.textContent);

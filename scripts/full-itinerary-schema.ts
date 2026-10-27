@@ -171,6 +171,18 @@ export const fullItinerarySchema = z.object({
     )
     .optional(),
   arrivals: z.record(date, z.object({ items: z.array(transitionItem), html: z.string().optional() })).optional(),
+  tips: z
+    .array(
+      z.object({
+        id: z.string().regex(/^tip:[a-z-]+:\d+$/, 'id deve ser tip:<cidade>:<n>'),
+        cityId: z.enum(['nova-york', 'orlando', 'miami']),
+        category: z.enum(['clima', 'dinheiro', 'reservas', 'transporte', 'apps', 'filas', 'outros']),
+        title: text,
+        html: text,
+        source: text,
+      }),
+    )
+    .optional(),
 });
 
 export const NY_DATES = ['2026-10-31', '2026-11-01', '2026-11-02', '2026-11-03', '2026-11-04', '2026-11-05', '2026-11-06'];

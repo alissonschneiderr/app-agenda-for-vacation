@@ -1,3 +1,4 @@
+import { PageHeader } from '../components/PageHeader';
 import { PointCard } from '../components/PointCard';
 import type { LoadedContent } from '../content/load';
 import { removeFavorite, resolveFavorites } from '../domain/favorites';
@@ -10,7 +11,7 @@ export function Favorites({ content }: { content: LoadedContent }) {
 
   return (
     <main class="page">
-      <h1>Favoritos</h1>
+      <PageHeader back="#/" label="Guia de pontos turísticos" title="Favoritos" />
       {favorites.length === 0 ? (
         <div class="empty">
           <p>Você ainda não tem favoritos.</p>

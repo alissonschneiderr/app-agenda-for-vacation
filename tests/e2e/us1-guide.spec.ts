@@ -37,7 +37,7 @@ test.describe('US1 – Guia de pontos turísticos', () => {
     await expect(photo).toBeVisible();
     expect(await photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
     // Outra cidade, nunca aberta antes, também está disponível offline.
-    await page.goto('/#/cidade/miami');
+    await page.goto('/#/guia/miami');
     await page.getByText('Vizcaya Museum and Gardens').click();
     await expect(page.locator('.gallery img').first()).toBeVisible();
   });

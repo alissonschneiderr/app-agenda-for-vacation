@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { checkFidelity, logisticsLine, parseNycDoc, parseTime, plain, timedLine } from '../../scripts/doc-parser';
+import { checkFidelity, logisticsLine, parseNycDoc, parseTime, plain, tipCategory, timedLine } from '../../scripts/doc-parser';
 import type { Commitment } from '../../src/content/types';
 
 const commitments: Commitment[] = [
@@ -505,5 +505,93 @@ describe('leitor: formato do doc de Orlando (feature 007)', () => {
     const { doc: d } = parseNycDoc(ORL, orlOpts);
     d.days[0]!.activities.pop();
     expect(checkFidelity(ORL, d, []).join('\n')).toMatch(/\(D1\)/);
+  });
+});
+
+// ---------- feature 008: dicas práticas ----------
+
+const TIPS_NY = `# Teste
+
+Oct 22, 2026 · @Alisson
+
+## 🧳 Dicas práticas
+
+### 🎟️ O que comprar antes
+
+| Data | Atração | Situação |
+| --- | --- | --- |
+| 01/11 | Tenement Museum, tour das 15h30 | Comprar antes |
+
+### 🚇 Metrô e ônibus (OMNY)
+
+- Encoste o cartão na catraca.
+
+### 💵 Gorjetas
+
+- 18% a 22% em restaurantes.
+
+### 📚 Fontes consultadas
+
+- [Fonte](https://example.com)
+`;
+
+const TIPS_ORL = `# Teste
+
+Oct 24, 2026 · @Alisson
+
+## ✈️ Partida (qua 18/11) e dicas práticas
+
+**Partida:** faça o check-out com folga.
+
+**Dicas práticas:**
+
+- **Clima em meados de novembro:** dias amenos.
+- **Estacionamento:** todos os parques cobram.
+- **Apps no celular:** as filas mudam.
+`;
+
+describe('dicas práticas (feature 008)', () => {
+  it('NY: cada "###" vira dica (sem "Fontes"), com categoria, origem e override aplicado', () => {
+    const overrides = [{ find: 'Tenement Museum, tour das 15h30', replace: 'Tenement Museum, tour das 16h15' }];
+    const { doc } = parseNycDoc(TIPS_NY, { year: 2026, pointLinks: {}, commitments: [], tipsCityId: 'nova-york', checklistOverrides: overrides });
+    expect(doc.tips!.map((t) => [t.id, t.title, t.category])).toEqual([
+      ['tip:nova-york:1', 'O que comprar antes', 'reservas'],
+      ['tip:nova-york:2', 'Metrô e ônibus (OMNY)', 'transporte'],
+      ['tip:nova-york:3', 'Gorjetas', 'dinheiro'],
+    ]);
+    expect(doc.tips![0]!.html).toContain('16h15');
+    expect(doc.tips![1]!.source).toBe('🧳 Dicas práticas');
+    expect(checkFidelity(TIPS_NY, doc, [], overrides).filter((e) => e.includes('D7'))).toEqual([]);
+  });
+
+  it('Orlando: itens "**Rótulo:**" depois de "Dicas práticas"; a partida não vira dica', () => {
+    const { doc } = parseNycDoc(TIPS_ORL, { year: 2026, pointLinks: {}, commitments: [], tipsCityId: 'orlando' });
+    expect(doc.tips!.map((t) => [t.title, t.category])).toEqual([
+      ['Clima em meados de novembro', 'clima'],
+      ['Estacionamento', 'transporte'],
+      ['Apps no celular', 'apps'],
+    ]);
+    expect(doc.tips![0]!.html).toBe('<p>dias amenos.</p>');
+    expect(JSON.stringify(doc.tips)).not.toContain('check-out');
+  });
+
+  it('sem tipsCityId, nenhuma dica (saída de NY do snapshot inalterada)', () => {
+    expect(parseNycDoc(TIPS_NY, { year: 2026, pointLinks: {}, commitments: [] }).doc.tips).toBeUndefined();
+  });
+
+  it('D7 acusa dica alterada', () => {
+    const { doc } = parseNycDoc(TIPS_ORL, { year: 2026, pointLinks: {}, commitments: [], tipsCityId: 'orlando' });
+    doc.tips![1]!.html = '<p>estacionamento grátis em todos os parques.</p>';
+    expect(checkFidelity(TIPS_ORL, doc, []).join('\n')).toMatch(/dica "Estacionamento" sem origem na seção "✈️ Partida \(qua 18\/11\) e dicas práticas" \(D7\)/);
+  });
+
+  it('categorias por palavra-chave', () => {
+    expect(['Imposto sobre vendas', 'Filas anunciadas', 'O que reservar com antecedência', 'Outros', 'Clima no início de novembro'].map(tipCategory)).toEqual([
+      'dinheiro',
+      'filas',
+      'reservas',
+      'outros',
+      'clima',
+    ]);
   });
 });

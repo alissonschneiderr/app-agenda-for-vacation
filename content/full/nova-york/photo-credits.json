@@ -31,6 +31,14 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Canal_St-Baxter_St.JPG"
   },
+  "Casa da Carrie (66 Perry St)": {
+    "ref": "File:66 Perry Street Carrie Bradshaw's House From Sex And The City (1149739647).jpg",
+    "src": "photos/doc/casa-da-carrie-66-perry-st.webp",
+    "author": "Rob Young from United Kingdom",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:66_Perry_Street_Carrie_Bradshaw%27s_House_From_Sex_And_The_City_(1149739647).jpg"
+  },
   "Chelsea": {
     "ref": "wiki:Chelsea, Manhattan",
     "src": "photos/doc/chelsea.webp",
@@ -206,6 +214,14 @@
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Orchard_Street_wet.jpg"
+  },
+  "Ruas de casas de tijolo: Columbia Heights, Willow, Cranberry e Pierrepont": {
+    "ref": "File:Danish Seamen Church 102 Willow jeh.jpg",
+    "src": "photos/doc/ruas-de-casas-de-tijolo-columbia-heights-willow-cranberry-e-.webp",
+    "author": "Jim.henderson",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Danish_Seamen_Church_102_Willow_jeh.jpg"
   },
   "Ruas de paralelepípedo e antigos frigoríficos (Gansevoort, Washington e Little West 12th St)": {
     "ref": "wiki:Gansevoort Market",

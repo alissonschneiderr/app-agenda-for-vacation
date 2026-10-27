@@ -26,6 +26,21 @@ export function useRoute(): string {
   return path;
 }
 
+/** Query do hash (`#/perto/x?g=comer` → g=comer), atualizada a cada troca de hash (só filtros mudam). */
+export function useQuery(): URLSearchParams {
+  const read = () => {
+    const h = location.hash;
+    return h.includes('?') ? h.slice(h.indexOf('?') + 1) : '';
+  };
+  const [q, setQ] = useState(read());
+  useEffect(() => {
+    const onChange = () => setQ(read());
+    window.addEventListener('hashchange', onChange);
+    return () => window.removeEventListener('hashchange', onChange);
+  }, []);
+  return new URLSearchParams(q);
+}
+
 export function navigate(path: string): void {
   window.location.hash = path;
 }

@@ -1,3 +1,4 @@
+import { PageHeader } from '../components/PageHeader';
 import type { LoadedContent } from '../content/load';
 import { href } from '../lib/router';
 
@@ -5,7 +6,7 @@ export function Credits({ content }: { content: LoadedContent }) {
   const withPhotos = content.points.filter((p) => p.photos.length > 0);
   return (
     <main class="page">
-      <h1>Créditos</h1>
+      <PageHeader back="#/" label="Fotos e licenças" title="Créditos" />
       <p>
         Mapa: ©{' '}
         <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">

@@ -14,6 +14,8 @@ import type {
   DepartureItem,
   DocPlace,
   FullDay,
+  Tip,
+  TipCategory,
 } from '../src/content/types';
 
 export interface ParseOptions {
@@ -31,6 +33,8 @@ export interface ParseOptions {
   departure?: { date: DateStr; before: DeclaredDepartureItem[]; trip: DeclaredDepartureItem[] };
   /** Passos sem ponto próprio usam o ponto do guia da sua região (feature 007, R8). */
   stepsUseAreaPoint?: boolean;
+  /** Cidade das dicas práticas (feature 008); sem ela, as dicas não são extraídas. */
+  tipsCityId?: Tip['cityId'];
 }
 
 export interface ParsedDoc {
@@ -43,6 +47,8 @@ export interface ParsedDoc {
   departures: Record<DateStr, DepartureItem[]>;
   /** Só existe quando o doc tem chegada num dia de locomoção (feature 007). */
   arrivals?: Record<DateStr, { items: DepartureItem[]; html?: string }>;
+  /** Dicas práticas (feature 008); só quando `tipsCityId` vem nas opções. */
+  tips?: Tip[];
 }
 
 type Link = { label: string; url: string };
@@ -643,6 +649,57 @@ function ddmm(d: string, m: string, year: number): DateStr {
   return `${year}-${m}-${d}`;
 }
 
+// ---------- dicas práticas (feature 008, contracts/tips-content.md) ----------
+
+const TIP_CATEGORIES: [TipCategory, RegExp][] = [
+  ['reservas', / comprar antes | reservar /],
+  ['transporte', / metro | onibus | estacionamento | carro /],
+  ['clima', / clima /],
+  ['dinheiro', / gorjeta| imposto /],
+  ['apps', / apps? /],
+  ['filas', / filas? /],
+];
+
+export function tipCategory(title: string): TipCategory {
+  const n = norm(title);
+  return TIP_CATEGORIES.find(([, re]) => re.test(n))?.[0] ?? 'outros';
+}
+
+/** Título sem o emoji inicial e sem ":" final. */
+function tipTitle(md: string): string {
+  return plain(md).replace(EMOJI, '').replace(/:$/, '').trim();
+}
+
+/**
+ * Dicas de uma seção "##":
+ * - "Dicas práticas" com "###" (NY): cada subseção, exceto "Fontes";
+ * - lista após "**Dicas práticas:**" (Orlando): cada item "**Rótulo:** texto";
+ * - "O que reservar com antecedência" (Orlando): a seção inteira.
+ */
+function sectionTips(title: string, body: Token[]): { title: string; html: string }[] {
+  if (/O que reservar|O que comprar antes/i.test(title)) return [{ title: tipTitle(title), html: toHtml(body) }];
+  if (!/dicas práticas/i.test(title)) return [];
+  const subs = splitBy(body, 3).slice(1);
+  if (subs.length) {
+    return subs
+      .filter((p) => !/Fontes/i.test(plain(p.heading!.text)))
+      .map((p) => ({ title: tipTitle(p.heading!.text), html: toHtml(p.body) }));
+  }
+  const toks = body.filter((t) => t.type !== 'space');
+  const at = toks.findIndex((t) => t.type === 'paragraph' && /^\*\*Dicas práticas:?\*\*:?$/.test((t as Tokens.Paragraph).text.trim()));
+  const list = at >= 0 ? (toks.slice(at + 1).find((t) => t.type === 'list') as Tokens.List | undefined) : undefined;
+  return (list?.items ?? []).flatMap((it) => {
+    const m = /^\*\*(.+?):?\*\*:?\s*([\s\S]*)$/.exec(it.text.trim());
+    if (!m) return [];
+    return [{ title: tipTitle(m[1]!), html: `<p>${marked.parseInline(m[2]!.trim()) as string}</p>` }];
+  });
+}
+
+/** Texto comparável de um HTML gerado: tags viram espaço (células de tabela não grudam). */
+function htmlText(html: string): string {
+  return norm(html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+}
+
 /** "Dia 1 (sábado, 31/10): …" (NY) e "Dia 2 (dom 08/11): …" (Orlando). */
 const DAY_RE = /^Dia \d+ \((?:[^)]*?[\s,])?(\d{2})\/(\d{2})\):\s*(.+)$/;
 
@@ -687,6 +744,14 @@ export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: Parsed
   for (const s of sections) {
     const title = plain(s.heading!.text);
     doc.docHtml.push({ id: slug(title), title, html: toHtml([s.heading!, ...s.body]) });
+    if (opts.tipsCityId) {
+      for (const t of sectionTips(title, s.body)) {
+        doc.tips = doc.tips ?? [];
+        // As decisões do checklist (ex.: Tenement Museum às 16h15, feature 005 Q1) valem também na dica.
+        const html = overrides.reduce((h, o) => h.split(o.find).join(o.replace), t.html);
+        doc.tips.push({ id: `tip:${opts.tipsCityId}:${doc.tips.length + 1}`, cityId: opts.tipsCityId, category: tipCategory(t.title), title: t.title, html, source: title });
+      }
+    }
     const day = DAY_RE.exec(title);
     if (day) {
       const date = ddmm(day[1]!, day[2]!, opts.year);
@@ -780,7 +845,12 @@ export function parseNycDoc(markdown: string, opts: ParseOptions): { doc: Parsed
 }
 
 /** Regras de fidelidade D1–D5 (contracts/document-format.md), contadas direto no texto do doc. */
-export function checkFidelity(markdown: string, doc: ParsedDoc, commitments: Commitment[]): string[] {
+export function checkFidelity(
+  markdown: string,
+  doc: ParsedDoc,
+  commitments: Commitment[],
+  checklistOverrides: { find: string; replace: string }[] = [],
+): string[] {
   const errors: string[] = [];
   const urlRe = /https:\/\/www\.google\.com\/(?:maps|search)[^)\s>]+/g;
   const hrefs = (html: string | undefined) => [...(html ?? '').matchAll(/href="([^"]+)"/g)].map((x) => x[1]!.replace(/&amp;/g, '&'));
@@ -853,6 +923,15 @@ export function checkFidelity(markdown: string, doc: ParsedDoc, commitments: Com
       const arrive = c.arriveBy.replace(':', 'h');
       if (!night) errors.push(`roteiro.md ${title}: sem a noite de "${c.title}" (D5)`);
       else if (!night.includes(arrive)) errors.push(`roteiro.md ${title}: a noite de "${c.title}" não cita a chegada às ${arrive} (D5)`);
+    }
+  }
+  // D7 (feature 008): o texto de cada dica está na seção de origem do doc.
+  for (const t of doc.tips ?? []) {
+    const section = markdown.split(/^## /m).find((x) => plain(x.split('\n')[0]!) === t.source);
+    // A troca declarada em checklistOverrides é desfeita antes de comparar com o doc.
+    const text = htmlText(checklistOverrides.reduce((h, o) => h.split(o.replace).join(o.find), t.html)).trim();
+    if (!section || !text || !norm(plain(section)).includes(` ${text} `)) {
+      errors.push(`roteiro.md: dica "${t.title}" sem origem na seção "${t.source}" (D7)`);
     }
   }
   const mdLinks = (markdown.match(/\]\((?:https?:[^)\s>]+|<[^>]+>)\)/g) ?? []).length;

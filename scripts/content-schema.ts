@@ -54,7 +54,7 @@ const point = z.object({
 
 export const contentSchema = z.object({
   version: nonEmpty,
-  cities: z.array(z.object({ id: cityId, name: nonEmpty, timeZone: nonEmpty, center: latLng, heroPointId: nonEmpty })).length(3),
+  cities: z.array(z.object({ id: cityId, name: nonEmpty, timeZone: nonEmpty, center: latLng, heroPointId: nonEmpty, country: nonEmpty })).length(3),
   trip: z.array(z.object({ cityId, arrive: date, depart: date })).min(1),
   dayKinds: z.record(date, z.enum(['walk', 'beach', 'park', 'transit'])),
   categories: z.array(z.object({ id: nonEmpty, name: nonEmpty })).min(1),
