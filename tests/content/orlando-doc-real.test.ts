@@ -32,7 +32,8 @@ describe('roteiro de Orlando = cópia do doc (24/10/2026, rev. 26)', () => {
     ]);
   });
 
-  it('os 75 itens com horário estão no app, na ordem, com o horário do doc (SC-001)', () => {
+  // Feature 011: sem o Kennedy Space Center (Atlantis, Bus Tour, almoço no complexo, Rocket Garden) — 75 → 71.
+  it('os 71 itens com horário estão no app, na ordem, com o horário do doc (SC-001)', () => {
     let total = 0;
     for (const d of orl.days) {
       const labels = [...dayText(d.date).matchAll(TIMED)].map((m) => strip(m[1]!));
@@ -40,15 +41,16 @@ describe('roteiro de Orlando = cópia do doc (24/10/2026, rev. 26)', () => {
       const app = d.activities.filter((a) => a.type !== 'transit' && a.type !== 'shopping').map((a) => a.timeLabel);
       expect(app, d.date).toEqual(labels);
     }
-    expect(total).toBe(75);
+    expect(total).toBe(71);
   });
 
-  it('95 passos no total; 69 com Feito/Pendente (sem almoços nem "tempo livre", com as 2 compras)', () => {
+  // Feature 011: −4 itens do KSC e −1 saída (08h00) → 90 passos; −3 marcáveis → 66.
+  it('90 passos no total; 66 com Feito/Pendente (sem almoços nem "tempo livre", com as 2 compras)', () => {
     const acts = orl.days.flatMap((d) => d.activities);
-    expect(acts).toHaveLength(75 + 18 + 2);
+    expect(acts).toHaveLength(71 + 17 + 2);
     expect(acts.filter((a) => a.type === 'transit')).toHaveLength((md.match(/^\*\*\d{2}h\d{2} – (chegada|saída)/gm) ?? []).length + (md.match(/^### 🏨/gm) ?? []).length);
-    expect(acts.filter((a) => a.type === 'free').map((a) => a.title.split(' ')[0])).toEqual(['Almoço', 'Almoço', 'Shows', 'Almoço', 'Almoço', 'Almoço', 'Almoço', 'Almoço']);
-    expect(acts.filter((a) => a.type !== 'transit' && a.type !== 'free')).toHaveLength(69);
+    expect(acts.filter((a) => a.type === 'free').map((a) => a.title.split(' ')[0])).toEqual(['Almoço', 'Almoço', 'Shows', 'Almoço', 'Almoço', 'Almoço', 'Almoço']);
+    expect(acts.filter((a) => a.type !== 'transit' && a.type !== 'free')).toHaveLength(66);
     expect(acts.filter((a) => a.type === 'shopping').map((a) => a.timeLabel)).toEqual(['~14h às 18h', '~13h às 17h']);
   });
 
@@ -77,7 +79,7 @@ describe('roteiro de Orlando = cópia do doc (24/10/2026, rev. 26)', () => {
 
   it('todos os links de fotos e os 10 mapas do dia (SC-003)', () => {
     const photos = md.match(/https:\/\/www\.google\.com\/search\?tbm=isch[^)\s]+/g)!;
-    expect(photos).toHaveLength(81);
+    expect(photos).toHaveLength(77); // feature 011: −4 links de fotos do KSC
     const have = new Set(orl.days.flatMap((d) => [...(d.places ?? []).flatMap((p) => p.photoUrls ?? []), ...(d.areas ?? []).flatMap((a) => a.photoUrls)].map((l) => l.url)));
     for (const u of photos) expect(have.has(u), u).toBe(true);
     expect(orl.days.filter((d) => d.mapUrl)).toHaveLength(10);
@@ -103,20 +105,40 @@ describe('roteiro de Orlando = cópia do doc (24/10/2026, rev. 26)', () => {
     expect(orl.dayNotes?.['2026-11-18']).toBeUndefined();
   });
 
-  it('reservas: 6 itens, com prazo nos dois Multi Pass e no Single Pass', () => {
-    expect(orl.checklist).toHaveLength(6);
-    expect(orl.checklist.map((c) => c.id)).toEqual(['ck:orlando:1', 'ck:orlando:2', 'ck:orlando:3', 'ck:orlando:4', 'ck:orlando:5', 'ck:orlando:6']);
+  it('reservas: 5 itens (sem o KSC, feature 011), com prazo nos dois Multi Pass e no Single Pass', () => {
+    expect(orl.checklist).toHaveLength(5);
+    expect(orl.checklist.map((c) => c.id)).toEqual(['ck:orlando:1', 'ck:orlando:2', 'ck:orlando:3', 'ck:orlando:4', 'ck:orlando:5']);
     expect(orl.checklist.filter((c) => c.deadline).map((c) => [c.what.split(' (')[0], c.deadline])).toEqual([
       ['Multi Pass Hollywood Studios', '2026-11-06'],
       ['Multi Pass EPCOT', '2026-11-07'],
       ['Single Pass Guardians of the Galaxy', '2026-11-07'],
     ]);
-    expect(orl.checklist.map((c) => c.forDate)).toEqual(['2026-11-09', '2026-11-10', '2026-11-10', '2026-11-13', '2026-11-14', '2026-11-12']);
+    expect(orl.checklist.map((c) => c.forDate)).toEqual(['2026-11-09', '2026-11-10', '2026-11-10', '2026-11-14', '2026-11-12']);
   });
 
   it('passos dentro de um parque apontam para o parque (mapa e motorista, R8)', () => {
     const mk = orl.days[0]!.activities.find((a) => a.title === 'Jungle Cruise')!;
     expect(mk.pointId).toBe('orl-magic-kingdom');
     expect(orl.days[0]!.activities.find((a) => a.title === 'volta ao hotel')!.pointId).toBeUndefined();
+  });
+});
+
+describe('Kennedy Space Center fora do roteiro (feature 011)', () => {
+  it('o roteiro não cita o KSC; o guia de pontos continua com ele', () => {
+    expect(md).not.toMatch(/kennedy|\bksc\b/i);
+    const points = JSON.parse(readFileSync(join(import.meta.dirname, '../../content/points/orlando.json'), 'utf8')) as { id: string }[];
+    expect(points.some((p) => p.id === 'orl-kennedy-space-center')).toBe(true);
+  });
+
+  it('13/11: "Folga · Cocoa Beach + Disney Springs", com Manhã livre, Cocoa Beach e Disney Springs', () => {
+    const d = orl.days.find((x) => x.date === '2026-11-13')!;
+    expect(dayText('2026-11-13').split('\n')[0]).toBe('Dia 7 (sex 13/11): Folga · Cocoa Beach + Disney Springs');
+    expect(d.areas!.map((a) => a.name)).toEqual(['Manhã livre', 'Cocoa Beach', 'Noite: Disney Springs']);
+  });
+
+  it('preparação sem o KSC: reservas, checklist e a alternativa de 11/11', () => {
+    expect(orl.checklist.some((c) => /kennedy/i.test(c.what))).toBe(false);
+    expect(dayText('2026-11-11')).not.toMatch(/Alternativa ao outlet/);
+    expect(md).toMatch(/Três itens se compram antes/);
   });
 });

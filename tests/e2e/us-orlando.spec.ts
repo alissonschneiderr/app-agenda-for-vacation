@@ -33,11 +33,12 @@ test.describe('US1 – dia de parque', () => {
 });
 
 test.describe('US2 – folgas e "Por perto"', () => {
-  test('13/11, também offline: KSC → deslocamento → Cocoa Beach → volta → Disney Springs', async ({ page, context }) => {
+  test('13/11, também offline: Manhã livre → carro → Cocoa Beach → volta → Disney Springs, sem o KSC', async ({ page, context }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await goOffline(context, page);
     await at(page, '2026-11-13T09:00', '/dia/2026-11-13');
-    await expect(page.locator('.tl-area-name')).toHaveText(['Kennedy Space Center Visitor Complex', 'Cocoa Beach', 'Noite: Disney Springs']);
+    await expect(page.locator('.tl-area-name')).toHaveText(['Manhã livre', 'Cocoa Beach', 'Noite: Disney Springs']);
+    await expect(page.getByText(/Kennedy/)).toHaveCount(0);
     await expect(page.locator('.tl-move').filter({ hasText: 'Deslocamento para Cocoa Beach' })).toBeVisible();
     await expect(page.locator('.tl-move').filter({ hasText: 'volta ao hotel' })).toBeVisible();
   });

@@ -185,7 +185,8 @@ describe('Transporte só com o que não é a pé (feature 010, R3, Q1 = A)', () 
     expect(n('2026-11-02').map((m) => m.text)).toEqual([expect.stringContaining('metrô E')]);
     expect(n('2026-11-04')).toHaveLength(2);
     expect(n('2026-11-04')[1]!.text).toContain('NYC Ferry');
-    expect(n('2026-11-13')).toHaveLength(2);
+    // 13/11 (feature 011): só o carro até Cocoa Beach.
+    expect(n('2026-11-13').map((m) => m.text)).toEqual([expect.stringMatching(/Cocoa Beach.*carro/)]);
     expect(n('2026-10-31')).toEqual([]);
     expect(n('2026-11-09')).toEqual([]);
   });
@@ -270,3 +271,10 @@ describe('relatório da feature 010 (R6)', () => {
   });
 });
 
+describe('Paradas num dia sem nada a marcar (feature 011)', () => {
+  it('13/11: a seção Paradas existe mesmo sem parada marcável', () => {
+    const v = view009(content, state, '2026-11-13');
+    expect(v.groups.flatMap((g) => g.activities).filter((a) => a.trackable)).toHaveLength(0);
+    expect(daySections(v, content).map((s) => s.id)).toEqual(['paradas', 'bairros', 'transporte']);
+  });
+});

@@ -204,8 +204,6 @@ Outlet a céu aberto perto da Disney, aberto das 10h às 21h. No feriado costuma
 
 **🛍️ Compras (tarde, \~14h às 18h):** lojas de marcas americanas e europeias de roupa, tênis, malas e acessórios. Confira a lista de lojas no site do outlet.
 
-**Alternativa ao outlet:** Kennedy Space Center (\~1h de carro), que pode estar mais cheio pelo feriado.
-
 ### 🏨 \~18h30 – volta ao hotel
 
 ### 🌙 Noite: jantar perto do hotel
@@ -252,38 +250,25 @@ Metade zoológico, metade parque temático, em volta da Árvore da Vida. Os hós
 
 - Amanhã é folga.
 
-## Dia 7 (sex 13/11): Folga · Kennedy Space Center + Disney Springs
+## Dia 7 (sex 13/11): Folga · Cocoa Beach + Disney Springs
 
-Dia útil, o melhor para o Kennedy Space Center. À noite, a Disney Springs abre a temporada de Natal.
+Manhã livre e a tarde inteira na praia, em Cocoa Beach. À noite, a Disney Springs abre a temporada de Natal.
 
-🗺️ **Mapa do dia:** [Kennedy Space Center → Cocoa Beach → Disney Springs](https://www.google.com/maps/dir/Kennedy+Space+Center+Visitor+Complex/Cocoa+Beach+Pier/Disney+Springs)
+🗺️ **Mapa do dia:** [Cocoa Beach → Disney Springs](https://www.google.com/maps/dir/Cocoa+Beach+Pier/Disney+Springs)
 
-**08h00 – saída:** \~1h de carro até o Kennedy Space Center.
+### 📍 Manhã livre
 
-### 📍 Kennedy Space Center Visitor Complex
+- Piscina e descanso, sem programação até a saída para a praia.
 
-[📷 ver fotos](https://www.google.com/search?tbm=isch&q=Kennedy+Space+Center+Visitor+Complex+Atlantis)
-
-O centro de lançamentos da NASA, com o ônibus espacial Atlantis, o foguete Saturno V e passeios de ônibus pela base. Compre o ingresso com antecedência no site oficial.
-
-**Atrações (no roteiro):**
-
-- **9h00 — 🚀 Space Shuttle Atlantis** (\~1h30). [📷 fotos](https://www.google.com/search?tbm=isch&q=Space+Shuttle+Atlantis+Kennedy)
-- **10h30 — 🚌 KSC Bus Tour e Apollo/Saturn V Center** (\~2h30). [📷 fotos](https://www.google.com/search?tbm=isch&q=Apollo+Saturn+V+Center)
-- **13h00 — 🍔 Almoço no complexo**
-- **14h00 — 👨‍🚀 Gateway e Rocket Garden** (\~1h30). [📷 fotos](https://www.google.com/search?tbm=isch&q=Kennedy+Space+Center+Rocket+Garden)
-
-**Lançamento de foguete:** confira o calendário de Cape Canaveral na semana da viagem; as datas só se confirmam poucos dias antes.
-
-### 🚗 Deslocamento para Cocoa Beach (\~20 min de carro)
+### 🚗 Deslocamento para Cocoa Beach (\~1h de carro, saída por volta das 12h)
 
 ### 📍 Cocoa Beach
 
 [📷 ver fotos](https://www.google.com/search?tbm=isch&q=Cocoa+Beach+Pier)
 
-Praia mais próxima de Orlando, com o píer de Cocoa Beach e a loja Ron Jon Surf Shop. Bom para o fim da tarde, por volta das 16h.
+Praia mais próxima de Orlando, com o píer de Cocoa Beach e a loja Ron Jon Surf Shop. Tarde inteira na praia, das \~13h às \~17h.
 
-### 🏨 \~18h – volta ao hotel (\~1h de carro)
+### 🏨 \~17h – volta ao hotel (\~1h de carro)
 
 ### 🌙 Noite: Disney Springs
 
@@ -453,14 +438,13 @@ Sete ilhas temáticas em volta de um lago. Os hóspedes entram às 8h e vão dir
 
 ## 🎟️ O que reservar com antecedência
 
-Quatro itens se compram antes (três deles só 3 dias antes da data) e dois são filas virtuais gratuitas feitas no próprio dia.
+Três itens se compram antes (todos só 3 dias antes da data) e dois são filas virtuais gratuitas feitas no próprio dia.
 
 | Item | Quando reservar | Custo | Dia de uso |
 | --- | --- | --- | --- |
 | Multi Pass Hollywood Studios (Slinky + Tower of Terror + Toy Story Mania) | 06/11, no app My Disney Experience | \~US$ 29 por pessoa | 09/11 |
 | Multi Pass EPCOT (Test Track + Soarin' + Mission: SPACE) | 07/11, no app My Disney Experience | \~US$ 28 por pessoa | 10/11 |
 | Single Pass Guardians of the Galaxy (opcional) | 07/11, no app My Disney Experience | Pago à parte; economiza \~55 min | 10/11 |
-| Ingresso Kennedy Space Center | Antes da viagem, no site oficial | Confira no site | 13/11 |
 | Fila virtual do Super Nintendo World (se houver) | No dia, pelo app da Universal | Grátis | 14/11 |
 | Fila virtual do Bluey's Wild World | No dia, pelo app da Disney | Grátis | 12/11 |
 
@@ -469,7 +453,6 @@ Quatro itens se compram antes (três deles só 3 dias antes da data) e dois são
 **Checklist:**
 
 - [ ] Instalar os apps My Disney Experience e Universal Orlando e vincular os ingressos
-- [ ] Comprar o ingresso do Kennedy Space Center
 - [ ] Comprar o Multi Pass do Hollywood Studios em 06/11 e o do EPCOT em 07/11
 - [ ] Conferir horários dos parques e shows na semana da viagem
 - [ ] Combinar quem topa usar single rider no Epic

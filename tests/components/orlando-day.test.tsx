@@ -37,29 +37,26 @@ describe('Orlando — dia de parque (US1)', () => {
 });
 
 describe('Orlando — dias de folga e "Por perto" (US2)', () => {
-  it('13/11: KSC → deslocamento → Cocoa Beach → volta → Disney Springs', () => {
+  it('13/11 (feature 011): Manhã livre → carro → Cocoa Beach (~13h às ~17h) → volta → Disney Springs', () => {
     const { content } = setupReal(at('2026-11-13T07:00'));
     const { container } = render(<Day content={content} date="2026-11-13" />);
-    expect([...container.querySelectorAll('.tl-area-name')].map((e) => e.textContent)).toEqual([
-      'Kennedy Space Center Visitor Complex',
-      'Cocoa Beach',
-      'Noite: Disney Springs',
-    ]);
+    expect([...container.querySelectorAll('.tl-area-name')].map((e) => e.textContent)).toEqual(['Manhã livre', 'Cocoa Beach', 'Noite: Disney Springs']);
+    expect(container.textContent).not.toMatch(/Kennedy|\bKSC\b|Atlantis|Rocket Garden|Bus Tour/);
     const text = container.querySelector('.stops')!.textContent!;
-    expect(text.indexOf('Deslocamento para Cocoa Beach')).toBeGreaterThan(text.indexOf('Gateway e Rocket Garden'));
-    expect(text.indexOf('Deslocamento para Cocoa Beach')).toBeLessThan(text.indexOf('Cocoa Beach', text.indexOf('Deslocamento para Cocoa Beach') + 30));
-    const times = [...container.querySelectorAll('.tl-step .tl-time')].map((e) => e.textContent);
-    expect(times).toEqual(['9h00', '10h30', '14h00']);
-    expect([...container.querySelectorAll('.tl-free')].map((e) => e.textContent)).toEqual([expect.stringContaining('Almoço no complexo')]);
+    const move = text.indexOf('Deslocamento para Cocoa Beach');
+    expect(move).toBeGreaterThan(-1);
+    expect(text.slice(move, move + 80)).toContain('~1h de carro');
+    expect(text.indexOf('Cocoa Beach', move + 40)).toBeGreaterThan(move);
+    expect(container.textContent).toMatch(/13h às ~17h/);
   });
 
-  it('11/11: compras com horário marcáveis e a alternativa ao outlet como nota', () => {
+  it('11/11: compras com horário marcáveis; sem a alternativa do KSC (feature 011)', () => {
     const { content } = setupReal(at('2026-11-11T09:00'));
     const { container } = render(<Day content={content} date="2026-11-11" />);
     const shop = [...container.querySelectorAll('.tl-step')].find((e) => e.textContent!.includes('Compras'))!;
     expect(shop.textContent).toContain('~14h');
     expect(shop.querySelector('[role="checkbox"]')).toBeTruthy();
-    expect(container.textContent).toContain('Alternativa ao outlet');
+    expect(container.textContent).not.toContain('Alternativa ao outlet');
   });
 
   it('Por perto em 08/11: 5 opções para comer no Magic Kingdom, com área e sem preço', () => {

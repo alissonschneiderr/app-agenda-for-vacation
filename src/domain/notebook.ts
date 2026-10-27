@@ -392,7 +392,8 @@ export function dayTips(view: TripDayView): DayAlert[] {
 /** Seções do dia com conteúdo, na ordem fixa (feature 009, FR-011/FR-017). */
 export function daySections(view: TripDayView, content: LoadedContent): DaySection[] {
   const counts: Record<DaySectionId, number> = {
-    paradas: view.groups.flatMap((g) => g.activities).filter((a) => a.trackable).length,
+    // Paradas marcáveis; num dia sem nada a marcar (ex.: 13/11 só com folga e praia, feature 011), os grupos do roteiro.
+    paradas: view.groups.flatMap((g) => g.activities).filter((a) => a.trackable).length || view.areas.length,
     comer: dayPlaces(view, 'food').length,
     lojas: dayPlaces(view, 'shop').length,
     curiosidades: dayPlaces(view, 'screen').length,
