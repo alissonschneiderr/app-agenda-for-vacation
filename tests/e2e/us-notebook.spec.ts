@@ -19,15 +19,13 @@ test.describe('US1 – Dia', () => {
     await expect(page.locator('.tl-now')).toHaveText('agora · 13h30');
   });
 
-  test('marcar Mott Street no círculo sobe o contador da capa; Desfazer volta', async ({ page }) => {
+  test('marcar Mott Street no círculo; Desfazer volta (feature 015: sem contador)', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-01T13:30', '/dia/2026-11-01');
-    const ring = page.locator('.page-head [role="progressbar"]');
-    const before = Number(await ring.getAttribute('aria-valuenow'));
     const card = page.locator('.stop-card', { has: page.locator('.tl-name', { hasText: /^Mott Street$/ }) });
     await card.getByRole('checkbox').click();
     await expect(card.getByRole('checkbox')).toHaveAttribute('aria-checked', 'true');
-    await expect(ring).toHaveAttribute('aria-valuenow', String(before + 1));
+    await expect(page.locator('[role="progressbar"]')).toHaveCount(0);
     await page.getByRole('button', { name: 'Desfazer' }).click();
     await expect(card.getByRole('checkbox')).toHaveAttribute('aria-checked', 'false');
   });

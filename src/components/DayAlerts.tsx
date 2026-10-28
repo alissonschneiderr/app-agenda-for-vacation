@@ -10,7 +10,7 @@ function Html({ html }: { html: string }) {
 /**
  * Avisos do dia inteiro (feature 006, FR-008).
  * - "faixa": um aviso não lido por vez; "Entendi" grava como lido e ele não volta naquele dia.
- * - "lista": todos, recolhidos ("N avisos para hoje").
+ * - "lista": todos, recolhidos em "Avisos do dia".
  */
 export function DayAlerts({ alerts, mode, allHref, open = false }: { alerts: DayAlert[]; mode: 'banner' | 'list'; allHref?: string; open?: boolean }) {
   const prefs = usePrefs();
@@ -33,7 +33,7 @@ export function DayAlerts({ alerts, mode, allHref, open = false }: { alerts: Day
             </button>
             {allHref && alerts.length > 1 && (
               <a class="btn btn-quiet" href={allHref}>
-                Ver todos ({alerts.length})
+                Ver todos
               </a>
             )}
           </div>
@@ -44,7 +44,7 @@ export function DayAlerts({ alerts, mode, allHref, open = false }: { alerts: Day
   return (
     <details class="alert-list" id="avisos" open={open}>
       <summary>
-        <Icon name="info" size={18} /> {alerts.length === 1 ? '1 aviso' : `${alerts.length} avisos`}
+        <Icon name="info" size={18} /> Avisos do dia
       </summary>
       {alerts.map((a) => (
         <Html key={a.id} html={a.html} />

@@ -6,7 +6,7 @@ import type { CityId, DateStr, DayAlert, DayArea, DayKind, DepartureItem, Photo,
 import type { UserState } from '../storage/types';
 import { dayKind } from './now';
 import { cityForDate, formatDayLabel, tripDates, tripRange } from './trip';
-import { dayView, destinationDates, destinationView, sumProgress, type DayActivityView, type Progress, type TripDayView } from './trip-view';
+import { dayView, destinationDates, type DayActivityView, type TripDayView } from './trip-view';
 
 const DAY_MS = 86_400_000;
 
@@ -31,7 +31,6 @@ export interface TripCover {
   start: DateStr;
   end: DateStr;
   cities: number;
-  progress: Progress;
   phase: 'before' | 'during' | 'after';
 }
 
@@ -40,11 +39,10 @@ export function peopleOf(travelers: string | undefined): number {
   return travelers && /^casal$/i.test(travelers.trim()) ? 2 : 0;
 }
 
-export function tripCover(content: LoadedContent, state: UserState, today: DateStr): TripCover {
+export function tripCover(content: LoadedContent, today: DateStr): TripCover {
   const { start, end } = tripRange(content.trip);
   const dates = tripDates(content.trip);
   const phase = today < start ? 'before' : today > end ? 'after' : 'during';
-  const progress = sumProgress(content.cities.map((c) => destinationView(content, state, c.id).progress));
   const first = content.trip[0]!.cityId;
   return {
     photo: heroPhoto(content, first),
@@ -55,7 +53,6 @@ export function tripCover(content: LoadedContent, state: UserState, today: DateS
     start,
     end,
     cities: content.cities.length,
-    progress,
     phase,
   };
 }
@@ -74,7 +71,6 @@ export interface CityCard {
   roadmapDays: number;
   phrase: string;
   tags: string[];
-  progress: Progress;
   /** Dias de locomoção da cidade, com a rota. */
   arrival?: { date: DateStr; from: CityId };
   departure?: { date: DateStr; to: CityId | null };
@@ -110,7 +106,6 @@ export function cityCard(content: LoadedContent, state: UserState, cityId: CityI
     roadmapDays: own.length,
     phrase: content.pointsById.get(city.heroPointId)?.summary ?? '',
     tags: [...commitments, ...topRegions(content, state, own, Math.max(0, 6 - commitments.length))],
-    progress: destinationView(content, state, cityId).progress,
     ...(prev ? { arrival: { date: leg.arrive, from: prev.cityId } } : {}),
     departure: { date: leg.depart, to: next?.cityId ?? null },
   };
@@ -138,10 +133,8 @@ export interface DayCard {
   cityId: CityId;
   title: string;
   kind: DayKind;
-  stops: number;
   summary: string;
   photo?: Photo;
-  progress: Progress;
   /** Dias de locomoção: rota. */
   route?: { from: CityId; to: CityId | null };
   view: TripDayView;
@@ -169,10 +162,8 @@ export function dayCard(content: LoadedContent, state: UserState, date: DateStr)
     cityId,
     title,
     kind,
-    stops: steps.filter((s) => s.trackable).length,
     summary,
     photo: firstArea?.photo ?? firstStep ?? (route ? undefined : heroPhoto(content, cityId)),
-    progress: view.progress,
     ...(route ? { route } : {}),
     view,
   };
@@ -186,7 +177,6 @@ export interface NeighborhoodCard {
   name: string;
   intro?: string;
   photo?: Photo;
-  counts: { food: number; sweets: number; shops: number; screen: number };
   hasNotes: boolean;
 }
 
@@ -217,24 +207,14 @@ export function neighborhoods(content: LoadedContent, state: UserState, cityId: 
       const not = notNeighborhoodsFor(content, date);
       return view.areas
         .filter((a) => isNeighborhood(a, not))
-        .map((a) => {
-          const places = view.places.filter((p) => a.placeIds.includes(p.id));
-          const food = places.filter((p) => p.kind === 'food');
-          return {
-            date,
-            areaId: a.id,
-            name: a.name,
-            ...(a.intro ? { intro: a.intro } : {}),
-            ...(a.photo ? { photo: a.photo } : {}),
-            counts: {
-              food: food.length,
-              sweets: food.filter((p) => p.level === '🍰').length,
-              shops: places.filter((p) => p.kind === 'shop').length,
-              screen: places.filter((p) => p.kind === 'screen').length,
-            },
-            hasNotes: !!a.notesHtml,
-          };
-        });
+        .map((a) => ({
+          date,
+          areaId: a.id,
+          name: a.name,
+          ...(a.intro ? { intro: a.intro } : {}),
+          ...(a.photo ? { photo: a.photo } : {}),
+          hasNotes: !!a.notesHtml,
+        }));
     });
 }
 

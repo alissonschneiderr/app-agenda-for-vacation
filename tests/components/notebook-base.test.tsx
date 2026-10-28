@@ -4,7 +4,6 @@ import { describe, expect, it } from 'vitest';
 import { Chip } from '../../src/components/Chip';
 import { Cover } from '../../src/components/Cover';
 import { PageHeader } from '../../src/components/PageHeader';
-import { ProgressRing } from '../../src/components/ProgressRing';
 import { SectionTitle } from '../../src/components/SectionTitle';
 
 const photo = { src: 'photos/x.webp', alt: 'SoHo', author: 'Fulano', license: 'CC BY-SA 4.0', licenseUrl: null, sourceUrl: 'https://commons.wikimedia.org/wiki/File:x.jpg' };
@@ -23,13 +22,6 @@ describe('componentes de base (feature 008)', () => {
     expect((container.querySelector('.cover') as HTMLElement).style.background).toContain('--cover-orlando');
   });
 
-  it('ProgressRing: valores acessíveis e porcentagem', () => {
-    render(<ProgressRing progress={{ done: 3, total: 12 }} scope="Nova York" />);
-    const ring = screen.getByRole('progressbar', { name: 'Nova York: 3 de 12 feitas' });
-    expect(ring.getAttribute('aria-valuenow')).toBe('3');
-    expect(ring.textContent).toBe('25%');
-  });
-
   it('Chip: variante e link', () => {
     render(<Chip variant="accent" href="#/perto/x">Comer</Chip>);
     const a = screen.getByRole('link', { name: 'Comer' });
@@ -40,13 +32,13 @@ describe('componentes de base (feature 008)', () => {
   it('SectionTitle e PageHeader', () => {
     render(
       <>
-        <PageHeader back="#/" label="Estados Unidos" title="Nova York" progress={{ done: 1, total: 4 }} />
+        <PageHeader back="#/" label="Estados Unidos" title="Nova York" />
         <SectionTitle icon="pin" title="Destinos" sub="Toque numa cidade" />
       </>,
     );
     expect(screen.getByRole('link', { name: 'Voltar' }).getAttribute('href')).toBe('#/');
     expect(screen.getByRole('heading', { level: 1, name: 'Nova York' })).toBeTruthy();
     expect(screen.getByRole('heading', { level: 2, name: 'Destinos' })).toBeTruthy();
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe('1');
+    expect(screen.queryByRole('progressbar')).toBeNull();
   });
 });

@@ -18,12 +18,12 @@ describe('Por perto (feature 006, US3)', () => {
     expect(screen.getAllByRole('link', { name: 'Nom Wah Tea Parlor' })).toHaveLength(1);
   });
 
-  it('grupos com contagem e filtro ☕/🏆/🍰', () => {
+  it('grupos sem contagem (feature 015) e filtro ☕/🏆/🍰', () => {
     const { content } = setupCompanion('2026-11-01T14:30:00Z');
     window.location.hash = '#/perto/2026-11-01/soho?g=comer&n=%F0%9F%8D%B0';
     render(<Nearby content={content} date="2026-11-01" areaId="soho" />);
     const groups = screen.getByRole('navigation', { name: 'Tipo de opção' });
-    expect(within(groups).getAllByRole('link').map((a) => a.textContent)).toEqual(['Comer (3)', 'Lojas (1)', 'Curiosidades (1)']);
+    expect(within(groups).getAllByRole('link').map((a) => a.textContent)).toEqual(['Comer', 'Lojas', 'Curiosidades']);
     expect(screen.getAllByRole('link', { name: /Dominique Ansel|La Cabra|Prince Street/ }).map((a) => a.getAttribute('aria-label'))).toEqual([
       'Dominique Ansel Bakery',
     ]);

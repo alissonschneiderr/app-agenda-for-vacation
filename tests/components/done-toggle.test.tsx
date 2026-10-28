@@ -1,13 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { DoneToggle } from '../../src/components/DoneToggle';
-import { ProgressBar } from '../../src/components/ProgressBar';
 import { markActivity } from '../../src/domain/full-itinerary';
 import { setup } from './helpers';
 
 afterEach(() => vi.useRealTimers());
 
-describe('DoneToggle e ProgressBar (003 US2)', () => {
+describe('DoneToggle (003 US2)', () => {
   it('checkbox acessível com texto, alterna e grava', () => {
     const { store } = setup();
     render(<DoneToggle activityKey="k1" title="Magic Kingdom" />);
@@ -40,14 +39,4 @@ describe('DoneToggle e ProgressBar (003 US2)', () => {
     expect(screen.getByRole('alert').textContent).toBe('Não foi possível salvar: armazenamento cheio.');
   });
 
-  it('ProgressBar com valores ARIA e sem barra quando não há atividades', () => {
-    const { unmount } = render(<ProgressBar progress={{ done: 2, total: 5 }} scope="Orlando" />);
-    const bar = screen.getByRole('progressbar', { name: 'Orlando: 2 de 5 feitas' });
-    expect(bar.getAttribute('aria-valuenow')).toBe('2');
-    expect(bar.getAttribute('aria-valuemax')).toBe('5');
-    unmount();
-    render(<ProgressBar progress={{ done: 0, total: 0 }} scope="Dia" />);
-    expect(screen.queryByRole('progressbar')).toBeNull();
-    expect(screen.getByText('Sem atividades planejadas')).toBeTruthy();
-  });
 });

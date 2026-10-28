@@ -46,7 +46,7 @@ test.describe('US2 – folgas e "Por perto"', () => {
   test('Por perto em 08/11 ao meio-dia: Magic Kingdom com 5 opções; detalhe de Casey\'s Corner', async ({ page }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-08T12:00', '/perto/2026-11-08/magic-kingdom');
-    await expect(page.getByRole('link', { name: 'Comer (5)' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Comer', exact: true })).toBeVisible();
     await page.locator('.place-short', { hasText: "Casey's Corner" }).click();
     await expect(page.locator('.place-card')).toContainText('Main Street, cachorro-quente');
   });

@@ -7,7 +7,6 @@ import { Icon } from './Icon';
 
 /** Cartão de destino (features 008 e 009): grande, vertical e inteiramente clicável. */
 export function CityCard({ c }: { c: CityCardModel }) {
-  const pct = c.progress.total ? Math.round((c.progress.done / c.progress.total) * 100) : 0;
   return (
     <article class="nb-card city-card click-card" aria-label={c.name}>
       <Cover photo={c.photo} cityId={c.cityId} icon="compass" size="card" lazy>
@@ -24,12 +23,6 @@ export function CityCard({ c }: { c: CityCardModel }) {
           <Icon name="calendar" size={16} /> {shortLabel(c.start)} a {shortLabel(c.end)} · {c.roadmapDays === 1 ? '1 dia de roteiro' : `${c.roadmapDays} dias de roteiro`}
         </p>
         {c.phrase && <p class="clamp-2 nb-phrase">{c.phrase}</p>}
-        <span class="nb-count">
-          {c.progress.done} de {c.progress.total} feitas
-        </span>
-        <div class="nb-bar" aria-hidden="true">
-          <span style={{ width: `${pct}%` }} />
-        </div>
       </div>
       <CardChevron />
     </article>

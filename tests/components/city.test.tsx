@@ -20,6 +20,10 @@ describe('Cidade (feature 009, US1)', () => {
     expect(container.querySelector('.city-tags')).toBeNull();
     expect(screen.queryByRole('tablist')).toBeNull();
     expect(screen.getByRole('link', { name: 'Voltar' }).getAttribute('href')).toBe('#/');
+    // Feature 015: sem anel no cabeçalho nem "feitas" e barra nos cards dos dias.
+    expect(screen.queryAllByRole('progressbar')).toHaveLength(0);
+    expect(container.textContent).not.toMatch(/feitas|\d+\s?%/);
+    expect(container.querySelector('.nb-bar')).toBeNull();
   });
 
   it('8 cards de dia, cada um com 1 link para o dia', () => {
@@ -33,6 +37,9 @@ describe('Cidade (feature 009, US1)', () => {
       expect(links[0]!.getAttribute('href')).toBe(`#/dia/2026-${i === 0 ? '10-31' : `11-0${i}`}`);
     });
     expect(days[1]!.querySelector('img.cover-img')).toBeTruthy();
+    // Feature 015: o card do dia mostra o tipo, sem "N paradas".
+    for (const d of days) expect(d.textContent).not.toMatch(/\d+ paradas?/);
+    expect(days[1]!.textContent).toContain('a pé');
   });
 
   it('Miami: dias com o roteiro do casal (feature 012); nenhum "Sem informações"', () => {

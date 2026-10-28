@@ -38,7 +38,7 @@ export function City({ content, cityId: param }: { content: LoadedContent; cityI
   const c = cityCard(content, state, cityId);
   return (
     <main class="page city">
-      <PageHeader back="#/" label={c.country} title={c.name} progress={c.progress} scope={c.name} />
+      <PageHeader back="#/" label={c.country} title={c.name} />
       <Cover photo={c.photo} cityId={cityId} icon="compass" size="compact">
         <p class="eyebrow">{c.country}</p>
         <h2 class="city-title">{c.name}</h2>

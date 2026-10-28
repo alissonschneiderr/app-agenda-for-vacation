@@ -11,7 +11,6 @@ import {
   destinationView,
   findActivity,
   nextPendingActivity,
-  tripProgress,
 } from '../../src/domain/trip-view';
 import { emptyState } from '../../src/storage/user-store';
 import type { UserState } from '../../src/storage/types';
@@ -57,7 +56,7 @@ describe('trip-view', () => {
     expect(full.find((a) => a.category === 'restaurant')).toBeTruthy();
   });
 
-  it('feature 005: pausa livre é intervalo, fora do progresso e da "próxima pendente"', () => {
+  it('feature 005: pausa livre é intervalo, sem check e fora da "próxima pendente"', () => {
     const c = fixtureContent();
     const full = fixtureFullItinerary();
     const d = full.days.find((x) => x.date === '2026-11-02')!;
@@ -71,7 +70,8 @@ describe('trip-view', () => {
     const free = before.groups[0]!.activities.find((a) => a.key === first.id)!;
     expect(free).toMatchObject({ free: true, trackable: false });
     const { content: c0, state: s0 } = setup();
-    expect(before.progress.total).toBe(dayView(c0, s0, '2026-11-02').progress.total - 1);
+    const checks = (v: ReturnType<typeof dayView>) => v.groups.flatMap((g) => g.activities).filter((a) => a.trackable).length;
+    expect(checks(before)).toBe(checks(dayView(c0, s0, '2026-11-02')) - 1);
     const next = nextPendingActivity(content, state, new Date(`2026-11-02T${String(Number(first.start.slice(0, 2)) + 5).padStart(2, '0')}:${first.start.slice(3)}:00Z`));
     expect(next?.activity?.key).not.toBe(first.id);
   });
@@ -94,26 +94,18 @@ describe('trip-view', () => {
     expect(withGone.groups[1]!.activities[0]).toMatchObject({ title: 'Ponto antigo', unavailable: true, trackable: true });
   });
 
-  it('progresso real por dia, cidade e viagem (pulada conta no total, não em feitas)', () => {
+  it('marcas aparecem na própria parada: feita e pulada, em NY e em Orlando (feature 015: sem contagem)', () => {
     const { content, state } = setup();
-    const before = tripProgress(content, state);
     const day = dayView(content, state, '2026-11-02');
     const [a, b] = day.groups[0]!.activities.filter((x) => x.trackable);
     let s: UserState = markActivity(state, a!.key, 'done');
     s = markActivity(s, b!.key, 'skipped');
-    expect(dayView(content, s, '2026-11-02').progress).toEqual({ done: 1, total: day.progress.total });
-    expect(destinationView(content, s, 'nova-york').progress.done).toBe(1);
-    expect(tripProgress(content, s)).toEqual({ done: 1, total: before.total });
+    const after = dayView(content, s, '2026-11-02').groups[0]!.activities;
+    expect(after.find((x) => x.key === a!.key)!.mark?.state).toBe('done');
+    expect(after.find((x) => x.key === b!.key)!.mark?.state).toBe('skipped');
     const mkKey = dayView(content, s, '2026-11-08').groups[0]!.activities[0]!.key;
     s = markActivity(s, mkKey, 'done');
-    expect(destinationView(content, s, 'orlando').progress.done).toBe(1);
-    expect(tripProgress(content, s).done).toBe(2);
-  });
-
-  it('dias de locomoção não são contados duas vezes na viagem', () => {
-    const { content, state } = setup();
-    const sum = ['nova-york', 'orlando', 'miami'].reduce((n, c) => n + destinationView(content, state, c as never).progress.total, 0);
-    expect(tripProgress(content, state).total).toBe(sum);
+    expect(dayView(content, s, '2026-11-08').groups[0]!.activities[0]!.mark?.state).toBe('done');
   });
 
   it('dia anterior/seguinte atravessa destinos', () => {
@@ -167,11 +159,11 @@ describe('trip-view com o roteiro de Orlando (feature 007)', () => {
     expect(mia.groups.map((g) => g.source)).toEqual(['full']);
   });
 
-  it('marcas antigas não alteram o progresso; só os passos orl1- contam', () => {
+  it('marcas antigas não marcam nenhum passo; só os passos orl1- têm o check', () => {
     const marked = { ...legacy, activityMarks: { [activityKeyForItem('old', 'orl-epcot')]: { state: 'done' as const, at: 'x' } } };
-    const p = dayView(content, marked, '2026-11-10').progress;
-    expect(p.done).toBe(0);
-    expect(p.total).toBe(dayView(content, emptyState(), '2026-11-10').groups[0]!.activities.filter((a) => a.trackable).length);
+    const acts = dayView(content, marked, '2026-11-10').groups.flatMap((g) => g.activities);
+    expect(acts.filter((a) => a.mark?.state === 'done')).toHaveLength(0);
+    expect(acts.filter((a) => a.trackable).length).toBe(dayView(content, emptyState(), '2026-11-10').groups[0]!.activities.filter((a) => a.trackable).length);
   });
 
   it('fila, forma de entrar e área do parque no passo; ponto do parque herdado', () => {

@@ -3,6 +3,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { seedSuggested } from '../../src/domain/itineraries';
+import { DayAlerts } from '../../src/components/DayAlerts';
 import { Day } from '../../src/pages/Day';
 import { setupReal } from './companion-helpers';
 
@@ -69,15 +70,14 @@ describe('Dia (features 008 e 009)', () => {
     expect(within(card as HTMLElement).getByRole('link', { name: /Ver onde comer perto/ }).getAttribute('href')).toBe('#comer');
   });
 
-  it('marcar no círculo: feito, contador da capa sobe e "Desfazer" volta', () => {
+  it('marcar no círculo: feito, sem contador nem percentual, e "Desfazer" volta (feature 015)', () => {
     const { content } = setupReal(at('2026-11-01T13:30'));
     const { container } = render(<Day content={content} date="2026-11-01" />);
-    const ring = screen.getAllByRole('progressbar')[0]!;
-    const before = Number(ring.getAttribute('aria-valuenow'));
     const card = [...container.querySelectorAll('.stop-card')].find((e) => e.querySelector('.tl-name')!.textContent === 'Mott Street')!;
     fireEvent.click(within(card as HTMLElement).getByRole('checkbox'));
     expect(within(card as HTMLElement).getByRole('checkbox').getAttribute('aria-checked')).toBe('true');
-    expect(Number(screen.getAllByRole('progressbar')[0]!.getAttribute('aria-valuenow'))).toBe(before + 1);
+    expect(screen.queryAllByRole('progressbar')).toHaveLength(0);
+    expect(container.textContent).not.toMatch(/\d+\s?%|feitas/);
     fireEvent.click(screen.getByRole('button', { name: 'Desfazer' }));
     expect(within(card as HTMLElement).getByRole('checkbox').getAttribute('aria-checked')).toBe('false');
   });
@@ -220,5 +220,38 @@ describe('"Bairros" só com bairros (feature 013, US3)', () => {
     const { content } = setupReal(at('2026-11-03T09:00'));
     const { container } = render(<Day content={content} date="2026-11-18" />);
     expect([...container.querySelectorAll('#bairros article')].map((a) => a.getAttribute('aria-label'))).toEqual(['South Beach (Art Deco District)']);
+  });
+});
+
+describe('Dia sem contagens de itens (feature 015, US2)', () => {
+  it('01/11: capa e cards sem "N paradas"; "Opções" sem número; bairros sem "(N)"; dicas com "Avisos do dia"', () => {
+    const { content } = setupReal(at('2026-11-01T13:30'));
+    const { container } = render(<Day content={content} date="2026-11-01" />);
+    const cover = container.querySelector('.cover')!;
+    expect(cover.textContent).not.toMatch(/\d+ paradas?/);
+    expect(cover.textContent).toContain('a pé');
+    const options = [...container.querySelectorAll('.tl-area-options')];
+    expect(options.length).toBeGreaterThan(0);
+    for (const o of options) {
+      expect(o.textContent).toBe('Opções');
+      expect(o.getAttribute('href')).toMatch(/^#\/perto\/2026-11-01\//);
+    }
+    const hoods = [...container.querySelectorAll('.hood-card')];
+    expect(hoods.length).toBeGreaterThan(0);
+    for (const h of hoods) {
+      expect(h.textContent).not.toMatch(/\(\d+\)/);
+      expect(h.querySelector('h3')!.textContent).toBeTruthy();
+      expect(h.textContent).toMatch(/\d{2}\/\d{2}/);
+    }
+    expect(container.querySelector('#avisos summary')!.textContent!.trim()).toBe('Avisos do dia');
+    expect(container.textContent).not.toMatch(/\d+ avisos?/);
+  });
+
+  it('faixa de aviso: "Ver todos" sem número, com o mesmo link', () => {
+    setupReal(at('2026-11-01T13:30'));
+    const alerts = [1, 2, 3].map((n) => ({ id: `al:2026-11-01:${n}`, html: `<p>Aviso ${n}</p>` }));
+    render(<DayAlerts alerts={alerts} mode="banner" allHref="#avisos" />);
+    const all = screen.getByRole('link', { name: 'Ver todos' });
+    expect(all.getAttribute('href')).toBe('#avisos');
   });
 });

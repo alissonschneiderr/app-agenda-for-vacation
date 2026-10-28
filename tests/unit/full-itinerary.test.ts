@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import {
-  dayProgress,
   endTime,
   leaveBy,
   markActivity,
@@ -26,13 +25,8 @@ describe('roteiro FULL: domínio', () => {
     expect(unmarkActivity(s, 'nada')).toBe(s);
   });
 
-  it('calcula fim e progresso (sem contar deslocamentos)', () => {
+  it('calcula o fim', () => {
     expect(endTime({ start: '23:30', durationMin: 45 })).toBe('00:15');
-    const first = day.activities.find((a) => a.type === 'meal')!;
-    const s = markActivity(emptyState(), first.id, 'done');
-    const p = dayProgress(day, s.activityMarks);
-    expect(p.done).toBe(1);
-    expect(p.total).toBe(day.activities.filter((a) => a.type !== 'transit').length);
   });
 
   it('próxima atividade no dia atual: primeira sem marca que ainda não terminou', () => {

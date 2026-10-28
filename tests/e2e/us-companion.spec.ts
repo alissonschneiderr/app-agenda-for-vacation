@@ -52,7 +52,7 @@ test.describe('US3 – Por perto', () => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await at(page, '2026-11-01T13:40', '/perto/2026-11-01/chinatown');
     await expect(page.getByRole('navigation', { name: 'Regiões do dia' }).getByRole('link', { name: 'Chinatown' })).toHaveAttribute('aria-current', 'true');
-    await expect(page.getByRole('link', { name: 'Comer (6)' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Comer', exact: true })).toBeVisible();
     await page.getByRole('link', { name: '🍰 Doces' }).click();
     await expect(page.locator('.place-short')).toHaveCount(2);
     await page.locator('.place-short').first().click();

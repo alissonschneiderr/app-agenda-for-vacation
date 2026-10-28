@@ -1,5 +1,5 @@
 // Preferências deste aparelho (feature 006): avisos já lidos e alto contraste.
-// Não fazem parte do progresso da viagem; sem armazenamento disponível, o app usa os padrões.
+// Não fazem parte das marcas de feito; sem armazenamento disponível, o app usa os padrões.
 import { useEffect, useState } from 'preact/hooks';
 import { getAppStorage } from './app-storage';
 

@@ -109,9 +109,9 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
       )}
 
       <nav class="segmented" aria-label="Tipo de opção">
-        {GROUPS.map(([g, label, kind]) => (
+        {GROUPS.map(([g, label]) => (
           <a key={g} href={link(g)} aria-current={g === group ? 'page' : undefined}>
-            {label} ({places.filter((p) => p.kind === kind).length})
+            {label}
           </a>
         ))}
       </nav>

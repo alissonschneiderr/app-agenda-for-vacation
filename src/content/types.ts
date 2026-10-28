@@ -143,7 +143,7 @@ export interface Transit {
   cost?: string;
 }
 
-// 'free' (feature 005): pausa, tempo, tarde ou jantar livre — sem Feito/Pendente e fora do progresso.
+// 'free' (feature 005): pausa, tempo, tarde ou jantar livre — sem Feito/Pendente.
 export type ActivityType = 'attraction' | 'meal' | 'shopping' | 'screen' | 'transit' | 'rest' | 'commitment' | 'hotel' | 'free';
 export type Priority = 'essential' | 'important' | 'optional';
 

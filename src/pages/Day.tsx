@@ -43,7 +43,7 @@ function AreaLine({ area, day }: { area: DayArea; day: TripDayView }) {
       <h3 class="tl-area-name">{area.name}</h3>
       {options > 0 && (
         <a class="tl-area-options" href={`#/perto/${day.date}/${area.id}`}>
-          Opções ({options})
+          Opções
         </a>
       )}
     </li>
@@ -201,8 +201,6 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
         back={`#/cidade/${cityId}`}
         label={`${content.cityName(cityId)} · ${date}`}
         title={`${formatDayMonth(date)} · ${card.title}`}
-        progress={day.progress}
-        scope={`Dia ${formatDayLabel(date)}`}
       />
       {date !== today && tripPhase(content, today) === 'during' && (
         <a class="btn today-link" href="#/dia">
@@ -235,7 +233,6 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
           <Chip variant="glass" icon={KIND_ICON[card.kind]}>
             {KIND_LABEL[card.kind]}
           </Chip>
-          {card.stops > 0 && <Chip variant="glass">{card.stops === 1 ? '1 parada' : `${card.stops} paradas`}</Chip>}
         </div>
       </Cover>
 

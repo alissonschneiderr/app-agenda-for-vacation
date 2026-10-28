@@ -68,11 +68,6 @@ export interface ActivityGroup {
   activities: DayActivityView[];
 }
 
-export interface Progress {
-  done: number;
-  total: number;
-}
-
 export interface TripDayView {
   date: DateStr;
   label: string; // "segunda, 02/11"
@@ -82,7 +77,6 @@ export interface TripDayView {
   events: string[];
   groups: ActivityGroup[];
   hasTimes: boolean;
-  progress: Progress;
   fullDay?: FullDay;
   /** Notas do documento para o dia (dicas, destaques, partida), em HTML gerado no build. */
   notesHtml?: string;
@@ -101,8 +95,6 @@ export interface DestinationView {
   period: { start: DateStr; end: DateStr };
   days: TripDayView[];
   commitments: Commitment[];
-  activityCount: number;
-  progress: Progress;
 }
 
 export function activityKeyForItem(itineraryId: string, pointId: string): string {
@@ -198,16 +190,6 @@ function fromItem(
   };
 }
 
-/** Linhas opcionais só contam quando feitas: não ficam como pendência obrigatória. */
-export function progressOf(activities: DayActivityView[]): Progress {
-  const tracked = activities.filter((a) => a.trackable && (!a.optional || a.mark?.state === 'done'));
-  return { done: tracked.filter((a) => a.mark?.state === 'done').length, total: tracked.length };
-}
-
-export function sumProgress(list: Progress[]): Progress {
-  return list.reduce((acc, p) => ({ done: acc.done + p.done, total: acc.total + p.total }), { done: 0, total: 0 });
-}
-
 export function fullDayFor(content: LoadedContent, date: DateStr): FullDay | undefined {
   for (const f of content.fullItineraries ?? []) {
     const d = f.days.find((x) => x.date === date);
@@ -261,7 +243,6 @@ export function dayView(content: LoadedContent, state: UserState, date: DateStr,
     events: fullDay?.events ?? [],
     groups,
     hasTimes: all.some((a) => a.start),
-    progress: progressOf(all),
     fullDay,
     notesHtml: (content.fullItineraries ?? []).map((f) => f.dayNotes?.[date]).find(Boolean),
     places: fullDay?.places ?? [],
@@ -278,9 +259,6 @@ export function destinationView(content: LoadedContent, state: UserState, cityId
   const commitments = (content.fullItineraries ?? [])
     .filter((f) => f.cityId === cityId)
     .flatMap((f) => f.commitments);
-  // Dias de locomoção aparecem nos dois destinos; para o total da cidade, conta-se cada dia uma vez
-  // só no destino em que ele "pertence" (cityForDate), evitando somar duas vezes na viagem.
-  const own = days.filter((d) => cityForDate(content.trip, d.date) === cityId);
   return {
     cityId,
     name: city.name,
@@ -288,13 +266,7 @@ export function destinationView(content: LoadedContent, state: UserState, cityId
     period: { start: dates[0]!, end: dates[dates.length - 1]! },
     days,
     commitments,
-    activityCount: own.reduce((n, d) => n + d.progress.total, 0),
-    progress: sumProgress(own.map((d) => d.progress)),
   };
-}
-
-export function tripProgress(content: LoadedContent, state: UserState): Progress {
-  return sumProgress(content.cities.map((c) => destinationView(content, state, c.id).progress));
 }
 
 /** Dia anterior/seguinte da viagem inteira (atravessa destinos). */

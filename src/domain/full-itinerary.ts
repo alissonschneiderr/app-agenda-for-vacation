@@ -31,18 +31,9 @@ export function unmarkActivity(state: UserState, id: string): UserState {
   return { ...state, activityMarks: rest };
 }
 
-/** Atividades que contam para o progresso (deslocamentos não contam). */
+/** Atividades com o check de feito (deslocamentos não têm). */
 export function trackable(day: FullDay): Activity[] {
   return day.activities.filter((a) => a.type !== 'transit');
-}
-
-export function dayProgress(day: FullDay, marks: UserState['activityMarks']): { done: number; skipped: number; total: number } {
-  const acts = trackable(day);
-  return {
-    done: acts.filter((a) => marks[a.id]?.state === 'done').length,
-    skipped: acts.filter((a) => marks[a.id]?.state === 'skipped').length,
-    total: acts.length,
-  };
 }
 
 /**

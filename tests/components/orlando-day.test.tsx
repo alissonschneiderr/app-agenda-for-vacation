@@ -62,7 +62,7 @@ describe('Orlando — dias de folga e "Por perto" (US2)', () => {
   it('Por perto em 08/11: 5 opções para comer no Magic Kingdom, com área e sem preço', () => {
     const { content } = setupReal(at('2026-11-08T12:00'));
     const { container } = render(<Nearby content={content} date="2026-11-08" areaId="magic-kingdom" />);
-    expect(screen.getByRole('link', { name: 'Comer (5)' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Comer' }).getAttribute('href')).toBe('#/perto/2026-11-08/magic-kingdom?g=comer');
     const items = [...container.querySelectorAll('.place-short')];
     expect(items).toHaveLength(5);
     expect(items[3]!.textContent).toContain("Casey's Corner");

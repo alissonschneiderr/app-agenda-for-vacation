@@ -14,14 +14,14 @@ const central = content.pointsById.get('ny-central-park')!;
 
 describe('caderno de viagem — modelos (feature 008)', () => {
   it('capa da viagem antes do embarque: faltam 4 dias, 2 pessoas, 31/10 a 21/11, 3 cidades', () => {
-    const c = tripCover(content, state, '2026-10-27');
+    const c = tripCover(content, '2026-10-27');
     expect(c).toMatchObject({ phase: 'before', daysLeft: 4, people: 2, start: '2026-10-31', end: '2026-11-21', cities: 3, totalDays: 22 });
     expect(c.photo?.src).toBe(central.photos[0]!.src);
     expect(c.dayNumber).toBeUndefined();
   });
 
   it('capa da viagem durante: dia n de 22', () => {
-    expect(tripCover(content, state, '2026-11-01')).toMatchObject({ phase: 'during', dayNumber: 2 });
+    expect(tripCover(content, '2026-11-01')).toMatchObject({ phase: 'during', dayNumber: 2 });
     expect(peopleOf('Casal')).toBe(2);
     expect(peopleOf('Família')).toBe(0);
   });
@@ -45,7 +45,6 @@ describe('caderno de viagem — modelos (feature 008)', () => {
     const soho = d.view.areas.find((a) => a.name === 'SoHo')!;
     expect(d).toMatchObject({ kind: 'walk', cityId: 'nova-york' }); // feature 013: sem dayNumber no card
     expect(d.photo?.src).toBe(soho.photo!.src);
-    expect(d.stops).toBe(d.view.progress.total);
     const t = dayCard(content, state, '2026-11-07');
     expect(t.title).toBe('Nova York → Orlando');
     expect(t.route).toEqual({ from: 'nova-york', to: 'orlando' });
@@ -66,6 +65,7 @@ describe('caderno de viagem — modelos (feature 008)', () => {
 
   it('bairros de Orlando: só Cocoa Beach (feature 013: parques, outlets e "Manhã livre" não são bairro)', () => {
     const n = neighborhoods(content, state, 'orlando');
+    for (const card of n) expect(card).not.toHaveProperty('counts'); // feature 015
     expect(n.map((x) => x.name)).toEqual(['Cocoa Beach']);
     expect(n[0]).toMatchObject({ date: '2026-11-13', areaId: 'cocoa-beach' });
   });

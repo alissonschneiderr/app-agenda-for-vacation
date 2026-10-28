@@ -31,7 +31,12 @@ describe('Início (feature 009, US1)', () => {
       expect(card.textContent).toMatch(/\d+ noites/);
       expect(card.querySelector('.card-chevron')).toBeTruthy();
       expect(card.textContent).not.toMatch(/Ver roteiro|Ver mais/);
+      // Feature 015: sem acompanhamento de progresso; a duração da viagem continua.
+      expect(card.textContent).toMatch(/\d+ dias? de roteiro/);
+      expect(card.textContent).not.toMatch(/feitas|\d+\s?%/);
     }
+    expect(screen.queryAllByRole('progressbar')).toHaveLength(0);
+    expect(screen.getByText('3 destinos')).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Orlando' }).getAttribute('href')).toBe('#/cidade/orlando');
   });
 });
