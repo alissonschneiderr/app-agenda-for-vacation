@@ -255,3 +255,21 @@ describe('Dia sem contagens de itens (feature 015, US2)', () => {
     expect(all.getAttribute('href')).toBe('#avisos');
   });
 });
+
+describe('Rota até… nos cards do dia (feature 016, US2)', () => {
+  it('01/11: card com "Abrir no mapa" tem "Rota até…" para a rota a partir dele; sem mapa, nenhum dos dois', () => {
+    const { content } = setupReal(at('2026-11-01T13:30'));
+    const { container } = render(<Day content={content} date="2026-11-01" />);
+    const cards = [...container.querySelectorAll('#comer .place-row, #lojas .place-row')] as HTMLElement[];
+    expect(cards.length).toBeGreaterThan(0);
+    for (const card of cards) {
+      const id = card.querySelector('h3 a')!.getAttribute('href')!.split('/').pop()!;
+      const map = within(card).queryByRole('link', { name: /Abrir no mapa/ });
+      const route = within(card).queryByRole('link', { name: 'Rota até…' });
+      if (map) expect(route?.getAttribute('href')).toBe(`#/rota/2026-11-01/${id}`);
+      else expect(route).toBeNull();
+    }
+    const curios = [...container.querySelectorAll('#curiosidades .place-row')] as HTMLElement[];
+    for (const card of curios) expect(within(card).queryByRole('link', { name: 'Rota até…' })).toBeNull();
+  });
+});

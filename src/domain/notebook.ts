@@ -234,7 +234,7 @@ export interface DaySection {
   count: number;
 }
 
-const SECTION_LABEL: Record<DaySectionId, string> = {
+export const SECTION_LABEL: Record<DaySectionId, string> = {
   paradas: 'Paradas',
   comer: 'Restaurantes e Cafés',
   lojas: 'Brechós e Lojas',
@@ -246,6 +246,8 @@ const SECTION_LABEL: Record<DaySectionId, string> = {
 
 export interface DayPlace {
   id: string;
+  /** Dia do roteiro (feature 016: a rota a partir do lugar). */
+  date: DateStr;
   name: string;
   /** Endereço do roteiro; senão, o nome da região. */
   where: string;
@@ -273,6 +275,7 @@ function toDayPlace(view: TripDayView, p: TripDayView['places'][number], areaId:
   const text = p.fields.find((f) => !f.label)?.text ?? p.works;
   return {
     id: p.id,
+    date: view.date,
     name: p.name,
     where: p.address ?? areaName.replace(/^Noite:\s*/, ''),
     ...(text ? { summary: text } : {}),

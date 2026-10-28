@@ -1,3 +1,4 @@
+import type { LoadedContent } from '../content/load';
 import type { PlaceGroup } from '../domain/notebook';
 import { DayPlaceCard } from './DayPlaceCard';
 
@@ -6,7 +7,7 @@ import { DayPlaceCard } from './DayPlaceCard';
  * cabeçalho é só o nome — a frase e a foto do bairro ficam em "Bairros" — e fica preso abaixo do
  * menu do dia enquanto o grupo está na tela.
  */
-export function HoodGroups({ groups, section }: { groups: PlaceGroup[]; section: string }) {
+export function HoodGroups({ groups, section, content }: { groups: PlaceGroup[]; section: string; content: LoadedContent }) {
   return (
     <>
       {groups.map((g, i) => {
@@ -18,7 +19,7 @@ export function HoodGroups({ groups, section }: { groups: PlaceGroup[]; section:
             </h3>
             <div class="card-stack">
               {g.items.map((p) => (
-                <DayPlaceCard key={p.id} p={p} />
+                <DayPlaceCard key={p.id} p={p} content={content} />
               ))}
             </div>
           </section>

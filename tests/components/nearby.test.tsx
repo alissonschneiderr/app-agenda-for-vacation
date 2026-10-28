@@ -85,3 +85,15 @@ describe('selo "Bairro" só em bairro (feature 013)', () => {
     expect(soho.container.querySelector('.cover')!.textContent).toContain('Bairro');
   });
 });
+
+describe('Rota até… no detalhe do lugar (feature 016, US2)', () => {
+  it('La Cabra SoHo: "Rota até…" depois de "Abrir no mapa"', () => {
+    const { content } = setupReal('2026-11-01T18:30:00Z');
+    window.location.hash = '#/perto/2026-11-01/soho/food-la-cabra-soho';
+    const { container } = render(<Nearby content={content} date="2026-11-01" areaId="soho" placeId="food-la-cabra-soho" />);
+    const route = screen.getByRole('link', { name: 'Rota até…' });
+    expect(route.getAttribute('href')).toBe('#/rota/2026-11-01/food-la-cabra-soho');
+    const all = [...container.querySelectorAll('a')];
+    expect(all.indexOf(screen.getByRole('link', { name: /Abrir no mapa/ }) as HTMLAnchorElement)).toBeLessThan(all.indexOf(route as HTMLAnchorElement));
+  });
+});

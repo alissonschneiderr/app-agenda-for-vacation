@@ -17,6 +17,7 @@ import { Credits } from './pages/Credits';
 import { Display } from './pages/Display';
 import { Day } from './pages/Day';
 import { Driver } from './pages/Driver';
+import { Route } from './pages/Route';
 import { Favorites } from './pages/Favorites';
 import { FullDocument } from './pages/FullDocument';
 import { Guide } from './pages/Guide';
@@ -40,6 +41,7 @@ function Page({ path, content }: { path: string; content: LoadedContent }) {
   if ((m = matchRoute('/perto/:date/:areaId/:placeId', path)))
     return <Nearby key={m.placeId} content={content} date={m.date} areaId={m.areaId} placeId={m.placeId} />;
   if ((m = matchRoute('/motorista/:date/:key', path))) return <Driver content={content} date={m.date!} itemKey={m.key!} />;
+  if ((m = matchRoute('/rota/:date/:key', path))) return <Route key={`${m.date}-${m.key}`} content={content} date={m.date!} spotKey={m.key!} />;
   if (path === '/exibicao') return <Display />;
   if ((m = matchRoute('/cidade/:cityId', path))) return <City key={m.cityId} content={content} cityId={m.cityId!} />;
   if (path === '/guia') return <Guide content={content} />;

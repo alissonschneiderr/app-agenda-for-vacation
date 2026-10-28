@@ -21,15 +21,9 @@ export function stepPlace(a: Pick<DayActivityView, 'places'>): DocPlace | undefi
   return a.places[0];
 }
 
-/** Texto da busca de um link do Google Maps do doc ("query=Top+of+the+Rock+New+York"). */
-export function mapsQuery(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  try {
-    return new URL(url).searchParams.get('query')?.replace(/\+/g, ' ') ?? undefined;
-  } catch {
-    return undefined;
-  }
-}
+// Feature 016: a busca do link de mapa mora no domínio (a rota também usa).
+export { mapsQuery } from '../domain/route';
+import { mapsQuery } from '../domain/route';
 
 /**
  * Endereço para "Mostrar ao motorista": o do lugar no doc; senão, o do ponto do guia; senão, o texto

@@ -8,6 +8,7 @@ import { PlaceCard } from '../components/PlaceCard';
 import { DayPlaceCard } from '../components/DayPlaceCard';
 import { PageHeader } from '../components/PageHeader';
 import { PointPhoto } from '../components/PointPhoto';
+import { RouteButton } from '../components/RouteButton';
 import type { LoadedContent } from '../content/load';
 import { markActivity, unmarkActivity } from '../domain/full-itinerary';
 import { shoppingSlice } from '../domain/notebook';
@@ -159,6 +160,7 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
         <div class="row">
           {place && <LinkButtons place={{ name: place.name, address: place.address, mapsUrls: place.mapsUrls, photoUrls: place.photoUrls }} />}
           {!place && a.location && <DirectionsButton point={{ location: a.location, address: a.address ?? '' }} />}
+          <RouteButton content={content} date={date} spotKey={a.key} />
           {hasAddress && (
             <a class="btn" href={driverHref(date, a.key)}>
               <Icon name="taxi" size={18} /> Motorista
@@ -174,7 +176,7 @@ export function StepDetail({ content, date, stepKey }: { content: LoadedContent;
           </h2>
           <div class="card-stack">
             {shops.items.map((p) => (
-              <DayPlaceCard key={p.id} p={p} />
+              <DayPlaceCard key={p.id} p={p} content={content} />
             ))}
           </div>
           <a class="btn" href={`#/dia/${date}?secao=lojas`}>

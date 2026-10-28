@@ -66,7 +66,7 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
           <Icon name="chevron-left" size={18} /> {area.name}
         </a>
         {selected.photo && <PointPhoto photo={selected.photo} class="detail-photo" />}
-        <PlaceCard place={selected} />
+        <PlaceCard place={selected} route={{ content, date }} />
         {(selected.address || selected.mapsUrls.length > 0) && (
           <a class="btn btn-big" href={driverHref(date, selected.id)}>
             <Icon name="taxi" size={22} /> Mostrar ao motorista

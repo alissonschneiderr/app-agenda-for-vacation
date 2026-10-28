@@ -15,7 +15,7 @@
 ```text
 [<]  ROTA · NOVA YORK
      A partir de Mott Street            ← com ?inv=1: "Até Mott Street"
-[⇅ Inverter]
+[⇅ Inverter] [📅 Ver outros dias]        ← no topo: a lista do dia pode ser longa
 DOMINGO, 01/11
   PARADAS
     10h30  Distrito Histórico de Ferro Fundido      →
@@ -26,7 +26,7 @@ DOMINGO, 01/11
     …
   CURIOSIDADES
     …
-[Ver outros dias]                         ← com ?outros=1, some e aparecem:
+                                          ← com ?outros=1, "Ver outros dias" some e aparecem:
 SÁBADO, 31/10
   PARADAS …
 SEGUNDA-FEIRA, 02/11

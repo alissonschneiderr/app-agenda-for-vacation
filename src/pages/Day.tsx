@@ -257,21 +257,21 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
       {has('comer') && (
         <section id="comer" class="day-section" aria-label="Restaurantes e Cafés">
           <SectionTitle icon="food" title="Restaurantes e Cafés" />
-          <HoodGroups groups={dayPlaceGroups(day, 'food')} section="comer" />
+          <HoodGroups groups={dayPlaceGroups(day, 'food')} section="comer" content={content} />
         </section>
       )}
 
       {has('lojas') && (
         <section id="lojas" class="day-section" aria-label="Brechós e Lojas">
           <SectionTitle icon="bag" title="Brechós e Lojas" />
-          <HoodGroups groups={dayPlaceGroups(day, 'shop')} section="lojas" />
+          <HoodGroups groups={dayPlaceGroups(day, 'shop')} section="lojas" content={content} />
         </section>
       )}
 
       {has('curiosidades') && (
         <section id="curiosidades" class="day-section" aria-label="Curiosidades">
           <SectionTitle icon="film" title="Curiosidades" />
-          <HoodGroups groups={dayPlaceGroups(day, 'screen')} section="curiosidades" />
+          <HoodGroups groups={dayPlaceGroups(day, 'screen')} section="curiosidades" content={content} />
         </section>
       )}
 

@@ -1,6 +1,8 @@
+import type { LoadedContent } from '../content/load';
 import type { DocPlace } from '../content/types';
 import { Icon, type IconName } from './Icon';
 import { LinkButtons } from './LinkButtons';
+import { RouteButton } from './RouteButton';
 
 export const PLACE_KIND: Record<DocPlace['kind'], { label: string; icon: IconName }> = {
   food: { label: 'Onde comer', icon: 'food' },
@@ -49,7 +51,20 @@ function ShortCard({ place, href }: { place: DocPlace; href: string }) {
   );
 }
 
-export function PlaceCard({ place, compact = false, short = false, href }: { place: DocPlace; compact?: boolean; short?: boolean; href?: string }) {
+export function PlaceCard({
+  place,
+  compact = false,
+  short = false,
+  href,
+  route,
+}: {
+  place: DocPlace;
+  compact?: boolean;
+  short?: boolean;
+  href?: string;
+  /** Feature 016: "Rota até…" a partir do lugar, no detalhe. */
+  route?: { content: LoadedContent; date: string };
+}) {
   if (short && href) return <ShortCard place={place} href={href} />;
   const kind = PLACE_KIND[place.kind];
   const fields = place.fields.filter((f) => f.label !== 'Nível');
@@ -107,7 +122,14 @@ export function PlaceCard({ place, compact = false, short = false, href }: { pla
             <Icon name="info" size={16} /> {w}
           </p>
         ))}
-      <LinkButtons place={place} />
+      {route ? (
+        <div class="row">
+          <LinkButtons place={place} />
+          <RouteButton content={route.content} date={route.date} spotKey={place.id} />
+        </div>
+      ) : (
+        <LinkButtons place={place} />
+      )}
     </article>
   );
 }

@@ -887,3 +887,15 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 .display-info p { margin: 0 0 6px; }
 .offline-toast { z-index: 62; justify-content: center; }
 .start-head .page-head-title { white-space: normal; overflow: visible; text-overflow: clip; }
+
+/* Rota até… (feature 016) */
+.route-actions { margin: 0 0 4px; }
+.route-day { margin: 8px 0 16px; }
+.route-day-title { font-size: 1.05rem; margin: 12px 0 4px; }
+.route-group-title { margin: 12px 0 4px; color: var(--muted); }
+.route-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.route-option { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--text); text-decoration: none; font: inherit; text-align: left; cursor: pointer; }
+.route-option .route-time { color: var(--muted); font-variant-numeric: tabular-nums; flex: none; min-width: 3.2em; }
+.route-option .route-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.route-option .icon-svg { flex: none; color: var(--primary); }
+.place-row-links { display: flex; flex-wrap: wrap; gap: 4px 16px; align-self: flex-start; }

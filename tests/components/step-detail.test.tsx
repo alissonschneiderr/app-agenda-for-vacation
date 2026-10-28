@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/preact';
+import { fireEvent, render, screen, within } from '@testing-library/preact';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { StepDetail } from '../../src/pages/StepDetail';
 import { Day } from '../../src/pages/Day';
@@ -82,5 +82,23 @@ describe('atração de compras (feature 010, US3)', () => {
     const { container } = render(<StepDetail content={content} date="2026-11-11" stepKey="orl1-2026-11-11-01" />);
     expect(container.querySelector('h1')).toBeTruthy();
     expect(container.querySelector('section.step-shops')).toBeNull();
+  });
+});
+
+describe('Rota até… na atração (feature 016, US1)', () => {
+  it('Mott Street: "Rota até…" na linha de "Abrir no mapa", antes de "Motorista"; "Compras no SoHo" sem', () => {
+    const { content } = setupReal('2026-11-01T18:30:00Z');
+    const { container, unmount } = render(<StepDetail content={content} date="2026-11-01" stepKey="ny3-2026-11-01-08" />);
+    const route = screen.getByRole('link', { name: 'Rota até…' });
+    expect(route.getAttribute('href')).toBe('#/rota/2026-11-01/ny3-2026-11-01-08');
+    const row = route.closest('.row')!;
+    const links = [...row.querySelectorAll('a')].map((a) => a.textContent!.trim());
+    expect(links.findIndex((t) => t.includes('Abrir no mapa'))).toBeLessThan(links.indexOf('Rota até…'));
+    expect(links.indexOf('Rota até…')).toBeLessThan(links.findIndex((t) => t.includes('Motorista')));
+    expect(container.querySelector('.step-practical')!.contains(route)).toBe(true);
+    unmount();
+    // "Compras no SoHo" não tem local no roteiro; as lojas dele, abaixo, têm a própria rota (US2).
+    const other = render(<StepDetail content={content} date="2026-11-01" stepKey="ny3-2026-11-01-05" />);
+    expect(within(other.container.querySelector('.step-practical') as HTMLElement).queryByRole('link', { name: 'Rota até…' })).toBeNull();
   });
 });
