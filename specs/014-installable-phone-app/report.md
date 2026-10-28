@@ -58,22 +58,26 @@ interrompida.
 - Conferência de segredos no histórico: nenhum segredo real. Os achados foram só texto, como a loja
   "Victoria's Secret" e modelos do Spec Kit.
 
-## Publicação — pendente de você (T028)
+## Publicação (T028)
 
-Tornar o repositório público foi **bloqueado pelo sistema de permissões** do Claude Code, porque cria
-uma página pública. Não contornei o bloqueio. Para publicar (Q2 = C), rode no seu terminal, ou aqui
-com `!` na frente:
+O app está no ar em **https://alissonschneiderr.github.io/app-agenda-for-vacation/**: o repositório é
+público (Q2 = C) e o GitHub Pages publica pelo CI.
 
-```sh
-gh repo edit alissonschneiderr/app-agenda-for-vacation --visibility public --accept-visibility-change-consequences
-gh api -X POST repos/alissonschneiderr/app-agenda-for-vacation/pages -f build_type=workflow
-git push && gh run watch
-```
-
-O app fica em **https://alissonschneiderr.github.io/app-agenda-for-vacation/**.
-
-Com o repositório público, também fica visível o e-mail dos commits (alissonschneiderr@gmail.com),
-que é o comportamento padrão do GitHub.
+- O usuário tornou o repositório público e ligou o Pages. O sistema de permissões do Claude Code
+  bloqueia essa ação para o agente.
+- **Duas correções antes do primeiro deploy verde:**
+  - o e2e de versão nova falhava só no Linux do CI, porque matar o `npx` deixava o servidor A no ar;
+    agora o vite roda direto;
+  - o CI publicaria o `dist` do E2E, construído na raiz, e o app não carregaria em
+    `/app-agenda-for-vacation/`; agora há um build próprio para o Pages antes do upload.
+- **Conferido no endereço publicado:**
+  - página, manifest, Service Worker, conteúdo, telas de abertura, JS e CSS respondem 200;
+  - 3 cidades e nenhum erro de JS;
+  - Exibição mostra "Versão 2026-10-28 · dfd2035";
+  - **offline**: Miami, 01/11 e 19/11 abrem com fotos.
+- A primeira abertura baixa o guia inteiro (com as fotos) em cerca de 30 s. Até lá aparece "Salvando
+  o guia para usar offline…".
+- Com o repositório público, o e-mail dos commits também fica visível (padrão do GitHub).
 
 ## O que só vocês podem conferir nos aparelhos
 

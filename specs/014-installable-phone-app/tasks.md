@@ -173,7 +173,7 @@ implementação e deve falhar primeiro.
 - [X] T025 [P] Atualizar o `README.md`, seção "Publicar e instalar", com o conteúdo de `quickstart.md`: o endereço `https://alissonschneiderr.github.io/app-agenda-for-vacation/`, como instalar (Android e iPhone), publicar, confirmar a versão nos dois celulares e testar offline.
 - [X] T026 Rodar o CI completo: `npm run typecheck && npm test && npm run content:strict && npm run build && npm run budget && npm run e2e`. Gerar capturas a 402 × 874 com as áreas seguras simuladas em `specs/014-installable-phone-app/screens/`: Início com ⚙, aviso de atualização, dica do iPhone, "Exibição" e o aviso sem internet.
 - [X] T027 Antes de tornar público, procurar segredos no histórico: `git log -p --all | grep -nEi "(api[_-]?key|secret|token|password|BEGIN (RSA|OPENSSH) PRIVATE KEY|ghp_|github_pat_)"`. Revisar cada ocorrência. Se houver segredo real, **parar** e avisar o usuário.
-- [ ] T028 Publicar (Q2 = C, já decidido pelo usuário):
+- [X] T028 Publicar (Q2 = C, já decidido pelo usuário):
   1. commitar a feature;
   2. `gh repo edit alissonschneiderr/app-agenda-for-vacation --visibility public --accept-visibility-change-consequences`;
   3. `gh api -X POST repos/alissonschneiderr/app-agenda-for-vacation/pages -f build_type=workflow` (se já existir, `PUT` com o mesmo campo);
