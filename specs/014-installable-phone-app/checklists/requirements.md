@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -33,5 +33,5 @@
 
 - O pedido cita PWA, IndexedDB e `navigator.storage.persist()`. A spec os mantém porque são
   requisitos do usuário, não escolhas de implementação.
-- Duas perguntas abertas: as funções que usam internet (FR-012), já que o pedido deixou
-  "[LISTE AQUI…]", e onde publicar com o repositório privado (FR-014).
+- Q1 = A (internet só para atualizações e links externos) e Q2 = C (repositório público + GitHub
+  Pages), respondidas pelo usuário e incorporadas (FR-012 a FR-014).

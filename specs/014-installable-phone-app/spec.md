@@ -6,6 +6,14 @@
 
 **Status**: Draft
 
+**Decisões** (usuário: "Q1: A; Q2: C"):
+- **Q1 = A**: a internet só é usada para buscar atualizações do app e para abrir links externos (rotas
+  e mapas no Google Maps, "Ver fotos"). Não entram previsão do tempo nem sincronização entre os
+  celulares.
+- **Q2 = C**: o repositório `app-agenda-for-vacation` passa a ser **público** e o app é publicado no
+  GitHub Pages do plano grátis, pelo CI que já existe. O código e o roteiro (datas, hotéis) ficam
+  visíveis para qualquer pessoa. Decisão consciente do usuário.
+
 **Input**: User description: "Quero que este app de roteiro de viagem rode em dois celulares: um Samsung
 Galaxy S24 Ultra (Android) e um iPhone 17 (iOS)". Requisitos:
 1. funcionar como app;
@@ -141,8 +149,7 @@ e reabrir o app, navegar por 3 cidades e 5 dias e tentar uma função de interne
   dias. Por isso a dica de instalação (US1, cenário 3) e o pedido de armazenamento persistente.
 - **Versão nova enquanto offline**: nada acontece até haver internet. O app atual continua
   funcionando.
-- **Dois celulares**: cada um guarda as próprias marcas, sem sincronizar, a menos que FR-012 diga o
-  contrário.
+- **Dois celulares**: cada um guarda as próprias marcas, sem sincronizar (Q1 = A).
 - **Armazenamento cheio**: a gravação falha com a mensagem de erro que o app já tem e nada se perde.
 - **Snapshot de Nova York** e conteúdo do roteiro não mudam.
 
@@ -183,20 +190,25 @@ e reabrir o app, navegar por 3 cidades e 5 dias e tentar uma função de interne
 - **FR-011**: Os dados do casal MUST ficar em armazenamento persistente do navegador (IndexedDB). O
   app MUST pedir armazenamento persistente onde houver suporte. Dados do armazenamento antigo MUST
   ser migrados uma vez, sem perda, e o antigo só é limpo depois de confirmada a cópia.
-- **FR-012**: A internet MUST ser usada só para: [NEEDS CLARIFICATION: quais funções usam
-  internet? O pedido deixou a lista em aberto ("[LISTE AQUI…]"). Hoje o app usa internet só para
-  buscar atualizações e para abrir links externos (rotas no Google Maps, "Ver fotos" no Google).
-  Previsão do tempo e sincronização entre os dois celulares não existem.]
-- **FR-013**: Sem conexão, cada função de internet MUST mostrar uma mensagem simples e MUST NOT
-  quebrar o resto do app.
+- **FR-012** (Q1 = A): A internet MUST ser usada só para:
+  - buscar atualizações do app;
+  - abrir links externos: rotas e mapas no Google Maps, "Ver fotos", site oficial;
+  - carregar mapas interativos não guardados, que já têm cache dos que foram vistos.
+
+  Nada mais vai à rede. Sem previsão do tempo e sem sincronização: cada celular guarda as próprias
+  marcas.
+- **FR-013**: Sem conexão, cada função de internet MUST mostrar uma mensagem simples ("Sem internet
+  agora — tente de novo quando tiver conexão") ao ser tocada, em vez de abrir uma página de erro do
+  navegador. O resto do app MUST continuar funcionando. A busca de atualização sem internet falha em
+  silêncio e tenta de novo depois.
 
 **Publicação**
 
 - **FR-014**: O app MUST ficar publicado num endereço HTTPS estável, atualizado a cada nova versão
-  na `main`, para os dois celulares instalarem e receberem atualizações. Onde publicar: [NEEDS
-  CLARIFICATION: o repositório é privado e o GitHub Pages do plano grátis não publica repositório
-  privado. Usar um serviço como Netlify ou Cloudflare Pages ligado ao repositório privado, assinar
-  o GitHub Pro para usar o GitHub Pages, ou tornar o repositório público?]
+  na `main`, para os dois celulares instalarem e receberem atualizações. Onde publicar (Q2 = C): o
+  repositório passa a ser público e o app vai para o GitHub Pages
+  (`https://alissonschneiderr.github.io/app-agenda-for-vacation/`), publicado pelo CI a cada push na
+  `main` depois que os testes passam.
 
 **Entregáveis**
 
