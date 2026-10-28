@@ -15,5 +15,9 @@
   "checklist": [],
   "practicalTips": [],
   "excluded": [],
-  "updatedAt": "2026-10-27"
+  "updatedAt": "2026-10-27",
+  "notNeighborhoods": [
+    "Sawgrass Mills",
+    "Lummus Park e a praia de South Beach"
+  ]
 }

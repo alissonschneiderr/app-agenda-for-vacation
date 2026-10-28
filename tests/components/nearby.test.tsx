@@ -74,3 +74,14 @@ describe('Bairro no formato do design (feature 008, US3)', () => {
     expect(screen.getByRole('link', { name: 'Voltar' }).getAttribute('href')).toBe('#/dia/2026-11-01');
   });
 });
+
+describe('selo "Bairro" só em bairro (feature 013)', () => {
+  it('Magic Kingdom sem o selo; SoHo com', () => {
+    const { content } = setupReal('2026-11-01T18:30:00Z');
+    const mk = render(<Nearby content={content} date="2026-11-08" areaId="magic-kingdom" />);
+    expect(mk.container.querySelector('.cover')!.textContent).not.toContain('Bairro');
+    mk.unmount();
+    const soho = render(<Nearby content={content} date="2026-11-01" areaId="soho" />);
+    expect(soho.container.querySelector('.cover')!.textContent).toContain('Bairro');
+  });
+});

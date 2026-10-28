@@ -12,14 +12,16 @@ afterEach(() => vi.useRealTimers());
 const at = (local: string) => new Date(`${local}:00-05:00`).toISOString();
 
 describe('Dia (features 008 e 009)', () => {
-  it('01/11 13h30: capa com a foto de SoHo, data e "Dia 2"; menu com as 6 seções na ordem', () => {
+  it('01/11 13h30: capa com a foto de SoHo, "01/11" e "Domingo"; menu com as seções na ordem', () => {
     const { content } = setupReal(at('2026-11-01T13:30'));
     const { container } = render(<Day content={content} date="2026-11-01" />);
     const cover = container.querySelector('.cover')!;
     const soho = content.fullItineraries[0]!.days.find((d) => d.date === '2026-11-01')!.areas!.find((a) => a.name === 'SoHo')!;
     expect(cover.querySelector('img.cover-img')!.getAttribute('src')).toContain(soho.photo!.src);
-    expect(cover.textContent).toContain('dom, 01/11');
-    expect(cover.textContent).toContain('Dia 2');
+    // Feature 013: a data no lugar de "Dia 2" e só o dia da semana no lugar de "dom, 01/11".
+    expect(cover.textContent).toContain('Domingo');
+    expect(cover.textContent).toContain('01/11');
+    expect(cover.textContent).not.toMatch(/Dia 2|dom, 01\/11/);
     const menu = screen.getByRole('navigation', { name: 'Seções do dia' });
     expect(within(menu).getAllByRole('link').map((a) => a.textContent)).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Curiosidades', 'Bairros', 'Transporte', 'Dicas']);
     expect(screen.queryByRole('region', { name: 'Sobre este dia' })).toBeNull();
@@ -126,7 +128,7 @@ describe('seções do dia (feature 009, US2)', () => {
     expect(menu('2026-11-09').labels).not.toContain('Brechós e Lojas');
     // Feature 012: 19/11 tem o roteiro de Miami (Sawgrass), sem Curiosidades nem Dicas.
     const miami = menu('2026-11-19');
-    expect(miami.labels).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Bairros', 'Transporte']);
+    expect(miami.labels).toEqual(['Paradas', 'Restaurantes e Cafés', 'Brechós e Lojas', 'Transporte']); // feature 013: Sawgrass não é bairro
     const transit = render(<Day content={content} date="2026-11-07" />);
     expect(transit.container.querySelector('#transporte')).toBeTruthy();
     expect(screen.getByRole('heading', { name: '1. Antes de sair' })).toBeTruthy();
@@ -184,5 +186,39 @@ describe('Transporte enxuto (feature 010, US2)', () => {
     b.unmount();
     render(<Day content={content} date="2026-11-07" />);
     expect(screen.getByRole('heading', { name: '1. Antes de sair' })).toBeTruthy();
+  });
+});
+
+describe('rótulos do dia (feature 013, US2)', () => {
+  it('01/11: cabeçalho "01/11 · …"; botões de dia com a data por extenso, como antes', () => {
+    const { content } = setupReal(at('2026-11-01T09:00'));
+    render(<Day content={content} date="2026-11-01" />);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toMatch(/^01\/11 · /);
+    expect(screen.queryByText(/^Dia \d+/)).toBeNull();
+    expect(screen.getByRole('link', { name: 'Dia anterior, sábado, 31/10' })).toBeTruthy();
+  });
+});
+
+describe('"Bairros" só com bairros (feature 013, US3)', () => {
+  it('03/11: Upper West Side e Upper East Side, sem Central Park; as paradas do parque continuam', () => {
+    const { content } = setupReal(at('2026-11-03T09:00'));
+    const { container } = render(<Day content={content} date="2026-11-03" />);
+    const hoods = [...container.querySelectorAll('#bairros article')].map((a) => a.getAttribute('aria-label'));
+    expect(hoods).toEqual(['Upper West Side', 'Upper East Side']);
+    expect(container.querySelector('#paradas')!.textContent).toMatch(/Central Park/);
+  });
+
+  it('11/11: sem "Bairros"; "Manhã livre" na linha do tempo sem o alfinete', () => {
+    const { content } = setupReal(at('2026-11-03T09:00'));
+    const { container } = render(<Day content={content} date="2026-11-11" />);
+    expect(container.querySelector('#bairros')).toBeNull();
+    const free = [...container.querySelectorAll('.tl-area')].find((e) => e.textContent!.includes('Manhã livre'))!;
+    expect(free.querySelector('svg')).toBeNull();
+  });
+
+  it('18/11: "Bairros" com South Beach (Art Deco District), não mais vazio', () => {
+    const { content } = setupReal(at('2026-11-03T09:00'));
+    const { container } = render(<Day content={content} date="2026-11-18" />);
+    expect([...container.querySelectorAll('#bairros article')].map((a) => a.getAttribute('aria-label'))).toEqual(['South Beach (Art Deco District)']);
   });
 });

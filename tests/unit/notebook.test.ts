@@ -43,7 +43,7 @@ describe('caderno de viagem — modelos (feature 008)', () => {
   it('dia: 01/11 com a foto de SoHo e "dia 2"; 07/11 com a rota', () => {
     const d = dayCard(content, state, '2026-11-01');
     const soho = d.view.areas.find((a) => a.name === 'SoHo')!;
-    expect(d).toMatchObject({ dayNumber: 2, kind: 'walk', cityId: 'nova-york' });
+    expect(d).toMatchObject({ kind: 'walk', cityId: 'nova-york' }); // feature 013: sem dayNumber no card
     expect(d.photo?.src).toBe(soho.photo!.src);
     expect(d.stops).toBe(d.view.progress.total);
     const t = dayCard(content, state, '2026-11-07');
@@ -64,11 +64,10 @@ describe('caderno de viagem — modelos (feature 008)', () => {
     expect(stopThumb(tower)?.src).toMatch(/photos\/doc\/orlando\//);
   });
 
-  it('bairros de Orlando: regiões na ordem dos dias, com contagens', () => {
+  it('bairros de Orlando: só Cocoa Beach (feature 013: parques, outlets e "Manhã livre" não são bairro)', () => {
     const n = neighborhoods(content, state, 'orlando');
-    expect(n[0]).toMatchObject({ date: '2026-11-08', areaId: 'magic-kingdom', name: 'Magic Kingdom', counts: { food: 5 } });
-    expect(n.map((x) => x.date)).toEqual([...n.map((x) => x.date)].sort());
-    expect(n.every((x) => x.name)).toBe(true);
+    expect(n.map((x) => x.name)).toEqual(['Cocoa Beach']);
+    expect(n[0]).toMatchObject({ date: '2026-11-13', areaId: 'cocoa-beach' });
   });
 
 });
@@ -89,8 +88,8 @@ describe('seções do dia (feature 009)', () => {
   });
 
   it('09/11 sem lojas; 19/11 com o roteiro de Miami; 07/11 só transporte; 21/11 sem seções vazias', () => {
-    expect(ids('2026-11-09')).toEqual(['paradas', 'comer', 'bairros', 'dicas']);
-    expect(ids('2026-11-19')).toEqual(['paradas', 'comer', 'lojas', 'bairros', 'transporte']); // feature 012
+    expect(ids('2026-11-09')).toEqual(['paradas', 'comer', 'dicas']); // feature 013: Hollywood Studios não é bairro
+    expect(ids('2026-11-19')).toEqual(['paradas', 'comer', 'lojas', 'transporte']); // feature 012; 013: Sawgrass não é bairro
     expect(ids('2026-11-07')).toEqual(['transporte']);
     expect(ids('2026-11-21')).toEqual([]);
   });
@@ -286,5 +285,39 @@ describe('Paradas num dia sem nada a marcar (feature 011)', () => {
     const v = view009(content, state, '2026-11-13');
     expect(v.groups.flatMap((g) => g.activities).filter((a) => a.trackable)).toHaveLength(0);
     expect(daySections(v, content).map((s) => s.id)).toEqual(['paradas', 'bairros', 'transporte']);
+  });
+});
+
+describe('só bairros de verdade (feature 013, US3, Q1 = A)', () => {
+  const names = (c: 'nova-york' | 'orlando' | 'miami') => neighborhoods(content, state, c).map((n) => n.name);
+
+  it('Nova York: sem parques, museus nem a ponte, na ordem dos dias', () => {
+    expect(names('nova-york')).toEqual([
+      'Midtown',
+      'SoHo', 'Nolita', 'Chinatown', 'Little Italy', 'Lower East Side', 'East Village',
+      'Financial District', 'Greenwich Village', 'West Village',
+      'Upper West Side', 'Upper East Side',
+      'Brooklyn Heights', 'DUMBO', 'Williamsburg',
+      'Hudson Yards', 'Chelsea', 'Meatpacking District',
+      'Empire State e arredores (Midtown South)',
+    ]);
+  });
+
+  it('Miami: South Beach (Art Deco District), do 18/11 — que antes ficava de fora (bug da 012)', () => {
+    expect(neighborhoods(content, state, 'miami').map((n) => [n.date, n.name])).toEqual([['2026-11-18', 'South Beach (Art Deco District)']]);
+  });
+
+  it('o item "Bairros" do menu só aparece com bairro; a contagem bate com a lista em todos os dias', () => {
+    const has = (d: string) => daySections(view009(content, state, d), content).some((s) => s.id === 'bairros');
+    for (const d of ['2026-11-08', '2026-11-09', '2026-11-10', '2026-11-11', '2026-11-12', '2026-11-14', '2026-11-15', '2026-11-16', '2026-11-17', '2026-11-19', '2026-11-20']) expect(has(d), d).toBe(false);
+    for (const d of ['2026-11-03', '2026-11-13', '2026-11-18']) expect(has(d), d).toBe(true);
+    // Cada dia é comparado com a lista da cidade dona do roteiro daquele dia (o 18/11 é de Miami).
+    const all = (['nova-york', 'orlando', 'miami'] as const).flatMap((c) => neighborhoods(content, state, c));
+    for (const city of ['nova-york', 'orlando', 'miami'] as const) {
+      for (const d of destinationDates(content, city)) {
+        const count = daySections(view009(content, state, d), content).find((s) => s.id === 'bairros')?.count ?? 0;
+        expect(count, `${city} ${d}`).toBe(all.filter((n) => n.date === d).length);
+      }
+    }
   });
 });

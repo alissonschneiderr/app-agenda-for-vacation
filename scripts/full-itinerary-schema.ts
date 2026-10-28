@@ -139,6 +139,8 @@ export const fullItinerarySchema = z.object({
   idPrefix: z.string().regex(/^[a-z]+[0-9]*$/, 'idPrefix deve ser letras minúsculas e dígitos').optional(),
   arrivalDay: date.optional(),
   arrivalInDay: z.boolean().optional(),
+  /** Feature 013: grupos do roteiro que não são bairro (parques, museus, outlets…). */
+  notNeighborhoods: z.array(text).optional(),
   stepsUseAreaPoint: z.boolean().optional(),
   departure: z
     .object({ date, before: z.array(declaredItem), trip: z.array(declaredItem) })

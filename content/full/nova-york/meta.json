@@ -57,5 +57,14 @@
       "find": "Tenement Museum, tour das 15h30",
       "replace": "Tenement Museum, tour das 16h15"
     }
+  ],
+  "notNeighborhoods": [
+    "Museu de História Natural",
+    "Central Park",
+    "MET – Metropolitan Museum of Art",
+    "Ponte do Brooklyn",
+    "Brooklyn Bridge Park",
+    "MoMA",
+    "High Line"
   ]
 }

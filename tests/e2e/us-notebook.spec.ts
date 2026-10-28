@@ -50,17 +50,20 @@ test.describe('US1 – Dia', () => {
 });
 
 test.describe('US3 – Cidade e Bairro', () => {
-  test('offline: Início → Orlando → 08/11 → Bairros → Magic Kingdom → Comer (5) → Casey\'s Corner', async ({ page, context }) => {
+  // Feature 013: Magic Kingdom não é bairro; o caminho é pelos restaurantes do dia, agrupados pelo parque.
+  test('offline: Início → Orlando → 08/11 → Restaurantes e Cafés (Magic Kingdom, 5) → Casey\'s Corner', async ({ page, context }) => {
     await openInstalled(page, '2026-10-30T15:00:00Z');
     await goOffline(context, page);
     await at(page, '2026-10-30T10:00', '/');
     await page.getByRole('link', { name: 'Orlando' }).click();
     await expect(page).toHaveURL(/#\/cidade\/orlando$/);
     await page.getByRole('link', { name: /domingo, 08\/11/ }).click();
-    await page.getByRole('navigation', { name: 'Seções do dia' }).getByRole('link', { name: 'Bairros' }).click();
-    await page.locator('#bairros').getByRole('link', { name: 'Magic Kingdom' }).click();
-    await expect(page.getByRole('link', { name: 'Comer (5)' })).toBeVisible();
-    await page.locator('.place-short', { hasText: "Casey's Corner" }).click();
+    const menu = page.getByRole('navigation', { name: 'Seções do dia' });
+    await expect(menu.getByRole('link', { name: 'Bairros' })).toHaveCount(0);
+    await menu.getByRole('link', { name: 'Restaurantes e Cafés' }).click();
+    const group = page.locator('#comer .hood-group', { has: page.locator('h3', { hasText: 'Magic Kingdom' }) });
+    await expect(group.locator('article')).toHaveCount(5);
+    await group.getByRole('link', { name: "Casey's Corner" }).click();
     await expect(page.locator('.place-card')).toContainText('Main Street, cachorro-quente');
   });
 

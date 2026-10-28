@@ -138,3 +138,21 @@ describe('país das cidades (feature 008)', () => {
     expect(validateContent(c, { strict: false }).join('\n')).toMatch(/cities\.orlando\.country/);
   });
 });
+
+describe('notNeighborhoods (feature 013)', () => {
+  it('todo nome da lista é um grupo do roteiro da cidade', () => {
+    const c = assembleContent();
+    for (const f of c.fullItineraries ?? []) {
+      const groups = new Set(f.days.flatMap((d) => (d.areas ?? []).map((a) => a.name)));
+      for (const n of f.notNeighborhoods ?? []) expect(groups.has(n), `${f.id}: ${n}`).toBe(true);
+    }
+    expect(c.fullItineraries!.find((f) => f.id === 'nova-york')!.notNeighborhoods).toContain('Central Park');
+  });
+
+  it('nome que não existe no roteiro é erro de conteúdo', () => {
+    const c = fixtureContent();
+    const it = { ...fixtureFullItinerary(), notNeighborhoods: ['Parque Inexistente'] };
+    const errors = validateContent({ ...c, fullItineraries: [it] }, loose);
+    expect(errors.some((e) => e.includes('notNeighborhoods') && e.includes('Parque Inexistente'))).toBe(true);
+  });
+});

@@ -168,6 +168,13 @@ export function validateContent(input: unknown, opts: ValidateOptions): string[]
 
   // Dias cobertos pelo roteiro FULL (feature 002) não têm roteiro sugerido simples.
   const fullDates = new Set((content.fullItineraries ?? []).flatMap((f) => f.days.map((d) => d.date)));
+  // Feature 013: cada nome de notNeighborhoods tem que ser um grupo do roteiro (a lista não pode apodrecer).
+  for (const f of content.fullItineraries ?? []) {
+    const groups = new Set(f.days.flatMap((d) => (d.areas ?? []).map((x) => x.name)));
+    for (const n of f.notNeighborhoods ?? []) {
+      if (!groups.has(n)) errors.push(`notNeighborhoods: "${n}" não é um grupo do roteiro de ${f.cityId}`);
+    }
+  }
   for (const d of fullDates) {
     if (byDate.has(d)) errors.push(`roteiros: ${d} tem roteiro sugerido e roteiro FULL; use só um`);
   }

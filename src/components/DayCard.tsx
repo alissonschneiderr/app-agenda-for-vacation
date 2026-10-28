@@ -1,4 +1,5 @@
 import type { DayCard as DayCardModel } from '../domain/notebook';
+import { formatDayMonth, formatWeekday } from '../domain/trip';
 import { CardChevron, CardLink } from './CardLink';
 import { Chip } from './Chip';
 import { Cover } from './Cover';
@@ -8,12 +9,12 @@ import { KIND_ICON, KIND_LABEL } from './day-kind';
 export function DayCard({ d }: { d: DayCardModel }) {
   const pct = d.progress.total ? Math.round((d.progress.done / d.progress.total) * 100) : 0;
   return (
-    <article class="nb-card day-card click-card" aria-label={`${d.label}: ${d.title}`}>
+    <article class="nb-card day-card click-card" aria-label={`${d.label}: ${d.title}`} data-date={d.date}>
       <Cover photo={d.photo} cityId={d.cityId} icon={KIND_ICON[d.kind]} size="card" lazy>
         <span class="cover-tag">
-          <Chip variant="glass">Dia {d.dayNumber}</Chip>
+          <Chip variant="glass">{formatDayMonth(d.date)}</Chip>
         </span>
-        <p class="eyebrow">{d.label}</p>
+        <p class="eyebrow">{formatWeekday(d.date)}</p>
         <h3 class="clamp-2">
           <CardLink href={`#/dia/${d.date}`} label={`${d.label}: ${d.title}`}>
             {d.title}

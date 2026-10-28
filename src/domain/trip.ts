@@ -91,6 +91,32 @@ export function formatDayLabel(date: DateStr): string {
   return `${weekday}, ${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}`;
 }
 
+/** Feature 013: rótulo do dia, ex.: "19/11". */
+export function formatDayMonth(date: DateStr): string {
+  const [, m, d] = date.split('-');
+  return `${d}/${m}`;
+}
+
+const WEEKDAYS_LONG = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
+/** Feature 013: dia da semana por extenso, ex.: "Quinta-feira". */
+export function formatWeekday(date: DateStr): string {
+  const [y, m, d] = date.split('-').map(Number) as [number, number, number];
+  return WEEKDAYS_LONG[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]!;
+}
+
+/** Feature 013: "hoje" é a data local do aparelho, sem horário. */
+export function deviceToday(now: Date): DateStr {
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${now.getFullYear()}-${p(now.getMonth() + 1)}-${p(now.getDate())}`;
+}
+
+/** Feature 013: `today` se estiver entre o primeiro e o último dia da cidade (inclusive). */
+export function todayInCity(dates: DateStr[], today: DateStr): DateStr | undefined {
+  if (!dates.length) return undefined;
+  return today >= dates[0]! && today <= dates.at(-1)! ? today : undefined;
+}
+
 /** Ex.: "22/10/2026". */
 export function formatDate(date: DateStr): string {
   const [y, m, d] = date.split('-');

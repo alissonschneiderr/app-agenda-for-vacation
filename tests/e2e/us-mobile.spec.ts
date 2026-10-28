@@ -190,3 +190,33 @@ test.describe('US3 (010) – atração de compras', () => {
     await noSideScroll(page);
   });
 });
+
+test.describe('US1 (013) – cidade aberta no dia de hoje', () => {
+  const firstVisible = (page: Page) =>
+    page.evaluate(() => {
+      const h = document.querySelector('.page-head');
+      if (!h) return { date: undefined, top: NaN };
+      const head = h.getBoundingClientRect().bottom;
+      const card = [...document.querySelectorAll<HTMLElement>('article.day-card')].find((c) => c.getBoundingClientRect().bottom > head + 4);
+      return { date: card?.dataset.date, top: card ? card.getBoundingClientRect().top - head : NaN };
+    });
+
+  test('hoje = 02/11: Nova York abre no card de 02/11; rolando para cima aparece 31/10', async ({ page }) => {
+    await openInstalled(page, '2026-11-02T15:00:00Z', '/cidade/nova-york');
+    await expect.poll(async () => (await firstVisible(page)).date).toBe('2026-11-02');
+    const { top } = await firstVisible(page);
+    expect(top).toBeGreaterThanOrEqual(-1);
+    expect(top).toBeLessThanOrEqual(16);
+    await page.mouse.wheel(0, -4000);
+    await expect(page.locator('article.day-card[data-date="2026-10-31"]')).toBeInViewport();
+    await noSideScroll(page);
+  });
+
+  test('antes do período (28/10): começa no topo; dia de troca (07/11): Orlando abre em 07/11', async ({ page }) => {
+    await openInstalled(page, '2026-10-28T15:00:00Z', '/cidade/nova-york');
+    await expect(page.locator('article.day-card').first()).toBeVisible();
+    expect(await page.evaluate(() => scrollY)).toBe(0);
+    await openInstalled(page, '2026-11-07T15:00:00Z', '/cidade/orlando');
+    await expect.poll(async () => (await firstVisible(page)).date).toBe('2026-11-07');
+  });
+});

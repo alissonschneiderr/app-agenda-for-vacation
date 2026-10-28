@@ -42,7 +42,8 @@ test.describe('US2 – Dia', () => {
     await page.mouse.up();
     await expect(page).toHaveURL(/#\/dia\/2026-11-02$/);
     await page.getByRole('link', { name: 'Voltar para hoje' }).click();
-    await expect(page.getByRole('heading', { level: 1, name: /^Dia 2 · / })).toBeVisible();
+    // Feature 013: o cabeçalho mostra a data ("01/11 · …") no lugar de "Dia 2".
+    await expect(page.getByRole('heading', { level: 1, name: /^01\/11 · / })).toBeVisible();
   });
 });
 

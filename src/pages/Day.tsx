@@ -17,9 +17,9 @@ import { useMarkWithUndo } from '../components/UndoToast';
 import type { LoadedContent } from '../content/load';
 import type { CityId, DayArea } from '../content/types';
 import { toggleDone } from '../domain/full-itinerary';
-import { dayCard, dayMoves, dayPlaceGroups, daySections, dayTips, neighborhoods, type DaySectionId } from '../domain/notebook';
+import { dayCard, dayMoves, dayPlaceGroups, daySections, dayTips, neighborhoods, type DaySectionId, FREE_TIME } from '../domain/notebook';
 import { allSteps, modeOf, nowIndex, tripNow, tripPhase } from '../domain/now';
-import { cityForDate, formatDayLabel, tripRange } from '../domain/trip';
+import { cityForDate, formatDayLabel, formatDayMonth, formatWeekday, tripRange } from '../domain/trip';
 import { adjacentDay, type DayActivityView, type TripDayView } from '../domain/trip-view';
 import { useClock } from '../lib/clock';
 import { useUserState } from '../storage/user-store';
@@ -38,7 +38,8 @@ function AreaLine({ area, day }: { area: DayArea; day: TripDayView }) {
   const options = day.places.filter((p) => area.placeIds.includes(p.id) && p.kind !== 'attraction').length;
   return (
     <li class={`tl-area tl-area-${area.kind}`}>
-      <Icon name="pin" size={16} />
+      {/* Feature 013: tempo livre não é lugar — sem o alfinete. */}
+      {!FREE_TIME.test(area.name) && <Icon name="pin" size={16} />}
       <h3 class="tl-area-name">{area.name}</h3>
       {options > 0 && (
         <a class="tl-area-options" href={`#/perto/${day.date}/${area.id}`}>
@@ -199,7 +200,7 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
       <PageHeader
         back={`#/cidade/${cityId}`}
         label={`${content.cityName(cityId)} · ${date}`}
-        title={`Dia ${card.dayNumber} · ${card.title}`}
+        title={`${formatDayMonth(date)} · ${card.title}`}
         progress={day.progress}
         scope={`Dia ${formatDayLabel(date)}`}
       />
@@ -213,7 +214,7 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
         <div class="cover-row cover-top">
           <p class="eyebrow">{content.cityName(cityId)}</p>
           <Chip variant="glass" icon="calendar">
-            {formatDayLabel(date).replace(/^(\S{3})\S*,/, '$1,')}
+            {formatWeekday(date)}
           </Chip>
           <nav class="day-nav" aria-label="Outros dias">
             {prev && (
@@ -228,7 +229,7 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
             )}
           </nav>
         </div>
-        <p class="eyebrow">Dia {card.dayNumber}</p>
+        <p class="eyebrow">{formatDayMonth(date)}</p>
         <h2 class="day-title clamp-2">{card.title}</h2>
         <div class="cover-row">
           <Chip variant="glass" icon={KIND_ICON[card.kind]}>

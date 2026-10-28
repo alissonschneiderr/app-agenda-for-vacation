@@ -136,8 +136,6 @@ export interface DayCard {
   date: DateStr;
   label: string;
   cityId: CityId;
-  /** Dia da viagem (1-based). */
-  dayNumber: number;
   title: string;
   kind: DayKind;
   stops: number;
@@ -169,7 +167,6 @@ export function dayCard(content: LoadedContent, state: UserState, date: DateStr)
     date,
     label: formatDayLabel(date),
     cityId,
-    dayNumber: tripDates(content.trip).indexOf(date) + 1,
     title,
     kind,
     stops: steps.filter((s) => s.trackable).length,
@@ -193,13 +190,33 @@ export interface NeighborhoodCard {
   hasNotes: boolean;
 }
 
+/** Tempo livre não é lugar (feature 013, FR-009). */
+export const FREE_TIME = /^(manhã|tarde|noite) livre|tempo livre/i;
+
+/**
+ * Bairro de verdade (feature 013, Q1 = A): grupo "📍" do roteiro, fora da lista `notNeighborhoods` do
+ * roteiro (parques, museus, a ponte, outlets) e que não é tempo livre. Nada é deduzido do nome.
+ */
+export function isNeighborhood(area: Pick<DayArea, 'kind' | 'name'>, notNeighborhoods: readonly string[] = []): boolean {
+  return area.kind === 'bairro' && !notNeighborhoods.includes(area.name) && !FREE_TIME.test(area.name);
+}
+
+/** A lista `notNeighborhoods` do roteiro que tem o dia. */
+export function notNeighborhoodsFor(content: LoadedContent, date: DateStr): string[] {
+  return (content.fullItineraries ?? []).find((f) => f.days.some((d) => d.date === date))?.notNeighborhoods ?? [];
+}
+
 export function neighborhoods(content: LoadedContent, state: UserState, cityId: CityId): NeighborhoodCard[] {
+  // Feature 013: os dias de viagem com grupos do roteiro (ex.: 18/11 em Miami) também entram.
+  // O dia de troca (ex.: 18/11) é das duas cidades, mas os grupos dele são do roteiro de uma só.
+  const owner = (date: DateStr) => (content.fullItineraries ?? []).find((f) => f.days.some((d) => d.date === date))?.cityId;
   return destinationDates(content, cityId)
-    .filter((d) => dayKind(content, d) !== 'transit')
+    .filter((date) => (owner(date) ?? cityId) === cityId)
     .flatMap((date) => {
       const view = dayView(content, state, date);
+      const not = notNeighborhoodsFor(content, date);
       return view.areas
-        .filter((a) => a.kind === 'bairro')
+        .filter((a) => isNeighborhood(a, not))
         .map((a) => {
           const places = view.places.filter((p) => a.placeIds.includes(p.id));
           const food = places.filter((p) => p.kind === 'food');
@@ -399,7 +416,7 @@ export function daySections(view: TripDayView, content: LoadedContent): DaySecti
     comer: dayPlaces(view, 'food').length,
     lojas: dayPlaces(view, 'shop').length,
     curiosidades: dayPlaces(view, 'screen').length,
-    bairros: view.areas.filter((a) => a.kind === 'bairro').length,
+    bairros: view.areas.filter((a) => isNeighborhood(a, notNeighborhoodsFor(content, view.date))).length,
     transporte: dayTransportCount(view, content),
     dicas: dayTips(view).length,
   };

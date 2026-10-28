@@ -300,6 +300,8 @@ export interface FullItinerary {
   arrivalDay?: DateStr;
   /** Feature 012: chegada dentro de um dia comum (Miami, 18/11). */
   arrivalInDay?: boolean;
+  /** Feature 013: nomes dos grupos do roteiro que não são bairro. */
+  notNeighborhoods?: string[];
   /** Partida declarada (feature 007, Q1). */
   departure?: { date: DateStr; before: DeclaredDepartureItem[]; trip: DeclaredDepartureItem[] };
   /** Passos sem ponto próprio usam o ponto do guia da sua região (feature 007, R8). */

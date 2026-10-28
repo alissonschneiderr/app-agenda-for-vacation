@@ -29,5 +29,16 @@
   "checklist": [],
   "practicalTips": [],
   "excluded": [],
-  "updatedAt": "2026-10-24"
+  "updatedAt": "2026-10-24",
+  "notNeighborhoods": [
+    "Magic Kingdom",
+    "Hollywood Studios",
+    "EPCOT",
+    "Animal Kingdom",
+    "Epic Universe",
+    "Universal Studios Florida",
+    "Islands of Adventure",
+    "Orlando Vineland Premium Outlets",
+    "Orlando International Premium Outlets ou Mall at Millenia"
+  ]
 }

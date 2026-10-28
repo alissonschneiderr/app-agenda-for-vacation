@@ -895,3 +895,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 :root[data-contrast='high'] .page .hood-group-head { background: var(--bg); }
 .step-shops { margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
 .step-shops .btn { align-self: flex-start; }
+
+/* Feature 013: a cidade abre com o card de hoje logo abaixo do cabeçalho fixo. */
+/* O html já reserva a altura do cabeçalho (scroll-padding-top, feature 009); aqui só o respiro. */
+.city-days .day-card { scroll-margin-top: 8px; }

@@ -2,6 +2,10 @@ import { describe, expect, it } from 'vitest';
 import {
   addDays,
   cityForDate,
+  deviceToday,
+  formatDayMonth,
+  formatWeekday,
+  todayInCity,
   citiesForDate,
   dayInfo,
   formatDayLabel,
@@ -75,5 +79,33 @@ describe('trip', () => {
   it('formata o rótulo do dia', () => {
     expect(formatDayLabel('2026-10-31')).toBe('sábado, 31/10');
     expect(formatDayLabel('2026-11-07')).toBe('sábado, 07/11');
+  });
+});
+
+describe('datas dos rótulos e "hoje" (feature 013)', () => {
+  it('formatDayMonth: DD/MM', () => {
+    expect(formatDayMonth('2026-11-19')).toBe('19/11');
+    expect(formatDayMonth('2026-10-31')).toBe('31/10');
+  });
+
+  it('formatWeekday: dia da semana por extenso, com inicial maiúscula', () => {
+    expect(formatWeekday('2026-11-19')).toBe('Quinta-feira');
+    expect(formatWeekday('2026-11-01')).toBe('Domingo');
+    expect(formatWeekday('2026-10-31')).toBe('Sábado');
+    expect(formatWeekday('2026-11-18')).toBe('Quarta-feira');
+  });
+
+  it('deviceToday: a data local do aparelho, sem horário', () => {
+    expect(deviceToday(new Date(2026, 10, 2, 23, 59))).toBe('2026-11-02');
+    expect(deviceToday(new Date(2026, 9, 31, 0, 1))).toBe('2026-10-31');
+  });
+
+  it('todayInCity: só dentro do período, com os limites', () => {
+    const ny = ['2026-10-31', '2026-11-01', '2026-11-02'];
+    expect(todayInCity(ny, '2026-11-02')).toBe('2026-11-02');
+    expect(todayInCity(ny, '2026-10-31')).toBe('2026-10-31');
+    expect(todayInCity(ny, '2026-10-30')).toBeUndefined();
+    expect(todayInCity(ny, '2026-11-03')).toBeUndefined();
+    expect(todayInCity([], '2026-11-03')).toBeUndefined();
   });
 });

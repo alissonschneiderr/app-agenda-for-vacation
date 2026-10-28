@@ -5,6 +5,7 @@ import { LinkButtons } from '../components/LinkButtons';
 import { PlaceCard } from '../components/PlaceCard';
 import { PointPhoto } from '../components/PointPhoto';
 import { useQuery } from '../lib/router';
+import { isNeighborhood, notNeighborhoodsFor } from '../domain/notebook';
 import type { LoadedContent } from '../content/load';
 import type { DocPlace } from '../content/types';
 import { currentArea, nextStep, tripNow, tripPhase } from '../domain/now';
@@ -85,9 +86,12 @@ export function Nearby({ content, date: param, areaId, placeId }: { content: Loa
       <PageHeader back={`#/dia/${date}`} label={`${content.cityName(city)} · ${formatDayLabel(date)}`} title="Por perto" />
       {/* Feature 008: o bairro no formato do design — capa com a foto da região, nome e a frase do doc. */}
       <Cover photo={area.photo} cityId={city} icon="pin" size="compact">
-        <p class="eyebrow">
-          <Icon name="pin" size={14} /> Bairro
-        </p>
+        {/* Feature 013: o selo "Bairro" só em bairro (parques, museus e outlets mostram só o nome). */}
+        {isNeighborhood(area, notNeighborhoodsFor(content, date)) && (
+          <p class="eyebrow">
+            <Icon name="pin" size={14} /> Bairro
+          </p>
+        )}
         <h2 class="hood-title">{area.name}</h2>
       </Cover>
       {area.intro && <p class="hood-intro">{area.intro}</p>}
