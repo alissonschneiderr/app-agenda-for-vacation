@@ -43,13 +43,15 @@ test.describe('US1 (014) – áreas seguras do iPhone 17', () => {
 const ROOT = join(import.meta.dirname, '../..');
 const PORT = 4331;
 const URL0 = `http://localhost:${PORT}`;
+const VITE = join(ROOT, 'node_modules', 'vite', 'bin', 'vite.js');
 
 function build(dir: string, sha: string) {
-  execSync(`npx vite build --outDir ${dir} --emptyOutDir`, { cwd: ROOT, env: { ...process.env, GITHUB_SHA: sha, BASE_PATH: '/' }, stdio: 'ignore' });
+  execSync(`${process.execPath} ${VITE} build --outDir ${dir} --emptyOutDir`, { cwd: ROOT, env: { ...process.env, GITHUB_SHA: sha, BASE_PATH: '/' }, stdio: 'ignore' });
 }
 
 async function serve(dir: string): Promise<ChildProcess> {
-  const p = spawn('npx', ['vite', 'preview', '--outDir', dir, '--port', String(PORT), '--strictPort'], { cwd: ROOT, stdio: 'ignore' });
+  // O vite direto (sem npx): no Linux, matar o npx deixava o servidor de baixo rodando (o A nunca saía).
+  const p = spawn(process.execPath, [VITE, 'preview', '--outDir', dir, '--port', String(PORT), '--strictPort'], { cwd: ROOT, stdio: 'ignore' });
   for (let i = 0; i < 60; i++) {
     try {
       if ((await fetch(`${URL0}/`)).ok) return p;

@@ -30,6 +30,10 @@ jobs:
         env:
           # O preview local roda na raiz; os testes E2E não dependem do caminho do Pages.
           BASE_PATH: /
+      # O E2E reconstrói o dist na raiz (BASE_PATH=/). O Pages precisa do app em /<repositório>/.
+      - name: Build para o GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: npm run build
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
