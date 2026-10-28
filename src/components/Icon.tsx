@@ -22,6 +22,9 @@ const PATHS: Record<string, string> = {
   'chevron-right': 'M9.5 6l6 6-6 6',
   camera: 'M4 7.5h3.5l1.5-2h6l1.5 2H20v11H4z M12 10a3 3 0 1 0 0 6a3 3 0 1 0 0-6z',
   info: 'M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17z M12 11v5 M12 8h.01',
+  // Feature 014: fechar avisos e o atalho para "Exibição" (engrenagem).
+  close: 'M6 6l12 12 M18 6L6 18',
+  settings: 'M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6z M19.4 13.5l1.6 1.2-2 3.4-1.9-.8a7 7 0 0 1-2 1.2l-.3 2h-3.8l-.3-2a7 7 0 0 1-2-1.2l-1.9.8-2-3.4 1.6-1.2a7 7 0 0 1 0-3l-1.6-1.2 2-3.4 1.9.8a7 7 0 0 1 2-1.2l.3-2h3.8l.3 2a7 7 0 0 1 2 1.2l1.9-.8 2 3.4-1.6 1.2a7 7 0 0 1 0 3z',
   external: 'M13.5 4.5h6v6 M19.5 4.5l-8 8 M17.5 14v5.5h-13v-13H10',
   skip: 'M6 6.5l7 5.5-7 5.5z M17 6.5v11',
   // Feature 008 — ícones em traço do design (caderno de viagem).

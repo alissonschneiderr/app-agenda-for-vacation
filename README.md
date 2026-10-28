@@ -164,9 +164,47 @@ Decisões da feature 012:
 
 ## Publicar e instalar
 
-O workflow `.github/workflows/ci.yml` roda os testes e publica no GitHub Pages a cada push na
-`main` (em *Settings → Pages*, escolha a fonte "GitHub Actions").
+O app fica em **https://alissonschneiderr.github.io/app-agenda-for-vacation/** (GitHub Pages). É um
+PWA: instala uma vez em cada celular, funciona offline e recebe as atualizações sozinho (feature
+014; PWA em vez de Capacitor, ver `specs/014-installable-phone-app/research.md`).
 
-No celular: abra a URL publicada, instale (iPhone: Compartilhar → "Adicionar à Tela de Início";
-Android: "Instalar app"), **abra pelo ícone** com internet e espere a mensagem "Guia disponível
-offline". Depois disso tudo funciona em modo avião.
+### Instalar (uma vez em cada celular, com internet)
+
+**Galaxy S24 Ultra (Chrome)**
+1. Abra o endereço no Chrome.
+2. Toque em "Instalar app" (ou menu ⋮ → "Instalar app").
+3. Abra pelo ícone "Guia Viagem" e espere "Guia disponível offline".
+
+**iPhone 17 (Safari)**
+1. Abra o endereço no **Safari**.
+2. Toque em Compartilhar (quadrado com seta) → "Adicionar à Tela de Início" → "Adicionar".
+3. Abra pelo ícone "Guia Viagem" e espere "Guia disponível offline".
+
+Em ⚙ (canto do Início) → Exibição, confira "Armazenamento: persistente ✓" e a versão.
+
+### Publicar uma versão nova
+
+```sh
+git push          # na main: o CI testa e publica no GitHub Pages (~4 min)
+gh run watch      # o job "deploy" verde = publicado
+```
+
+### Confirmar que chegou nos dois celulares
+
+1. Abra o app com internet. Em até 1 minuto aparece "Nova versão disponível — atualizar".
+2. Toque em "atualizar" (ou feche o aviso: a versão nova entra na próxima abertura).
+3. Em ⚙ → Exibição, a versão mostra a data e o código do commit (`git log -1 --format=%h`). Tem que
+   ser igual nos dois celulares.
+
+As marcas, os roteiros próprios e as preferências ficam no IndexedDB do aparelho, com armazenamento
+persistente, e passam intactos pelas atualizações. Cada celular guarda as suas próprias marcas.
+
+### Testar offline
+
+1. Com o app aberto uma vez com internet ("Guia disponível offline"), ligue o **modo avião**.
+2. Feche o app de vez e abra pelo ícone.
+3. Navegue por cidades e dias: tudo abre, com fotos.
+4. Toque em "Abrir no mapa": aparece "Sem internet agora…" e o app continua.
+
+A internet só é usada para buscar atualizações e abrir links externos (rotas e mapas no Google Maps,
+"Ver fotos", sites oficiais).

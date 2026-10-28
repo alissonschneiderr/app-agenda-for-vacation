@@ -35,3 +35,12 @@ describe('Início (feature 009, US1)', () => {
     expect(screen.getByRole('link', { name: 'Orlando' }).getAttribute('href')).toBe('#/cidade/orlando');
   });
 });
+
+describe('Início: atalho para "Exibição" (feature 014, US2)', () => {
+  it('botão "Exibição e versão" no cabeçalho; continuam só os 3 destinos', () => {
+    const { content } = setupReal('2026-10-27T15:00:00Z');
+    const { container } = render(<Start content={content} />);
+    expect(screen.getByRole('link', { name: 'Exibição e versão' }).getAttribute('href')).toBe('#/exibicao');
+    expect(container.querySelectorAll('article')).toHaveLength(3);
+  });
+});

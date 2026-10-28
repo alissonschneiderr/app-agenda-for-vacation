@@ -1,5 +1,9 @@
 import { useEffect } from 'preact/hooks';
 import { installCardClicks } from './components/CardLink';
+import { InstallHint } from './components/InstallHint';
+import { OfflineToast } from './components/OfflineToast';
+import { UpdateBanner } from './components/UpdateBanner';
+import { installOfflineLinks } from './lib/offline-links';
 import { OfflineBanner } from './components/OfflineBanner';
 import { useContent } from './content/load';
 import type { LoadedContent } from './content/load';
@@ -94,6 +98,9 @@ export function App() {
   // Feature 009: cards inteiros clicáveis (um único link por card).
   useEffect(() => installCardClicks(), []);
 
+  // Feature 014: sem internet, link externo avisa em vez de abrir uma página de erro.
+  useEffect(() => installOfflineLinks(), []);
+
   useEffect(() => {
     if (state.status === 'ready') getUserStore().update((s) => seedSuggested(state.content, s));
   }, [state]);
@@ -101,6 +108,9 @@ export function App() {
   return (
     <div class="app">
       <OfflineBanner recovered={getUserStore().recovered} />
+      <InstallHint />
+      <UpdateBanner />
+      <OfflineToast />
       {state.status === 'loading' && <main class="page empty">Carregando o guia…</main>}
       {state.status === 'unavailable' && (
         <main class="page empty">

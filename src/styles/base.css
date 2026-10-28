@@ -858,7 +858,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 .place-short { position: relative; padding-right: 36px; transition: transform var(--t), filter var(--t); }
 .place-short::after { content: '›'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--primary); }
 .place-short:active { transform: scale(0.99); filter: brightness(0.97); }
-.start-head { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px; align-items: center; margin: calc(var(--safe-top) + 16px) 0 16px; }
+.start-head { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: calc(var(--safe-top) + 16px) 0 16px; }
 .start .city-card .cover-card { min-height: 220px; }
 .city-days { margin-top: 16px; }
 
@@ -899,3 +899,17 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 /* Feature 013: a cidade abre com o card de hoje logo abaixo do cabeçalho fixo. */
 /* O html já reserva a altura do cabeçalho (scroll-padding-top, feature 009); aqui só o respiro. */
 .city-days .day-card { scroll-margin-top: 8px; }
+
+/* Feature 014 — app instalado: o fim de cada tela fica acima do indicador de início/barra do Android. */
+.page { padding-bottom: calc(var(--safe-bottom) + 24px); }
+.app-notice { position: fixed; z-index: 60; left: max(12px, env(safe-area-inset-left)); right: max(12px, env(safe-area-inset-right)); bottom: calc(var(--safe-bottom) + 12px); max-width: 496px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 14px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); }
+.app-notice p { margin: 0; flex: 1; font-size: 0.95rem; line-height: 1.35; }
+.app-notice .round-btn { flex: none; min-width: 44px; min-height: 44px; }
+.app-notice .btn { min-height: 44px; }
+.start-head .start-settings { justify-self: end; }
+.update-banner { z-index: 61; }
+.install-hint + .update-banner, .update-banner ~ .install-hint { bottom: calc(var(--safe-bottom) + 76px); }
+.display-info { margin-top: 16px; }
+.display-info p { margin: 0 0 6px; }
+.offline-toast { z-index: 62; justify-content: center; }
+.start-head .page-head-title { white-space: normal; overflow: visible; text-overflow: clip; }

@@ -19,3 +19,19 @@ describe('Exibição (feature 009)', () => {
     expect(JSON.parse(localStorage.getItem('ctha:prefs')!).highContrast).toBe(true);
   });
 });
+
+describe('Exibição: versão e armazenamento (feature 014, US2)', () => {
+  it('mostra a versão do build e o estado do armazenamento', async () => {
+    Object.defineProperty(navigator, 'storage', { value: { persisted: async () => true }, configurable: true });
+    render(<Display />);
+    expect(screen.getByText(`Versão ${__APP_VERSION__}`)).toBeTruthy();
+    expect(await screen.findByText('Armazenamento: persistente ✓')).toBeTruthy();
+  });
+
+  it('sem persistência: pede para instalar', async () => {
+    Object.defineProperty(navigator, 'storage', { value: { persisted: async () => false }, configurable: true });
+    render(<Display />);
+    expect(await screen.findByText('Armazenamento: comum — instale o app na tela inicial para o sistema não apagar os dados')).toBeTruthy();
+    Object.defineProperty(navigator, 'storage', { value: undefined, configurable: true });
+  });
+});

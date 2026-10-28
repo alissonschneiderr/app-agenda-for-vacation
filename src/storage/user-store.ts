@@ -1,6 +1,7 @@
 // Único módulo que lê e escreve os dados do usuário (contracts/user-storage.md).
 import { useEffect, useState } from 'preact/hooks';
 import type { UserState, UserStateV1 } from './types';
+import { getAppStorage } from './app-storage';
 
 export const STORAGE_KEY = 'ctha:user:v1';
 
@@ -95,7 +96,7 @@ export function createUserStore(storage: Storage): UserStore {
 let defaultStore: UserStore | null = null;
 
 export function getUserStore(): UserStore {
-  defaultStore ??= createUserStore(window.localStorage);
+  defaultStore ??= createUserStore(getAppStorage());
   return defaultStore;
 }
 

@@ -16,7 +16,8 @@
     "content": "tsx scripts/build-content.ts",
     "content:strict": "tsx scripts/build-content.ts --strict",
     "photos": "tsx scripts/fetch-photos.ts",
-    "budget": "tsx scripts/check-budget.ts"
+    "budget": "tsx scripts/check-budget.ts",
+    "splash": "tsx scripts/splash.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

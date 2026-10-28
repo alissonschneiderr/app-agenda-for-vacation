@@ -1,10 +1,13 @@
 // Preferências deste aparelho (feature 006): avisos já lidos e alto contraste.
 // Não fazem parte do progresso da viagem; sem armazenamento disponível, o app usa os padrões.
 import { useEffect, useState } from 'preact/hooks';
+import { getAppStorage } from './app-storage';
 
 export interface Prefs {
   readAlerts: string[];
   highContrast: boolean;
+  /** Feature 014: a dica de instalação do iPhone foi fechada. */
+  installHintDismissed?: boolean;
 }
 
 export const PREFS_KEY = 'ctha:prefs';
@@ -12,12 +15,13 @@ const DEFAULTS: Prefs = { readAlerts: [], highContrast: false };
 
 export function loadPrefs(): Prefs {
   try {
-    const raw = localStorage.getItem(PREFS_KEY);
+    const raw = getAppStorage().getItem(PREFS_KEY);
     if (!raw) return { ...DEFAULTS };
     const p = JSON.parse(raw) as Partial<Prefs>;
     return {
       readAlerts: Array.isArray(p.readAlerts) ? p.readAlerts.filter((x) => typeof x === 'string') : [],
       highContrast: p.highContrast === true,
+      ...(p.installHintDismissed === true ? { installHintDismissed: true } : {}),
     };
   } catch {
     return { ...DEFAULTS };
@@ -35,7 +39,7 @@ export function getPrefs(): Prefs {
 export function setPrefs(change: (p: Prefs) => Prefs): Prefs {
   current = change(getPrefs());
   try {
-    localStorage.setItem(PREFS_KEY, JSON.stringify(current));
+    getAppStorage().setItem(PREFS_KEY, JSON.stringify(current));
   } catch {
     // sem armazenamento: segue em memória
   }

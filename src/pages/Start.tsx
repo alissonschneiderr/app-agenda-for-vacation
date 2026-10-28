@@ -26,6 +26,10 @@ export function Start({ content }: { content: LoadedContent }) {
           <p class="eyebrow page-head-label">{order.length} destinos</p>
           <h1 class="page-head-title">{joinNames(order.map((id) => content.cityName(id)))}</h1>
         </div>
+        {/* Feature 014: o app instalado não tem barra de endereço — a Exibição (versão) abre por aqui. */}
+        <a class="round-btn start-settings" href="#/exibicao" aria-label="Exibição e versão">
+          <Icon name="settings" size={20} />
+        </a>
       </header>
       <section class="card-stack" aria-label="Destinos">
         {order.map((id) => (
