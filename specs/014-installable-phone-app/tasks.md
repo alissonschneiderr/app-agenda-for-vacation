@@ -180,7 +180,7 @@ implementação e deve falhar primeiro.
   4. `git push`;
   5. `gh run watch` até o `deploy` ficar verde;
   6. conferir `curl -sI https://alissonschneiderr.github.io/app-agenda-for-vacation/` (200) e o `manifest.webmanifest` publicado.
-- [ ] T029 Escrever `specs/014-installable-phone-app/report.md`:
+- [X] T029 Escrever `specs/014-installable-phone-app/report.md`:
   - o que mudou;
   - por que PWA;
   - o endereço;
