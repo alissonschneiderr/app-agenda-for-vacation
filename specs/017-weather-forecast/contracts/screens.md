@@ -17,13 +17,14 @@ Qualquer outro resultado (rede, status, JSON) = mantém o salvo.
 
 ```text
 ┌ Tempo ───────────────────────────────┐
+│ Nova York                             │
 │ ⛅ Parcialmente nublado               │
 │ 15° / 9°   ·   💧 20%                 │
 │ atualizada em 29/10 às 14h05          │
 └──────────────────────────────────────┘
 ```
 
-- Dia de troca: uma linha por cidade, com o nome ("Nova York", "Orlando").
+- Sempre com o nome da cidade; no dia de troca, uma linha por cidade ("Nova York", "Orlando").
 - Além do alcance: "Previsão a partir de DD/MM".
 - Nada salvo: "Previsão disponível com internet".
 - Dia passado: sem box.
@@ -34,12 +35,16 @@ Qualquer outro resultado (rede, status, JSON) = mantém o salvo.
 
 ```text
  29/10        30/10        31/10        01/11        02/11
- NY           NY           ☁ 15°/5°     ☁ 16°/9°     ☁ 19°/11°
- ☀ 20°/9°     ⛅ 18°/7°     (link)       (link)       (link)
+ NY           NY           NY           NY           NY
+ ⛅           ☀            ☁            ☁            ☁
+ 20° / 8°     18° / 7°     15° / 4°     15° / 10°    19° / 11°
+                           (link)       (link)       (link)
 ```
 
-- 5 dias: hoje + 4. Dia da viagem = link `#/dia/<data>`; fora da viagem = previsão da 1ª cidade (antes)
-  ou da última (depois), com a sigla (NY/MIA), borda tracejada e sem link.
+- 5 dias: hoje + 4, **todos no mesmo card** (data, sigla da cidade, ícone, "máx° / mín°"). Dia da
+  viagem = link `#/dia/<data>`; fora da viagem = previsão da 1ª cidade (antes) ou da última (depois),
+  sem link.
+- Mesmo padrão no box do dia: nome da cidade sempre visível e "máx° / mín°" no mesmo formato.
 - Dia de troca: as duas máximas/mínimas, uma por cidade (sigla NY/ORL/MIA).
 - Sem rolagem lateral da página a 360 px (a faixa pode rolar sozinha na horizontal).
 - "atualizada em …" uma vez, abaixo da faixa; sem nada salvo, "Previsão disponível com internet".

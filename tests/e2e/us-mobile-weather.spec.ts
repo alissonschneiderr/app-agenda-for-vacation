@@ -26,7 +26,7 @@ test.describe('US1 e US2 (017) – previsão do tempo', () => {
     const strip = page.locator('.weather-strip');
     await expect(strip.locator('li')).toHaveCount(5);
     await expect(strip.locator('li.is-out')).toHaveCount(2);
-    await expect(strip.locator('li.is-out').first()).toContainText('14°/6°');
+    await expect(strip.locator('li.is-out').first()).toContainText('14° / 6°');
     await expect(strip.locator('li.is-out a')).toHaveCount(0);
     await expect(strip.getByRole('link', { name: /^Sábado, 31\/10, Nova York: nublado, máxima 16, mínima 8 graus$/ })).toBeVisible();
     await noSideScroll(page);

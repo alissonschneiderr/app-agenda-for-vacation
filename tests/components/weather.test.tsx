@@ -30,6 +30,8 @@ describe('box "Tempo" no dia (feature 017, US1)', () => {
     expect(box.textContent).toContain('atualizada em 29/10 às 14h05');
     expect(within(box).getByText('Nova York: parcialmente nublado, máxima 15, mínima 9 graus, 20% de chance de chuva')).toBeTruthy();
     expect(box.querySelector('.weather-updated.is-stale')).toBeNull();
+    // Mesmo padrão em todos os boxes: a cidade sempre aparece, mesmo com uma só.
+    expect([...box.querySelectorAll('.weather-city')].map((e) => e.textContent)).toEqual(['Nova York']);
   });
 
   it('07/11: as duas cidades, com o nome de cada uma', () => {
@@ -74,10 +76,15 @@ describe('faixa hoje + 4 no Início (feature 017, US2)', () => {
       expect(items[i]!.textContent).toContain('NY');
       expect(items[i]!.textContent).not.toContain('fora da viagem');
     }
-    expect(items[0]!.textContent).toContain('20°/9°');
+    expect(items[0]!.textContent).toContain('20° / 9°');
     expect(within(items[1] as HTMLElement).getByText('Sexta-feira, 30/10, Nova York: parcialmente nublado, máxima 18, mínima 7 graus')).toBeTruthy();
     const sat = screen.getByRole('link', { name: 'Sábado, 31/10, Nova York: nublado, máxima 15, mínima 5 graus' });
     expect(sat.getAttribute('href')).toBe('#/dia/2026-10-31');
+    // Mesmo padrão nos 5 cards: sigla da cidade e a mesma estrutura, dentro ou fora da viagem.
+    for (const item of items) {
+      expect(item.querySelector('.weather-card')).toBeTruthy();
+      expect(item.querySelector('.weather-short')!.textContent).toBe('NY');
+    }
     expect(screen.getByRole('link', { name: /^Domingo, 01\/11/ }).getAttribute('href')).toBe('#/dia/2026-11-01');
     expect(container.textContent).toContain('atualizada em 29/10 às 14h05');
   });
@@ -89,7 +96,7 @@ describe('faixa hoje + 4 no Início (feature 017, US2)', () => {
     const last = [...container.querySelectorAll('.weather-strip li')].at(-1)!;
     expect(last.textContent).toContain('NY');
     expect(last.textContent).toContain('ORL');
-    expect(last.textContent).toContain('28°/12°');
+    expect(last.textContent).toContain('28° / 12°');
   });
 
   it('nada salvo: "Previsão disponível com internet"', () => {

@@ -18,6 +18,11 @@ export function spokenWeather(city: string, d: DayWeather, withRain = true): str
   return `${city}: ${describe(d.code).label.toLowerCase()}, máxima ${d.max}, mínima ${d.min} graus${rain}`;
 }
 
+/** Máxima e mínima no mesmo formato no box do dia e na faixa do Início: "15° / 9°". */
+export function tempRange(d: DayWeather): string {
+  return `${d.max}° / ${d.min}°`;
+}
+
 export function Updated({ fetchedAt }: { fetchedAt: string }) {
   return <p class={`weather-updated${stale(fetchedAt, new Date()) ? ' is-stale' : ''}`}>{updatedLabel(fetchedAt)}</p>;
 }
@@ -41,14 +46,12 @@ export function WeatherBox({ content, date, today }: { content: LoadedContent; d
         const { icon, label } = describe(w.day.code);
         return (
           <div key={id} class="weather-row">
-            {cities.length > 1 && <p class="weather-city">{content.cityName(id)}</p>}
+            <p class="weather-city">{content.cityName(id)}</p>
             <p class="weather-main" aria-hidden="true">
               <Icon name={icon} size={28} /> {label}
             </p>
             <p class="weather-temps" aria-hidden="true">
-              <span>
-                {w.day.max}° / {w.day.min}°
-              </span>
+              <span>{tempRange(w.day)}</span>
               {w.day.rain !== null && (
                 <span class="weather-rain">
                   <Icon name="rain" size={16} /> {w.day.rain}%
