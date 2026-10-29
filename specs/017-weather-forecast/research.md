@@ -15,12 +15,15 @@ Sem NEEDS CLARIFICATION: Q1 (hoje + 4) e Q2 = A fecharam o escopo.
   GitHub Pages; National Weather Service (api.weather.gov) — só EUA, em inglês e sem chance de chuva
   diária simples.
 
-## R2 — Alcance da previsão: 7 dias (Q2 = A)
+## R2 — Alcance da previsão: 16 dias (ajuste do usuário)
 
-- **Decision**: o app pede 7 dias (hoje + 6). Dia da viagem além disso mostra "Previsão a partir de
-  DD/MM", com DD/MM = data do dia − 6.
-- **Rationale**: Q2 = A foi escolhida contra a opção de 16 dias (C): previsões além de uma semana erram
-  muito. 7 dias cobrem com folga a faixa do Início (5 dias).
+- **Decision**: o app pede 16 dias (`forecast_days=16`, o máximo do Open-Meteo). Dia da viagem além disso
+  mostra "Previsão a partir de DD/MM", com DD/MM = data do dia − 15. A faixa do Início continua com 5 dias.
+- **Histórico**: a 1ª versão pedia 7 dias — escolha minha ao ler Q2 = A como "só a previsão confiável".
+  O usuário pediu: "na tela inicial mantenha os 5 dias, mas se existe a previsão para o dia, quando o
+  usuário está dentro do dia, mostre".
+- **Observação**: além de ~7 dias a previsão erra mais (sobretudo a chance de chuva); ela se atualiza a
+  cada 3 h com internet.
 
 ## R3 — Local de cada cidade
 

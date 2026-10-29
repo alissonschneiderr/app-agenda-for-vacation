@@ -41,7 +41,7 @@ test.describe('US1 e US2 (017) – previsão do tempo', () => {
     await noSideScroll(page);
 
     await page.goto('/#/dia/2026-11-18');
-    await expect(page.getByRole('region', { name: 'Tempo' })).toContainText('Previsão a partir de 12/11');
+    await expect(page.getByRole('region', { name: 'Tempo' })).toContainText('Previsão a partir de 03/11');
   });
 
   test('offline: a previsão salva continua, com "atualizada em"', async ({ page, context }) => {

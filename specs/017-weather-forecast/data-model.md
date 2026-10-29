@@ -25,7 +25,7 @@
 
 - `weatherFor(store, cityId, date, today)`:
   - `{ kind: 'forecast', day, fetchedAt }` — há previsão salva;
-  - `{ kind: 'later', from }` — dia além de hoje + 6 (`from` = data − 6), Q2 = A;
+  - `{ kind: 'later', from }` — dia além de hoje + 15 (`from` = data − 15), alcance do serviço;
   - `{ kind: 'none' }` — dentro do alcance mas nada salvo (sem internet desde sempre).
 - `dayCities(content, date)`: as cidades do dia — uma; duas no dia de troca (a que sai e a que chega,
   pela `content.trip`).

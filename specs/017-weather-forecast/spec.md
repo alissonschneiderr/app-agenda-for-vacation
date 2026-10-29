@@ -12,6 +12,7 @@
   viagem também tem previsão — antes dela, a da 1ª cidade (Nova York); depois, a da última (Miami) —,
   com a sigla da cidade e sem link (não há página do dia).
 - **Q2 = A**: dia ainda fora do alcance da previsão mostra "Previsão a partir de DD/MM".
+- **Ajuste do usuário**: o alcance é todo o que o serviço oferece (16 dias); o Início continua com 5.
 
 **Input**: User description: "Adicione uma feature de previsão do tempo, dentro de cada dia, mostre um box para o dia e
 na página incial mostre o dia atual + 5 dias no futuro"

@@ -21,12 +21,14 @@ describe('previsão do tempo — domínio (feature 017)', () => {
     expect(describeCode(42)).toEqual({ icon: 'cloud', label: 'Tempo variável' });
   });
 
-  it('previsão salva, "a partir de" além de 7 dias (Q2 = A) e nada salvo', () => {
+  it('previsão salva, "a partir de" além de 16 dias (o alcance do serviço) e nada salvo', () => {
     expect(weatherFor(store, 'nova-york', '2026-11-01', '2026-10-29')).toEqual({ kind: 'forecast', day, fetchedAt: store.fetchedAt });
-    expect(weatherFor(store, 'miami', '2026-11-18', '2026-10-29')).toEqual({ kind: 'later', from: '2026-11-12' });
+    expect(weatherFor(store, 'miami', '2026-11-18', '2026-10-29')).toEqual({ kind: 'later', from: '2026-11-03' });
+    expect(weatherFor(null, 'orlando', '2026-11-13', '2026-10-29')).toEqual({ kind: 'none' });
+    expect(weatherFor(null, 'orlando', '2026-11-14', '2026-10-29')).toEqual({ kind: 'later', from: '2026-10-30' });
     expect(weatherFor(store, 'nova-york', '2026-11-04', '2026-10-29')).toEqual({ kind: 'none' });
     expect(weatherFor(null, 'nova-york', '2026-10-30', '2026-10-29')).toEqual({ kind: 'none' });
-    expect(weatherFor(null, 'nova-york', '2026-11-05', '2026-10-29')).toEqual({ kind: 'later', from: '2026-10-30' });
+    expect(weatherFor(null, 'nova-york', '2026-11-05', '2026-10-29')).toEqual({ kind: 'none' });
   });
 
   it('cidades do dia: uma; duas nos dias de troca (a que sai e a que chega)', () => {

@@ -6,11 +6,11 @@
 
 ## Summary
 
-A previsão vem do Open-Meteo (gratuito, sem chave), numa chamada só para as três cidades, 7 dias à
+A previsão vem do Open-Meteo (gratuito, sem chave), numa chamada só para as três cidades, 16 dias à
 frente (R1, R2). O local de cada cidade é o ponto-capa que já está no conteúdo (R3). O app busca ao abrir
 e ao voltar para a frente, no máximo a cada 3 h, e guarda no armazenamento do app; sem internet, mostra o
 salvo com "atualizada em …" (R4). O dia ganha o box "Tempo" depois do resumo (duas cidades nos dias de
-troca; "Previsão a partir de DD/MM" além de 7 dias); o Início ganha a faixa hoje + 4, com "fora da
+troca; "Previsão a partir de DD/MM" além de 16 dias); o Início ganha a faixa hoje + 4, com "fora da
 viagem" nos dias sem cidade (R6). Ícones de tempo novos em SVG, sem dependência (R5).
 
 ## Technical Context
@@ -41,7 +41,7 @@ cada 3 h no máximo; JS inicial < 100 KB gzip
 - nunca inventar dados: sem média histórica, sem coordenada à mão;
 - snapshot de NY intacto; dicas de clima dos roteiros continuam.
 
-**Scale/Scope**: 3 cidades × 7 dias; 2 módulos novos (domínio e busca), 2 componentes, 6 ícones,
+**Scale/Scope**: 3 cidades × 16 dias; 2 módulos novos (domínio e busca), 2 componentes, 6 ícones,
 2 telas alteradas
 
 ## Constitution Check

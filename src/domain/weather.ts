@@ -20,8 +20,8 @@ export interface WeatherStore {
   cities: Partial<Record<CityId, Record<DateStr, DayWeather>>>;
 }
 
-/** Dias pedidos ao serviço (hoje + 6): além disso a previsão erra muito (research R2, Q2 = A). */
-export const FORECAST_DAYS = 7;
+/** Dias pedidos ao serviço (hoje + 15): todo o alcance do Open-Meteo, a pedido do casal (research R2). */
+export const FORECAST_DAYS = 16;
 
 export type WeatherIcon = 'sun' | 'cloud-sun' | 'cloud' | 'fog' | 'rain' | 'snow' | 'storm';
 
@@ -49,7 +49,7 @@ export type DayForecast =
   | { kind: 'later'; from: DateStr }
   | { kind: 'none' };
 
-/** Previsão salva do dia; além de hoje + 6, "a partir de" (data − 6); senão, nada salvo. */
+/** Previsão salva do dia; além do alcance (hoje + 15), "a partir de" (data − 15); senão, nada salvo. */
 export function weatherFor(store: WeatherStore | null, cityId: CityId, date: DateStr, today: DateStr): DayForecast {
   const day = store?.cities[cityId]?.[date];
   if (store && day) return { kind: 'forecast', day, fetchedAt: store.fetchedAt };

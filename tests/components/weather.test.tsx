@@ -43,10 +43,10 @@ describe('box "Tempo" no dia (feature 017, US1)', () => {
     expect(box.textContent).toContain('28° / 12°');
   });
 
-  it('18/11 visto de 29/10: "Previsão a partir de 12/11"', () => {
+  it('18/11 visto de 29/10: "Previsão a partir de 03/11" (fora dos 16 dias)', () => {
     const { content } = withWeather('2026-10-29T19:00:00Z', { fetchedAt: FETCHED, cities: { 'nova-york': ny } });
     render(<WeatherBox content={content} date="2026-11-18" today="2026-10-29" />);
-    expect(screen.getByRole('region', { name: 'Tempo' }).textContent).toContain('Previsão a partir de 12/11');
+    expect(screen.getByRole('region', { name: 'Tempo' }).textContent).toContain('Previsão a partir de 03/11');
   });
 
   it('nada salvo: "Previsão disponível com internet"', () => {
@@ -103,5 +103,15 @@ describe('faixa hoje + 4 no Início (feature 017, US2)', () => {
     const { content } = withWeather('2026-10-29T19:00:00Z', null);
     const { container } = render(<WeatherStrip content={content} today="2026-10-29" />);
     expect(container.textContent).toContain('Previsão disponível com internet');
+  });
+});
+
+describe('box do dia com a previsão de longo alcance (ajuste da feature 017)', () => {
+  it('11/11 visto de 29/10 (13 dias à frente): a previsão salva aparece', () => {
+    const { content } = withWeather('2026-10-29T19:00:00Z', { fetchedAt: FETCHED, cities: { orlando: { '2026-11-11': { code: 0, max: 27, min: 17, rain: 5 } } } });
+    render(<WeatherBox content={content} date="2026-11-11" today="2026-10-29" />);
+    const box = screen.getByRole('region', { name: 'Tempo' });
+    expect(box.textContent).toContain('27° / 17°');
+    expect(box.textContent).not.toContain('Previsão a partir');
   });
 });

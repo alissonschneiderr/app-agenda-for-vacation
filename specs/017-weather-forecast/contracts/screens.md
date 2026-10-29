@@ -6,7 +6,7 @@
 GET https://api.open-meteo.com/v1/forecast
   ?latitude=<ny>,<orl>,<mia>&longitude=<ny>,<orl>,<mia>
   &daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max
-  &timezone=America%2FNew_York&forecast_days=7
+  &timezone=America%2FNew_York&forecast_days=16
 → 200 [ { daily: { time[], weather_code[], temperature_2m_max[], temperature_2m_min[],
                    precipitation_probability_max[] } } × 3, na ordem pedida ]
 ```
