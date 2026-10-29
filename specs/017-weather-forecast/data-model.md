@@ -37,4 +37,4 @@
 
 - Busca quando online e `now − fetchedAt > 3 h` (ou nada salvo).
 - Dia que já passou: o box do dia não aparece.
-- Local de cada cidade: `location` do `heroPointId` da cidade (research R3).
+- Local de cada cidade: `center` da cidade em `content/trip.json` (research R3).

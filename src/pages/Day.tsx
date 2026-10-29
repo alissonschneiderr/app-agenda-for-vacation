@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import { Chip } from '../components/Chip';
 import { HoodGroups } from '../components/HoodGroups';
 import { NeighborhoodCard } from '../components/NeighborhoodCard';
+import { WeatherBox } from '../components/WeatherBox';
 import { SectionMenu } from '../components/SectionMenu';
 import { Cover } from '../components/Cover';
 import { DayAlerts } from '../components/DayAlerts';
@@ -238,6 +239,9 @@ export function Day({ content, date: param }: { content: LoadedContent; date?: s
 
 
       {card.summary && <p class="day-summary">{card.summary}</p>}
+
+      {/* Feature 017: previsão do dia, de hoje em diante. */}
+      {date >= today && <WeatherBox content={content} date={date} today={today} />}
 
       {/* Feature 009: menu de seções preso no topo, só com o que existe no dia. */}
       <SectionMenu sections={sections} />

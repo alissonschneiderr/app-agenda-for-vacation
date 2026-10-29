@@ -49,3 +49,16 @@ describe('Início: atalho para "Exibição" (feature 014, US2)', () => {
     expect(container.querySelectorAll('article')).toHaveLength(3);
   });
 });
+
+describe('Início: previsão hoje + 4 (feature 017, US2)', () => {
+  it('a faixa vem depois do cabeçalho e antes do 1º card; os 3 cards continuam', () => {
+    const { content } = setupReal('2026-10-29T19:00:00Z');
+    const { container } = render(<Start content={content} />);
+    const strip = container.querySelector('.weather-strip')!;
+    const all = [...container.querySelectorAll('*')];
+    expect(all.indexOf(container.querySelector('header')!)).toBeLessThan(all.indexOf(strip));
+    expect(all.indexOf(strip)).toBeLessThan(all.indexOf(screen.getAllByRole('article')[0]!));
+    expect(screen.getAllByRole('article')).toHaveLength(3);
+    expect(strip.querySelectorAll('li')).toHaveLength(5);
+  });
+});

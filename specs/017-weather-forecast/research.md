@@ -24,10 +24,12 @@ Sem NEEDS CLARIFICATION: Q1 (hoje + 4) e Q2 = A fecharam o escopo.
 
 ## R3 — Local de cada cidade
 
-- **Decision**: a localização do ponto-capa de cada cidade, que já está no conteúdo (`heroPointId` em
-  `content/trip.json`): Central Park (Nova York), Magic Kingdom (Orlando), South Beach (Miami).
-- **Rationale**: "nunca inventar dados" — nada de coordenada digitada à mão; os três pontos ficam onde o
-  casal passa os dias. A previsão é por cidade, não por bairro (spec, Assumptions).
+- **Decision** (ajustada na implementação): o `center` de cada cidade, que já está em
+  `content/trip.json` (Nova York 40.7549,−73.984; Orlando 28.4177,−81.4846; Miami o seu `center`).
+  O plano previa o ponto-capa (`heroPointId`); o `center` é literalmente o "centro da cidade" da spec e
+  também já está no conteúdo.
+- **Rationale**: "nunca inventar dados" — nada de coordenada digitada à mão. A previsão é por cidade,
+  não por bairro (spec, Assumptions).
 - **Privacidade**: o pedido leva só essas três coordenadas; nada do aparelho nem do casal (FR-009).
 
 ## R4 — Quando buscar e onde guardar

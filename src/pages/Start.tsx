@@ -1,5 +1,7 @@
 import { CityCard } from '../components/CityCard';
 import { Icon } from '../components/Icon';
+import { WeatherStrip } from '../components/WeatherStrip';
+import { deviceToday } from '../domain/trip';
 import type { LoadedContent } from '../content/load';
 import { cityCard } from '../domain/notebook';
 import { useUserState } from '../storage/user-store';
@@ -31,6 +33,8 @@ export function Start({ content }: { content: LoadedContent }) {
           <Icon name="settings" size={20} />
         </a>
       </header>
+      {/* Feature 017: hoje e os próximos 4 dias (Q1). */}
+      <WeatherStrip content={content} today={deviceToday(new Date())} />
       <section class="card-stack" aria-label="Destinos">
         {order.map((id) => (
           <CityCard key={id} c={cityCard(content, state, id)} />

@@ -11,6 +11,8 @@ export default defineConfig({
     serviceWorkers: 'allow',
     locale: 'pt-BR',
     timezoneId: 'America/New_York',
+    // Feature 017: nenhum teste sai para o Open-Meteo; os de previsão respondem com page.route.
+    launchOptions: { args: ['--host-resolver-rules=MAP api.open-meteo.com ~NOTFOUND'] },
   },
   projects: [
     { name: 'chromium', use: { ...devices['Pixel 7'] }, testIgnore: /us-mobile.*\.spec\.ts/ },

@@ -273,3 +273,19 @@ describe('Rota até… nos cards do dia (feature 016, US2)', () => {
     for (const card of curios) expect(within(card).queryByRole('link', { name: 'Rota até…' })).toBeNull();
   });
 });
+
+describe('box "Tempo" no dia (feature 017, US1)', () => {
+  it('01/11 visto de 29/10: depois do resumo e antes do menu; 31/10 visto de 01/11 (passado): sem box', () => {
+    const { content } = setupReal('2026-10-29T19:00:00Z');
+    const { container, unmount } = render(<Day content={content} date="2026-11-01" />);
+    const box = screen.getByRole('region', { name: 'Tempo' });
+    const all = [...container.querySelectorAll('*')];
+    const menu = screen.getByRole('navigation', { name: 'Seções do dia' });
+    expect(all.indexOf(container.querySelector('.day-summary')!)).toBeLessThan(all.indexOf(box));
+    expect(all.indexOf(box)).toBeLessThan(all.indexOf(menu));
+    unmount();
+    const r = setupReal(at('2026-11-01T13:30'));
+    render(<Day content={r.content} date="2026-10-31" />);
+    expect(screen.queryByRole('region', { name: 'Tempo' })).toBeNull();
+  });
+});
