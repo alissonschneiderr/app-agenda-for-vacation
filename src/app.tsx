@@ -4,7 +4,7 @@ import { InstallHint } from './components/InstallHint';
 import { OfflineToast } from './components/OfflineToast';
 import { UpdateBanner } from './components/UpdateBanner';
 import { installOfflineLinks } from './lib/offline-links';
-import { refreshWeather } from './lib/weather';
+import { installWeatherSync } from './lib/weather';
 import { OfflineBanner } from './components/OfflineBanner';
 import { useContent } from './content/load';
 import type { LoadedContent } from './content/load';
@@ -108,16 +108,10 @@ export function App() {
     if (state.status === 'ready') getUserStore().update((s) => seedSuggested(state.content, s));
   }, [state]);
 
-  // Feature 017: previsão do tempo ao abrir e ao voltar para o app (no máximo a cada 3 h; nunca bloqueia).
+  // Feature 017: previsão salva no aparelho; sincroniza ao abrir, ao voltar para o app e quando a
+  // conexão volta (no máximo a cada 3 h; nunca bloqueia a tela).
   useEffect(() => {
-    if (state.status !== 'ready') return;
-    const content = state.content;
-    void refreshWeather(content);
-    const onVisible = () => {
-      if (document.visibilityState === 'visible') void refreshWeather(content);
-    };
-    document.addEventListener('visibilitychange', onVisible);
-    return () => document.removeEventListener('visibilitychange', onVisible);
+    if (state.status === 'ready') return installWeatherSync(state.content);
   }, [state]);
 
   return (

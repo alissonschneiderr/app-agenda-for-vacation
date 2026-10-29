@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { WeatherBox } from '../../src/components/WeatherBox';
 import { WeatherStrip } from '../../src/components/WeatherStrip';
 import type { WeatherStore } from '../../src/domain/weather';
-import { WEATHER_KEY } from '../../src/lib/weather';
+import { setWeatherSyncing, WEATHER_KEY } from '../../src/lib/weather';
 import { getAppStorage } from '../../src/storage/app-storage';
 import { setupReal } from './companion-helpers';
 
@@ -49,10 +49,10 @@ describe('box "Tempo" no dia (feature 017, US1)', () => {
     expect(screen.getByRole('region', { name: 'Tempo' }).textContent).toContain('Previsão a partir de 03/11');
   });
 
-  it('nada salvo: "Previsão disponível com internet"', () => {
+  it('nada salvo e sem busca: avisa que ainda não há previsão salva', () => {
     const { content } = withWeather('2026-10-29T19:00:00Z', null);
     render(<WeatherBox content={content} date="2026-11-01" today="2026-10-29" />);
-    expect(screen.getByRole('region', { name: 'Tempo' }).textContent).toContain('Previsão disponível com internet');
+    expect(screen.getByRole('region', { name: 'Tempo' }).textContent).toContain('Ainda sem previsão salva — ela é baixada quando houver internet');
   });
 
   it('salva há mais de 24 h: "atualizada em" em destaque; sem chance de chuva, sem a parte da chuva', () => {
@@ -99,10 +99,10 @@ describe('faixa hoje + 4 no Início (feature 017, US2)', () => {
     expect(last.textContent).toContain('28° / 12°');
   });
 
-  it('nada salvo: "Previsão disponível com internet"', () => {
+  it('nada salvo e sem busca: avisa que ainda não há previsão salva', () => {
     const { content } = withWeather('2026-10-29T19:00:00Z', null);
     const { container } = render(<WeatherStrip content={content} today="2026-10-29" />);
-    expect(container.textContent).toContain('Previsão disponível com internet');
+    expect(container.textContent).toContain('Ainda sem previsão salva — ela é baixada quando houver internet');
   });
 });
 
@@ -113,5 +113,39 @@ describe('box do dia com a previsão de longo alcance (ajuste da feature 017)', 
     const box = screen.getByRole('region', { name: 'Tempo' });
     expect(box.textContent).toContain('27° / 17°');
     expect(box.textContent).not.toContain('Previsão a partir');
+  });
+});
+
+describe('sincronização da previsão (ajuste da feature 017)', () => {
+  it('buscando e nada salvo: "Buscando a previsão…" no box e na faixa, nunca o aviso de internet', () => {
+    const { content } = withWeather('2026-10-29T19:00:00Z', null);
+    setWeatherSyncing(true);
+    try {
+      const { container } = render(
+        <>
+          <WeatherStrip content={content} today="2026-10-29" />
+          <WeatherBox content={content} date="2026-11-01" today="2026-10-29" />
+        </>,
+      );
+      expect(container.querySelectorAll('.weather-syncing')).toHaveLength(2);
+      expect(container.textContent).toContain('Buscando a previsão…');
+      expect(container.textContent).not.toContain('Ainda sem previsão salva — ela é baixada quando houver internet');
+      expect(container.textContent).not.toContain('com internet');
+    } finally {
+      setWeatherSyncing(false);
+    }
+  });
+
+  it('buscando com previsão salva: mostra a salva (cache) normalmente', () => {
+    const { content } = withWeather('2026-10-29T19:00:00Z', { fetchedAt: FETCHED, cities: { 'nova-york': ny } });
+    setWeatherSyncing(true);
+    try {
+      render(<WeatherBox content={content} date="2026-11-01" today="2026-10-29" />);
+      const box = screen.getByRole('region', { name: 'Tempo' });
+      expect(box.textContent).toContain('15° / 9°');
+      expect(box.textContent).not.toContain('Buscando');
+    } finally {
+      setWeatherSyncing(false);
+    }
   });
 });

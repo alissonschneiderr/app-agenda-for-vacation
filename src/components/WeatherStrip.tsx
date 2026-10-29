@@ -2,9 +2,9 @@ import type { LoadedContent } from '../content/load';
 import type { CityId, DateStr } from '../content/types';
 import { formatDayMonth, formatWeekday } from '../domain/trip';
 import { describe, homeStrip, weatherFor } from '../domain/weather';
-import { useWeather } from '../lib/weather';
+import { useWeather, useWeatherSyncing } from '../lib/weather';
 import { Icon } from './Icon';
-import { spokenWeather, tempRange, Updated } from './WeatherBox';
+import { NoWeather, spokenWeather, tempRange, Updated } from './WeatherBox';
 
 const SHORT: Record<CityId, string> = { 'nova-york': 'NY', orlando: 'ORL', miami: 'MIA' };
 
@@ -15,6 +15,7 @@ const SHORT: Record<CityId, string> = { 'nova-york': 'NY', orlando: 'ORL', miami
  */
 export function WeatherStrip({ content, today }: { content: LoadedContent; today: DateStr }) {
   const store = useWeather();
+  const syncing = useWeatherSyncing();
   const days = homeStrip(content, today);
   const any = days.some((d) => d.cities.some((id) => weatherFor(store, id, d.date, today).kind === 'forecast'));
   return (
@@ -62,7 +63,7 @@ export function WeatherStrip({ content, today }: { content: LoadedContent; today
         })}
       </ol>
       {any && store && <Updated fetchedAt={store.fetchedAt} />}
-      {!any && <p class="muted weather-updated">Previsão disponível com internet</p>}
+      {!any && <NoWeather syncing={syncing} />}
     </section>
   );
 }

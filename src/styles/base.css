@@ -921,3 +921,4 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 .weather-short { font-size: 0.66rem; letter-spacing: 0.06em; color: var(--muted); }
 :root[data-contrast='high'] .weather-box, :root[data-contrast='high'] .weather-card { border: 2px solid var(--border); background: var(--bg); }
 :root[data-contrast='high'] .weather-main .icon-svg, :root[data-contrast='high'] .weather-mini .icon-svg { color: var(--text); }
+.weather-syncing, .weather-empty { margin: 6px 0 0; font-size: 0.85rem; }

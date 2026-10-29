@@ -11,7 +11,20 @@ const EVERY_MS = 3 * 3600_000;
 const DAILY = 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max';
 
 const listeners = new Set<(w: WeatherStore | null) => void>();
+const syncListeners = new Set<(on: boolean) => void>();
 let running: Promise<void> | null = null;
+let syncing = false;
+
+/** Busca em andamento: as telas sem nada salvo mostram "Buscando a previsão…". */
+export function setWeatherSyncing(on: boolean): void {
+  syncing = on;
+  for (const l of syncListeners) l(on);
+}
+
+export function onWeatherSyncing(listener: (on: boolean) => void): () => void {
+  syncListeners.add(listener);
+  return () => syncListeners.delete(listener);
+}
 
 export function readWeather(): WeatherStore | null {
   try {
@@ -78,6 +91,7 @@ export function refreshWeather(content: Pick<LoadedContent, 'trip' | 'cities'>, 
   if (typeof navigator !== 'undefined' && navigator.onLine === false) return Promise.resolve();
   const saved = readWeather();
   if (saved && now.getTime() - Date.parse(saved.fetchedAt) < EVERY_MS) return Promise.resolve();
+  setWeatherSyncing(true);
   running = (async () => {
     try {
       const res = await fetch(weatherUrl(content));
@@ -87,9 +101,37 @@ export function refreshWeather(content: Pick<LoadedContent, 'trip' | 'cities'>, 
       // sem rede, serviço fora ou resposta estranha: fica o que está salvo
     } finally {
       running = null;
+      setWeatherSyncing(false);
     }
   })();
   return running;
+}
+
+/**
+ * Sincronização (FR-004/FR-006): ao abrir, quando o app volta para a frente e quando a conexão volta.
+ * Sem conexão, as telas mostram a previsão salva (cache).
+ */
+export function installWeatherSync(content: Pick<LoadedContent, 'trip' | 'cities'>): () => void {
+  const sync = () => void refreshWeather(content);
+  const onVisible = () => {
+    if (document.visibilityState === 'visible') sync();
+  };
+  sync();
+  window.addEventListener('online', sync);
+  document.addEventListener('visibilitychange', onVisible);
+  return () => {
+    window.removeEventListener('online', sync);
+    document.removeEventListener('visibilitychange', onVisible);
+  };
+}
+
+export function useWeatherSyncing(): boolean {
+  const [on, setOn] = useState(syncing);
+  useEffect(() => {
+    setOn(syncing);
+    return onWeatherSyncing(setOn);
+  }, []);
+  return on;
 }
 
 /** A previsão salva, atualizada quando uma busca termina. */

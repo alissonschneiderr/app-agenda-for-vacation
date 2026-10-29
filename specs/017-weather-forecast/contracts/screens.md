@@ -26,7 +26,7 @@ Qualquer outro resultado (rede, status, JSON) = mantém o salvo.
 
 - Sempre com o nome da cidade; no dia de troca, uma linha por cidade ("Nova York", "Orlando").
 - Além do alcance: "Previsão a partir de DD/MM".
-- Nada salvo: "Previsão disponível com internet".
+- Nada salvo: "Ainda sem previsão salva — ela é baixada quando houver internet" ("Buscando a previsão…" enquanto a busca está em andamento).
 - Dia passado: sem box.
 - Nome acessível: região "Tempo"; texto do leitor:
   "Nova York: parcialmente nublado, máxima 15, mínima 9 graus, 20% de chance de chuva".
@@ -47,4 +47,4 @@ Qualquer outro resultado (rede, status, JSON) = mantém o salvo.
 - Mesmo padrão no box do dia: nome da cidade sempre visível e "máx° / mín°" no mesmo formato.
 - Dia de troca: as duas máximas/mínimas, uma por cidade (sigla NY/ORL/MIA).
 - Sem rolagem lateral da página a 360 px (a faixa pode rolar sozinha na horizontal).
-- "atualizada em …" uma vez, abaixo da faixa; sem nada salvo, "Previsão disponível com internet".
+- "atualizada em …" uma vez, abaixo da faixa; sem nada salvo, "Ainda sem previsão salva — ela é baixada quando houver internet" ("Buscando a previsão…" enquanto a busca está em andamento).

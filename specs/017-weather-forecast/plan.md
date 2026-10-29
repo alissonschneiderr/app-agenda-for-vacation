@@ -50,7 +50,7 @@ cada 3 h no máximo; JS inicial < 100 KB gzip
 
 | Princípio | Situação |
 |---|---|
-| I. Offline-first | ✅ A previsão é uma função de internet com falha explícita e amigável: a salva fica visível com a hora; sem nada salvo, "Previsão disponível com internet". Nada mais do app depende dela. |
+| I. Offline-first | ✅ A previsão é uma função de internet com falha explícita e amigável: a salva fica visível com a hora; sem nada salvo, "Ainda sem previsão salva" (ou "Buscando a previsão…" durante a busca). Nada mais do app depende dela. |
 | II. Testes obrigatórios | ✅ Unit do domínio e da busca (com `fetch` falso), componentes, e2e a 360 e 402 px com a rede interceptada e offline. |
 | III. Simplicidade | ✅ Nenhuma dependência; uma chamada HTTP documentada; reaproveita o armazenamento da 014, `deviceToday` da 013 e o padrão de busca da 014. |
 | Plataforma mobile-first | ✅ Faixa que cabe a 360 px; alvos ≥ 44 px; temas claro, escuro e alto contraste. |

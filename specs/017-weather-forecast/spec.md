@@ -13,6 +13,9 @@
   com a sigla da cidade e sem link (não há página do dia).
 - **Q2 = A**: dia ainda fora do alcance da previsão mostra "Previsão a partir de DD/MM".
 - **Ajuste do usuário**: o alcance é todo o que o serviço oferece (16 dias); o Início continua com 5.
+- **Ajuste do usuário** ("guarde em cache e se tiver conexão faça o sync, senão mostre a informação do
+  cache"): sincroniza também quando a conexão volta; nenhuma tela diz que a previsão "precisa de
+  internet" — com a busca em andamento, "Buscando a previsão…".
 
 **Input**: User description: "Adicione uma feature de previsão do tempo, dentro de cada dia, mostre um box para o dia e
 na página incial mostre o dia atual + 5 dias no futuro"
@@ -68,11 +71,11 @@ com as duas cidades); tocar em 04/11 e cair no dia 04/11.
    22/11 e 23/11 (depois da viagem) com o tempo de Miami e a sigla "MIA".
 3. **Given** a faixa, **When** o casal toca num dia da viagem, **Then** abre a página daquele dia.
 4. **Given** sem internet, **When** o casal abre o Início, **Then** a faixa mostra a última previsão salva
-   com "atualizada em …"; sem nenhuma salva, a faixa diz "Previsão disponível com internet".
+   com "atualizada em …"; sem nenhuma salva, a faixa diz "Ainda sem previsão salva — ela é baixada quando houver internet" ("Buscando a previsão…" enquanto a busca está em andamento).
 
 ### Edge Cases
 
-- **Nunca carregou e está sem internet**: o box e a faixa dizem "Previsão disponível com internet"; o
+- **Nunca carregou e está sem internet**: o box e a faixa dizem "Ainda sem previsão salva — ela é baixada quando houver internet" ("Buscando a previsão…" enquanto a busca está em andamento); o
   resto da página funciona normalmente.
 - **Previsão antiga** (salva há mais de 24 h): continua visível, com "atualizada em …" em destaque.
 - **Dia que já passou**: o box não aparece (não há o que prever).
@@ -95,7 +98,7 @@ com as duas cidades); tocar em 04/11 e cair no dia 04/11.
   DD/MM, ícone, máxima e mínima; tocar num dia da viagem MUST abrir aquele dia.
 - **FR-004**: A previsão MUST ser buscada quando houver internet e salva no aparelho; sem internet, o
   app MUST mostrar a última salva, com "atualizada em DD/MM às HHhMM".
-- **FR-005**: Sem previsão salva e sem internet, o app MUST mostrar "Previsão disponível com internet",
+- **FR-005**: Sem previsão salva e sem internet, o app MUST mostrar "Ainda sem previsão salva — ela é baixada quando houver internet" ("Buscando a previsão…" enquanto a busca está em andamento),
   sem erro e sem travar o resto da tela.
 - **FR-006**: A previsão MUST se atualizar sozinha ao abrir o app com internet, no máximo a cada 3 horas.
 - **FR-007** (Q2 = A): Dia da viagem ainda fora do alcance da previsão MUST mostrar "Previsão a partir

@@ -54,11 +54,11 @@ test.describe('US1 e US2 (017) – previsão do tempo', () => {
     await expect(page.getByRole('region', { name: 'Tempo' })).toContainText('17° / 9°');
   });
 
-  test('nunca buscou (serviço fora): "Previsão disponível com internet" e o app abre', async ({ page }) => {
+  test('nunca buscou (serviço fora): avisa que ainda não há previsão salva e o app abre', async ({ page }) => {
     await openInstalled(page, '2026-10-29T19:00:00Z');
-    await expect(page.locator('.weather-strip')).toContainText('Previsão disponível com internet');
+    await expect(page.locator('.weather-strip')).toContainText('Ainda sem previsão salva — ela é baixada quando houver internet');
     await expect(page.getByRole('article')).toHaveCount(3);
     await page.goto('/#/dia/2026-11-01');
-    await expect(page.getByRole('region', { name: 'Tempo' })).toContainText('Previsão disponível com internet');
+    await expect(page.getByRole('region', { name: 'Tempo' })).toContainText('Ainda sem previsão salva — ela é baixada quando houver internet');
   });
 });

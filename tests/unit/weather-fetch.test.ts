@@ -2,7 +2,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { assembleContent } from '../../scripts/build-content';
 import { indexContent } from '../../src/content/load';
-import { readWeather, refreshWeather, WEATHER_KEY } from '../../src/lib/weather';
+import { installWeatherSync, onWeatherSyncing, readWeather, refreshWeather, WEATHER_KEY } from '../../src/lib/weather';
 import { setAppStorage } from '../../src/storage/app-storage';
 import { MemoryStorage } from '../fixtures/content';
 
@@ -96,5 +96,27 @@ describe('previsão do tempo — busca (feature 017)', () => {
   it('salvo quebrado: lido como vazio', () => {
     storage.setItem(WEATHER_KEY, '{quebrado');
     expect(readWeather()).toBeNull();
+  });
+});
+
+describe('sincronização (ajuste da feature 017)', () => {
+  it('avisa "buscando" durante a busca e para no fim, mesmo com erro', async () => {
+    const seen: boolean[] = [];
+    const off = onWeatherSyncing((on) => seen.push(on));
+    await refreshWeather(content, NOW);
+    fetchMock.mockImplementationOnce(() => Promise.reject(new TypeError('rede')));
+    await refreshWeather(content, new Date(NOW.getTime() + 4 * 3600_000));
+    off();
+    expect(seen).toEqual([true, false, true, false]);
+  });
+
+  it('a conexão volta: sincroniza na hora', async () => {
+    online(false);
+    const stop = installWeatherSync(content);
+    expect(fetchMock).not.toHaveBeenCalled();
+    online(true);
+    window.dispatchEvent(new Event('online'));
+    await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+    stop();
   });
 });

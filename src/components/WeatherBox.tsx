@@ -3,7 +3,7 @@ import type { CityId, DateStr } from '../content/types';
 import { zonedNow } from '../domain/opening-hours';
 import { formatDayMonth, TRIP_TIME_ZONE } from '../domain/trip';
 import { dayCities, describe, stale, weatherFor, type DayWeather } from '../domain/weather';
-import { useWeather } from '../lib/weather';
+import { useWeather, useWeatherSyncing } from '../lib/weather';
 import { Icon } from './Icon';
 
 /** "atualizada em 29/10 às 14h05", na hora da viagem (como o resto do app). */
@@ -23,6 +23,11 @@ export function tempRange(d: DayWeather): string {
   return `${d.max}° / ${d.min}°`;
 }
 
+/** Nada salvo: buscando agora, ou ainda sem previsão neste aparelho (nunca "precisa de internet"). */
+export function NoWeather({ syncing }: { syncing: boolean }) {
+  return syncing ? <p class="muted weather-syncing">Buscando a previsão…</p> : <p class="muted weather-empty">Ainda sem previsão salva — ela é baixada quando houver internet</p>;
+}
+
 export function Updated({ fetchedAt }: { fetchedAt: string }) {
   return <p class={`weather-updated${stale(fetchedAt, new Date()) ? ' is-stale' : ''}`}>{updatedLabel(fetchedAt)}</p>;
 }
@@ -33,6 +38,7 @@ export function Updated({ fetchedAt }: { fetchedAt: string }) {
  */
 export function WeatherBox({ content, date, today }: { content: LoadedContent; date: DateStr; today: DateStr }) {
   const store = useWeather();
+  const syncing = useWeatherSyncing();
   const cities = dayCities(content, date);
   if (!cities.length) return null;
   const rows = cities.map((id: CityId) => ({ id, w: weatherFor(store, id, date, today) }));
@@ -63,7 +69,7 @@ export function WeatherBox({ content, date, today }: { content: LoadedContent; d
         );
       })}
       {later?.kind === 'later' && !fetchedAt && <p class="muted">Previsão a partir de {formatDayMonth(later.from)}</p>}
-      {rows.every((r) => r.w.kind === 'none') && <p class="muted">Previsão disponível com internet</p>}
+      {rows.every((r) => r.w.kind === 'none') && <NoWeather syncing={syncing} />}
       {fetchedAt && <Updated fetchedAt={fetchedAt} />}
     </section>
   );
