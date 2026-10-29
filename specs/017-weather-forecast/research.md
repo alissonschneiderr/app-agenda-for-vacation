@@ -1,0 +1,75 @@
+# Research: Previsão do tempo no dia e no Início
+
+Sem NEEDS CLARIFICATION: Q1 (hoje + 4) e Q2 = A fecharam o escopo.
+
+## R1 — Fonte da previsão: Open-Meteo
+
+- **Decision**: `https://api.open-meteo.com/v1/forecast` com
+  `daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max`,
+  `timezone=America/New_York`, `forecast_days=7`, e as três cidades numa chamada só (latitudes e
+  longitudes separadas por vírgula; a resposta é uma lista na mesma ordem). Testado em 29/10: 200, CORS
+  aberto, 7 dias por cidade.
+- **Rationale**: gratuito, sem cadastro nem chave (nada a esconder num app estático público), dados em
+  °C, códigos WMO padronizados. As três cidades estão no mesmo fuso (Leste dos EUA).
+- **Alternatives considered**: OpenWeatherMap e WeatherAPI — exigem chave, que ficaria exposta no
+  GitHub Pages; National Weather Service (api.weather.gov) — só EUA, em inglês e sem chance de chuva
+  diária simples.
+
+## R2 — Alcance da previsão: 7 dias (Q2 = A)
+
+- **Decision**: o app pede 7 dias (hoje + 6). Dia da viagem além disso mostra "Previsão a partir de
+  DD/MM", com DD/MM = data do dia − 6.
+- **Rationale**: Q2 = A foi escolhida contra a opção de 16 dias (C): previsões além de uma semana erram
+  muito. 7 dias cobrem com folga a faixa do Início (5 dias).
+
+## R3 — Local de cada cidade
+
+- **Decision**: a localização do ponto-capa de cada cidade, que já está no conteúdo (`heroPointId` em
+  `content/trip.json`): Central Park (Nova York), Magic Kingdom (Orlando), South Beach (Miami).
+- **Rationale**: "nunca inventar dados" — nada de coordenada digitada à mão; os três pontos ficam onde o
+  casal passa os dias. A previsão é por cidade, não por bairro (spec, Assumptions).
+- **Privacidade**: o pedido leva só essas três coordenadas; nada do aparelho nem do casal (FR-009).
+
+## R4 — Quando buscar e onde guardar
+
+- **Decision**:
+  - `src/lib/weather.ts`: `refreshWeather()` busca quando há internet e a última busca tem mais de 3 h
+    (FR-006); roda ao abrir o app e quando ele volta para a frente (`visibilitychange`), como a busca de
+    versão nova da feature 014. Uma busca por vez.
+  - Guardado no armazenamento do app (`getAppStorage()`, o mesmo do IndexedDB da feature 014), na chave
+    `ctha:weather`: `{ fetchedAt, cities: { [cityId]: { [date]: DayWeather } } }`. Uma busca nova
+    substitui os dias que vieram e mantém os passados.
+  - `useWeather()` dá o estado às telas e re-renderiza quando a busca termina.
+  - Sem internet ou com erro: fica o que está salvo (FR-004, FR-005); nada de página de erro.
+- **Rationale**: offline-first (constituição I): a previsão salva continua visível sem rede, com
+  "atualizada em …".
+- **Alternatives considered**: deixar o Service Worker guardar a resposta (`StaleWhileRevalidate`) — o
+  app não saberia a hora da busca nem juntaria as respostas; e o `prefs.ts` — é só de preferências.
+
+## R5 — Ícones e descrições
+
+- **Decision**: tabela WMO → (ícone, descrição em português) em `src/domain/weather.ts`: 0 "Céu
+  limpo" (`sun`), 1–2 "Parcialmente nublado" (`cloud-sun`), 3 "Nublado" (`cloud`), 45/48 "Neblina"
+  (`fog`), 51–57 "Garoa", 61–67 e 80–82 "Chuva" (`rain`), 71–77 e 85–86 "Neve" (`snow`), 95–99
+  "Tempestade" (`storm`). Ícones novos desenhados em SVG no `src/components/Icon.tsx` (como os outros),
+  sem biblioteca.
+- **Rationale**: nenhuma dependência nova (constituição III).
+
+## R6 — Onde aparece
+
+- **Decision**:
+  - **Dia** (`src/pages/Day.tsx`): box "Tempo" logo depois do resumo do dia (`.day-summary`), antes do
+    menu de seções; nos dias que já passaram, não aparece. Dia de troca: as duas cidades da
+    `content.trip` (a que sai e a que chega).
+  - **Início** (`src/pages/Start.tsx`): faixa de 5 dias logo abaixo do cabeçalho, antes dos cards; cada
+    dia da viagem é link para `#/dia/<data>`; fora da viagem, "fora da viagem", sem link. "Hoje" vem de
+    `deviceToday()` (feature 013).
+- **Rationale**: FR-001 a FR-003, FR-008.
+
+## R7 — Testes
+
+- **Decision**: unit da tabela WMO, do "a partir de", da escolha das cidades por dia e da mescla do
+  salvo (`tests/unit/weather.test.ts`); `refreshWeather` com `fetch` falso (online, offline, erro,
+  menos de 3 h); componentes do box e da faixa (`tests/components/weather.test.tsx`); e2e
+  `tests/e2e/us-mobile-weather.spec.ts` nos projetos `mobile-360`/`mobile-402` com a resposta do
+  Open-Meteo interceptada (`page.route`) — nunca a rede de verdade nos testes.
