@@ -10,7 +10,7 @@ const SHORT: Record<CityId, string> = { 'nova-york': 'NY', orlando: 'ORL', miami
 
 /**
  * Faixa do Início (feature 017, FR-003/FR-008, Q1): hoje e os 4 dias seguintes. Dia da viagem abre o
- * dia; fora da viagem, só a data. A hora da busca aparece uma vez, abaixo.
+ * dia; fora da viagem, a previsão da 1ª (ou da última) cidade, sem link. A hora da busca aparece uma vez.
  */
 export function WeatherStrip({ content, today }: { content: LoadedContent; today: DateStr }) {
   const store = useWeather();
@@ -19,43 +19,53 @@ export function WeatherStrip({ content, today }: { content: LoadedContent; today
   return (
     <section class="weather-strip" aria-label="Previsão: hoje e os próximos 4 dias">
       <ol>
-        {days.map(({ date, cities }) => {
-          if (!cities.length) {
+        {days.map(({ date, cities, inTrip }) => {
+          const parts = cities.map((id) => ({ id, w: weatherFor(store, id, date, today) }));
+          const spoken = parts.map(({ id, w }) => (w.kind === 'forecast' ? spokenWeather(content.cityName(id), w.day, false) : content.cityName(id))).join('; ');
+          const label = `${formatWeekday(date)}, ${formatDayMonth(date)}, ${spoken}`;
+          // Fora da viagem: a cidade sempre aparece (NY antes, MIA depois), para não parecer o tempo de casa.
+          const showCity = cities.length > 1 || !inTrip;
+          const body = (
+            <>
+              <span class="weather-date">{formatDayMonth(date)}</span>
+              {parts.map(({ id, w }) =>
+                w.kind === 'forecast' ? (
+                  <span key={id} class="weather-mini">
+                    {showCity && <span class="weather-short">{SHORT[id]}</span>}
+                    <Icon name={describe(w.day.code).icon} size={22} />
+                    <span class="weather-minmax">
+                      {w.day.max}°/{w.day.min}°
+                    </span>
+                  </span>
+                ) : (
+                  <span key={id} class="weather-mini muted">
+                    {showCity && <span class="weather-short">{SHORT[id]}</span>}—
+                  </span>
+                ),
+              )}
+            </>
+          );
+          if (!inTrip) {
             return (
               <li key={date} class="weather-day is-out">
-                <span class="weather-date">{formatDayMonth(date)}</span>
-                <span class="weather-out">fora da viagem</span>
+                <span aria-hidden="true" class="weather-out-body">
+                  {body}
+                </span>
+                <span class="visually-hidden">{label}</span>
               </li>
             );
           }
-          const parts = cities.map((id) => ({ id, w: weatherFor(store, id, date, today) }));
-          const spoken = parts.map(({ id, w }) => (w.kind === 'forecast' ? spokenWeather(content.cityName(id), w.day, false) : content.cityName(id))).join('; ');
           return (
             <li key={date} class="weather-day">
-              <a href={`#/dia/${date}`} aria-label={`${formatWeekday(date)}, ${formatDayMonth(date)}, ${spoken}`}>
-                <span class="weather-date">{formatDayMonth(date)}</span>
-                {parts.map(({ id, w }) =>
-                  w.kind === 'forecast' ? (
-                    <span key={id} class="weather-mini">
-                      {cities.length > 1 && <span class="weather-short">{SHORT[id]}</span>}
-                      <Icon name={describe(w.day.code).icon} size={22} />
-                      <span class="weather-minmax">
-                        {w.day.max}°/{w.day.min}°
-                      </span>
-                    </span>
-                  ) : (
-                    <span key={id} class="weather-mini muted">
-                      {cities.length > 1 && <span class="weather-short">{SHORT[id]}</span>}—
-                    </span>
-                  ),
-                )}
+              <a href={`#/dia/${date}`} aria-label={label}>
+                {body}
               </a>
             </li>
           );
         })}
       </ol>
       {any && store && <Updated fetchedAt={store.fetchedAt} />}
-      {!any && days.some((d) => d.cities.length > 0) && <p class="muted weather-updated">Previsão disponível com internet</p>}
+      {!any && <p class="muted weather-updated">Previsão disponível com internet</p>}
     </section>
   );
 }

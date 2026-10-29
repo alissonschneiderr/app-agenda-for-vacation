@@ -914,9 +914,9 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -
 .weather-strip { margin: 0 0 16px; }
 .weather-strip ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
 .weather-day > a, .weather-day.is-out { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 76px; padding: 8px 2px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text); text-decoration: none; text-align: center; }
-.weather-day.is-out { background: transparent; border-style: dashed; color: var(--muted); }
+.weather-day.is-out { background: transparent; border-style: dashed; }
+.weather-out-body { display: contents; }
 .weather-date { font-weight: 600; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
-.weather-out { font-size: 0.72rem; line-height: 1.2; }
 .weather-mini { display: flex; flex-direction: column; align-items: center; gap: 1px; }
 .weather-mini .icon-svg { color: var(--primary); }
 .weather-minmax { font-size: 0.8rem; font-variant-numeric: tabular-nums; white-space: nowrap; }

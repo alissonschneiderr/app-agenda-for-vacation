@@ -62,12 +62,19 @@ export function dayCities(content: Pick<LoadedContent, 'trip'>, date: DateStr): 
   return content.trip.filter((l) => l.arrive <= date && date <= l.depart).map((l) => l.cityId);
 }
 
-/** Faixa do Início (Q1): hoje e os 4 dias seguintes; fora da viagem, sem cidade. */
-export function homeStrip(content: Pick<LoadedContent, 'trip'>, today: DateStr): { date: DateStr; cities: CityId[] }[] {
+/**
+ * Faixa do Início (Q1): hoje e os 4 dias seguintes. Fora da viagem também há previsão (pedido do
+ * casal): antes dela, a da 1ª cidade; depois, a da última — nunca a localização do aparelho (FR-009).
+ */
+export function homeStrip(content: Pick<LoadedContent, 'trip'>, today: DateStr): { date: DateStr; cities: CityId[]; inTrip: boolean }[] {
   const { start, end } = tripRange(content.trip);
+  const first = content.trip[0]!.cityId;
+  const last = content.trip[content.trip.length - 1]!.cityId;
   return [0, 1, 2, 3, 4].map((n) => {
     const date = addDays(today, n);
-    return { date, cities: date >= start && date <= end ? dayCities(content, date) : [] };
+    if (date < start) return { date, cities: [first], inTrip: false };
+    if (date > end) return { date, cities: [last], inTrip: false };
+    return { date, cities: dayCities(content, date), inTrip: true };
   });
 }
 

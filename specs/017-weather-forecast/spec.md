@@ -7,8 +7,10 @@
 **Status**: Draft
 
 **Decisões** (usuário: "Q1: Hoje + 4 dias na página inicial; Q2: A"):
-- **Q1**: a faixa do Início mostra **hoje e os 4 dias seguintes** (5 dias), ao pé da letra. Dia fora da
-  viagem aparece com a data e "fora da viagem", sem previsão (não há cidade do roteiro para ele).
+- **Q1**: a faixa do Início mostra **hoje e os 4 dias seguintes** (5 dias), ao pé da letra.
+- **Ajuste do usuário** ("era para mostrar hoje e amanhã, mesmo que seja fora da viagem"): dia fora da
+  viagem também tem previsão — antes dela, a da 1ª cidade (Nova York); depois, a da última (Miami) —,
+  com a sigla da cidade e sem link (não há página do dia).
 - **Q2 = A**: dia ainda fora do alcance da previsão mostra "Previsão a partir de DD/MM".
 
 **Input**: User description: "Adicione uma feature de previsão do tempo, dentro de cada dia, mostre um box para o dia e
@@ -61,8 +63,8 @@ com as duas cidades); tocar em 04/11 e cair no dia 04/11.
 1. **Given** um dia durante a viagem, **When** o casal abre o Início, **Then** a faixa mostra hoje e os 4
    dias seguintes, cada um com o tempo da cidade do roteiro naquele dia.
 2. **Given** hoje é 29/10 (antes da viagem), **When** o casal abre o Início, **Then** a faixa mostra
-   29/10 e 30/10 com "fora da viagem" e 31/10, 01/11 e 02/11 com o tempo de Nova York. Em 19/11, o
-   mesmo para 22/11 e 23/11, depois da viagem.
+   29/10 a 02/11, todos com o tempo de Nova York; 29/10 e 30/10 com a sigla "NY" e sem link. Em 19/11,
+   22/11 e 23/11 (depois da viagem) com o tempo de Miami e a sigla "MIA".
 3. **Given** a faixa, **When** o casal toca num dia da viagem, **Then** abre a página daquele dia.
 4. **Given** sem internet, **When** o casal abre o Início, **Then** a faixa mostra a última previsão salva
    com "atualizada em …"; sem nenhuma salva, a faixa diz "Previsão disponível com internet".
@@ -97,8 +99,8 @@ com as duas cidades); tocar em 04/11 e cair no dia 04/11.
 - **FR-006**: A previsão MUST se atualizar sozinha ao abrir o app com internet, no máximo a cada 3 horas.
 - **FR-007** (Q2 = A): Dia da viagem ainda fora do alcance da previsão MUST mostrar "Previsão a partir
   de DD/MM", sem número inventado nem média histórica.
-- **FR-008** (Q1): Na faixa do Início, dia fora da viagem MUST aparecer com DD/MM e "fora da viagem",
-  sem previsão e sem link.
+- **FR-008** (Q1, ajuste): Na faixa do Início, dia fora da viagem MUST mostrar a previsão da 1ª cidade
+  (antes da viagem) ou da última (depois), com a sigla da cidade e sem link.
 - **FR-009**: O pedido ao serviço de previsão MUST levar só a localização das cidades da viagem (não a
   do aparelho) e nenhum dado do casal.
 - **FR-010**: Box e faixa MUST funcionar a 360 × 780 e 402 × 874, no tema claro, escuro e de alto

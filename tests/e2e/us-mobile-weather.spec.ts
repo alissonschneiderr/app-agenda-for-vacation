@@ -20,12 +20,14 @@ async function noSideScroll(page: Page) {
 }
 
 test.describe('US1 e US2 (017) – previsão do tempo', () => {
-  test('Início em 29/10: 5 dias, 2 fora da viagem; 01/11 abre o dia com o box "Tempo"', async ({ page }) => {
+  test('Início em 29/10: 5 dias; hoje e amanhã com o tempo de NY; 01/11 abre o dia com o box "Tempo"', async ({ page }) => {
     await routeWeather(page, FORECAST);
     await openInstalled(page, '2026-10-29T19:00:00Z');
     const strip = page.locator('.weather-strip');
     await expect(strip.locator('li')).toHaveCount(5);
     await expect(strip.locator('li.is-out')).toHaveCount(2);
+    await expect(strip.locator('li.is-out').first()).toContainText('14°/6°');
+    await expect(strip.locator('li.is-out a')).toHaveCount(0);
     await expect(strip.getByRole('link', { name: /^Sábado, 31\/10, Nova York: nublado, máxima 16, mínima 8 graus$/ })).toBeVisible();
     await noSideScroll(page);
 

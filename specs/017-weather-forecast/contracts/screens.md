@@ -34,11 +34,12 @@ Qualquer outro resultado (rede, status, JSON) = mantém o salvo.
 
 ```text
  29/10        30/10        31/10        01/11        02/11
- fora da      fora da      ☁ 15°/5°     ☁ 16°/9°     ☁ 19°/11°
- viagem       viagem
+ NY           NY           ☁ 15°/5°     ☁ 16°/9°     ☁ 19°/11°
+ ☀ 20°/9°     ⛅ 18°/7°     (link)       (link)       (link)
 ```
 
-- 5 dias: hoje + 4. Dia da viagem = link `#/dia/<data>`; fora da viagem = texto, sem link.
+- 5 dias: hoje + 4. Dia da viagem = link `#/dia/<data>`; fora da viagem = previsão da 1ª cidade (antes)
+  ou da última (depois), com a sigla (NY/MIA), borda tracejada e sem link.
 - Dia de troca: as duas máximas/mínimas, uma por cidade (sigla NY/ORL/MIA).
 - Sem rolagem lateral da página a 360 px (a faixa pode rolar sozinha na horizontal).
 - "atualizada em …" uma vez, abaixo da faixa; sem nada salvo, "Previsão disponível com internet".

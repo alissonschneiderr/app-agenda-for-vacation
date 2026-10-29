@@ -11,7 +11,7 @@ import { setupReal } from './companion-helpers';
 afterEach(() => vi.useRealTimers());
 
 const FETCHED = '2026-10-29T18:05:00.000Z'; // 14h05 em Nova York
-const ny = { '2026-10-31': { code: 3, max: 15, min: 5, rain: 10 }, '2026-11-01': { code: 2, max: 15, min: 9, rain: 20 }, '2026-11-02': { code: 61, max: 19, min: 11, rain: 70 } };
+const ny = { '2026-10-29': { code: 0, max: 20, min: 9, rain: 0 }, '2026-10-30': { code: 1, max: 18, min: 7, rain: 10 }, '2026-10-31': { code: 3, max: 15, min: 5, rain: 10 }, '2026-11-01': { code: 2, max: 15, min: 9, rain: 20 }, '2026-11-02': { code: 61, max: 19, min: 11, rain: 70 } };
 
 function withWeather(now: string, store: WeatherStore | null) {
   const ctx = setupReal(now);
@@ -63,15 +63,19 @@ describe('box "Tempo" no dia (feature 017, US1)', () => {
 });
 
 describe('faixa hoje + 4 no Início (feature 017, US2)', () => {
-  it('29/10: 5 dias; 29 e 30/10 fora da viagem sem link; 31/10 a 02/11 com link e nome acessível', () => {
+  it('29/10: 5 dias; hoje e amanhã (antes da viagem) com o tempo de NY, sem link; 31/10 a 02/11 com link', () => {
     const { content } = withWeather('2026-10-29T19:00:00Z', { fetchedAt: FETCHED, cities: { 'nova-york': ny } });
     const { container } = render(<WeatherStrip content={content} today="2026-10-29" />);
     const items = [...container.querySelectorAll('.weather-strip li')];
     expect(items).toHaveLength(5);
     for (const i of [0, 1]) {
-      expect(items[i]!.textContent).toContain('fora da viagem');
       expect(items[i]!.querySelector('a')).toBeNull();
+      expect(items[i]!.classList.contains('is-out')).toBe(true);
+      expect(items[i]!.textContent).toContain('NY');
+      expect(items[i]!.textContent).not.toContain('fora da viagem');
     }
+    expect(items[0]!.textContent).toContain('20°/9°');
+    expect(within(items[1] as HTMLElement).getByText('Sexta-feira, 30/10, Nova York: parcialmente nublado, máxima 18, mínima 7 graus')).toBeTruthy();
     const sat = screen.getByRole('link', { name: 'Sábado, 31/10, Nova York: nublado, máxima 15, mínima 5 graus' });
     expect(sat.getAttribute('href')).toBe('#/dia/2026-10-31');
     expect(screen.getByRole('link', { name: /^Domingo, 01\/11/ }).getAttribute('href')).toBe('#/dia/2026-11-01');

@@ -37,17 +37,20 @@ describe('previsão do tempo — domínio (feature 017)', () => {
     expect(dayCities(content, '2026-10-30')).toEqual([]);
   });
 
-  it('faixa do Início: hoje + 4; fora da viagem sem cidade', () => {
+  it('faixa do Início: hoje + 4; fora da viagem, a 1ª cidade antes e a última depois', () => {
     expect(homeStrip(content, '2026-10-29')).toEqual([
-      { date: '2026-10-29', cities: [] },
-      { date: '2026-10-30', cities: [] },
-      { date: '2026-10-31', cities: ['nova-york'] },
-      { date: '2026-11-01', cities: ['nova-york'] },
-      { date: '2026-11-02', cities: ['nova-york'] },
+      { date: '2026-10-29', cities: ['nova-york'], inTrip: false },
+      { date: '2026-10-30', cities: ['nova-york'], inTrip: false },
+      { date: '2026-10-31', cities: ['nova-york'], inTrip: true },
+      { date: '2026-11-01', cities: ['nova-york'], inTrip: true },
+      { date: '2026-11-02', cities: ['nova-york'], inTrip: true },
     ]);
     const end = homeStrip(content, '2026-11-19');
     expect(end.map((d) => d.date)).toEqual(['2026-11-19', '2026-11-20', '2026-11-21', '2026-11-22', '2026-11-23']);
-    expect(end.slice(3).every((d) => d.cities.length === 0)).toBe(true);
+    expect(end.slice(3)).toEqual([
+      { date: '2026-11-22', cities: ['miami'], inTrip: false },
+      { date: '2026-11-23', cities: ['miami'], inTrip: false },
+    ]);
   });
 
   it('mescla: os dias novos substituem, os outros ficam; a hora da busca é a nova', () => {
